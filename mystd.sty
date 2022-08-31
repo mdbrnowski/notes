@@ -1,0 +1,298 @@
+\ProvidesPackage{mystd}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{lmodern}
+
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{urlcolor=RubineRed,linkcolor=RoyalBlue,citecolor=ForestGreen}
+\usepackage[nameinlink]{cleveref}
+\usepackage{thmtools}
+
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usetikzlibrary{shapes.geometric, calc, positioning}
+
+
+\newif\ifstdthm\stdthmfalse
+\newif\ifstdcolorsec\stdcolorsecfalse
+
+\DeclareOption{pretty}{\stdthmtrue\stdcolorsectrue}
+
+\DeclareOption{thm}{\stdthmtrue}
+\DeclareOption{nothm}{\stdthmfalse}
+\DeclareOption{colorsec}{\stdcolorsectrue}
+\DeclareOption{nocolorsec}{\stdcolorsecfalse}
+
+\ProcessOptions\relax
+
+
+%  ----------  SHORT AND USEFUL STUFF  ----------  %
+
+\DeclareMathOperator{\cis}{cis}
+\DeclareMathOperator*{\lcm}{lcm}
+
+\newcommand{\cbrt}[1]{\sqrt[3]{#1}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dg}{^\circ}
+\renewcommand{\iff}{\Leftrightarrow}
+\renewcommand{\implies}{\Rightarrow}
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+\newcommand{\catname}{\mathsf}
+\newcommand{\hrulebar}{
+  \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
+  \par\nointerlineskip \vspace{\baselineskip}
+}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lthen}{\rightarrow}
+\newcommand{\opname}{\operatorname}
+\newcommand{\surjto}{\twoheadrightarrow}
+\newcommand{\injto}{\hookrightarrow}
+
+\newcommand{\SA}{\mathcal A}
+\newcommand{\SB}{\mathcal B}
+\newcommand{\SC}{\mathcal C}
+\newcommand{\SD}{\mathcal D}
+\newcommand{\SF}{\mathcal F}
+\newcommand{\SG}{\mathcal G}
+\newcommand{\SH}{\mathcal H}
+\newcommand{\SR}{\mathcal R}
+
+\newcommand{\SCA}{\mathscr A}
+\newcommand{\SCB}{\mathscr B}
+\newcommand{\SCC}{\mathscr C}
+\newcommand{\SCD}{\mathscr D}
+\newcommand{\SCE}{\mathscr E}
+\newcommand{\SCF}{\mathscr F}
+\newcommand{\SCG}{\mathscr G}
+\newcommand{\SCH}{\mathscr H}
+
+\newcommand{\km}{\mathfrak m}
+\newcommand{\kp}{\mathfrak p}
+\newcommand{\kq}{\mathfrak q}
+%  ----------------------------------------------  %
+
+\ifstdthm
+    \usepackage[framemethod=TikZ]{mdframed}
+    \mdfdefinestyle{mdbluebox}{%
+        roundcorner=10pt,
+        linewidth=1pt,
+        skipabove=12pt,
+        innerbottommargin=9pt,
+        skipbelow=2pt,
+        linecolor=blue,
+        nobreak=true,
+        backgroundcolor=TealBlue!5,
+    }
+    \declaretheoremstyle[
+        headfont=\sffamily\bfseries\color{MidnightBlue},
+        mdframed={style=mdbluebox},
+        headpunct={\\[3pt]},
+        postheadspace={0pt}
+    ]{thmbluebox}
+    \mdfdefinestyle{mdredbox}{%
+        linewidth=0.5pt,
+        skipabove=12pt,
+        frametitleaboveskip=5pt,
+        frametitlebelowskip=0pt,
+        skipbelow=2pt,
+        frametitlefont=\bfseries,
+        innertopmargin=4pt,
+        innerbottommargin=8pt,
+        nobreak=true,
+        backgroundcolor=Salmon!5,
+        linecolor=RawSienna,
+    }
+    \declaretheoremstyle[
+        headfont=\bfseries\color{RawSienna},
+        mdframed={style=mdredbox},
+        headpunct={\\[3pt]},
+        postheadspace={0pt},
+    ]{thmredbox}
+    \mdfdefinestyle{mdgreenbox}{%
+        skipabove=8pt,
+        linewidth=2pt,
+        rightline=false,
+        leftline=true,
+        topline=false,
+        bottomline=false,
+        linecolor=ForestGreen,
+        backgroundcolor=ForestGreen!5,
+    }
+    \declaretheoremstyle[
+        headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+        bodyfont=\normalfont,
+        spaceabove=2pt,
+        spacebelow=1pt,
+        mdframed={style=mdgreenbox},
+        headpunct={ --- },
+    ]{thmgreenbox}
+    \mdfdefinestyle{mdblackbox}{%
+        skipabove=8pt,
+        linewidth=3pt,
+        rightline=false,
+        leftline=true,
+        topline=false,
+        bottomline=false,
+        linecolor=black,
+        backgroundcolor=RedViolet!5!gray!5,
+    }
+    \declaretheoremstyle[
+        headfont=\bfseries,
+        bodyfont=\normalfont\small,
+        spaceabove=0pt,
+        spacebelow=0pt,
+        mdframed={style=mdblackbox}
+    ]{thmblackbox}
+    \newcommand{\listhack}{$\empty$\vspace{-2em}}
+\fi
+
+\theoremstyle{definition}
+\ifstdthm
+    \declaretheorem[style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
+    \declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
+    \declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
+    \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
+    \declaretheorem[style=thmbluebox,name=Theorem,numbered=no]{theorem*}
+    \declaretheorem[style=thmbluebox,name=Lemma,numbered=no]{lemma*}
+    \declaretheorem[style=thmbluebox,name=Proposition,numbered=no]{proposition*}
+    \declaretheorem[style=thmbluebox,name=Corollary,numbered=no]{corollary*}
+\else
+    \declaretheorem[name=Theorem,numberwithin=section]{theorem}
+    \declaretheorem[name=Lemma,sibling=theorem]{lemma}
+    \declaretheorem[name=Proposition,sibling=theorem]{proposition}
+    \declaretheorem[name=Corollary,sibling=theorem]{corollary}
+    \declaretheorem[name=Theorem,numbered=no]{theorem*}
+    \declaretheorem[name=Lemma,numbered=no]{lemma*}
+    \declaretheorem[name=Proposition,numbered=no]{proposition*}
+    \declaretheorem[name=Corollary,numbered=no]{corollary*}
+\fi
+\ifstdthm
+    \declaretheorem[style=thmgreenbox,name=Algorithm,sibling=theorem]{algorithm}
+    \declaretheorem[style=thmgreenbox,name=Algorithm,numbered=no]{algorithm*}
+    \declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
+    \declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
+\else
+    \declaretheorem[name=Algorithm,sibling=theorem]{algorithm}
+    \declaretheorem[name=Algorithm,numbered=no]{algorithm*}
+    \declaretheorem[name=Claim,sibling=theorem]{claim}
+    \declaretheorem[name=Claim,numbered=no]{claim*}
+\fi
+\ifstdthm
+    \declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
+    \declaretheorem[style=thmredbox,name=Example,numbered=no]{example*}
+\else
+    \declaretheorem[name=Example,sibling=theorem]{example}
+    \declaretheorem[name=Example,numbered=no]{example*}
+\fi
+\ifstdthm
+    \declaretheorem[style=thmblackbox,name=Remark,sibling=theorem]{remark}
+    \declaretheorem[style=thmblackbox,name=Remark,numbered=no]{remark*}
+\else
+    \declaretheorem[name=Remark,sibling=theorem]{remark}
+    \declaretheorem[name=Remark,numbered=no]{remark*}
+\fi
+\declaretheorem[name=Conjecture,sibling=theorem]{conjecture}
+\declaretheorem[name=Conjecture,numbered=no]{conjecture*}
+\declaretheorem[name=Definition,sibling=theorem]{definition}
+\declaretheorem[name=Definition,numbered=no]{definition*}
+\declaretheorem[name=Exercise,sibling=theorem]{exercise}
+\declaretheorem[name=Exercise,numbered=no]{exercise*}
+\declaretheorem[name=Fact,sibling=theorem]{fact}
+\declaretheorem[name=Fact,numbered=no]{fact*}
+\declaretheorem[name=Problem,sibling=theorem]{problem}
+\declaretheorem[name=Problem,numbered=no]{problem*}
+\declaretheorem[name=Question,sibling=theorem]{ques}
+\declaretheorem[name=Question,numbered=no]{ques*}
+
+\ifstdcolorsec
+    \@ifundefined{chapter}{}{
+        \addtokomafont{partprefix}{\rmfamily}
+        \renewcommand*{\partformat}{\color{purple}
+            \scalebox{2.5}{\thepart}\enlargethispage{2em}}
+        \addtokomafont{chapterprefix}{\raggedleft}
+        \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
+        \renewcommand*{\chapterformat}{\mbox{%
+            \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
+            \scalebox{2.718}{\color{purple}\thechapter}\enskip}}
+    }
+    \renewcommand*{\sectionformat}%
+        {\color{purple}\S\thesection\enskip}
+    \renewcommand*{\subsectionformat}%
+        {\color{purple}\S\thesubsection\enskip}
+    \renewcommand*{\subsubsectionformat}%
+        {\color{purple}\S\thesubsubsection\enskip}
+    \KOMAoptions{numbers=noenddot}
+\fi
+
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{textcomp}
+\lstset{basicstyle=\footnotesize\ttfamily,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny,
+    keywordstyle=\bfseries,
+    showstringspaces=false,
+    tabsize=4,
+    frame=single,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\color{green!70!black},
+    identifierstyle=\color{green!20!black},
+    stringstyle=\color{orange},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=none
+}
+\usepackage[shortlabels]{enumitem}
+\usepackage{textcomp}
+\usepackage{multirow}
+% Tiny optimizations:
+\usepackage{mathtools}
+\usepackage{microtype}
+
+\addtokomafont{subtitle}{\Large}
+\setkomafont{author}{\Large\scshape}
+\setkomafont{date}{\Large\normalsize}
+\providecommand{\thetitle}{\@title}
+\providecommand{\theauthor}{\@author}
+\providecommand{\thedate}{\@date}
+\usepackage[headsepline]{scrlayer-scrpage}
+\renewcommand{\headfont}{}
+\addtolength{\textheight}{3.14cm}
+\setlength{\footskip}{0.5in}
+\setlength{\headsep}{10pt}
+\ihead{\footnotesize\textbf{\theauthor}}
+\automark{section}
+\chead{}
+\ohead{\footnotesize\textbf{\thetitle}}
+\cfoot{\pagemark}
+
+\usepackage{answers}
+\renewcommand{\solutionextension}{out}
+
+\Newassociation{hint}{hintitem}{hints}
+\Opensolutionfile{hints}
+\newcommand{\makehints}{\Closesolutionfile{hints}\input{hints.out}}
+
+\Newassociation{answer}{hintitem}{answers}
+\Opensolutionfile{answers}
+\newcommand{\makeanswers}{\Closesolutionfile{answers}\input{answers.out}}
