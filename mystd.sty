@@ -93,8 +93,7 @@
 \ifstdthm
     \usepackage[framemethod=TikZ]{mdframed}
     \mdfdefinestyle{mdbluebox}{%
-        roundcorner=10pt,
-        linewidth=1pt,
+        linewidth=0.5pt,
         skipabove=12pt,
         innerbottommargin=9pt,
         skipbelow=2pt,
@@ -162,27 +161,22 @@
         spacebelow=0pt,
         mdframed={style=mdblackbox}
     ]{thmblackbox}
-    \newcommand{\listhack}{$\empty$\vspace{-2em}}
 \fi
 
 \theoremstyle{definition}
 \ifstdthm
     \declaretheorem[style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
     \declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
-    \declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
     \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
     \declaretheorem[style=thmbluebox,name=Theorem,numbered=no]{theorem*}
     \declaretheorem[style=thmbluebox,name=Lemma,numbered=no]{lemma*}
-    \declaretheorem[style=thmbluebox,name=Proposition,numbered=no]{proposition*}
     \declaretheorem[style=thmbluebox,name=Corollary,numbered=no]{corollary*}
 \else
     \declaretheorem[name=Theorem,numberwithin=section]{theorem}
     \declaretheorem[name=Lemma,sibling=theorem]{lemma}
-    \declaretheorem[name=Proposition,sibling=theorem]{proposition}
     \declaretheorem[name=Corollary,sibling=theorem]{corollary}
     \declaretheorem[name=Theorem,numbered=no]{theorem*}
     \declaretheorem[name=Lemma,numbered=no]{lemma*}
-    \declaretheorem[name=Proposition,numbered=no]{proposition*}
     \declaretheorem[name=Corollary,numbered=no]{corollary*}
 \fi
 \ifstdthm
@@ -220,8 +214,8 @@
 \declaretheorem[name=Fact,numbered=no]{fact*}
 \declaretheorem[name=Problem,sibling=theorem]{problem}
 \declaretheorem[name=Problem,numbered=no]{problem*}
-\declaretheorem[name=Question,sibling=theorem]{ques}
-\declaretheorem[name=Question,numbered=no]{ques*}
+\declaretheorem[name=Question,sibling=theorem]{question}
+\declaretheorem[name=Question,numbered=no]{question*}
 
 \ifstdcolorsec
     \@ifundefined{chapter}{}{
