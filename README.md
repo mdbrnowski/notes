@@ -1,6 +1,6 @@
 # notes
 
-## My notes, arrticles, papers, etc.
+## My notes, articles, papers, etc.
 
 * **filt.tex** – *Funkcje tworzące i filtracja pierwiastkami jedności*
 
@@ -10,7 +10,7 @@ This repository contains `mystd.sty` – my template for creating notes in LaTeX
 
 ```latex
 \documentclass[11pt]{scrartcl}
-\usepackage[pretty]{mystd}
+\usepackage[pretty,polish]{mystd}
 \title{}
 \author{}
 \date{}
@@ -27,6 +27,7 @@ Do pakietu `mystd.sty` można podać kilka argumentów:
 * `thm`/`nothm` – kolory i ramki (lub ich brak) dla twierdzień i podobnych
 * `colorsec`/`nocolorsec` – ładniejsze numerowanie sekcji (lub jego brak)
 * `pretty` – podaje `thm` oraz `colorsec`
+* `polish` – polskie słowa kluczowe i tytuły sekcji
 
 Pakiet `mystd.sty` oferuje wiele dodatkowych narzędzi:
 
