@@ -5,10 +5,18 @@
 \usepackage{lmodern}
 
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
-\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage[svgnames,dvipsnames]{xcolor}
+
+\definecolor{MainColor1}{HTML}{BF0040}  %#BF0040
+
+\definecolor{LinkColor1}{HTML}{2653C3}  %#2653C3
+\definecolor{LinkColor2}{HTML}{0C3291}  %#0C3291
+
+\definecolor{BoxColor1}{HTML}{092877}   %#092877
+\definecolor{BoxColor2}{HTML}{B24A00}   %#B24A00
 
 \usepackage[colorlinks=true]{hyperref}
-\hypersetup{urlcolor=RubineRed,linkcolor=RoyalBlue,citecolor=ForestGreen}
+\hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
 \usepackage[nameinlink]{cleveref}
 \usepackage{thmtools}
 
@@ -52,7 +60,7 @@
 \newcommand{\dg}{^\circ}
 \renewcommand{\iff}{\Leftrightarrow}
 \renewcommand{\implies}{\Rightarrow}
-\newcommand{\vocab}[1]{\textbf{\color{purple} #1}}
+\newcommand{\vocab}[1]{\textbf{\color{MainColor1} #1}}
 \newcommand{\hrulebar}{
   \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
   \par\nointerlineskip \vspace{\baselineskip}
@@ -106,11 +114,11 @@
         innerbottommargin=9pt,
         skipbelow=2pt,
         nobreak=true,
-        linecolor=MidnightBlue,
-        backgroundcolor=MidnightBlue!5,
+        linecolor=BoxColor1,
+        backgroundcolor=BoxColor1!5,
     }
     \declaretheoremstyle[
-        headfont=\sffamily\bfseries\color{MidnightBlue},
+        headfont=\sffamily\bfseries\color{BoxColor1},
         mdframed={style=mdbluebox},
         headpunct={\\[3pt]},
         postheadspace={0pt}
@@ -125,36 +133,18 @@
         innertopmargin=4pt,
         innerbottommargin=8pt,
         nobreak=true,
-        linecolor=RawSienna,
-        backgroundcolor=RawSienna!5,
+        linecolor=BoxColor2,
+        backgroundcolor=BoxColor2!5,
     }
     \declaretheoremstyle[
-        headfont=\bfseries\color{RawSienna},
+        headfont=\bfseries\color{BoxColor2},
         mdframed={style=mdredbox},
         headpunct={\\[3pt]},
         postheadspace={0pt},
     ]{thmredbox}
-    \mdfdefinestyle{mdgreenbox}{%
-        skipabove=8pt,
-        linewidth=2pt,
-        rightline=false,
-        leftline=true,
-        topline=false,
-        bottomline=false,
-        linecolor=ForestGreen,
-        backgroundcolor=ForestGreen!5,
-    }
-    \declaretheoremstyle[
-        headfont=\bfseries\sffamily\color{ForestGreen!70!black},
-        bodyfont=\normalfont,
-        spaceabove=2pt,
-        spacebelow=1pt,
-        mdframed={style=mdgreenbox},
-        headpunct={ --- },
-    ]{thmgreenbox}
     \mdfdefinestyle{mdblackbox}{%
         skipabove=8pt,
-        linewidth=3pt,
+        linewidth=2pt,
         rightline=false,
         leftline=true,
         topline=false,
@@ -172,7 +162,6 @@
 \else
     \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmbluebox}
     \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmredbox}
-    \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmgreenbox}
     \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmblackbox}
 \fi
 
@@ -185,10 +174,6 @@
     \declaretheorem[style=thmbluebox,name=Lemat,numbered=no]{lemma*}
     \declaretheorem[style=thmbluebox,name=Wniosek,sibling=theorem]{corollary}
     \declaretheorem[style=thmbluebox,name=Wniosek,numbered=no]{corollary*}
-    \declaretheorem[style=thmgreenbox,name=Algorytm,sibling=theorem]{algorithm}
-    \declaretheorem[style=thmgreenbox,name=Algorytm,numbered=no]{algorithm*}
-    \declaretheorem[style=thmgreenbox,name=Stwierdzenie,sibling=theorem]{claim}
-    \declaretheorem[style=thmgreenbox,name=Stwierdzenie,numbered=no]{claim*}
     \declaretheorem[style=thmredbox,name=Przykład,sibling=theorem]{example}
     \declaretheorem[style=thmredbox,name=Przykład,numbered=no]{example*}
     \declaretheorem[style=thmblackbox,name=Uwaga,sibling=theorem]{remark}
@@ -212,10 +197,6 @@
     \declaretheorem[style=thmbluebox,name=Lemma,numbered=no]{lemma*}
     \declaretheorem[style=thmbluebox,name=Corollary,sibling=theorem]{corollary}
     \declaretheorem[style=thmbluebox,name=Corollary,numbered=no]{corollary*}
-    \declaretheorem[style=thmgreenbox,name=Algorithm,sibling=theorem]{algorithm}
-    \declaretheorem[style=thmgreenbox,name=Algorithm,numbered=no]{algorithm*}
-    \declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
-    \declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
     \declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
     \declaretheorem[style=thmredbox,name=Example,numbered=no]{example*}
     \declaretheorem[style=thmblackbox,name=Remark,sibling=theorem]{remark}
@@ -237,20 +218,20 @@
 \ifstdcolorsec
     \@ifundefined{chapter}{}{
         \addtokomafont{partprefix}{\rmfamily}
-        \renewcommand*{\partformat}{\color{purple}
+        \renewcommand*{\partformat}{\color{MainColor1}
             \scalebox{2.5}{\thepart}\enlargethispage{2em}}
         \addtokomafont{chapterprefix}{\raggedleft}
         \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
         \renewcommand*{\chapterformat}{\mbox{%
             \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
-            \scalebox{2.718}{\color{purple}\thechapter}\enskip}}
+            \scalebox{2.718}{\color{MainColor1}\thechapter}\enskip}}
     }
     \renewcommand*{\sectionformat}%
-        {\color{purple}\S\thesection\enskip}
+        {\color{MainColor1}\S\thesection\enskip}
     \renewcommand*{\subsectionformat}%
-        {\color{purple}\S\thesubsection\enskip}
+        {\color{MainColor1}\S\thesubsection\enskip}
     \renewcommand*{\subsubsectionformat}%
-        {\color{purple}\S\thesubsubsection\enskip}
+        {\color{MainColor1}\S\thesubsubsection\enskip}
     \KOMAoptions{numbers=noenddot}
 \fi
 

@@ -35,8 +35,6 @@ Pakiet `mystd.sty` oferuje wiele dodatkowych narzędzi:
   * `theorem` (Theorem, Twierdzenie)
   * `lemma` (Lemma, Lemat)
   * `corollary` (Corollary, Wniosek)
-  * `algorithm` (Algorithm, Algorytm)
-  * `claim` (Claim, Stwierdzenie)
   * `example` (Example, Przykład)
   * `remark` (Remark, Uwaga)
   * `conjecture` (Conjecture, Przypuszczenie)
