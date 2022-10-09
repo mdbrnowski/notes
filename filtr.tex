@@ -2,7 +2,7 @@
 \usepackage[pretty,polish]{mystd}
 \title{Funkcje tworzące i filtracja pierwiastkami jedności}
 \author{Michał Dobranowski}
-\date{czerwiec 2022 \\ v1.1}
+\date{czerwiec 2022 \\ v1.2}
 
 \begin{document}
     \maketitle
@@ -17,11 +17,6 @@
         Pierwiastek $n$-tego stopnia z jedynki to liczba $\omega \in \CC$ spełniąjaca równanie $\omega^n = 1$.
     \end{definition}
 
-    \begin{definition}
-        \label{d:primitive_root}
-        Pierwiastek pierwotny $n$-tego stopnia z jedynki to taka liczba $\omega_n^k = e^{2\pi i k / n}$, że $n$~i~$k$ są względnie pierwsze.
-    \end{definition}
-
     \begin{lemma}
         \label{l:roots_sum}
         Niech $\omega \neq 1$ będzie pierwiastkiem $n$-tego stopnia z jedynki. Wtedy
@@ -33,6 +28,11 @@
         Z założenia $(1 - \omega) \neq 0$, więc otrzymujemy tezę.
     \end{proof}
 
+    \begin{definition}
+        \label{d:primitive_root}
+        Pierwiastek pierwotny $n$-tego stopnia z jedynki to taka liczba $\omega_n^k = e^{2\pi i k / n}$, że $n$~i~$k$ są względnie pierwsze.
+    \end{definition}
+
     \begin{lemma}
         \label{l:roots_group}
         Zbiór wszystkich pierwiastków jedności $n$-tego stopnia tworzy grupę cykliczną ze względu na mnożenie. Generatorem tej grupy jest każdy pierwiastek pierwotny $n$-tego stopnia z jedności.
@@ -40,6 +40,12 @@
     \begin{proof}
         Na podstawie definicji \ref{d:root} i \ref{d:primitive_root} oraz własności potęgowania łatwo zauważyć, że taka grupa jest izomorficzna z grupą $(\NN_n, +)$, czyli grupą addytywną modulo~$n$, której generatorem jest każda liczba względnie pierwsza z $n$.
     \end{proof}
+
+    \begin{remark*}[dla Czytelnika nieobeznanego z teorią grup]
+        Dla danej liczby $z \in \CC$ zdefiniujmy $P(z) = \{z, z^2, z^3, \ldots\}$. Lemat \ref{l:roots_group} mówi o tym, że dla każdego pierwiastka pierwotnego $n$-tego stopnia z jedności $\omega_n^k$ zbiór $P(\omega_n^k)$ jest zbiorem wszystkich pierwiastków $n$-tego stopnia z jedności.
+
+        Przykładowo, $P(\omega_6^5) = \{\omega_6^5, \omega_6^4, \omega_6^3, \omega_6^2, \omega_6^1, 1\}$, ale $P(\omega_6^2) = \{\omega_6^2, \omega_6^4, 1\}$.
+    \end{remark*}
 
     \begin{lemma}
         \label{l:roots_plus_one_prod}
