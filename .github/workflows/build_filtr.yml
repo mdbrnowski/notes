@@ -1,0 +1,35 @@
+name: Build LaTeX document
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - filtr.tex
+    - mystd.sty
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: filtr.tex
+      - name: Stash PDF file
+        run: |
+          mv filtr.pdf $HOME
+      - name: Add and commit PDF file
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          mkdir -p pdf
+          mv $HOME/filtr.pdf $(pwd)/pdf
+          git add pdf/filtr.pdf -f
+          git commit -m "Compile into PDF"
+      - name: push pdf
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: main
+          force: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
