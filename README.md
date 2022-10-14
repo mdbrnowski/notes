@@ -2,7 +2,7 @@
 
 ## My notes, articles, papers, etc.
 
-* **filt.tex** – *Funkcje tworzące i filtracja pierwiastkami jedności*
+* **filtr.tex** ([pdf](pdf/filtr.pdf)) – *Funkcje tworzące i filtracja pierwiastkami jedności*
 
 ## The `mystd.sty` package
 
