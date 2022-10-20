@@ -2,9 +2,17 @@
 
 ## My notes, articles, papers, etc.
 
+### Computer Science at AGH UST
+
+* 🚧 **algebra.tex** ([pdf](pdf/algebra.pdf)) – *Algebra, dr hab. Jakub Przybyło*
+
+### Miscellaneous
+
 * **filtr.tex** ([pdf](pdf/filtr.pdf)) – *Funkcje tworzące i filtracja pierwiastkami jedności*
 
-## The `mystd.sty` package
+<br>
+
+## The mystd.sty package
 
 This repository contains `mystd.sty` – my template for creating notes in LaTeX.
 
@@ -22,14 +30,14 @@ This repository contains `mystd.sty` – my template for creating notes in LaTeX
 \end{document}
 ```
 
-Do pakietu `mystd.sty` można podać kilka argumentów:
+To the package `mystd.sty` one can pass a few arguments:
 
-* `thm`/`nothm` – kolory i ramki (lub ich brak) dla twierdzień i podobnych
-* `colorsec`/`nocolorsec` – ładniejsze numerowanie sekcji (lub jego brak)
-* `pretty` – podaje `thm` oraz `colorsec`
-* `polish` – polskie słowa kluczowe i tytuły sekcji
+* `thm`/`nothm` – colors and frames for theorems and similar environments
+* `colorsec`/`nocolorsec` – prettier sections numeration
+* `pretty` – passes `thm` and `colorsec`
+* `polish` – polish version (keywords and other)
 
-Pakiet `mystd.sty` oferuje wiele dodatkowych narzędzi:
+In `mystd.sty` I have also defined:
 
 * Environments
   * `theorem` (Theorem, Twierdzenie)
@@ -43,3 +51,7 @@ Pakiet `mystd.sty` oferuje wiele dodatkowych narzędzi:
   * `fact` (Fact, Fakt)
   * `problem` (Problem, Problem)
   * `question` (Question, Pytanie)
+* Math operators (`\cis`, `\lcm`, `\Arg`, ...)
+* Commands (`\iff`, `\implies`, `\vocab`, ...)
+* Symbols (`\sA` for `\mathcal A` and `\scA` for `\mathscr A`)
+* And more (it's best to see it for yourself in the source file)
