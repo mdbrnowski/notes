@@ -1,0 +1,362 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[pretty,polish]{mystd}
+\title{Algebra}
+\author{Michał Dobranowski}
+\date{semestr zimowy 2022 \\ v0.1}
+
+\begin{document}
+    \maketitle
+    \begin{abstract}
+        Poniższy skrypt zawiera materiał obejmujący wykłady z Algebry prowadzone przez dr hab. Jakuba Przybyło na I semestrze Informatyki na AGH oraz tematy, które uznałem za warte uwagi podczas własnych studiów nad tematem.
+    \end{abstract}
+    \tableofcontents
+    \eject
+
+    \section{Liczy zespolone}
+    \begin{definition}
+        Liczba zespolona $z$ to uporządkowana para liczb rzeczywistych. Pierwszy element tej pary to \vocab{część rzeczywista}, ozaczana symbolem $\Re(z)$, a drugi to \vocab{część urojona}, oznaczana symbolem $\Im(z)$. Zbiór liczb zespolonych oznaczamy przez $\CC$.
+    \end{definition}
+
+    Liczby zespolone można reprezentować w kilku postaciach, jedna z nich to \vocab{postać algebraiczna}. Używając jej, liczba $z = (x, y)$ jest zapisywana jako
+    $$ z = x + iy, $$
+    gdzie $i$ nazywamy \vocab{jednostką urojoną}, która spełnia
+    $$ i^2 = -1. $$
+
+    \subsection{Działania na liczbach zespolonych}
+    Niech $z_1 = x_1 + iy_1$ oraz $z_2 = x_2 + iy_2$. Określamy:
+    \begin{itemize}
+        \item dodawanie $z_1 + z_2 = x_1 + x_2 + i(y_1 + y_2)$
+        \item mnożenie $\begin{aligned}[t] z_1z_2 &= x_1x_2 + ix_1y_2 + ix_2y_1 + i^2y_1y_2 \\ &= x_1x_2 - y_1y_2 + i(x_1y_2 + x_2y_1)\end{aligned}$
+    \end{itemize}
+
+    \begin{corollary}
+        Dodawanie i mnożenie liczb zespolonych jest przemienne i łączne. Mnożenie jest rozdzielne względem dodawania.
+    \end{corollary}
+
+    \begin{definition}
+        Sprzężenie liczby zespolonej $z = x + iy$ to liczba $\ol{z} = x - iy$.
+    \end{definition}
+
+    \begin{definition}
+        \label{d:magnitude}
+        Moduł liczby zespolonej $z = x + iy$ to liczba $|z| = \sqrt{x^2 + y^2}$.
+    \end{definition}
+
+    Zachodzi pewna własność, wynikająca ze wzoru skróconego mnożenia:
+    $$ z\ol{z} = (x + iy)(x - iy) = x^2 - i^2y^2 = x^2 + y^2 $$
+    \begin{equation}
+        z\ol{z} = |z|^2
+    \end{equation}
+
+    Powyższa liczba jest liczbą rzeczywistą, więc znaleźliśmy prosty sposób na dzielenie liczb zespolonych przez siebie, mnożąc licznik i mnianownik przez sprzężenie mianownika. Na przykład:
+    $$ \frac{1 + 2i}{-1 - i} = \frac{(1 + 2i)(-1 + i)}{(-1 - i)(-1 + i)} = \frac{-3 -i}{2} = \frac{-3}{2} - \frac{i}{2}. $$
+
+    \begin{lemma}
+        Oprócz $z\ol{z} = |z|^2$, zachodzą również równości:
+        \begin{itemize}
+            \item $|\ol{z}| = |z|$
+            \item $\ol{z_1 + z_2} = \ol{z_1} + \ol{z_2}$
+            \item $\ol{z_1z_2} = \ol{z_1}\cdot\ol{z_2}$
+            \item $|z_1z_2| = |z_1||z_2|$
+        \end{itemize}
+    \end{lemma}
+    Ich dowody można w łatwy sposób przeprowadzić z definicji poszczególnych działań.
+
+    \subsection{Interpretacja geometryczna liczb zespolonych}
+    Liczby zespolone można interpretować jako punkty na \vocab{płaszczyźnie zespolonej}. Dla przykładu liczba $z = 3 + 2i$.
+
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzInit[xmin=-.7, xmax=3.7, ymin=-.7, ymax=2.7]
+            \tkzDefPoints{0/0/O,3/2/z}
+            \tkzGrid
+            \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
+            \tkzDrawSegments(O,z)
+            \tkzDrawPoints(z)
+            \tkzLabelPoints[above right](z)
+        \end{tikzpicture}
+    \end{center}
+
+    \begin{fact}
+        Moduł liczby zespolonej $z$ to długość wektora wodzącego tej liczby na płaszczyźnie zespolonej.
+    \end{fact}
+    \begin{proof}
+        Wynika to z twierdzenia Pitagorasa oraz definicji modułu (\ref{d:magnitude}).
+    \end{proof}
+
+    Możemy wyprowadzić \vocab{postać trygonometryczną} liczby zespolonej, która, zamiast dwóch współrzędnych, będzie operować na długości wektora wodzącego oraz kącie skierowanym. Mamy więc
+    $$ z = |z|(\cos\varphi + i\sin\varphi) $$
+    gdzie $\varphi$ to miara kąta skierowanego między wektorem wodzącym liczby zespolonej $z$ a osią liczb rzeczywistych. Ten kąt nazywany jest \vocab{argumentem} i oznaczany przez $\Arg(z)$. Argument nie jest określony jednoznacznie -- dowolne dwa argumenty jednej liczby różnią się o wielokrotność $2\pi$. Jeśli argument jest w przedziale $[0, 2\pi)$, to mówimy, że jest to \vocab{argument główny} liczby $z$ i oznaczamy $\arg(z)$.
+
+    Za pomocą podstawowej trygonometrii możemy łatwo zamieniać postać algebraiczną i trygonometryczną między sobą.
+
+    \begin{center}
+        \begin{tikzpicture}
+            \tkzInit[xmin=-.7, xmax=3.7, ymin=-.7, ymax=2.7]
+            \tkzDefPoints{0/0/O,1/0/A,3/2/z}
+            \tkzDefPointBy[projection=onto O--A](z) \tkzGetPoint{z'}
+            \tkzGrid
+            \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
+            \tkzDrawSegment[dim={$|z|$,2mm,}, dim style/.style={sloped,dashed}](O,z)
+            \tkzDrawSegment[dim={$|z|\cos\varphi$,-2mm,}, dim style/.style={sloped,dashed}](O,z')
+            \tkzDrawSegment[dim={$|z|\sin\varphi$,2mm,}, dim style/.style={sloped,dashed}](z,z')
+            \tkzMarkAngle[size=1.1](z',O,z)
+            \tkzLabelAngle[pos=.8](z',O,z){$\varphi$}
+            \tkzDrawPoints(z)
+            \tkzLabelPoints[above right](z)
+        \end{tikzpicture}
+    \end{center}
+
+    \begin{equation}
+        \Re{z} = |z|\cos\varphi, \hspace{2em} \Im{z} = |z|\sin\varphi
+    \end{equation}
+
+    Na potrzeby dalszych rozważań przyjmujemy, że $\arg(0) = 0$.
+
+    \begin{fact}
+        Odległość między liczbami $z_1$ i $z_2$ na płaszczyźnie zespolonej wynosi $|z_1 - z_2|$.
+    \end{fact}
+
+    \begin{lemma}
+        Zachodzą następujące nierówności:
+        \begin{itemize}
+            \item $|z_1 + z_2| \leq |z_1| + |z_2|$
+            \item $||z_1| - |z_2|| \leq |z_1 - z_2|$
+        \end{itemize}
+    \end{lemma}
+
+    Możemy łatwo mnożyć dwie liczby zespolone w postaci trygonometrycznej przez siebie za pomocą poniższego wzoru.
+    \begin{equation}
+        \label{eq:complex_prod}
+        \begin{aligned}
+            z_1 \cdot z_2 &= |z_1|(\cos\varphi_1 + i\sin\varphi_1)|z_2|(\cos\varphi_2 + i\sin\varphi_2) \\
+                          &= |z_1||z_2|(\cos\varphi_1\cos\varphi_2 - \sin\varphi_1\sin\varphi_2 + i(\cos\varphi_1\sin\varphi_2 + \sin\varphi_1\cos\varphi_2)) \\
+                          &= |z_1||z_2|(\cos(\varphi_1 + \varphi_2) + i\sin(\varphi_1 + \varphi_2))
+        \end{aligned}
+    \end{equation}
+
+    Stosując wzór \ref{eq:complex_prod} $n$ razy otrzymujemy dowód następującego twierdzenia.
+
+    \begin{theorem}[Wzór de Moivre'a]
+        \label{t:demoivre}
+        Dla $z = |z|(\cos\varphi + i\sin\varphi)$ oraz $n \in \ZZ$ zachodzi równość
+        $$ z^n = |z|^n(\cos n\varphi + i\sin n\varphi) $$
+    \end{theorem}
+
+    Wzór de Moivre'a zapewnia prosty sposób na potęgowanie liczb zespolonych. Dlatego, mając za zadanie obliczyć
+    $$ (-2\sqrt{3} - 2i)^{16} $$
+    najłatwiej będzie zmienić postać liczby do postaci trygonometrycznej, a następnie skorzystać z twierdzenia \ref{t:demoivre}.
+
+    \subsection{Pierwiastkowanie liczb zespolonych}
+    \begin{definition}[Pierwiastek liczby zespolonej]
+        Jeśli $z$ jest liczbą zespoloną, to $\sqrt[n]{z}$ jest zbiorem wszystkich takich $w \in \CC$, że $w^n = z$.
+    \end{definition}
+
+    Korzystając ze wzoru de Moivre'a (twierdzenie \ref{t:demoivre}) łatwo wyprowadzić wzór
+    \begin{equation}
+        \label{eq:complex_root}
+        \sqrt[n]{z} = \sqrt[n]{|z|}\left(\cos\frac{\varphi + 2k\pi}{n} + i\sin\frac{\varphi + 2k\pi}{n}\right), k \in \ZZ
+    \end{equation}
+
+    \begin{fact}
+        Pierwiastków $n$-tego stopnia z $z \neq 0$ jest dokładnie $n$ i leżą one w równych odstępach na okręgu o środku w $0$ i promieniu $\sqrt[n]{|z|}$.
+    \end{fact}
+    \begin{proof}
+        Dla $k \in \{0, 1, \ldots, n-1\}$ liczba z równości \ref{eq:complex_root} będzie przyjmować różne wartości (wynika to z okresowości funkcji trygonometrycznych). Liczby te będą na wspomnianym okręgu (to wynika wprost z postaci trygonometrycznej), a ich argumenty główne różnić będzie wielokrotność $\frac{2\pi}{n}$.
+    \end{proof}
+
+    \subsection{Postać wykładnicza}
+    Postać $z = |z|e^{i\varphi}$ liczby zespolonej bedziemy nazywać \vocab{postacią wykładniczą} tej liczby.
+    \begin{theorem}[Wzór Eulera]
+        Dla każdego $\varphi \in \RR$ zachodzi
+        $$ e^{i\varphi} = \cos\varphi + i\sin\varphi. $$
+    \end{theorem}
+    \begin{proof}
+        Weźmy $z = \cos\varphi + i\sin\varphi$. Różniczkując po zmiennej $\varphi$ otrzymujemy
+        $$ \frac{dz}{d\varphi} = -\sin\varphi + i\cos\varphi = iz $$
+        $$ \therefore \frac{dz}{z} = id\varphi. $$
+        Po obustronnym całkowaniu mamy
+        $$ \int\frac{dz}{z} = \int id\varphi $$
+        $$ \ln{z} = i\varphi + c $$
+        $$ e^{\ln{z}} = e^{i\varphi + c} $$
+        $$ z = e^{i\varphi + c}. $$
+        Podstawiając $\varphi = 0$ otrzymujemy $1 = e^c$, skąd mamy $c = 0$, co kończy dowód.
+    \end{proof}
+
+    \section{Relacje}
+    \begin{definition}
+        Relacja to trójka $\sR = (X, \gr\sR, Y)$, gdzie $X$ i $Y$ są zbiorami, a $\gr \sR \subset X \times Y$.
+    \end{definition}
+
+    Zbiór $X$ nazywamy \vocab{naddziedziną}, $Y$ \vocab{zapasem}, $\gr \sR$ to \vocab{wykres} relacji. Piszemy, że $x \sR y$, jesli $(x, y) \in \gr\sR$. \vocab{Dziedzina} relacji $\sR$ to zbiór
+    $$ D_\sR = \{x \in X : \exists y \in Y : x \sR y\}, $$
+    a jej \vocab{przeciwdziedzina} to zbiór
+    $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}. $$
+
+    \begin{definition}
+        Relacja odwrotna do relacji $\sR = (X, \gr\sR, Y)$ to taka relacja $\sR^{-1} = (Y, \gr\sR^{-1}, X)$, że
+        $$ \gr \sR^{-1} = \{(y, x) \in Y \times X : (x, y) \in \gr\sR\}. $$
+    \end{definition}
+
+    \begin{definition}
+        Złożeniem relacji $\sR = (X, \gr\sR, Y)$ z relacją $\sS = (Y, \gr\sS, Z)$ nazywamy relację
+        $$ \sR \circ \sS = (X, \gr(\sR \circ \sS), Z), $$
+        gdzie
+        $$ \gr(\sR \circ \sS) = \{(x, z) \in X \times Z : \exists y \in Y : x \sR y \wedge y \sS z\}. $$
+    \end{definition}
+
+    \begin{definition}[rodzaje relacji]
+        Relacja $\sR = (X, \gr\sR, X)$ jest:
+        \begin{itemize}[--]
+            \item \vocab{zwrotna} $\iff \forall x\in X : x \sR x$,
+            \item \vocab{symetryczna} $\iff \forall x, y \in X : x \sR y \implies y \sR x$,
+            \item \vocab{antysymetryczna} $\iff \forall x, y \in X : x \sR y \wedge y \sR x \implies x = y$,
+            \item \vocab{asymetryczna} $\iff \forall x, y \in X : x \sR y \implies \neg y \sR x$,
+            \item \vocab{przechodnia} $\iff \forall x, y, z \in X : x \sR y \wedge y \sR z \implies y \sR x$,
+            \item \vocab{spójna} $\iff \forall x, y \in X : x \sR y \vee y \sR x \vee x = y$.
+        \end{itemize}
+    \end{definition}
+
+    \begin{definition}
+        Relacja równoważności to relacja $\sR = (X, \gr\sR, X)$, która jest zwrotna, przechodnia i symetryczna.
+    \end{definition}
+
+    \begin{definition}
+        Jeżeli $(X, \sR)$ zbiorem z relacją równoważności, to dla każdego $x \in X$ klasą abstrakcji (klasą równoważności) tego elementu nazywamy zbiór
+        $$ [x] = \{y \in X : x \sR y\}. $$
+    \end{definition}
+
+    \begin{definition}
+        Zbiór ilorazowy relacji $\sR$ to zbiór klas abstrakcji tej relacji; przyjmujemy oznaczenie
+        $$ X/\sR = \{[x] : x \in X\}. $$
+    \end{definition}
+
+    \begin{theorem}
+        Niech $(X, \sR)$ będzie zbiorem z relacją równoważności. Wtedy
+        $$ \forall x, y \in X : [x] \neq [y] \iff [x] \cap [y] = \emptyset . $$
+    \end{theorem}
+    \begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
+        Załóżmy przez sprzeczność, że $[x] \cap [y] \neq \emptyset$, a więc $\exists z \in X : x \sR z \wedge y \sR z$. Teraz weźmy dowolny element $a \in [x]$. Mamy więc $x \sR a$. Korzystając z symetryczności i przechodniości relacji $\sR$ mamy
+        $$ a \sR x \wedge x \sR z \wedge z \sR y, $$
+        $$ \therefore y \sR a. $$
+        Z tego wynika, że $[x] \subset [y]$. Analogicznie (przyjmując na początku $a \in [y]$) dostaniemy, że $[y] \subset [x]$, wiec $[x] = [y]$, co jest sprzeczne z założeniem.
+    \end{proof}
+    \begin{proof}[Dowód konieczności]
+        Załóżmy przez sprzeczność, że $[x] = [y]$. Wtedy $[x] \cap [y] = [x] \cap [x] = [x]$ nie może być zbiorem pustym, ponieważ ze zwrotności relacji $\sR$ wynika, że $x \sR x$, więc $[x]$ to zbiór przynajmniej jednoelementowy.
+    \end{proof}
+
+    Z powyższego twierdzenie wynika, że relacja równoważności w danym zbiorze $X$ dzieli ten zbiór na niepuste i rozłączne podzbiory, których suma daje cały zbiór $X$.
+
+    \subsection{Porządki}
+    \begin{definition}
+        Porządek (częściowy) to relacja $\sR = (X, \gr\sR, X)$, która jest zwrotna, przechodnia i antysymetryczna. Zbiór $X$ nazywamy zbiorem (częściowo) uporządkowanym.
+    \end{definition}
+
+    \begin{definition}
+        Porządek liniowy (totalny) to porządek, który jest spójny.
+    \end{definition}
+
+    Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Wtedy \vocab{element największy} $\ol{M} \in X$ zbioru $X$ to taki element, że
+    $$ \forall x \in X : x \preceq \ol{M}, $$
+    a \vocab{element maksymalny} $M_{\max} \in X$ to taki element, że
+    $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
+
+    \begin{remark}
+        Analogicznie można zdefiniować \vocab{element najmniejszy} $\ol{m}$:
+        $$ \forall x \in X : \ol{m} \preceq x $$
+        oraz \vocab{element minimalny} $m_{\min}$:
+        $$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
+    \end{remark}
+
+    \begin{theorem}
+        \label{t:uniq_greatest}
+        Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Jeśli w zbiorze $X$ istnieje element największy, to jest on jedyny.
+    \end{theorem}
+    \begin{proof}
+        Załóżmy przeciwnie, że istnieją dwa elementy największe $M_1, M_2$. Z definicji zachodzi
+        $$ M_1 \preceq M_2 $$
+        oraz
+        $$ M_2 \preceq M_1, $$
+        co jest sprzeczne z antysymetrycznością porządków.
+    \end{proof}
+
+    \begin{theorem}
+        Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Jeśli $M \in X$ jest elementem największym zbioru $X$, to jest on jedynym elementem maksymalnym tego zbioru.
+    \end{theorem}
+    \begin{proof}
+        Skoro $M$ jest elementem największym, to poprzednik implikacji\footnote{to znaczy jej lewa strona} w definicji elementu maksymalnego będzie prawdziwy tylko dla $x = M$, więc sama implikacja zawsze będzie prawdziwa.
+    \end{proof}
+
+    \begin{fact}
+        \label{f:greatest=maximal}
+        W zbiorach z porządkiem totalnym pojęcia elementu największego i maksymalnego oraz najmniejszego i minimalnego są tożsame ze sobą. Wynika to ze spójności porządków totalnych.
+    \end{fact}
+
+    Niech $(X, \preceq)$ będzie zbiorem uporządkowanym, a zbiór $A \subset X$ jego podzbiorem. Element $M \in X$ jest \vocab{majorantą} (ograniczeniem górnym) zbioru $A$ jeśli
+    $$ \forall x \in A : x \preceq M. $$
+    \vocab{Kresem górnym} (supremum) zbioru $A$ (w zbiorze $X$) jest element najmniejszy zbioru majorant. Oznaczamy go symbolem $$\sup A.$$
+
+    \begin{remark}
+        Analogicznie można zdefiniować \vocab{minorantę} (ograniczenie dolne) $m \in X$ zbioru $A \subset X$:
+        $$ \forall x \in A : m \preceq x $$
+        oraz \vocab{kres dolny} (infimum) tego zbioru (jest nim element największy zbioru minorant), który oznaczamy symbolem $$\inf A.$$
+    \end{remark}
+
+    \begin{theorem}
+        \label{t:greatest=sup}
+        Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym oraz $A \subset X$. Jeśli $A$ ma element największy, to jest on również supremum tego zbioru.
+    \end{theorem}
+    \begin{proof}
+        Z definicji majoranty wynika, że element największy zbioru $A$ jest również jego majorantą. Każda majoranta $M \in X$ zbioru $A$ oczywiście jest ,,większa'' niż dowolny element zbioru $A$ (w tym również jego element największy $\ol{M}$), to znaczy
+        $$ \forall M : \ol{M} \preceq M, $$
+        z czego wynika, że $\ol{M}$ jest elementem najmniejszym zbioru majorant zbioru $A$, a więc supremum tego zbioru.
+    \end{proof}
+
+    \begin{corollary}
+        \label{c:if_sup_out_then_no_greatest}
+        Jeśli zbiór częściowo uporządkowany $X$ ma supremum, które nie należy do tego zbioru, to zbiór $X$ nie ma elementu największego.
+    \end{corollary}
+    \begin{proof}
+        Ponieważ dowolny zbiór (na mocy twierdzenia \ref{t:uniq_greatest}) ma co najwyżej jedno supremum, to gdyby zbiór $X$ miał element najwiekszy, to na mocy twierdzenia \ref{t:greatest=sup} byłoby ono również supremum, które należy do zbioru $X$.
+    \end{proof}
+
+    \begin{example}
+        Weźmy zbiór liniowo uporządkowany $(\RR, \leq)$ oraz jego podzbiór $A = [0, 1) \subset \RR$. Zbiór majorant zbioru $A$ to przedział $[1, \infty)$, a jego najmniejszy element (a zarazem supremum zbioru $A$) to liczba $1$. Mamy więc
+        $$ \sup A = 1. $$
+        Liczba $1$ nie należy jednak do zbioru $A$, więc, na mocy wniosku \ref{c:if_sup_out_then_no_greatest}, element największy (a z faktu \ref{f:greatest=maximal} również maksymalny) nie istnieje.
+    \end{example}
+
+    \begin{example}
+        Weźmy zbiór częściowo uporządkowany $(\CC, \preceq)$, gdzie zdefiniujemy
+        $$ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y}. $$
+        Oczywiście niektóre elementy nie będą w tym porządku porównywalne, na przykład $1$ oraz $i$.
+
+        Weźmy również podzbiór $A \subset \CC$ taki, że
+        $$ A = \{z : |z| \leq 1\}. $$
+
+        Na rysunku zaznaczono \textcolor{MainColor1}{zbiór $A$}, \textcolor{LinkColor1}{zbiór majorant $M$ zbioru $A$}, \textcolor{BoxColor1}{supremum zbioru~$A$} oraz \textcolor{MainColor1}{zbiór elementów maksymalnych} (jako ćwierćokrąg). Na mocy wniosku \ref{c:if_sup_out_then_no_greatest} element największy nie istnieje.
+
+        \begin{center}
+            \begin{tikzpicture}
+                \tkzInit[xmin=-1.1, xmax=3.7, ymin=-1.1, ymax=2.7]
+                \tkzDefPoints{0/0/O,1/0/A,0/1/B}
+                \tkzDefPoints{1/1/M_1,4/1/M_2,4/3/M_3,1/3/M_4}
+                \tkzGrid
+                \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
+                \tkzClip
+                \tkzDrawCircle[color=MainColor1, line width=2pt, fill=MainColor1!50, opacity=.5](O,A)
+                \tkzDrawPolygon[color=LinkColor1, line width=2pt, fill=LinkColor1!50, opacity=.5](M_1,M_2,M_3,M_4)
+                \tkzDrawPoint[color=BoxColor1, size=4pt](M_1)
+                \tkzDrawArc[color=MainColor1, line width=3pt, opacity=.5](O,A)(B)
+            \end{tikzpicture}
+        \end{center}
+    \end{example}
+
+    \begin{definition}
+        Łańcuch to taki podziór $C \subset X$, że $(X, \preceq)$ jest zbiorem z porządkiem częściowym, a $(C, \preceq)$ jest zbiorem z porządkiem liniowym.
+    \end{definition}
+
+    \begin{definition}
+        Silny porządek to relacja, która jest przechodnia i asymetryczna. Silnie uporządkowany zbiór $X$ oznaczamy przez $(X, \prec)$.
+    \end{definition}
+\end{document}
