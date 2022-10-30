@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
+\usepackage{anyfontsize}  % to suppress warnings
 
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage[svgnames,dvipsnames]{xcolor}
@@ -19,10 +20,11 @@
 \hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
 \usepackage[nameinlink]{cleveref}
 \usepackage{thmtools}
+\usepackage{relsize}
 
 \usepackage{tikz}
 \usepackage{tkz-euclide}
-\usetikzlibrary{shapes.geometric, calc, positioning}
+\usetikzlibrary{shapes.geometric,calc,positioning}
 
 
 \newif\ifstdthm\stdthmfalse
@@ -60,6 +62,8 @@
 \newcommand{\wh}{\widehat}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\dg}{^\circ}
+\newcommand{\dforall}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\forall}}}_{#1}\ }
+\newcommand{\dexists}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\exists}}}_{#1}\ }
 \renewcommand{\iff}{\Leftrightarrow}
 \renewcommand{\implies}{\Rightarrow}
 \newcommand{\vocab}[1]{\textbf{\color{MainColor1} #1}}
