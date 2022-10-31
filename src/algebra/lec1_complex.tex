@@ -1,0 +1,169 @@
+\begin{definition}
+    Liczba zespolona $z$ to uporządkowana para liczb rzeczywistych. Pierwszy element tej pary to \vocab{część rzeczywista}, ozaczana symbolem $\Re(z)$, a drugi to \vocab{część urojona}, oznaczana symbolem $\Im(z)$. Zbiór liczb zespolonych oznaczamy przez $\CC$.
+\end{definition}
+
+Liczby zespolone można reprezentować w kilku postaciach, jedna z nich to \vocab{postać algebraiczna}. Używając jej, liczba $z = (x, y)$ jest zapisywana jako
+$$ z = x + iy, $$
+gdzie $i$ nazywamy \vocab{jednostką urojoną}, która spełnia
+$$ i^2 = -1. $$
+
+\subsection{Działania na liczbach zespolonych}
+Niech $z_1 = x_1 + iy_1$ oraz $z_2 = x_2 + iy_2$. Określamy:
+\begin{itemize}
+    \item dodawanie $z_1 + z_2 = x_1 + x_2 + i(y_1 + y_2)$
+    \item mnożenie $\begin{aligned}[t] z_1z_2 &= x_1x_2 + ix_1y_2 + ix_2y_1 + i^2y_1y_2 \\ &= x_1x_2 - y_1y_2 + i(x_1y_2 + x_2y_1)\end{aligned}$
+\end{itemize}
+
+\begin{corollary}
+    Dodawanie i mnożenie liczb zespolonych jest przemienne i łączne. Mnożenie jest rozdzielne względem dodawania.
+\end{corollary}
+
+\begin{definition}
+    Sprzężenie liczby zespolonej $z = x + iy$ to liczba $\ol{z} = x - iy$.
+\end{definition}
+
+\begin{definition}
+    \label{d:magnitude}
+    Moduł liczby zespolonej $z = x + iy$ to liczba $|z| = \sqrt{x^2 + y^2}$.
+\end{definition}
+
+Zachodzi pewna własność, wynikająca ze wzoru skróconego mnożenia:
+$$ z\ol{z} = (x + iy)(x - iy) = x^2 - i^2y^2 = x^2 + y^2 $$
+\begin{equation}
+    z\ol{z} = |z|^2
+\end{equation}
+
+Powyższa liczba jest liczbą rzeczywistą, więc znaleźliśmy prosty sposób na dzielenie liczb zespolonych przez siebie, mnożąc licznik i mnianownik przez sprzężenie mianownika. Na przykład:
+$$ \frac{1 + 2i}{-1 - i} = \frac{(1 + 2i)(-1 + i)}{(-1 - i)(-1 + i)} = \frac{-3 -i}{2} = \frac{-3}{2} - \frac{i}{2}. $$
+
+\begin{lemma}
+    Oprócz $z\ol{z} = |z|^2$, zachodzą również równości:
+    \begin{itemize}
+        \item $|\ol{z}| = |z|$
+        \item $\ol{z_1 + z_2} = \ol{z_1} + \ol{z_2}$
+        \item $\ol{z_1z_2} = \ol{z_1}\cdot\ol{z_2}$
+        \item $|z_1z_2| = |z_1||z_2|$
+    \end{itemize}
+\end{lemma}
+Ich dowody można w łatwy sposób przeprowadzić z definicji poszczególnych działań.
+
+\subsection{Interpretacja geometryczna liczb zespolonych}
+Liczby zespolone można interpretować jako punkty na \vocab{płaszczyźnie zespolonej}. Dla przykładu liczba $z = 3 + 2i$.
+
+\begin{center}
+    \begin{tikzpicture}
+        \tkzInit[xmin=-.7, xmax=3.7, ymin=-.7, ymax=2.7]
+        \tkzDefPoints{0/0/O,3/2/z}
+        \tkzGrid
+        \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
+        \tkzDrawSegments(O,z)
+        \tkzDrawPoints(z)
+        \tkzLabelPoints[above right](z)
+    \end{tikzpicture}
+\end{center}
+
+\begin{fact}
+    Moduł liczby zespolonej $z$ to długość wektora wodzącego tej liczby na płaszczyźnie zespolonej.
+\end{fact}
+\begin{proof}
+    Wynika to z twierdzenia Pitagorasa oraz definicji modułu (\ref{d:magnitude}).
+\end{proof}
+
+Możemy wyprowadzić \vocab{postać trygonometryczną} liczby zespolonej, która, zamiast dwóch współrzędnych, będzie operować na długości wektora wodzącego oraz kącie skierowanym. Mamy więc
+$$ z = |z|(\cos\varphi + i\sin\varphi) $$
+gdzie $\varphi$ to miara kąta skierowanego między wektorem wodzącym liczby zespolonej $z$ a osią liczb rzeczywistych. Ten kąt nazywany jest \vocab{argumentem} i oznaczany przez $\Arg(z)$. Argument nie jest określony jednoznacznie -- dowolne dwa argumenty jednej liczby różnią się o wielokrotność $2\pi$. Jeśli argument jest w przedziale $[0, 2\pi)$, to mówimy, że jest to \vocab{argument główny} liczby $z$ i oznaczamy $\arg(z)$.
+
+Za pomocą podstawowej trygonometrii możemy łatwo zamieniać postać algebraiczną i trygonometryczną między sobą.
+
+\begin{center}
+    \begin{tikzpicture}
+        \tkzInit[xmin=-.7, xmax=3.7, ymin=-.7, ymax=2.7]
+        \tkzDefPoints{0/0/O,1/0/A,3/2/z}
+        \tkzDefPointBy[projection=onto O--A](z) \tkzGetPoint{z'}
+        \tkzGrid
+        \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
+        \tkzDrawSegment[dim={$|z|$,2mm,}, dim style/.style={sloped,dashed}](O,z)
+        \tkzDrawSegment[dim={$|z|\cos\varphi$,-2mm,}, dim style/.style={sloped,dashed}](O,z')
+        \tkzDrawSegment[dim={$|z|\sin\varphi$,2mm,}, dim style/.style={sloped,dashed}](z,z')
+        \tkzMarkAngle[size=1.1](z',O,z)
+        \tkzLabelAngle[pos=.8](z',O,z){$\varphi$}
+        \tkzDrawPoints(z)
+        \tkzLabelPoints[above right](z)
+    \end{tikzpicture}
+\end{center}
+
+\begin{equation}
+    \Re{z} = |z|\cos\varphi, \hspace{2em} \Im{z} = |z|\sin\varphi
+\end{equation}
+
+Na potrzeby dalszych rozważań przyjmujemy, że $\arg(0) = 0$.
+
+\begin{fact}
+    Odległość między liczbami $z_1$ i $z_2$ na płaszczyźnie zespolonej wynosi $|z_1 - z_2|$.
+\end{fact}
+
+\begin{lemma}
+    Zachodzą następujące nierówności:
+    \begin{itemize}
+        \item $|z_1 + z_2| \leq |z_1| + |z_2|$
+        \item $||z_1| - |z_2|| \leq |z_1 - z_2|$
+    \end{itemize}
+\end{lemma}
+
+Możemy łatwo mnożyć dwie liczby zespolone w postaci trygonometrycznej przez siebie za pomocą poniższego wzoru.
+\begin{equation}
+    \label{eq:complex_prod}
+    \begin{aligned}
+        z_1 \cdot z_2 &= |z_1|(\cos\varphi_1 + i\sin\varphi_1)|z_2|(\cos\varphi_2 + i\sin\varphi_2) \\
+                      &= |z_1||z_2|(\cos\varphi_1\cos\varphi_2 - \sin\varphi_1\sin\varphi_2 + i(\cos\varphi_1\sin\varphi_2 + \sin\varphi_1\cos\varphi_2)) \\
+                      &= |z_1||z_2|(\cos(\varphi_1 + \varphi_2) + i\sin(\varphi_1 + \varphi_2))
+    \end{aligned}
+\end{equation}
+
+Stosując wzór \ref{eq:complex_prod} $n$ razy otrzymujemy dowód następującego twierdzenia.
+
+\begin{theorem}[Wzór de Moivre'a]
+    \label{t:demoivre}
+    Dla $z = |z|(\cos\varphi + i\sin\varphi)$ oraz $n \in \ZZ$ zachodzi równość
+    $$ z^n = |z|^n(\cos n\varphi + i\sin n\varphi) $$
+\end{theorem}
+
+Wzór de Moivre'a zapewnia prosty sposób na potęgowanie liczb zespolonych. Dlatego, mając za zadanie obliczyć
+$$ (-2\sqrt{3} - 2i)^{16} $$
+najłatwiej będzie zmienić postać liczby do postaci trygonometrycznej, a następnie skorzystać z twierdzenia \ref{t:demoivre}.
+
+\subsection{Pierwiastkowanie liczb zespolonych}
+\begin{definition}[Pierwiastek liczby zespolonej]
+    Jeśli $z$ jest liczbą zespoloną, to $\sqrt[n]{z}$ jest zbiorem wszystkich takich $w \in \CC$, że $w^n = z$.
+\end{definition}
+
+Korzystając ze wzoru de Moivre'a (twierdzenie \ref{t:demoivre}) łatwo wyprowadzić wzór
+\begin{equation}
+    \label{eq:complex_root}
+    \sqrt[n]{z} = \sqrt[n]{|z|}\left(\cos\frac{\varphi + 2k\pi}{n} + i\sin\frac{\varphi + 2k\pi}{n}\right), k \in \ZZ
+\end{equation}
+
+\begin{fact}
+    Pierwiastków $n$-tego stopnia z $z \neq 0$ jest dokładnie $n$ i leżą one w równych odstępach na okręgu o środku w $0$ i promieniu $\sqrt[n]{|z|}$.
+\end{fact}
+\begin{proof}
+    Dla $k \in \{0, 1, \ldots, n-1\}$ liczba z równości \ref{eq:complex_root} będzie przyjmować różne wartości (wynika to z okresowości funkcji trygonometrycznych). Liczby te będą na wspomnianym okręgu (to wynika wprost z postaci trygonometrycznej), a ich argumenty główne różnić będzie wielokrotność $\frac{2\pi}{n}$.
+\end{proof}
+
+\subsection{Postać wykładnicza}
+Postać $z = |z|e^{i\varphi}$ liczby zespolonej bedziemy nazywać \vocab{postacią wykładniczą} tej liczby.
+\begin{theorem}[Wzór Eulera]
+    Dla każdego $\varphi \in \RR$ zachodzi
+    $$ e^{i\varphi} = \cos\varphi + i\sin\varphi. $$
+\end{theorem}
+\begin{proof}
+    Weźmy $z = \cos\varphi + i\sin\varphi$. Różniczkując po zmiennej $\varphi$ otrzymujemy
+    $$ \frac{dz}{d\varphi} = -\sin\varphi + i\cos\varphi = iz $$
+    $$ \therefore \frac{dz}{z} = id\varphi. $$
+    Po obustronnym całkowaniu mamy
+    $$ \int\frac{dz}{z} = \int id\varphi $$
+    $$ \ln{z} = i\varphi + c $$
+    $$ e^{\ln{z}} = e^{i\varphi + c} $$
+    $$ z = e^{i\varphi + c}. $$
+    Podstawiając $\varphi = 0$ otrzymujemy $1 = e^c$, skąd mamy $c = 0$, co kończy dowód.
+\end{proof}

@@ -12,7 +12,7 @@
 *.cb2
 .*.lb
 
-*.pdf
+# *.pdf
 
 ## Intermediate documents:
 *.dvi
@@ -208,23 +208,6 @@ pythontex-files-*/
 # xcolor
 *.xcp
 
-# xmpincl
-*.xmpi
-
-# xindy
-*.xdy
-
-# xypic precompiled matrices and outlines
-*.xyc
-*.xyd
-
-# endfloat
-*.ttt
-*.fff
-
-# Latexian
-TSWLatexianTemp*
-
 ## Editors:
 # WinEdt
 *.bak
@@ -260,3 +243,5 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+.task/*

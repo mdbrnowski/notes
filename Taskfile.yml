@@ -1,0 +1,17 @@
+version: '3'
+
+tasks:
+  filtr:
+    desc: Compile filtr.tex to pdf
+    sources:
+      - src/filtr/*
+    cmds:
+      - tectonic "./src/filtr/filtr.tex" -Z search-path="src" --outdir "pdf"
+    silent: false
+  algebra:
+    desc: Compile algebra.tex to pdf
+    sources:
+      - src/algebra/*
+    cmds:
+      - tectonic "./src/algebra/algebra.tex" -Z search-path="src" --outdir "pdf"
+    silent: false

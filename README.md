@@ -55,3 +55,7 @@ In `mystd.sty` I have also defined:
 * Commands (`\iff`, `\implies`, `\vocab`, ...)
 * Symbols (`\sA` for `\mathcal A` and `\scA` for `\mathscr A`)
 * And more (it's best to see it for yourself in the source file)
+
+## A few words about the software environment
+
+To use this repository on your computer you need to have [Task](https://taskfile.dev/) and [tectonic](https://github.com/tectonic-typesetting/tectonic) installed. In my opinion, it is the best choice when it comes to both small and large LaTeX projects.

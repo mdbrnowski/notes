@@ -1,0 +1,183 @@
+\begin{definition}
+    Grupa to para $(A, \circ)$, gdzie $A$ jest zbiorem, a działanie $\circ$ jest:
+    \begin{enumerate}[noitemsep,nolistsep]
+        \item wewnętrzne,
+        \item łączne,
+        \item ma element neutralny,
+        \item a każdy element $x \in A$ ma element symetryczny.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Grupa abelowa (przemienna) to grupa, w której działanie $\circ$ jest przemienne.
+\end{definition}
+
+\begin{example}
+    Przykłady grup:
+    \begin{enumerate}
+        \item $(\ZZ, +)$ -- grupa abelowa,
+        \item $(\ZZ_n, +_n)$ -- grupa abelowa\footnote{gdzie $\ZZ_n$ oznacza zbiór $\{0, 1, \ldots, n-1\}$, a $+_n$ operację dodawania modulo $n$},
+        \item $(\QQ_+, \cdot)$ -- grupa abelowa,
+        \item grupą nieabelową jest grupa obrotów danego obiektu o $90\dg$ względem dowolnej z trzech osi.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    \label{t:prime_n->group}
+    $(\ZZ_n \setminus \{0\}, \cdot_n)$ jest grupą wtedy i tylko wtedy, gdy $n \geq 2$ jest liczbą pierwszą.
+\end{theorem}
+Łatwo sprawdzić, że mnożenie modulo $n$ w zbiorze $\ZZ_n \setminus \{0\}$ jest wewnętrze i łączne. Ma również element neutralny $1$. Będziemy więc dowodzić jedynie istnienia elementu symetrycznego dla każdego elementu.
+\begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
+    Załóżmy przeciwnie, że istnieje $k \in \ZZ_n \setminus \{0, 1\}$ takie, że $k \mid n$. Skoro $(\ZZ_n \setminus \{0\}, \cdot_n)$ jest grupą, to $k$ ma element symetryczny $k^{-1}$. Zachodzi więc
+    $$ kk^{-1} \equiv 1 \pmod{n}, $$
+    czyli inaczej
+    $$ \exists m \in \ZZ : kk^{-1} - 1 = mn. $$
+    Co jednak prowadzi do sprzeczności, ponieważ
+    $$ kk^{-1} - 1 \not\equiv mn \pmod{k} $$
+    $$ - 1 \not\equiv 0 \pmod{k}. $$
+\end{proof}
+\begin{proof}[Dowód dostateczności]
+    Skoro $n$ jest liczbą pierwszą, to z małego twierdzenia Fermata mamy
+    $$ a^{n-1} \equiv 1 \pmod{n} $$
+    dla każdego $a \in \ZZ_n \setminus \{0\}$.
+    Z tego wynika, że dla dowolnego elementu $a$ jego elementem symetrycznym będzie $a^{n-2}$.
+\end{proof}
+
+\subsection{Pierścienie i ciała}
+\begin{definition}
+    Pierścień to trójka $(P, \circ, *)$, gdzie $P$ jest zbiorem, $\circ, *$ to działania wewnętrzne oraz
+    \begin{enumerate}[noitemsep,nolistsep]
+        \item $(P, \circ)$ jest grupą abelową
+        \item działanie $*$ jest łączne
+        \item działanie $*$ jest rozdzielne względem $\circ$, czyli
+        $$\forall x, y, z \in P : \begin{aligned}& (x \circ y) * z = (x * z) \circ (y * z), \\
+                                                 & x * (y \circ z) = (x * y) \circ (x * z).\end{aligned} $$
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Pierścień przemienny to pierścień $(P, \circ, *)$, w którym $*$ jest działaniem przemiennym\footnote{wtedy też rozdzielność prawo- i lewostronna stają się tożsame}.
+\end{definition}
+
+Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy przez $+$. Element neutralny tego działania nazywamy zerem ($\mathbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
+
+Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy przez $\cdot$. Jeśli w $P$ dodatkowo istnieje element neutralny tego działania, to ten element nazywamy jedynką ($\mathbf{1}$), a pierścień nazywamy \vocab{pierścieniem z jedynką}. Element symetryczny do elementu $x$ nazywamy elementem odwrotnym i oznaczamy $x^{-1}$.
+
+\begin{definition}
+    Dzielnikiem zera jest taki element pierścienia $a \neq \mathbf{0}$, że istnieje niezerowy element $b$, dla którego zachodzi $a \cdot b = \mathbf{0}$.
+\end{definition}
+
+\begin{definition}
+    Pierścień całkowity to pierścień z jedynką, w którym nie ma dzielników zera.
+\end{definition}
+
+\begin{lemma}
+    \label{l:cancellation_property}
+    W pierścieniach całkowitych zachodzi \vocab{własność skracania}, to znaczy, że dla elementów pierścienia $a, b, c$ przy $c \neq \mathbf{0}$ zachodzi
+    $$ ac = bc \implies a = b. $$
+\end{lemma}
+\begin{proof}
+    Jeśli $ac = bc$, to $ac - bc = \mathbf{0}$. Z rozdzielności dostajemy
+    $$ (a - b)c = \mathbf{0}. $$
+    W pierścieniu całkowitym nie ma jednak dzielników zera, więc $a - b = \mathbf{0}$, co dowodzi tezy.
+\end{proof}
+
+\begin{definition}
+    Ciało to pierścień z jedynką, w którym dla każdego elementu $x \neq \mathbf{0}$ istnieje element odwrotny $x^{-1}$.
+\end{definition}
+
+Ciałem przemiennym będzie ciało, w którym działanie $\cdot$ jest przemienne. Niektórzy autorzy utożsamiają pojęcie ciała z ciałem przemiennym.
+
+Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym) jeżeli:
+\begin{enumerate}[noitemsep,nolistsep]
+    \item $(K, +)$ jest grupą abelową,
+    \item $(K \setminus \{\mathbf{0}\}, \cdot)$ jest grupą (przemienną),
+    \item zachodzi warunek rozdzielności $\cdot$ względem $+$.
+\end{enumerate}
+
+\begin{lemma}
+    \label{l:a0=0}
+    Dla każdego elementu ciała $a$ zachodzi $a \cdot \mathbf{0} = \mathbf{0}$.
+\end{lemma}
+\begin{proof}
+    \begin{align*}             a \cdot \mathbf{0} &= a \cdot (\mathbf{0} + \mathbf{0}) \\
+                               a \cdot \mathbf{0} &= a \cdot \mathbf{0} + a \cdot \mathbf{0} \\
+        a \cdot \mathbf{0} + - a \cdot \mathbf{0} &= a \cdot \mathbf{0} + a \cdot \mathbf{0} + - a \cdot \mathbf{0} \\
+                                       \mathbf{0} &= a \cdot \mathbf{0} + \mathbf{0} \\
+                                       \mathbf{0} &= a \cdot \mathbf{0}
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    Każde ciało jest pierścieniem całkowitym.
+\end{theorem}
+\begin{proof}
+    Załóżmy przeciwnie, że istnieją dzielniki zera, czyli takie dwa elementy ciała $x, y$, że $x, y \neq \mathbf{0}$ oraz $x \cdot y = \mathbf{0}$. Mamy
+    \begin{align*}
+        x \cdot y &= \mathbf{0} \\
+        x^{-1} \cdot x \cdot y &= x^{-1} \cdot \mathbf{0} \\
+        y &= x^{-1} \cdot \mathbf{0},
+    \end{align*}
+    co, na mocy lematu \ref{l:a0=0}, jest sprzecznością z założeniem.
+\end{proof}
+
+\begin{theorem}
+    Każdy skończony pierścień całkowity jest ciałem.
+\end{theorem}
+\begin{proof}
+    Załóżmy przeciwnie, że istnieje element pierścienia $a \neq \mathbf{0}$, który nie ma elementu odwrotnego. Rozważmy iloczyny $aa_1, aa_2, aa_3, \ldots$ elementu $a$ ze wszystkimi innymi elementami pierścienia (w tym z $\mathbf{1}$). Z założenia nie ma wsród nich jedynki, więc, skoro $\cdot$ jest działaniem wewnętrznym, to z zasady szufladkowej istnieją takie $a_k \neq a_l$, że $aa_k = aa_l$. To stwierdzenie jest jednak sprzecznością na mocy lematu \ref{l:cancellation_property}, ponieważ rozważamy pierścienie całkowite, w których nie ma dzielników zera.
+\end{proof}
+
+\begin{example}
+    Przykłady pierścieni i ciał:
+    \begin{itemize}
+        \item $(\ZZ, +, \cdot)$ -- pierścień całkowity, który nie jest ciałem (nie ma dzielników zera, ale często elementy odwrotne nie zawierają się z zbiorze $\ZZ$),
+        \item $(\QQ, +, \cdot)$ -- ciało liczb wymiernych,
+        \item $(\RR, +, \cdot)$ -- ciało liczb rzeczywistych,
+        \item $(\CC, +, \cdot)$ -- ciało liczb zespolonych,
+        \item $(\ZZ_n, +_n, \cdot_n)$ -- pierścień przemienny z jedynką.
+    \end{itemize}
+\end{example}
+
+\begin{corollary}[z twierdzenia \ref{t:prime_n->group}]
+    Pierścień $(\ZZ_n, +_n, \cdot_n)$ jest ciałem wtedy i tylko wtedy, gdy $n$ jest liczbą pierwszą.
+\end{corollary}
+
+\subsection{Morfizmy}
+\begin{definition}
+    \label{d:homomorphism}
+    Homomorfizmem grupy $(A_1, +)$ w grupę $(A_2, \oplus)$ jest takie odwzorowanie $h : A_1 \lthen A_2$, że
+    $$ \forall x, y \in A_1 : h(x + y) = h(x) \oplus h(y). $$
+\end{definition}
+
+\begin{fact}
+    Jeśli $h : A_1 \lthen A_2$ jest homomorfizmem grupy $(A_1, +)$ w $(A_2, \oplus)$, to
+    \begin{enumerate}[noitemsep,nolistsep]
+        \item $e \in A_1$ jest elementem neutralnym w $(A_1, +)$ $\Longrightarrow$ $h(e) \in A_2$ jest elementem neutralnym w $(A_2, \oplus)$,
+        \item $\forall x \in A_1 : h(x') = h(x)'$.
+    \end{enumerate}
+\end{fact}
+
+\begin{definition}
+    Izomorfizm między grupami $(A_1, +), (A_2, \oplus)$ jest homomorfizmem bijektywnym. Jeśli taki izomorfizm istnieje, to dwie grupy nazywamy izomorficznymi.
+\end{definition}
+
+\begin{definition}
+    Automorfizm to izomorfizm struktury na samą siebie.
+\end{definition}
+
+Analogicznie definiujemy morfizmy między pierścieniami i ciałami (wtedy równość z definicji \ref{d:homomorphism} musi zachodzić dla obydwu działań).
+
+\begin{example}
+    Przykłady morfizmów:
+    \begin{itemize}
+        \item $h(x) = x^2$ jest homomorfizmem grupy $(\RR \setminus \{0\}, \cdot)$ w $(\RR_+, \cdot)$,
+        \item $h(x) = e^x$ jest izomorfizmem grupy $(\RR, +)$ w $(\RR_+, \cdot)$, ponieważ
+        $$ h(x + y) = e^{x + y} = e^x \cdot e^y = h(x) \cdot g(y), $$
+        \item $h(z) = \ol{z}$ jest automorfizmem grupy $(\CC, +).$
+    \end{itemize}
+\end{example}
+
+Na podobnej zasadzie jak w przykładzie drugim, można pokazać izomorfizm grupy $(\ZZ_n, +_n)$ z grupą pierwiastów $n$-tego stopnia z jedności względem mnożenia $(\mu_n(\CC), \cdot)$. Biorąc funkcję $h(x) = \cos(\frac{2\pi}{n}x) + i\sin(\frac{2\pi}{n}x)$, mamy
+\begin{align*} h(x + y) &= \cos(\tfrac{2\pi}{n}(x + y)) + i\sin(\tfrac{2\pi}{n}(x + y)) \\
+    &= \left(\cos(\tfrac{2\pi}{n}x) + i\sin(\tfrac{2\pi}{n}x)\right) \cdot \left(\cos(\tfrac{2\pi}{n}y) + i\sin(\tfrac{2\pi}{n}y)\right) = h(x) \cdot h(y)\end{align*}
