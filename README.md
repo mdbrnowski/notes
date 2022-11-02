@@ -9,6 +9,7 @@
 ### Miscellaneous
 
 * **filtr.tex** ([pdf](pdf/filtr.pdf)) – *Funkcje tworzące i filtracja pierwiastkami jedności*
+* **fft.tex** ([pdf](pdf/fft.pdf)) - *Szybka transformacja Fouriera (FFT)*
 
 <br>
 

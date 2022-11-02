@@ -19,4 +19,4 @@ jobs:
       - name: Install Task
         uses: arduino/setup-task@v1
       - name: Compile all LaTeX documents
-        run:  task filtr algebra
+        run:  task filtr fft algebra

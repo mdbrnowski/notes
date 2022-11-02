@@ -1,0 +1,237 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[pretty,polish]{mystd}
+\title{Szybka transformacja Fouriera (FFT)}
+\author{Michał Dobranowski}
+\date{wrzesień 2022 \\ v1.0}
+
+\begin{document}
+    \maketitle
+    \section*{Wymagania wstępne}
+    Czytelnik powinien znać podstawowe algorytmy i techniki algorytmiczne oraz swobodnie używać notacji określających asymptotyczne tempo wzrostu. Ponadto powinien mieć podstawową wiedzę na temat wielomianów, liczb zespolonych (w tym znać wzór Eulera) oraz macierzy.
+    \tableofcontents
+    \eject
+
+\section{Reprezentacja i mnożenie wielomianów}
+    \begin{definition}[Mnożenie wielomianów]
+        Iloczynem wielomianów $A(x)$ oraz $B(x)$ jest wielomian $C(x)$ taki, że dla każdego $x$ zachodzi $C(x) = A(x)\cdot B(x)$.
+    \end{definition}
+
+    Weźmy wielomiany $A(x) = a_0 + a_1x + \ldots + a_nx^n$ oraz $B(x) = b_0 + b_1x + \ldots + b_nx^n$.
+    \begin{fact}
+        Możemy obliczyć współczynniki wielomianu $C(x) = A(x) \cdot B(x)$ jako
+        $$ c_j = \sum_{k = 0}^j a_kb_{j-k}. $$
+    \end{fact}
+    Na podstawie tego wzoru możemy z łatwością skonstruować algorytm mnożenia dwóch wielomianów, który będzie działać w czasie $\Theta(n^2)$. Niestety, taka złożoność nas nie zadowala; będziemy szukać algorytmu podkwadratowego.
+
+    Zauważmy, że zwykle reprezentujemy wielomian jako wektor współczynników -- taką reprezentację nazwiemy \vocab{współczynnikową}. Wielomian $n$-tego stopnia $f$ można jednak reprezentować również za pomocą zbioru $n + 1$ parami różnych punktów $(x, f(x))$ -- tę reprezentację nazwiemy z kolei \vocab{punktową}. Mając dwa wielomiany $n$-tego stopnia w postaci punktowej możemy po prostu pomnożyć odpowiednie wartości i otrzymać ich iloczyn (również w postaci punktowej) w czasie $\Theta(n)$.
+
+    Proces zamiany postaci współczynnikowej na punktową nazywa się \vocab{ewaluacją}, a~proces odwrotny -- \vocab{interpolacją}. Zanim przejdziemy dalej, powinniśmy jednak wykazać, że wielomian w postaci punktowej jest jednoznacznie opisany.
+    \begin{theorem}[Jednoznaczność wielomianu interpolacyjnego]
+        \label{t:polynomial_interpolation}
+        Dla zbioru $n + 1$ różnych punktów $\{(x_1, y_1), (x_2, y_2), \ldots, (x_{n+1}, y_{n+1})\}$ istnieje dokładnie jeden wielomian $A(x)$ co najwyżej $n$-tego stopnia, który dla każdego $k$ spełnia $A(x_k) = y_k$.
+    \end{theorem}
+    \begin{proof}
+        Ponieważ punkty $x_k$ są parami różne, to wyznacznik macierzy Vandermonde'a stworzonej z punktów $(x_1, x_2, \ldots, x_{n+1})$ jest różny od zera, więc macierz jest odwracalna. Niech $V$ będzię wspomnianą macierzą.
+        $$ V = \begin{pmatrix}
+            1 & x_1 & x_1^2  & \cdots & x_1^{n-1} \\
+            1 & x_2 & x_2^2  & \cdots & x_2^{n-1} \\
+            \vdots & \vdots  & \vdots & \ddots & \vdots    \\
+            1 & x_{n+1} & x_{n+1}^2  & \cdots & x_{n+1}^{n-1} \\
+        \end{pmatrix} $$
+        Rozwiązania układu równań
+        $$ (a_0, a_1, a_2, \ldots, a_n)^T = V^{-1}(y_1, y_2, \ldots, y_{n+1})^T $$
+        pozwala jednoznacznie wyznaczyć współczynniki wielomianu.
+    \end{proof}
+
+    Chociaż powyższy dowód jest zupełnie w porządku, możemy zauważyć, że do postaci punktowej przechodzimy z postaci wielomianowej, więc w każdym przypadku wiemy, że dany wielomian istnieje. W takim razie potrzebujemy wykazać jedynie, że taki wielomian jest jednoznacznie określony, na co można przedstawić bardzo ładny dowód nie wprost.
+
+    \begin{proof}
+        Załóżmy przeciwnie, że istnieją dwa wielomiany co najwyżej $n$-tego stopnia, $f(x)$ oraz $g(x)$, spełniające dany układ równań. W takim razie wielomian $h(x) = f(x) - g(x)$ jest stopnia $\deg(h) \leq n$. Ten wielomian ma również $n + 1$ miejsc zerowych, co prowadzi do sprzeczności z zasadniczym twierdzeniem algebry.
+    \end{proof}
+
+    \begin{remark}
+        Przy dodawaniu lub mnożeniu wielomianów w postaci punktowej, punkty, w których znamy wartości dwóch danych wielomianów powinny być oczywiście takie same dla obydwu z nich. Ponadto, o ile przy dodawaniu wystarczyłoby $n + 1$ punktów, o tyle przy mnożeniu nie wystarczy. Wielomian wynikowy będzie stopnia $2n$, więc potrzebujemy $2n + 1$ punktów również dla wielomianów wejściowych.
+    \end{remark}
+
+    \subsection{Zmiana reprezentacji}
+    Skoro wiemy już, że możemy mnożyć dwa wielomiany w postaci punktowej w czasie liniowym, warto się zastanowić, jak szybko możemy dokonać ewaluacji i interpolacji. Jeśli osiągniemy czas podkwadratowy, mamy gotowy algorytm mnożenie o złożoności $o(n^2)$.
+
+    \subsubsection*{Ewaluacja}
+    Niestety, naiwny algorytm ewaluacji $2n + 1$ punktów ma złożoność $\Theta(n^3)$, co możemy ulepszyć do $\Theta(n^2)$, jeśli zastosujemy schemat Hornera.
+    $$ A(x) = a_0 + x(a_1 + x(a_2 + \ldots + x(a_{n-1} + xa_n)\ldots))$$
+
+    \subsubsection*{Interpolacja}
+    Podobnie sytuacja wygląda z interpolacją -- korzystając z eliminacji Gaussa otrzymamy algorytm o złożoności $\Theta(n^3)$, co, korzystając ze wzoru Lagrange'a\footnote{który jest poza zakresem tego artykułu, ale można o nim przeczytać w \url{https://en.wikipedia.org/wiki/Lagrange_polynomial}}, możemy ulepszyć jedynie do $\Theta(n^2)$.
+
+\section{Dziel i zwyciężaj}
+    Niezniechęceni niepowodzeniami z poprzednich akapitów spróbujemy wykorzystać technikę z powyższego tytułu. Problem ewaluacji oraz interpolacji wielomianu
+    $$ A(x) = a_0 + a_1x + \ldots + a_{n-1}x^{n-1} $$
+    będziemy chcieli rekurencyjnie rozbijać na dwa podproblemy, więc na potrzeby dalszej dyskusji załóżmy, że $n$ będzie potęgą dwójki. Zauważmy, że dla wygody zmieniliśmy nieznacznie oznaczenia --- teraz wielomian $A$ jest $n$-mianem o stopniu równym $n-1$.
+
+    Zdefiniujmy wielomiany $A_{[0]}(x)$ oraz $A_{[1]}(x)$ o współczynnikach z odpowiednio parzystymi i nieparzystymi indeksami:
+    $$ A_{[0]}(x) = a_0 + a_2x + a_4x^2 + \ldots + a_{n-2}x^{n/2 - 1}, $$
+    $$ A_{[1]}(x) = a_1 + a_3x + a_5x^2 + \ldots + a_{n-1}x^{n/2 - 1}. $$
+    Oczywiście zachodzi równość
+    \begin{equation}
+        A(x) = A_{[0]}(x^2) + xA_{[1]}(x^2).
+    \end{equation}
+
+    Chcielibyśmy, żeby teraz problem ewaluacji $A(x)$ w $n$ punktach sprowadzał się do ewaluacji $A_{[0]}(x)$ i $A_{[1]}(x)$ w $\frac{n}{2}$ punktach\footnote{własność oczywiście powinna być rekurencyjna}. Okazuje się, że potrzebną nam własność ma zbiór pierwiastków $n$-tego stopnia z jedności.
+
+    \subsection{Pierwiastki jedności}
+    \begin{definition}
+        Pierwiastek $n$-tego stopnia z jedynki to liczba $\omega \in \CC$ spełniająca równanie $\omega^n = 1$.
+    \end{definition}
+
+    Pierwiastki $n$-tego stopnia z jedności będziemy oznaczać $\omega_n^k = e^{2\pi i k/n} = \cis\left(\frac{2\pi}{n}k\right)$, gdzie $\cis{x} = \cos{x} + i\sin{x}$.
+
+    \begin{lemma}
+        \label{l:roots_sum}
+        Niech $\omega \neq 1$ będzie pierwiastkiem $n$-tego stopnia z jedynki. Wtedy
+        $$ \omega + \omega^2 + \ldots + \omega^n = 0. $$
+    \end{lemma}
+    \begin{proof}
+        Z równości $\omega^n = 1$ mamy
+        $$ (1 - \omega)(\omega + \omega^2 + \ldots + \omega^n) = \omega - \omega^{n+1} = 0. $$
+        Z założenia $(1 - \omega) \neq 0$, więc otrzymujemy tezę.
+    \end{proof}
+
+    \begin{lemma}[o redukcji]
+        \label{l:reduction}
+        Jeśli $n$ jest parzyste, to kwadraty pierwiastków $n$-tego stopnia z jedności są pierwiastkami jedności stopnia $\frac{n}{2}$.
+    \end{lemma}
+    \begin{proof}
+        Wystarczy zauważyć, że dla dowolnego $k$ zachodzi
+        $$ \left(\omega_n^k\right)^2 = \cis\left(\frac{2\pi}{n}2k\right) = \cis\left(\frac{2\pi}{n/2}k\right) = \omega_{n/2}^k. $$
+    \end{proof}
+
+    Ponadto można dowieść, że każdy pierwiastek jedności $\frac{n}{2}$ stopnia uzyskamy podnosząc dokładnie dwa różne pierwiastki jedności stopnia $n$. Jeśli $n$ jest liczbą parzystą, to $\omega_n^{n/2} = -1$, więc
+    $$ \omega_n^{k+n/2} = -\omega_n^k, $$
+    $$ \therefore (\omega_n^{k+n/2})^2 = (\omega_n^k)^2. $$
+
+    Łatwo zauważyć, że na mocy lematu o redukcji (\ref{l:reduction}) zbiór pierwiastków $n$-tego stopnia z jedności spełnia wymagania postawione w poprzedniej sekcji.
+
+    \subsection{Szybka transformacja Fouriera}
+    Jeśli oznaczymy wektor współczynników wielomianu $A$ jako $a = (a_0, a_1, \ldots, a_{n-1})$ oraz weźmiemy $y_k = A(\omega_n^k)$, to wektor $y = (y_0, y_1, \ldots, y_{n-1})$ nazwiemy \vocab{dyskretną transformatą Fouriera}\footnote{ang. \textit{Discrete Fourier Transform}, DFT} wektora współczynników $a$ i oznaczymy $y = \opname{DFT}_n(a)$.
+
+    Algorytm, którego główne założenia opisaliśmy wyżej, służy do obliczania $\opname{DFT}$ (czyli ewaluacji wielomianu w pierwiastkach jedności) w czasie $O(n\log n)$ i jest nazywany \vocab{szybką transformacją Fouriera}\footnote{ang. \textit{Fast Fourier Transform}, FFT}.
+
+    \subsubsection{Implementacja}
+    Poniżej przedstawiony jest algorytm FFT, który dla danego wektora współczynników $a$ liczy $\opname{DFT}(a)$. Obliczenia wykonywane są w miejscu, a więc funkcja \lstinline{fft()} nie zwraca wektora $\opname{DFT}(a)$, tylko zmienia wektor $a$.
+    \lstinputlisting[language=C++]{fft.hpp}
+
+    \subsection{Transformacja odwrotna}
+    Aby osiągnąć liniowo-logarytmiczną złożoność obliczeniową dla problemu mnożenia wielomianów, potrzebujemy już jedynie szybkiego sposobu na interpolację wielomianu w~pierwiastkach jedności.
+
+    Wróćmy do wspomnianego w dowodzie twierdzenia \ref{t:polynomial_interpolation} układu równań. Mamy
+    \begin{equation*}
+        \begin{pmatrix}
+            y_0 \\
+            y_1 \\
+            y_2 \\
+            \vdots \\
+            y_{n-1} \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            1 & 1 & 1 & \cdots & 1 \\
+            1 & \omega_n & \omega_n^2 & \cdots & \omega_n^{n-1} \\
+            1 & \omega_n^2 & \omega_n^4  & \cdots & \omega_n^{2(n-1)} \\
+            \vdots & \vdots  & \vdots & \ddots & \vdots    \\
+            1 & \omega_n^{n-1} & \omega_n^{2(n-1)}  & \cdots & \omega_n^{(n-1)(n-1)} \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_0 \\
+            a_1 \\
+            a_2 \\
+            \vdots \\
+            a_{n-1} \\
+        \end{pmatrix},
+    \end{equation*}
+    czyli
+    \begin{equation}
+        \label{eq:y_k}
+        y_k = \sum_{j=0}^{n-1} a_k\omega_n^{jk}.
+    \end{equation}
+
+    Nie wiemy jeszcze, jak szybko policzyć wektor $a = \opname{DFT}_n^{-1}(y)$ (czyli transformatę odwrotną do $\opname{DFT}$), ale możemy ten wektor wyznaczyć za pomocą
+    \begin{equation*}
+        \begin{pmatrix}
+            a_0 \\
+            a_1 \\
+            a_2 \\
+            \vdots \\
+            a_{n-1} \\
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            1 & 1 & 1 & \cdots & 1 \\
+            1 & \omega_n & \omega_n^2 & \cdots & \omega_n^{n-1} \\
+            1 & \omega_n^2 & \omega_n^4  & \cdots & \omega_n^{2(n-1)} \\
+            \vdots & \vdots  & \vdots & \ddots & \vdots    \\
+            1 & \omega_n^{n-1} & \omega_n^{2(n-1)}  & \cdots & \omega_n^{(n-1)(n-1)} \\
+        \end{pmatrix}^{-1}
+        \begin{pmatrix}
+            y_0 \\
+            y_1 \\
+            y_2 \\
+            \vdots \\
+            y_{n-1} \\
+        \end{pmatrix}.
+    \end{equation*}
+
+    Macierz z omegami będziemy oznaczać $V$, ponieważ jest ona macierzą Vandermonde'a. Szukamy więc macierzy $V^{-1}$, aby otrzymać wzór na $a_k$.
+
+    \begin{lemma}
+        Elementem na pozycji $(j, j')$ w macierzy $V^{-1}$ jest liczba $\omega_n^{-jj'}/n$.
+    \end{lemma}
+    \begin{proof}
+        Rozważmy element na pozycji $(j, j')$ w macierzy $VV^{-1}$.
+        \begin{align*}
+            [VV^{-1}]_{j,j'} &= \sum_{k = 0}^{n-1}(\omega_n^{-kj}/n)(\omega_n^{kj'}) \\
+                             &= \sum_{k = 0}^{n-1}(\omega_n^{k(j'-j)}/n)
+        \end{align*}
+        Powyższa suma jest oczywiście równa $1$, jeśli $j = j'$. W przeciwnym przypadku, na mocy lematu \ref{l:roots_sum}, jest równa $0$. Z tego wynika, że $VV^{-1}$ jest macierzą jednostkową, co kończy dowód.
+    \end{proof}
+
+    Uzyskaliśmy więc wzór na $a_k$:
+    \begin{equation}
+        \label{eq:a_k}
+        a_k = \frac{1}{n} \sum_{j=0}^{n-1} y_k\omega_n^{-jk}.
+    \end{equation}
+    Zauważając podobieństwo między wzorami \ref{eq:y_k} i \ref{eq:a_k} możemy stwierdzić, że aby interpolować wielomian w pierwiastkach jedności, wystarczy użyć FFT, tylko zamiast $\omega$ wiąć $\omega^{-1}$ oraz wynik na końcu podzielić przez $n$. Tak zmodyfikowany algorytm oczywiście dalej ma złożoność obliczeniową $O(n\log n)$.
+
+\section{Implementacja}
+    Podsumowując, aby pomnożyć wielomiany $A(x), B(x)$ przez siebie w czasie $O(n\log n)$, należy najpierw zamienić je oba na postać punktową (ewaluację robimy za pomocą FFT w czasie liniowo-logarytmicznym), następnie pomnożyć punkty przez siebie (w czasie liniowym) i z powrotem zamienić na postać współczynnikową (interpolację robimy również w czasie liniowo-logarytmicznym\footnote{algorytmem nazywanym IFFT, ang. \textit{Inverse Fast Fourier Transform}}). Cały algorytm wykonywany jest w czasie $O(n\log n)$.
+
+    Z powodu podobieństwa algorytmów FFT oraz IFFT, zaimplementujemy je w jednej funkcji (z dodatkowym argumentem).
+
+    \lstinputlisting[language=C++]{fft_product.hpp}
+
+\section{Zadania}
+    \begin{problem}[\textit{Thief in a Shop}, Codeforces \href{https://codeforces.com/contest/632/problem/E}{632E}]
+        \begin{answer}
+            Weźmy ciąg binarny taki, że jego $m$-ty wyraz jest $1$ wtedy i tylko wtedy, gdy $m \in a$. Funkcją tworzącą tego ciągu jest wielomian
+            $$ \sA(x) = \sum_{i=1}^n x^{a_i}. $$
+
+            Rozważmy teraz taki ciąg binarny, że jego $m$-ty wyraz jest $1$ wtedy i tylko wtedy, gdy $m$ jest sumą pewnego $k$-elementowego podzbioru z powtórzeniami zbioru $a$. Będziemy wypisywać wszystkie takie $m$. Łatwo zauważyć, że funkcją tworzącą takiego ciągu będzie wielomian
+            $$ \sA(x)^k. $$
+
+            Stosując szybkie potęgowanie oraz FFT otrzymujemy złożoność $O(w\log{w}\log{k})$, gdzie $w$ jest iloczynem maksymalnej ceny i liczby $k$, a więc jest rzędu $10^6$. Warto zauważyć, że w trakcie potęgowania współczynniki wielomianu $\sA(x)$ szybko mogą stać się bardzo duże, a skoro nikt nas nie pyta nas o liczbę możliwości uzyskania danej wartości plecaka, to możemy po każdym mnożeniu ujednolicić współczynniki wielomianu funkcją signum.
+
+            Implementacja: \url{https://codeforces.com/contest/632/submission/178896692}.
+        \end{answer}
+    \end{problem}
+
+\section{Rozwiązania}
+    \makeanswers
+
+\begin{thebibliography}{9}
+    \bibitem{ref:Cormen} \textbf{Wprowadzenie do algorytmów}, str. 920-940, Thomas H. Cormen et al.
+    \bibitem{ref:Kujawa} \textbf{Współczynniki wielomianów na okręgu jednostkowym kręcą się, kręcą się}, Delta, sierpień 2022, Radosław Kujawa.
+        \url{https://www.deltami.edu.pl/2022a/08/2022-08-delta-art-07-kujawa.pdf}
+    \bibitem{ref:cp-algo} \textbf{cp-algorithms}.
+        \url{https://cp-algorithms.com/algebra/fft.html}
+\end{thebibliography}
+
+\end{document}

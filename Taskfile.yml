@@ -7,11 +7,15 @@ tasks:
       - src/filtr/*
     cmds:
       - tectonic "./src/filtr/filtr.tex" -Z search-path="src" --outdir "pdf"
-    silent: false
+  fft:
+    desc: Compile fft.tex to pdf
+    sources:
+      - src/fft/*
+    cmds:
+      - tectonic "./src/fft/fft.tex" -Z search-path="src" --outdir "pdf"
   algebra:
     desc: Compile algebra.tex to pdf
     sources:
       - src/algebra/*
     cmds:
       - tectonic "./src/algebra/algebra.tex" -Z search-path="src" --outdir "pdf"
-    silent: false
