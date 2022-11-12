@@ -98,7 +98,7 @@ $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
     Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Jeśli $M \in X$ jest elementem największym zbioru $X$, to jest on jedynym elementem maksymalnym tego zbioru.
 \end{theorem}
 \begin{proof}
-    Skoro $M$ jest elementem największym, to poprzednik implikacji\footnote{to znaczy jej lewa strona.} w definicji elementu maksymalnego będzie prawdziwy tylko dla $x = M$, więc sama implikacja zawsze będzie prawdziwa.
+    Skoro $M$ jest elementem największym, to poprzednik implikacji w definicji elementu maksymalnego będzie prawdziwy tylko dla $x = M$, więc sama implikacja zawsze będzie prawdziwa.
 \end{proof}
 
 \begin{fact}
@@ -173,48 +173,3 @@ $$ \forall x \in A : x \preceq M. $$
 \begin{definition}
     Silny porządek to relacja, która jest przechodnia i asymetryczna. Silnie uporządkowany zbiór $X$ oznaczamy przez $(X, \prec)$.
 \end{definition}
-
-\section{Struktury algebraiczne}
-\vocab{Działaniem} (wewnętrznym) w zbiorze $A$ nazwiemy każde odwzorowanie $h$ takie, że
-$$ h : A \times A \lthen A. $$
-\vocab{Działaniem zewnętrznym} w zbiorze $A$ jest odwzorowanie
-$$ h : F \times A \lthen A. $$
-
-Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to zamiast $h(a, b)$ będziemy pisać $a \circ b$.
-
-\begin{definition}[rodzaje działań]
-    W zbiorze z działaniem $(A, \circ)$ działanie $\circ$ jest:
-    \begin{itemize}[--]
-        \item \vocab{łączne} $\iff \forall x, y, z \in A : (x \circ y) \circ z = x \circ (y \circ z)$,
-        \item \vocab{przemienne} $\iff \forall x, y, \in A : x \circ y = y \circ x$.
-    \end{itemize}
-\end{definition}
-
-Jeśli dla pewnego elementu $e \in A$ zachodzi
-$$ \forall x \in A : x \circ e = e \circ x = x, $$
-to $e$ jest \vocab{elementem neutralnym}.
-
-\begin{fact}
-    Jeżeli w zbiorze $A$ z działaniem $\circ$ istnieje element neutralny, to jest on jedyny.
-\end{fact}
-\begin{proof}
-    Jeśli mielibyśmy dwa elementy neutralne $e_1, e_2$ to mamy
-    $$ e_1 \circ e_2 = e_1 = e_2. $$
-\end{proof}
-
-Jeżeli istnieje element neutralny $e \in A$ działania $\circ$, to \vocab{elementem symetrycznym} do $x \in A$ jest taki element $x' \in A$, że
-$$ x \circ x' = e = x' \circ x. $$
-
-\begin{lemma}
-    Jeśli działanie $\circ$ jest łączne w zbiorze $A$ i istnieje element neutralny $e \in A$, to jeśli dany element $x \in A$ ma element symetryczny, to jest on jedyny oraz zachodzi $(x')' = x$.
-\end{lemma}
-\begin{proof}
-    Jeśli mielibyśmy dwa elementy symetryczne $x'_1, x'_2$, to mamy
-    $$ x'_1 = x'_1 \circ e = x'_1 \circ (x \circ x'_2) = (x'_1 \circ x) \circ x'_2 = e \circ x'_2 = x'_2. $$
-
-    Ponadto z definicji elementu symetrycznego mamy
-    $$ x' \circ x = e $$
-    oraz
-    $$ x' \circ (x')' = e, $$
-    a więc $x$ jest elementem symetrycznym $x'$, ergo $(x')' = x$.
-\end{proof}
