@@ -5,13 +5,13 @@
         \item $(V, +)$ jest grupą abelową,
         \item działanie $\cdot : K \times V \lthen V$ jest zewnętrzne
         \item działanie $\cdot$ jest rozdzielne względem działania $+$, to znaczy
-            $$ \dforall{u, v \in V} \dforall{\alpha \in K} \alpha\cdot(u + v) = (\alpha \cdot u) + (\alpha \cdot v), $$
+            \[ \dforall{u, v \in V} \dforall{\alpha \in K} \alpha\cdot(u + v) = (\alpha \cdot u) + (\alpha \cdot v), \]
         \item zachodzi ,,rozdzielność'' działania $\cdot$ względem $+$ i $\oplus$, to znaczy
-            $$ \dforall{v \in V} \dforall{\alpha, \beta \in K} (\alpha \oplus \beta) \cdot v = (\alpha \cdot v) + (\beta \cdot v), $$
+            \[ \dforall{v \in V} \dforall{\alpha, \beta \in K} (\alpha \oplus \beta) \cdot v = (\alpha \cdot v) + (\beta \cdot v), \]
         \item zachodzi ,,łączność'' działań $\cdot$ i $\otimes$, to znaczy
-            $$ \dforall{v \in V} \dforall{\alpha, \beta \in K} (\alpha \otimes \beta) \cdot v = \alpha \cdot (\beta \cdot v), $$
+            \[ \dforall{v \in V} \dforall{\alpha, \beta \in K} (\alpha \otimes \beta) \cdot v = \alpha \cdot (\beta \cdot v), \]
         \item jedynka z ciała $(K, \oplus, \otimes)$ jest elementem neutralnym również dla działania $\cdot$, to znaczy
-            $$ \dforall{v \in V} \mathbf{1} \cdot v = v. $$
+            \[ \dforall{v \in V} \mathbf{1} \cdot v = v. \]
     \end{enumerate}
 \end{definition}
 
@@ -26,7 +26,7 @@ Elementy zbioru $V$ nazywamy \vocab{wektorami}, a zbioru $K$ -- \vocab{skalarami
 \end{example}
 
 \begin{example}
-    Jeśli przez $\RR[x]_n$ oznaczymy zbiór wielomianów rzeczywistych o stopniu równym co najwyżej $n$, to struktura $$(\RR[x]_n, \RR, +, \cdot)$$
+    Jeśli przez $\RR[x]_n$ oznaczymy zbiór wielomianów rzeczywistych o stopniu równym co najwyżej $n$, to struktura \[(\RR[x]_n, \RR, +, \cdot)\]
     będzie przestrzenią liniową.
 \end{example}
 
@@ -62,11 +62,11 @@ Elementy zbioru $V$ nazywamy \vocab{wektorami}, a zbioru $K$ -- \vocab{skalarami
             \therefore -(\alpha \cdot v) &= \alpha \cdot (-v)
             \end{aligned}$
         \item implikacja $\Leftarrow$ (konieczność) trywialna; implikacja $\Rightarrow$ (dostateczność) wynika z tego, że jeśli założymy, że $\alpha \neq \mathbf{0}, v \neq \ol{0}$, to mamy
-            $$ \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v = \alpha \cdot u. $$
+            \[ \alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v = \alpha \cdot u. \]
             Mnożąć przez $a^{-1}$ (które istnieje, bo $(K, +, \cdot)$ jest ciałem) otrzymujemy
-            $$ u + v = u, $$
+            \[ u + v = u, \]
             a dodając obustronnie $-u$ (które istnieje z definicji \ref{d:vector_space}) dochodzimy do sprzeczności z założeniem
-            $$ v = \ol{0}. $$
+            \[ v = \ol{0}. \]
         \item dowód analogiczny do dowodu lematu \ref{l:cancellation_property},
         \item dowód analogiczny do dowodu lematu \ref{l:cancellation_property}.
     \end{enumerate}
@@ -83,7 +83,7 @@ Elementy zbioru $V$ nazywamy \vocab{wektorami}, a zbioru $K$ -- \vocab{skalarami
 
 \begin{fact}[Równoważna charakterystyka podprzestrzeni]
     Dwa ostatnie warunki z powyższej definicji są równoważne warunkowi:
-    $$ \dforall{\alpha, \beta \in K} \dforall{u, v \in V} \alpha \cdot u + \beta \cdot v \in U. $$
+    \[ \dforall{\alpha, \beta \in K} \dforall{u, v \in V} \alpha \cdot u + \beta \cdot v \in U. \]
 \end{fact}
 \begin{proof}
     Implikacja w jedną stroną jest trywialna, w drugą stronę można ją udowodnić przez stwierdzenie, że każdy wektor ma wektor przeciwny (bo z definicji \ref{d:vector_space} $(V, +)$ jest grupą abelową) oraz że pod $\alpha, \beta$ można podstawić $\mathbf{1}$ (i znowu użyć definicji \ref{d:vector_space}).
@@ -91,19 +91,19 @@ Elementy zbioru $V$ nazywamy \vocab{wektorami}, a zbioru $K$ -- \vocab{skalarami
 
 \begin{definition}
     Kombinacja liniowa wektorów $v_1, v_2, \ldots, v_n$ to wektor
-    $$ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n, $$
+    \[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n, \]
     gdzie skalary $\alpha_1, \alpha_2, \ldots, \alpha_n$ nazywamy współczynnikami tej kombinacji.
 \end{definition}
 
 \begin{definition}
     Wektory $v_1, v_2, \ldots, v_n$ są liniowo niezależne, jeśli dla każdego ciągu współczynników $\alpha$ zachodzi implikacja
-    $$ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = \ol{0} \implies \alpha_1, \alpha_2, \ldots, \alpha_n = 0. $$
+    \[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = \ol{0} \implies \alpha_1, \alpha_2, \ldots, \alpha_n = 0. \]
 \end{definition}
 Mówimy również, że wektory są liniowo zależne, jeśli nie są liniowo niezależne.
 
 \begin{example}
     W przestrzeni wektorowej $\RR^3(\RR)$ weźmy wektory
-    $$ u = (3, 2, -1), v = (1, -2, 1), w = (1, 1, 1). $$
+    \[ u = (3, 2, -1), v = (1, -2, 1), w = (1, 1, 1). \]
     Rozwiązujemy układ równań $\alpha u + \beta v + \gamma w = \ol{0} \implies$
     \begin{equation*}
         \begin{cases}
@@ -135,14 +135,15 @@ Mówimy również, że wektory są liniowo zależne, jeśli nie są liniowo niez
 \end{theorem}
 \begin{proof}
     Jeśli istnieje taki ciąg $\alpha_1, \alpha_2, \ldots, \alpha_n$, że $\{\alpha_1, \ldots, \alpha_n\} \neq \{0\}$ oraz
-    $$ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = \ol{0}, $$
+    \[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = \ol{0}, \]
     to bez starty ogólności możemy przyjąć, że $\alpha_n \neq 0$. Równoważnie przekształcamy równość do postaci
-    $$ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_{n-1}v_{n-1} = -\alpha_nv_n $$
-    $$ \frac{-\alpha_1}{\alpha_n}v_1 + \frac{-\alpha_2}{\alpha_n}v_2 + \ldots + \frac{-\alpha_{n-1}}{\alpha_n}v_{n-1} = v_n, $$
+    \[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_{n-1}v_{n-1} = -\alpha_nv_n \]
+    \[ \frac{-\alpha_1}{\alpha_n}v_1 + \frac{-\alpha_2}{\alpha_n}v_2 + \ldots + \frac{-\alpha_{n-1}}{\alpha_n}v_{n-1} = v_n, \]
     więc otrzymujemy równoważność między założeniem i stwierdzeniem, że $v_n$ jest kombinacją liniową wektorów $\alpha_1, \ldots, \alpha_{n-1}$.
 \end{proof}
 
 \begin{theorem}
+    \label{t:explicit coefficients}
     Jeśli wektory $v_1, v_2, \ldots, v_n$ są liniowo niezależne oraz wektor $u$ jest kombinacją liniową tych wektorów, to współczynniki tej kombinacji są wyznaczone jednoznacznie.
 \end{theorem}
 \begin{proof}
@@ -152,6 +153,124 @@ Mówimy również, że wektory są liniowo zależne, jeśli nie są liniowo niez
         u = \beta_1v_1 + \beta_2v_2 + \ldots + \beta_nv_n
     \end{align*}
     Mamy
-    $$ u - u = \ol{0} = (\alpha_1 - \beta_1)v_1 + (\alpha_2 - \beta_2)v_2 + \ldots + (\alpha_n - \beta_n)v_n $$
+    \[ u - u = \ol{0} = (\alpha_1 - \beta_1)v_1 + (\alpha_2 - \beta_2)v_2 + \ldots + (\alpha_n - \beta_n)v_n \]
     co, skoro $v_1, v_2, \ldots, v_n$ są liniowo niezależne, dowodzi, że dla każdego $i$ zachodzi $\alpha_i - \beta_i = 0$, więc ciągi $(\alpha_n)$ i $(\beta_n)$ są równe.
+\end{proof}
+
+\begin{definition}
+    Powłoka liniowa zbioru $A \subset V, A \neq \emptyset$, gdzie $V$ jest przestrzenią wektorową nad ciałem $K$ to zbiór
+    \[ \Lin A = \{v = \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_kv_k : \alpha_i \in K, v_i \in A\} \]
+\end{definition}
+
+$\Lin A$ jest podprzestrzenią przestrzeni $A$ nazywaną podprzestrzenią generowaną przez zbiór $A$. Dla danego zbioru $A$ mówimy, że \vocab{rozpina} on przestrzeń wektorową $V$, jeśli $\Lin A = V$.
+
+\begin{definition}
+    Baza $B$ przestrzeni wektorowej $V$ to taki zbiór, że $\Lin B = V$ oraz wszystkie wektory w $B$ są liniowo niezależne.
+\end{definition}
+
+$B$ jest bazą danej przestrzeni liniowej wtedy i tylko wtedy, gdy $B$ jest maksymalnym (w sensie inkluzji) zbiorem wektorów liniowo niezależnych oraz wtedy i tylko wtedy, gdy $B$ jest minimalnym (w sensie inkluzji) zbiorem wektorów rozpinających. Przestrzeń $\{\ol{0}\}$ nie ma bazy.
+
+\begin{theorem}
+    \label{t:equinumerous bases}
+    Każde dwie bazy danej przestrzeni wektorowej są równoliczne.
+\end{theorem}
+\begin{proof}
+    Weźmy dwie bazy $A, B$ przestrzeni liniowej $V$ oraz niech $|A| = k$. Załóżmy przeciwnie, że $|B| > k, B = \{b_1, b_2, \ldots, b_k, \ldots\}$. Skoro $A$ jest bazą przestrzeni $V$, to każdy wektor ze zbioru $B$ jest kombinacją liniową wektorów ze zbioru $A$, czyli
+    \[ b_1 = \alpha_1a_1 + \alpha_2a_2 + \ldots + \alpha_ka_k. \]
+    Bez straty ogólności możemy założyć, że $\alpha_1 \neq 0$ (ponieważ wszystkie nie mogą być zerowe). Wtedy
+    \[ a_1 = \frac{1}{\alpha_1}b_1 + \frac{-\alpha_2}{\alpha_1}a_2 + \ldots + \frac{-\alpha_k}{\alpha_1}a_k, \]
+    a więc $a_1$ jest kombinacją liniową wektorów ze zbioru $A \cup \{b_1\} \setminus \{a_1\}$. Wektory z tego zbioru oczywiście rozpinają całą przestrzeń liniową $V$ oraz są liniowo niezależne (wszystkie $a_2, a_3, \ldots, a_k$ są liniowo niezależne, a $b_1$ jest liniowo niezależny od nich, ponieważ założyliśmy, że $\alpha_1 \neq 0$). Z tego powodu zbiór $A \cup \{b_1\} \setminus \{a_1\}$ jest bazą. Kontynuujemy rozumowanie, pokazując, że zbiór
+    \[ A \cup \{b_1, b_2, \ldots, b_k\} \setminus \{a_1, a_2, \ldots a_k\} = \{b_1, b_2, \ldots, b_k\} \]
+    jest bazą. Z tego powodu każdy wektor $b_{k+1}, b_{k+2}, \ldots$ jest liniowo zależny od $\{b_1, \ldots, b_k\}$, więc dochodzimy do sprzeczności z założeniem, że $B$ jest bazą.
+\end{proof}
+
+\begin{definition}
+    Wymiar $\dim V$ przestrzeni wektorowej $V$ to liczność bazy tej przestrzeni. Jeśli $V = \{\ol{0}\}$, to $\dim V = 0$.
+\end{definition}
+
+\begin{example}
+    Przestrzeń $(\RR^n, \RR, +, \cdot)$ jest przestrzenią skończenie wymiarową z
+    \[ \dim\RR^n = n, \]
+    natomiast $(\sF(\RR,\RR), \RR, +, \cdot)$ jest przestrzenią nieskończenie wymiarową, więc
+    \[ \dim (\sF(\RR,\RR)) = \infty. \]
+\end{example}
+
+\begin{definition}
+    Reper bazowy to baza, w której ustaliliśmy kolejność wektorów.
+\end{definition}
+
+Jeśli $B = (e_1, e_2, \ldots, e_n)$ jest reperem bazowym przestrzeni wektorowej $V$, to dla dowolnego wektora
+\[ v = \alpha_1e_1 + \alpha_2e_2 + \ldots + \alpha_ne_n \]
+skalary $\alpha_i$ nazwiemy \vocab{współrzędnymi} wektora $v$ w bazie $B$ i zapiszemy
+\[ v = [\alpha_1, \alpha_2, \ldots, \alpha_n]_B. \]
+
+\begin{definition}
+    Baza kanoniczna to reper bazowy przestrzeni $\RR^n(\RR)$, w którym
+    \[ B_k = \left((1,0,0,\ldots,0), (0,1,0,\ldots,0), (0,0,0,\ldots,1)\right). \]
+\end{definition}
+
+Łatwo uzasadnić, że jeśli $\dim V = n$, to każdy zbiór $n + 1$ wektorów jest liniowo zależny, a każdy zbiór $n$ wektorów jest liniowo niezależny wtedy i tylko wtedy, gdy generuje przestrzeń $V$.
+
+\begin{theorem}
+    Niech $V$ będzie przestrzenią skończenie wymiarową, a $U$ jej podprzestrzenią. Wówczas
+    \[ \dim U = \dim V \quad\iff\quad U = V. \]
+\end{theorem}
+Implikacja w lewą stronę jest trywialna, pokażemy implikację w prawo.
+\begin{proof}
+    Jeśli weźmiemy pewną bazę $B$ przestrzeni $U$ i zachodzi warunek $\dim U = \dim V$, to, zgodnie z tym co powiedzieliśmy wcześniej, jest ona również bazą przestrzeni $V$, ponieważ $U \subset V$, z czego wynika teza.
+\end{proof}
+
+\begin{example}
+    Przykłady przestrzeni wektorowych wraz z wymiarami:
+    \begin{itemize}
+        \item dla $(\KK^n, \KK, +, \cdot)$ przy $\KK = \RR, \CC, \ldots$ mamy $\dim \KK^n = n$,
+        \item dla $(\CC^n, \RR, +, \cdot)$ mamy $\dim \CC^n = 2n$.
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    \label{d:sum of spaces}
+    Suma podprzestrzeni $V_1, V_2$ przestrzeni $V$ to zbiór
+    \[ V_1 + V_2 = \{v = v_1 + v_2 : v_1 \in V_1, v_2 \in V_2\}. \]
+\end{definition}
+
+\begin{fact}
+    Jeśli $V_1, V_2$ są podprzestrzeniami przestrzeni $V$, to $V_1 \cap V_2$ jest podprzestrzenią przestrzeni $V$.
+\end{fact}
+
+\begin{remark}
+    O ile $V_1 \cap V_2$ oraz $V_1 + V_2$ (z definicji) są przestrzeniami, o tyle już $V_1 \cup V_2$ na ogół nią nie jest, więc nie będziemy raczej używać tego zapisu.
+\end{remark}
+
+\begin{definition}
+    Suma prosta $V_1 \oplus V_2$ dwóch podprzestrzeni przestrzeni $V$ to taka suma $V_1 + V_2$, że zachodzi warunek
+    \[ \dforall{v \in V_1 + V_2} \dexistsone{v_1 \in V_1} \dexistsone{v_2 \in V_2} v = v_1 + v_2. \]
+\end{definition}
+
+\begin{theorem}
+    Suma dwóch podprzestrzeni jest sumą prostą wtedy i tylko wtedy, gdy ich częścią wspólną jest zbiór $\{\ol{0}\}$.
+\end{theorem}
+\begin{proof}
+    Jeśli część wspólna dwóch podprzestrzeni jest równa $\{\ol{0}\}$, to ich bazy są rozłączne, a więc teza wynika z twierdzenia \ref{t:explicit coefficients}.
+\end{proof}
+
+\begin{definition}
+    Przestrzeń uzupełniająca $V_2$ podprzestrzeni $V_1$ przestrzeni $V$ to taka przestrzeń, że
+    \[ V_1 \oplus V_2 = V. \]
+\end{definition}
+
+\begin{fact}
+    Dla każdej podprzestrzeni dowolnej przestrzeni istnieje przestrzeń uzupełniająca.
+\end{fact}
+
+\begin{theorem}
+    Dla skończenie wymiarowych podprzestrzeni $V_1, V_2$ przestrzeni wektorowej $V$ zachodzi
+    \[ \dim(V_1 + V_2) = \dim V_1 + \dim V_2 - \dim(V_1 \cap V_2), \]
+    a w szczególności
+    \[ V = V_1 \oplus V_2 \implies \dim V = \dim V_1 + \dim V_2. \]
+\end{theorem}
+\begin{proof}
+    Możemy wziąć bazę $B$ przestrzeni $V$ oraz bazy $B_1, B_2$ odpowiednio podprzestrzeni $V_1, V_2$ takie, że $B_1, B_2 \subset B$. Oczywistym jest, że
+    \[ |B_1 \cup B_2| = |B_1| + |B_2| - |B_1 \cap B_2|, \]
+    więc z definicji sumy podprzestrzeni (\ref{d:sum of spaces}) i twierdzenia \ref{t:equinumerous bases} wynika teza.
 \end{proof}
