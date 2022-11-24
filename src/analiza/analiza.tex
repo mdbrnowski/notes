@@ -1,0 +1,540 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[pretty,polish]{mystd}
+\title{Analiza I}
+\author{Michał Dobranowski}
+\date{semestr zimowy 2022 \\ v0.0}
+
+\begin{document}
+    \maketitle
+    \begin{abstract}
+        Poniższy skrypt zawiera materiał obejmujący wykłady z Analizy Matematycznej I prowadzone na I semestrze Informatyki na AGH, lecz jest mocno rozbudowany przez twierdzenia i tematy pochodzące z przeróżnych źródeł, które (zwykle dla rozwinięcia intuicji lub ułatwienia rozwiązań pewnych zadań) postanowiłem opisać.
+    \end{abstract}
+    \tableofcontents
+    \eject
+
+    Z powodu braku czasu (ale również chęci) do opisywania materiału, który -- chociaż pojawił się na wykładach -- jest, skromnym zdaniem autora, raczej szkolny, Czytelnik powinien upewnić się, że jest zaznajomiony z następującymi pojęciami: funkcja, dziedzina, przeciwdziedzina, dziedzina naturalna, injekcja, surjekcja, bijekcja, funkcja monotoniczna, (nie)rosnąca, (nie)malejąca, złożenie funkcji, funkcja odwrotna, wielomianowa, wymierna, potęgowa, wykładnicza, logarytmiczna, trygonometryczna, cyklometryczna, ciąg, podciąg.
+
+    \section{Granice ciągów}
+    \begin{definition}[Cauchy'ego granicy właściwej]
+        \label{d:cauchy_lim_series}
+        Ciąg $(a_n)$ ma granicę $g = \displaystyle\lim_{n\lthen\infty} a_n$ wtedy, gdy
+        \[ \dforall{\eps > 0} \dexists{N \in\NN} \dforall{n\geq N} |a_n - g| < \eps. \]
+    \end{definition}
+
+    Jeśli ciąg $(a_n)$ ma granicę $g$, to mówimy że jest zbieżny do $g$ i piszemy $\lim a_n = g$ lub po prostu $a_n \lthen g$.
+
+    \begin{definition}[granicy niewłaściwej $+\infty$]
+        Ciąg $(a_n)$ ma granicę niewłaściwą $\displaystyle\lim_{n\lthen\infty} a_n = \infty$ wtedy, gdy
+        \[ \dforall{M\in\RR} \dexists{N\in\NN} \dforall{n\geq N} a_n > M. \]
+    \end{definition}
+
+    Analogicznie definiujemy granicę niewłaściwą w $-\infty$. Może się również zdarzyć, że ciąg nie ma granicy, na przykład $a_n = n(-1)^n$.
+
+    \begin{fact}
+        Równość $\lim |a_n| = 0$ jest równoważna $\lim a_n = 0$.
+    \end{fact}
+    \begin{proof}
+        Równoważność wynika z definicji \ref{d:cauchy_lim_series} i równości $\left||a|\right| = |a|$.
+    \end{proof}
+
+    \begin{theorem}
+        \label{t:lim_subsequence=lim_sequence}
+        Jeśli $\lim a_n = g$, to dla każdego podciągu $(a_{n_k})$ zachodzi $\lim a_{n_k} = g$.
+    \end{theorem}
+    \begin{proof}
+        Zakładając przeciwnie, że istnieją dwa podciągi o różnych granicach, to w definicji Cauchy'ego (\ref{d:cauchy_lim_series}) wystarczy wybrać $\eps$ mniejszy niż połowa różnicy między tymi dwie granicami, aby uzyskać sprzeczność.
+    \end{proof}
+
+    Prosty wniosek z tego twierdzenia jest taki, że jeśli znajdziemy dwa podciągi ciągu $(a_n)$ zbiegające do różnych granic, to ciąg $(a_n)$ jest rozbieżny.
+
+    \begin{theorem}[o ciągu monotonicznym i ograniczonym]
+        \label{t:sequence monotonic and bounded}
+        Każdy ciąg monotoniczny i ograniczony jest zbieżny.
+    \end{theorem}
+    \begin{proof}
+        Bez starty ogólności przyjmijmy, że dany ciąg $(a_n)$ jest niemalejący i ograniczony z góry przez $M = \sup\{a_n : n \in \NN\}$. Dla wszystkich $n$ zachodzi więc nierówność
+        \[ a_n \leq M. \]
+        Dla dowolnego $\eps > 0$ istnieje takie $a_N$, że
+        \[ M - \eps < a_N \leq M, \]
+        jako że w przeciwnym wypadku to $M - \eps$ byłoby supremum $(a_n)$. Skoro $(a_n)$ jest niemalejący, to dla każdego $n > N$
+        \[ |M - a_n| = M - a_n \leq M - a_N < \eps, \]
+        więc $\lim a_n = M$.
+    \end{proof}
+
+    \begin{theorem}[Bolzano-Weierstrassa]
+        Jeśli ciąg jest ograniczony, to ma podciąg zbieżny.
+    \end{theorem}
+    \begin{proof}
+        Udowodnimy, że jeśli z ciągu nie można wybrać podciągu niemalejącego, to można wybrać ciąg malejący, czego natychmiastowym wnioskiem (z pomocą twierdzenia \ref{t:sequence monotonic and bounded}) będzie teza.
+
+        Najpierw zauważymy, że jeśli z ciągu nie można wybrać podciągu rosnącego, to ma on wyraz największy. Zakładając przeciwnie, mamy, że $a_1$ nie jest największy, więc szukamy większego $a_k$, który znowu nie jest największy i w ten sposób (powtarzając rozumowanie) uzyskujemy konstrukcję ciągu rosnącego. Taką konstrukcję zakłóci tylko znalezienie elementu największego.
+
+        Załóżmy, że ciąg $(a_n)$ nie zawiera podciągu niemalejącego. Tym bardziej nie zawiera więc podciągu rosnącego, a więc ma wyraz największy, który oznaczymy $a_m$. Z ciągu $(a_{m+1}, a_{m+2}, \ldots)$ nie można wybrać podciągu niemalejącego (bo jest to podciąg ciągu $(a_n)$), więc ma on element największy, jednak mniejszy od $a_m$. Powtarzając to rozumowanie konstruujemy ciąg malejący.
+    \end{proof}
+
+    \begin{theorem}[o ciągu ograniczonym i ciągu zbieżnym do zera]
+        \label{t:sequence bounded and convergent to 0}
+        Jeśli ciag $(a_n)$ jest ograniczony oraz $\lim b_n = 0$, to
+        \[ \lim_{n \lthen \infty} (a_n \cdot b_n) = 0 \]
+    \end{theorem}
+    \begin{proof}
+        Z założenia istnieje takie $M > 0$, że dla każdego $n \in \NN$ zachodzi
+        \[ -M \leq a_n \leq M. \]
+        Z definicji (\ref{d:cauchy_lim_series}) dla każdego $\eps > 0$ istnieje takie $N \in \NN$, że dla każdego $n > N$ zachodzi
+        \[ |b_n| < \frac{\eps}{M}, \]
+        więc (również dla każdego $n > N$) zachodzi
+        \[ |a_n \cdot b_n| < M \cdot \frac{\eps}{M} = \eps. \]
+    \end{proof}
+
+    \subsection{Proste granice}
+    \begin{theorem}[o arytmetyce granic ciągów]
+        Jeśli $\lim\limits_{n \lthen \infty} a_n = A$ oraz $\lim\limits_{n \lthen \infty} b_n = B$, to:
+        \begin{enumerate}
+            \item $\lim\limits_{n \lthen \infty} (a_n \pm b_n) = A \pm B,$
+            \item $\lim\limits_{n \lthen \infty} (a_n \cdot b_n) = A \cdot B,$
+            \item $\lim\limits_{n \lthen \infty} \frac{a_n}{b_n} = \frac{A}{B},$ jeśli $(b_n) \neq 0, B \neq 0$.
+        \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+        Wynika w prosty sposób z definicji $\ref{d:cauchy_lim_series}$.
+    \end{proof}
+
+    \begin{theorem}[o trzech ciągach]
+        \label{t:sequence squeeze theorem}
+        Jeśli $\lim a_n = \lim c_n = g$ oraz istnieje takie $N \in \NN$, że dla wszystkich $n > N$ zachodzi
+        \[ a_n \leq b_n \leq c_n, \]
+        to
+        \[ \lim b_n = g. \]
+    \end{theorem}
+    \begin{proof}
+        Weźmy $\eps > 0$. Z definicji granicy (\ref{d:cauchy_lim_series}) mamy
+        \[ |a_n - g| < \eps \]
+        \[ a_n < g + \eps \quad\land\quad a_n > g - \eps \]
+        dla wszystkich $n > N_1$.
+        Analogicznie dla wszystkich $n > N_2$ zachodzi
+        \[ c_n < g + \eps \quad\land\quad c_n > g - \eps. \]
+        Mamy więc
+        \[ g - \eps < a_n \leq b_n \leq c_n < g + \eps \]
+        \[ g - \eps < b_n < g + \eps \]
+        \[ |b_n - g| < \eps \]
+        dla wszystkcih $n > \max(N, N_1, N_2)$.
+    \end{proof}
+
+    \begin{fact}
+        Ciąg geometryczny jest zbieżny do $0$, jeśli jego iloraz jest mniejszy od $1$. Jeśli jest większy od $1$, to ciąg jest rozbieżny.
+    \end{fact}
+    Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia o ciagu monotonicznym i ograniczonym (\ref{t:sequence monotonic and bounded}), a sama jego treść na tyle oczywista i powszechna, że nie będziemy się nie niego powoływać bezpośrednio.
+
+    \begin{theorem}
+        \label{t:(a)^(1/n)->1}
+        Zachodzi równość
+        \[ \lim_{n \lthen \infty}\sqrt[n]{a} = 1 \]
+        dla każdego $a > 0$.
+    \end{theorem}
+    \begin{proof}
+        Dla $a = 1$ równość jest trywialna. Jeśli założymy, że $a > 1$, to mamy $\sqrt[n]{a} = 1 + x_n$, gdzie $x_n > 0$. Korzystając z nierówności Bernoulliego (\ref{t:Bernoulli's inequality}) mamy
+        \[ a = (1 + x_n)^n \geq 1 + nx_n \]
+        \[ \therefore 0 < x_n \leq \frac{a - 1}{n} \]
+        z czego wynika, że $\lim x_n = 0$, a więc $\lim a_n = 1$.
+
+        Jeśli $a < 1$, to, jak właśnie wykazaliśmy,
+        \[ \lim \sqrt[n]{a^{-1}} = 1, \]
+        więc
+        \[ \lim \sqrt[n]{a} = \lim \frac{1}{\sqrt[n]{a^{-1}}} = \frac{1}{\lim\sqrt[n]{a^{-1}}} = 1. \]
+    \end{proof}
+
+    \begin{theorem}
+        Zachodzi równość
+        \[ \lim_{n \lthen \infty}\sqrt[n]{n} = 1. \]
+    \end{theorem}
+    \begin{proof}
+        W poniższym dowodzie będziemy korzystać z nierówności między średnimi (\ref{t:mean ineqality}). Z nierówności między średnią geometryczną i harmoniczną (GM-HM) mamy
+        \[ \sqrt[n]{n} = \sqrt[n]{n \cdot 1^{n-1}} \geq \frac{n}{\frac{1}{n} + \frac{1}{1} + \frac{1}{1} + \cdots + \frac{1}{1}} = \frac{n}{\frac{1}{n} + n - 1}, \]
+        a z nierówności między średnią arytmetyczną i geometryczną (AM-GM)
+        \[ \sqrt[n]{n} = \sqrt[n]{\sqrt{n} \cdot \sqrt{n} \cdot 1^{n-2}} \leq \frac{2\sqrt{n} + n -2}{n}. \]
+        Oba te ciągi dążą do $1$ i z dwóch stron ograniczają ciąg dany wzorem $\sqrt[n]{n}$, więc na mocy twierdzenia o trzech ciągach (\ref{t:sequence squeeze theorem}) teza jest prawdziwa.
+    \end{proof}
+
+    \begin{theorem}
+        \label{t:lim an/a_n+1 = lim a_n^(1/n)}
+        Jeśli $(a_n) > 0$ oraz $\lim\frac{a_{n+1}}{a_n}$ istnieje i jest równe $L$, to również $\lim \sqrt[n]{a_n} = L$.
+    \end{theorem}
+    \begin{proof}
+        Z definicji \ref{d:cauchy_lim_series} dla każdego $\eps$ i pewnego $N$ mamy
+        $$\begin{aligned}
+            L - \eps &<& \frac{a_{n+1}}{a_n} &<& L + \eps \\
+            L - \eps &<& \frac{a_n}{a_{n-1}} &<& L + \eps \\
+            L - \eps &<& \frac{a_{n-1}}{a_{n-2}} &<& L + \eps \\
+                     & & \vdots\quad  \\
+            L - \eps &<& \frac{a_{N+1}}{a_N} &<& L + \eps \\
+        \end{aligned}$$
+        Przemnażając wszystkie nierówności (oprócz pierwszej, dla wygody zapisu) przez siebie mamy
+        \[ (L - \eps)^{n-N} < \frac{a_n}{a_N} < (L + \eps)^{n-N} \]
+        \[ \frac{(L - \eps)^n}{(L - \eps)^{N}} \cdot a_N < a_n < \frac{(L + \eps)^n}{(L + \eps)^{N}} \cdot a_N \]
+        \[ (L - \eps)\sqrt[n]{\frac{a_N}{(L - \eps)^{N}}} < \sqrt[n]{a_n} < (L + \eps)\sqrt[n]{\frac{a_N}{(L + \eps)^{N}}}. \]
+        Korzystając z twierdzenia \ref{t:(a)^(1/n)->1} przy obliczeniu granicy przy $n \lthen \infty$ dla trzech powyższych wyrażeń mamy
+        \[ L - \eps < \lim\sqrt[n]{n} < L - \eps, \]
+        z czego wynika (z definicji \ref{d:cauchy_lim_series}), że
+        \[ \lim\sqrt[n]{n} = L = \lim\frac{a_{n+1}}{a_n}. \]
+    \end{proof}
+
+    \subsection{Liczba Eulera}
+    \begin{definition}[Liczba Eulera]
+        \[ e = \lim \left(1 + \frac{1}{n}\right)^n \]
+    \end{definition}
+    \begin{proof}[Uzasadnienie]
+        Oznaczmy $e_n = \left(1 + \frac{1}{n}\right)^n$. Udowodnimy, że $(e_n)$ jest rosnący.
+        \[\begin{aligned}
+            \frac{e_{n+1}}{e_n} &= \frac{\left(1 + \frac{1}{n+1}\right)^{n + 1}}{\left(1 + \frac{1}{n}\right)^n} = \frac{\left(\frac{n+ 2}{n+1}\right)^n}{\left(\frac{n+1}{n}\right)^{n+1}} = \left(\frac{n+2}{n+1} \cdot \frac{n}{n+1}\right)^{n+1} \cdot \frac{n+1}{n} \\
+            &= \left(1 - \frac{1}{(n+1)^2}\right)^{n+1} \cdot \frac{n+1}{n}.
+        \end{aligned}\]
+        Z nierówności Bernoulliego (\ref{t:Bernoulli's inequality}) mamy
+        \[ \left(1 - \frac{1}{(n+1)^2}\right)^{n+1} > 1 - \frac{n+1}{(n+1)^2} = 1 - \frac{1}{n+1} = \frac{n}{n+1}, \]
+        więc
+        \[ \frac{e_{n+1}}{e_n} > \frac{n}{n+1} \cdot \frac{n+1}{n} = 1, \]
+        co dowodzi, że ciąg $(e_n)$ jest rosnący.
+
+        Następnie pokażemy, że ciąg $(a_n)$ jest również ograniczony.
+        \[\begin{aligned}
+            e_n &= \left(1 + \frac{1}{n}\right)^n = 2 + \sum_{k=2}^n\binom{n}{k}\frac{1}{n^k} \\
+            &< 2 + \sum_{k=2}^n\frac{1}{k(k-1)} = 2 + \sum_{k=2}^n\left(\frac{1}{k-1} - \frac{1}{k}\right) = 3 - \frac{1}{n} \\
+            &< 3.
+        \end{aligned}\]
+
+        Skoro $(a_n)$ jest rosnący i ograniczony od góry, to (z twierdzenia \ref{t:sequence monotonic and bounded}) jest zbieżny. Jego granicą jest $e \approx 2.71828$.
+    \end{proof}
+
+    \begin{lemma}
+        \label{l:lim e^k}
+        Zachodzi równość
+        \[ \lim_{n\lthen\infty}\left(1 + \frac{k}{n}\right)^n = e^k, \]
+        a w szególności (dla $k = -1$)
+        \[ \lim_{n\lthen\infty}\left(1 - \frac{1}{n}\right)^n = \frac{1}{e}. \]
+    \end{lemma}
+    \begin{proof}
+        Dla $k = 0$ równość jest trywialna, dla $k \neq 0$ obliczamy
+        \[ \lim_{n\lthen\infty}\left(1 + \frac{k}{n}\right)^n = \lim_{n\lthen\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^n = \lim_{\frac{n}{k}\lthen\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^{\frac{n}{k} \cdot k} = e^k. \]
+    \end{proof}
+
+    \subsection{Mniej proste granice}
+    \begin{theorem}
+        Zachodzi równość
+        \[ \lim\frac{\sqrt[n]{n!}}{n} = \frac{1}{e}. \]
+    \end{theorem}
+    \begin{proof}
+        Stosując twierdzenie \ref{t:lim an/a_n+1 = lim a_n^(1/n)} mamy
+        \[\begin{aligned} \lim\frac{\sqrt[n]{n!}}{n} = \lim\sqrt[n]{\frac{n!}{n^n}} &= \lim\frac{\frac{(n+1)!}{(n+1)^{n+1}}}{\frac{n!}{n^n}} = \lim\frac{(n+1)n^n}{(n+1)^{n+1}} = \\
+            &= \lim\frac{n^n}{(n+1)^n} = \lim\left(\frac{n+1}{n}\right)^{-n} = e^{-1}. \end{aligned}\]
+    \end{proof}
+
+    \subsection{\textit{Limes superior} i \textit{limes inferior}}
+    \begin{definition}
+        Dla ciągu $(a_n)$ definiujemy granicę górną (\textit{limes superior})
+        \[ \limsup_{n \lthen \infty} a_n = \sup\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\} \]
+        oraz granicę dolną (\textit{limes inferior})
+        \[ \liminf_{n \lthen \infty} a_n = \inf\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\}. \]
+    \end{definition}
+
+    \begin{example}
+        Obliczyć granicę górną i dolną ciągu $a_n = n^{\sin\frac{n\pi}{2}}$.
+    \end{example}
+    \begin{solution}
+        Wyróżniamy trzy podciągi ciagu $(a_n)$, które łącznie zawierają wszystkie wyrazy tego ciągu:
+        \begin{itemize}
+            \item $n$ przystaje do $1 \pmod{4}$, mamy $b_k = (4k + 1)^1$,
+            \item $n$ jest parzyste, mamy $c_k = (2k)^0$,
+            \item $n$ przystaje do $3 \pmod{4}$, mamy $d_k = (4k + 3)^{-1}$.
+        \end{itemize}
+
+        Obliczając ich granice dostajemy
+        \[ \lim b_n = \infty, \quad \lim c_n = 1, \quad \lim d_n = 0. \]
+
+        Z twierdzenia \ref{t:lim_subsequence=lim_sequence} wynika, że każdy zbieżny podciąg $(a_n)$ jest zbieżny do granicy któregoś z ciągów $(b_n), (c_n), (d_n)$, więc
+        \[ \limsup a_n = \infty, \qquad \liminf a_n = 0. \]
+    \end{solution}
+
+    \section{Granice funkcji}
+    \vocab{Otoczeniem} $U(x_0, r)$ punktu $x_0 \in \RR$ o promieniu $r > 0$ nazywamy przedział $(x_0 - r, x_0 + r)$, a jego \vocab{sąsiedztwem} $S(x_0, r)$ -- otoczenie bez niego samego, czyli $U(x_0, r) \setminus \{x_0\}$. Definiujemy również sąsiedztwo lewo- i prawostronne punktu $x_0$ -- odpowiednio zbiory $S^-(x_0, r) = (x_0 - r, x_0)$ i $S^+(x_0, r) = (x_0, x_0 + r)$. Dla $\infty$ każde sąsiedztwo jest sąsiedztwem lewostronnym, a dla $-\infty$ prawostronnym.
+
+    \begin{definition}[Heinego granicy funkcji]
+        Funkcja $f: \RR \supset D_f \lthen \RR$ ma granicę $g = \lim\limits_{x \lthen x_0} f(x)$ w $x_0 \in \ol{\RR}$ wtedy, gdy jest określona w sąsiedztwie punktu $x_0$ oraz dla każdego ciągu $(x_n)$ takiego, że $\forall n \in \NN : x_n \neq x_0, x_n \in D_f$ oraz $(x_n) \lthen x_0$ zachodzi
+        \[ \lim_{n\lthen\infty} f(x_n) = g. \]
+    \end{definition}
+
+    Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ musi być zdefiniowana w lewo- lub prawostronnym sąsiedztwie punktu $x_0$, a elementy ciągu $x_n$ muszą leżeć po lewej lub prawej stronie od $x_0$.
+
+    \begin{theorem}
+        Funkcja $f$ ma granicę wtedy i tylko wtedy, gdy obie granice jednostronne istnieją i są sobie równe.
+        \[ \lim_{x \lthen x_0} f(x) = g \quad\iff\quad \lim_{x \lthen x_0^-} f(x) = g \land \lim_{x \lthen x_0^+} f(x) = g \]
+    \end{theorem}
+    \begin{proof}
+        Wynika wprost z definicji Heinego granicy funkcji i granic jednostronnych.
+    \end{proof}
+
+    \begin{definition}[Cauchy'ego granicy funkcji]
+        \label{d:cauchy_lim}
+        Funkcja $f: \RR \supset D_f \lthen \RR$ ma granicę $g = \lim\limits_{x \lthen x_0} f(x)$ w $x_0 \in \ol{\RR}$ wtedy, gdy jest określona w sąsiedztwie punktu $x_0$ oraz zachodzi warunek
+        \[ \dforall{\eps > 0} \dexists{\delta > 0} \dforall{x \in S(x_0, \delta)} |f(x) - g| < \eps. \]
+    \end{definition}
+
+    \begin{theorem}[o arytmetyce granic funkcji]
+        Jeśli funkcje $f$ i $g$ są określone w sąsiedztwie $x_0 \in \ol{\RR}$, to:
+        \begin{enumerate}
+            \item $\lim\limits_{x\lthen x_0} (f(x) \pm g(x)) = \lim\limits_{x\lthen x_0} f(x) \pm \lim\limits_{x\lthen x_0} g(x),$
+            \item $\lim\limits_{x\lthen x_0} (f(x) \cdot g(x)) = \lim\limits_{x\lthen x_0} f(x) \cdot \lim\limits_{x\lthen x_0} g(x),$
+            \item $\lim\limits_{x\lthen x_0} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x\lthen x_0} f(x)}{\lim\limits_{x\lthen x_0} g(x)},$ jeśli $g(x) \neq 0$ w sąsiedztwie $x_0$ oraz $\lim\limits_{x\lthen x_0} g(x) \neq 0$.
+        \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+        Wynika w prosty sposób z definicji $\ref{d:cauchy_lim}$.
+    \end{proof}
+
+    \begin{theorem}[o trzech funkcjach]
+        \label{t:squeeze theorem}
+        Jeśli $\lim\limits_{x\lthen x_0} f(x) = \lim\limits_{x\lthen x_0} h(x) = g$ oraz dla każdego $x$ w sąsiedztwie $x_0$ zachodzi
+        \[ f(x) \leq g(x) \leq h(x), \]
+        to
+        \[ \lim\limits_{x\lthen x_0} g(x) = g. \]
+    \end{theorem}
+    \begin{proof}
+        Analogiczny jak dowód twierdzenia o trzech ciąchach (\ref{t:sequence squeeze theorem}).
+    \end{proof}
+
+    \begin{remark}
+        Oprócz arytmetyki granicy czy twierdzenia o trzech funkcjach, prawdziwych jest również kilka innych twierdzenia, które udowodnialiśmy dla ciągów, między innymi o funkcji ograniczonej i zbieżnej do $0$ (\ref{t:sequence bounded and convergent to 0}) czy granice specjalnych funkcji (\ref{l:lim e^k}).
+    \end{remark}
+
+    \begin{example}  % source: Demidovich, p. 26
+        Znajdź
+        \[ \lim_{x \lthen 0} \frac{\sqrt{1+ x} - 1}{\sqrt[3]{1 + x} - 1}. \]
+    \end{example}
+    \begin{solution}
+        Biorąc
+        \[ 1 + x = y^6, \]
+        mamy
+        \[ \lim_{x \lthen 0} \frac{\sqrt{1+ x} - 1}{\sqrt[3]{1 + x} - 1} = \lim_{y \lthen 1} \frac{y^3 - 1}{y^2 - 1} = \lim_{y \lthen 1} \frac{y^2 + y + 1}{y + 1} = \frac{3}{2}. \]
+    \end{solution}
+
+    \begin{theorem}
+        \label{t:lim_sinx/x}
+        Zachodzi równość
+        \[ \lim_{x \lthen 0}\frac{\sin{x}}{x} = 1. \]
+    \end{theorem}
+    \begin{proof}
+        Narysujmy pewne długości na okręgu jednostkowym i oznaczmy jak na rysunku.
+        \begin{center}
+            \begin{tikzpicture}[scale=2.8]
+                \tkzInit[xmin=-.3, ymin=-.3, xmax=1.5, ymax=1.2]
+                \tkzClip
+                \tkzSetUpLabel[font=\scriptsize]
+                \tkzDefPoints{0/0/A,1/0/D,1/1/D'}
+                \tkzDefPoint(38:1){C}
+                \tkzDefPointBy[projection=onto A--D](C) \tkzGetPoint{B}
+                \tkzInterLL(A,C)(D,D') \tkzGetPoint{E}
+                \tkzDrawCircle(A,D)
+                \tkzDrawSegments(A,E A,D B,C D,E C,D)
+                \tkzMarkAngle[size=4mm](D,A,C)
+                \tkzLabelAngle[pos=.28](D,A,C){$x$}
+                \tkzDrawPoints(A,B,C,D,E)
+                \tkzLabelPoints[below](A,B,D)
+                \tkzLabelPoints[above](C,E)
+            \end{tikzpicture}
+        \end{center}
+        Jeśli $\angle DAC = x$ oraz $|AC| = 1$, to $|BC| = |\sin x|$ i $|DE| = |\tan x|$. Między polem trójkąta $\triangle ADC$, polem wycinka koła $A\arc{DC}$ i polem trójkąta $\triangle ADE$ zachodzi poniższa nierówność
+        \[ [ADC] \leq [A\arc{DC}] \leq [ADE], \]
+        a więc
+        \[ \frac{|\sin x|}{2} \leq \frac{|x|}{2} \leq \frac{|\tan x|}{2} \]
+        \[ |\sin x| \leq |x| \leq |\tan x| \]
+        \[ 1 \leq \frac{|x|}{|\sin{x}|} \leq \frac{1}{|\cos x|}. \]
+        Przy $x$ bliskim $0$ możemy zapisać
+        \[ 1 \leq \frac{x}{\sin{x}} \leq \frac{1}{\cos x} \]
+        \[ 1 \geq \frac{\sin{x}}{x} \geq \cos x. \]
+        Z twierdzenia o trzech funkcjach (\ref{t:squeeze theorem}) otrzymujemy
+        \[ \lim_{x \lthen 0} \frac{\sin{x}}{x} = 1. \]
+    \end{proof}
+
+    \begin{example}
+        Oblicz
+        \[ \lim_{x \lthen 0} \frac{\cos{3x} - \cos{2x}}{x^2}. \]
+    \end{example}
+    \begin{solution}
+        Korzystając ze wzoru na różnicę cosinusów mamy
+        \[ \lim_{x \lthen 0} \frac{\cos{3x} - \cos{2x}}{x^2} = \lim_{x \lthen 0} -2\frac{\sin\frac{5x}{2}\sin\frac{x}{2}}{x^2}. \]
+        Na mocy twierdzenia \ref{t:lim_sinx/x} otrzymujemy
+        \[ \lim_{x \lthen 0} -2\frac{\sin\frac{5x}{2}\sin\frac{x}{2}}{x^2} = -2\cdot\frac{\frac{5}{2}\cdot\frac{1}{2}}{1}\lim_{x\lthen 0}\frac{\sin\frac{5x}{2}}{\frac{5x}{2}}\lim_{x\lthen 0}\frac{\sin\frac{x}{2}}{\frac{x}{2}} =  \frac{-5}{2}. \]
+    \end{solution}
+
+    \begin{theorem}
+        \label{t:lim ln(1+x)/x}
+        Zachodzi równość
+        \[ \lim_{x\lthen 0}\frac{\ln(1 + x)}{x} = 1. \]
+    \end{theorem}
+    \begin{proof}
+        TODO (logarytm granicy = granica logarytmu)
+        \[ \lim_{x\lthen 0}\frac{\ln(1 + x)}{x} = \lim_{x\lthen 0} \ln((1 + x)^{\frac{1}{x}}) = \ln\left(\lim_{x\lthen 0} (1 + x)^{\frac{1}{x}}\right) = \ln e = 1 \]
+    \end{proof}
+
+    \begin{theorem}
+        Zachodzi równość
+        \[ \lim_{x\lthen 0}\frac{a^x - 1}{x} = \ln a \]
+        dla $a > 0$.
+    \end{theorem}
+    \begin{proof}
+        Skorzystamy z twierdzenia \ref{t:lim ln(1+x)/x}. Podstawiając $y = a^x - 1$ mamy
+        \begin{align*} \lim_{x\lthen 0}\frac{a^x - 1}{x} &= \lim_{y\lthen 0}\frac{y}{\log_a(1 + y)} = \lim_{y\lthen 0}\frac{y\ln{a}}{\ln {a}\log_a(1 + y)} = \\
+        &= \lim_{y\lthen 0}\frac{y\ln{a}}{\ln(1 + y)} = \lim_{y\lthen 0}\frac{y\ln{a}}{y} = \ln{a}. \end{align*}
+    \end{proof}
+
+    \begin{theorem}
+        Jeśli $\lim\limits_{x\lthen x_0} f(x) = \pm\infty$, to zachodzi równość
+        \[ \lim_{x\lthen x_0}\left(1 + \frac{1}{f(x)}\right)^{f(x)} = e. \]
+    \end{theorem}
+    \begin{proof}
+        TODO
+    \end{proof}
+
+    \begin{theorem}[o granicy funkcji złożonej]
+        Jeśli $\lim\limits_{x\lthen x_0} f(x) = y_0, \lim\limits_{x\lthen y_0} g(x) = z_0$ oraz dla każdego punktu $x$ w sąsiedztwie $x_0$ $f(x) \neq y_0$, to
+        \[ \lim_{x\lthen x_0} g(f(x)) = z_0. \]
+    \end{theorem}
+    \begin{proof}
+        TODO
+    \end{proof}
+
+    \subsection{Ciągłość funkcji}
+    \begin{definition}[ciągłość funkcji w punkcie]
+        Jeśli funkcja $f$ jest określona w otoczeniu punktu $x_0 \in D_f$ to mówimy, że funkcja $f$ jest ciągła w tym punkcie, jeśli
+        \[ \lim_{x \lthen x_0} f(x) = f(x_0). \]
+    \end{definition}
+
+    Mówimy, że funkcja jest \vocab{ciągła}, jeśli jest ciągła w każdym punkcie swojej dziedziny.
+
+    \begin{fact}
+        Suma, różnica, iloczyn oraz iloraz (o ile mianownik się nie zeruje) funkcji jest funkcją ciągłą.
+    \end{fact}
+    \begin{proof}
+        Wynika z arytmetyki granic funkcji.
+    \end{proof}
+
+    \begin{fact}
+        Wszystkie funkcje elementarne (funkcje wielomianowe, wymierne i niewymierne, logarytmiczne, trygonometryczne, cyklometryczne oraz wszystkie ich złożenia) są ciągłe w swojej dziedzinie.
+    \end{fact}
+    \begin{proof}
+        Wystarczy wykazać ciągłość funkcji: identyczności, stałej, sinus, arcus sinus oraz logarytmu i skorzystać z poprzedniego faktu.
+    \end{proof}
+
+    \begin{theorem}[o lokalnym zachowaniu znaku]
+        Jeśli funkcja $f$ jest ciągła w $x_0$ oraz $f(x_0) \neq 0$, to istnieje takie otoczenie $U(x_0, r)$, że dla każdego $x \in U(x_0, r)$ wartość $f(x)$ jest tego samego znaku co $f(x_0)$.
+    \end{theorem}
+    \begin{proof}
+        Z definicji Cauchy'ego (\ref{d:cauchy_lim}).
+    \end{proof}
+
+    \begin{theorem}[Darboux, o wartości pośredniej]
+        Każda ciągła funkcja $f$ ma własność Darboux, to znaczy, że jeśli $f(a)f(b) < 0$, to istnieje takie $c \in (a, b)$, że
+        \[ f(c) = 0. \]
+    \end{theorem}
+
+    \begin{theorem}[Weierstrassa, o osiąganiu kresów]
+        Każda funkcja $f$ ciągła na przedziale domkniętym $[a, b]$ ma wartość najmniejszą oraz wartość największą na tym przedziale.
+    \end{theorem}
+
+    \section{Pochodne}
+    \begin{definition}
+        Pochodną funkcji $f$ nazwiemy taką funkcję $f'$, że
+        \[ f'(x) = \lim_{h\lthen 0}\frac{f(x + h) - f(x)}{h}. \]
+        Jeśli wartość $f'(x_0)$ istnieje, to mówimy, że funkcja $f$ jest różniczkowalna w punkcie $x_0$.
+    \end{definition}
+
+    Oprócz notacji Lagrange'a ($f'$) stosuje się również notację Leibniza ($f' = \frac{df(x)}{dx})$.
+
+    \begin{theorem}
+        Jeśli $f$ jest różniczkowalna w punkcie $x_0$, to jest w tym punkcie ciągła.
+    \end{theorem}
+    \begin{proof}
+        \[ \lim_{h \lthen 0}(f(x_0 + h) - f(x_0)) = \lim_{h \lthen 0}\frac{f(x_0 + h) - f(x_0)}{h} \cdot h = f'(x_0) \cdot h = 0 \]
+        więc
+        \[\ \lim_{h\lthen 0}f(x_0 + h) = f(x_0), \]
+        ergo $f$ jest ciąła w $x_0$.
+    \end{proof}
+
+    Pochodną funkcji w punkcie możemy interpretować jako nachylenie stycznej do wykresu funkcji w tym punkcie. Równanie takiej stycznej ma postać
+    \begin{equation}
+        y - f(x_0) = f'(x_0)(x - x_0)
+    \end{equation}
+
+    TODO rysunek
+
+    \begin{theorem}[wzory pochodnych podstawowych funkcji]
+        Zachodzą równości:
+        \begin{enumerate}
+            \item $\ddx c = 0$
+            \item $\ddx x^r = rx^{r-1}$
+            \item $\ddx \sin x = \cos x$
+            \item $\ddx \cos x = -\sin x$
+            \item $\ddx \tan x = \frac{1}{\cos^2 x} = 1 + \tan^2 x$
+            \item $\ddx \cot x = - \frac{1}{\sin^2 x} = -1 - \cot^2 x$
+            \item $\ddx e^x = e^x$
+            \item $\ddx a^x = a^x \ln a$
+        \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+        TODO
+    \end{proof}
+
+    \begin{theorem}[o pochodnej funkcji złożonej]
+        \[ f(g(x))' = f'(g(x)) \cdot g'(x) \]
+    \end{theorem}
+    \begin{proof}
+        \[ \frac{df(g(x))}{dx} = \frac{df(g(x))}{dg(x)}\cdot\frac{dg(x)}{dx} = f'(g(x)) \cdot g'(x) \]
+    \end{proof}
+
+    \begin{theorem}[o pochodnej funkcji odwrotnej]
+        Dana jest bijekcja $f: U \lthen V$, gdzie $U$ jest otoczeniem punktu $x_0$, a $V$ -- otoczeniem $y_0 = f(x_0)$. Jeśli $f$ jest różniczkowalna w $x_0$ oraz $f'(x_0) \neq 0$, to
+        \[ \left(f^{-1}\right)'(y_0) = \frac{1}{f'(x_0)}. \]
+    \end{theorem}
+    \begin{proof}
+        TODO
+    \end{proof}
+
+    \begin{example}
+        Obliczyć pochodną funkcji $\arctan$.
+    \end{example}
+    \begin{solution}
+        Funkcja $\tan : (-\frac{\pi}{2}, \frac{\pi}{2}) \lthen (-\infty, \infty)$ jest bijekcją oraz jest różniczkowalna na całym przedziale. Ponadto, jej pochodna nigdy się nie zeruje. Mamy więc
+        \[ \arctan'(\tan x) = \frac{1}{\tan'(x)} = \frac{1}{\frac{1}{\cos^2 x}} = \cos^2 x \]
+        \[ \arctan'(x) = \cos^2(\arctan x) \]
+        \[ \arctan'(x) = \frac{\cos^2(\arctan x)}{\sin^2(\arctan x)} \cdot \sin^2(\arctan x) \]
+        \[ \arctan'(x) = \frac{1}{\tan^2(\arctan x)} \cdot (1 - \arctan'(x)) \]
+        \[ \arctan'(x) = \frac{1}{x^2} - \arctan'(x)\frac{1}{x^2} \]
+        \[ \arctan'(x) = \frac{\frac{1}{x^2}}{1 + \frac{1}{x^2}} = \frac{1}{x^2}\cdot\frac{x^2}{x^2 + 1} = \frac{1}{x^2 + 1} \]
+    \end{solution}
+
+    \begin{theorem}
+        \[ \ddx \ln x = \frac{1}{x} \]
+    \end{theorem}
+    \begin{proof}
+        \begin{gather*}
+            \ddx x = 1 \\
+            \ddx e^{\ln x} = e^{\ln x} \ddx \ln x = 1 \\
+            x \ddx \ln x = 1 \\
+            \ddx \ln x = \frac{1}{x}
+        \end{gather*}
+    \end{proof}
+
+    \begin{theorem}[reguła de l'Hospitala]
+        
+    \end{theorem}
+    \begin{remark}
+        Warunek TODO jest bardzo ważny; gdybyśmy regułę de l'Hospitala wykorzystali do obliczenia granicy
+        \[ \lim_{x\lthen\infty}\frac{x}{x + \sin x} \]
+        wyszłoby nam, że
+        \[ \lim_{x\lthen\infty}\frac{1}{1 + \cos x} \]
+        nie istnieje, bo ma podciągi zbieżne do $1$ i $\frac{1}{2}$. Moglibyśmy (błędnie stosując wspomianą regułę) wyciągnąć wniosek, że dana wcześniej granica również nie istnieje, co jednak jest nieprawdą, bo jest równa $1$ na mocy twierdzenia o trzech funkcjach (\ref{t:squeeze theorem}).
+    \end{remark}
+
+    \appendix
+    \section{Dodatek}
+    \input{appendix.tex}
+
+\end{document}
