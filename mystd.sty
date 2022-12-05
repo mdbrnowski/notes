@@ -21,10 +21,11 @@
 \usepackage{thmtools}
 \usepackage{relsize}
 \usepackage{yhmath}  % for wideparen
+\usepackage{nicematrix}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{tkz-euclide}
-\usetikzlibrary{shapes.geometric,calc,positioning}
+\usetikzlibrary{shapes.geometric,calc,positioning,fit}
 
 
 \newif\ifstdthm\stdthmfalse
@@ -52,6 +53,7 @@
 \DeclareMathOperator*{\lcm}{lcm}
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Lin}{Lin}
+\DeclareMathOperator{\rank}{rank}
 
 \newcommand{\cbrt}[1]{\sqrt[3]{#1}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
