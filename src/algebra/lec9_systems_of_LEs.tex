@@ -50,12 +50,13 @@ jest \vocab{macierzą uzupełnioną} tego układu. Wtedy układ \ref{eq:linear s
 \end{definition}
 
 \begin{theorem}[Cramera]
+    \label{t:Cramer}
     Jeśli dany układ jest układem Cramera, to jest oznaczony oraz
     \[ x_j = \frac{D_{x_j}}{\det A}, \]
     gdzie $D_{x_j}$ jest wyznacznikiem macierzy powstałej przez zastąpienie $j$-tej kolumny macierzy głównej $A$ kolumną wyrazów wolnych $B$.
 \end{theorem}
 \begin{proof}
-    Pierwsze stwierdzenie jest prawdziwe, ponieważ jeśli $\det A \neq 0$, to kolumny tworzą bazę pewnej przestrzeni liniowej, do której należy kolumna $B$, więc na mocy twierdzenia \ref{t:explicit coefficients} jest ona jednoznacznie wyznaczona przez kombinację liniową kolumn z $A$ (a współczynniki tej kombinacji liniowej są właśnie kolumną niewiadomych $X$).
+    Pierwsze stwierdzenie jest prawdziwe, ponieważ jeśli $\det A \neq 0$, to kolumny tworzą bazę pewnej przestrzeni liniowej, do której należy kolumna $B$, więc na mocy twierdzenia \ref{t:explicit coefficients} jest ona jednoznacznie wyznaczona przez kombinację liniową kolumn z~$A$~(a współczynniki tej kombinacji liniowej są właśnie kolumną niewiadomych $X$).
 
     Oznaczając $j$-tą kolumną $A$ jako $\mathbf{a_j}$ oraz $B = \mathbf{b}$, na mocy poprzedniego akapitu równanie
     \[ x_1\mathbf{a_1} + x_2\mathbf{a_2} + \ldots + x_n\mathbf{a_n} = \mathbf{b} \]
@@ -65,3 +66,60 @@ jest \vocab{macierzą uzupełnioną} tego układu. Wtedy układ \ref{eq:linear s
     \[ D_{x_j} = \det(\mathbf{a_1}, \ldots, x_j\mathbf{a_j}, \ldots, \mathbf{a_n}) = x_j\det(\mathbf{a_1}, \ldots, \mathbf{a_j}, \ldots, \mathbf{a_n}) = x_j \det A, \]
     \[ \therefore x_j = \frac{D_{x_j}}{\det A}. \]
 \end{proof}
+
+\begin{theorem}[Kroneckera-Capellego]
+    \label{t:Kronecker-Cappelli}
+    Układ $AX = B$ ma co najmniej jedno rozwiązanie wtedy i tylko wtedy, gdy
+    \[ \rank(A) = \rank(\begin{bNiceArray}{cSc}A & B\end{bNiceArray}). \]
+\end{theorem}
+\begin{proof}
+    Oznaczając $j$-tą kolumną $A$ jako $\mathbf{a_j}$ oraz $B = \mathbf{b}$, mamy
+    \[ x_1\mathbf{a_1} + x_2\mathbf{a_2} + \ldots + x_n\mathbf{a_n} = \mathbf{b}, \]
+    a więc $X$ istnieje wtedy i tylko wtedy, gdy kolumna $B$ jest kombinacją liniową kolumn z~$A$~(a więc nie jest liniowo niezależna, ergo $\rank(A) = \rank(\begin{bNiceArray}{cSc}A & B\end{bNiceArray})$).
+\end{proof}
+
+\begin{theorem}
+    \label{t:rankA = rankA|B = n}
+    Układ $AX = B$ ma dokładnie jedno rozwiązanie wtedy i tylko wtedy, gdy
+    \[ \rank(A) = \rank(\begin{bNiceArray}{cSc}A & B\end{bNiceArray}) = n, \]
+    gdzie $n$ jest liczbą niewiadomych.
+\end{theorem}
+\begin{proof}
+    Jak poprzednio, lecz z wykorzystaniem twierdzenia \ref{t:explicit coefficients}.
+\end{proof}
+
+Prosty wniosek z tego twierdzenia jest taki, że jeśli $\rank(A) = \rank(\begin{bNiceArray}{cSc}A & B\end{bNiceArray})$, ale $\rank(A) \neq n$, to układ jest nieoznaczony, a jego rozwiązania zależą od $n - \rank(A)$ parametrów\footnote{jeśli układ jest określony nad ciałem $\RR$ lub $\CC$, to układ nieoznaczony ma nieskończenie wiele rozwiązań}.
+
+Układy równań liniowych można łatwo rozwiązać eliminacją Gaussa w podobny sposób, jak robiliśmy to szukając macierzy odwrotnej w przykładzie \ref{ex:inverse matrix}.
+
+\begin{example}
+    Rozwiązać układ równań
+    \[ \begin{cases}
+        x + 3y - z &= 2 \\
+        2x - 3z &= -5 \\
+        3x + 2y - 3z &= -1
+    \end{cases}. \]
+\end{example}
+\begin{solution}
+    \[ \begin{bNiceArray}{cccIc}
+        1 & 3 & -1 & 2 \\
+        2 & 0 & -3 & -5 \\
+        3 & 2 & -3 & -1
+    \end{bNiceArray} \sim \begin{bNiceArray}{cccIc}
+        1 & 3 & -1 & 2 \\
+        0 & -6 & -1 & -9 \\
+        0 & -7 & 0 & -7
+    \end{bNiceArray} \sim \begin{bNiceArray}{cccIc}
+        1 & 3 & -1 & 2 \\
+        0 & 1 & -1 & -2 \\
+        0 & 1 & 0 & 1
+    \end{bNiceArray} \sim \begin{bNiceArray}{cccIc}
+        1 & 3 & -1 & 2 \\
+        0 & 1 & -1 & -2 \\
+        0 & 0 & 1 & 3
+    \end{bNiceArray} \]
+    Rząd macierzy jest równy liczbie zmiennych, więc (na mocy twierdzenia \ref{t:rankA = rankA|B = n}) układ jest oznaczony. Teraz możemy kontynuować przekształcenia, aby otrzymać macierz $\begin{bNiceArray}{cSc}I & X\end{bNiceArray}$, ale w praktyce łatwiej bedzie teraz wrócic do układu równań. Mamy więc
+    \[ z = 3, \]
+    \[ y - z = -2 \implies y = -2 + 3 = 1, \]
+    \[ x + 3x - z = 2 \implies x = 2 - 3 + 3 = 2. \]
+\end{solution}
