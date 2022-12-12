@@ -436,6 +436,7 @@
     \end{theorem}
 
     \begin{theorem}[Weierstrassa, o osiąganiu kresów]
+        \label{t:Weierstrass}
         Każda funkcja $f$ ciągła na przedziale domkniętym $[a, b]$ ma wartość najmniejszą oraz wartość największą na tym przedziale.
     \end{theorem}
 
@@ -522,16 +523,115 @@
         \end{gather*}
     \end{proof}
 
-    \begin{theorem}[reguła de l'Hospitala]
-        
+    \begin{theorem}[o zerowaniu się pochodnej w punkcie, w którym funkcja przyjmuje ekstremum]
+        \label{t:zero derivative in extremum}
+        Jeśli funkcja $f$ jest ciągła na przedziale $[a, b]$, różniczkowalna na przedziale $(a, b)$ oraz istnieje takie $x_0 \in (a, b)$, że
+        \[ f(x_0) = \max_{x \in [a, b]} f(x) \text{ lub } f(x_0) = \min_{x \in [a, b]} f(x), \]
+        to
+        \[ f'(x_0) = 0. \]
     \end{theorem}
+    \begin{proof}
+        Przypadek z minimum jest analogiczny, wykażemy tylko dla maksimum. Dla każdego $x < x_0$ mamy
+        \[ f(x) \leq f(x_0) \]
+        \[ \frac{f(x) - f(x_0)}{x - x_0} \geq 0 \]
+        \[ \lim_{x\lthen x_0^-}\frac{f(x) - f(x_0)}{x - x_0} \geq 0 \]
+        \[ f'_-(x_0) \geq 0, \]
+        a dla każdego $x > x_0$ analogicznie
+        \[ f'_+(x_0) \leq 0, \]
+        więc $f(x_0) = 0$.
+    \end{proof}
+
+    \begin{theorem}[Rolle'a]
+        \label{t:Rolle}
+        Jeśli funkcja $f$ jest ciągła na przedziale $[a, b]$ oraz różniczkowalna na przedziale $(a, b)$, to z
+        \[ f(a) = f(b) \]
+        wynika, że istnieje takie $c \in (a, b)$, że
+        \[ f'(c) = 0. \]
+    \end{theorem}
+    \begin{proof}
+        Wynika z twierdzenia o zerowaniu się pochodnej (\ref{t:zero derivative in extremum}) oraz twierdzania Weierstrassa (\ref{t:Weierstrass}).
+    \end{proof}
+
+    \begin{theorem}[Lagrange'a]
+        Jeśli funkcja $f$ jest ciągła na przedziale $[a, b]$ oraz różniczkowalna na przedziale $(a, b)$, to istnieje takie $c \in (a, b)$, że
+        \[ f'(c) = \frac{f(b) - f(a)}{b - a}. \]
+    \end{theorem}
+    \begin{proof}
+        Niech $h(x) = f(x) - \frac{f(b) - f(a)}{b - a}(x - a)$. Z twierdzenia Rolle'a (\ref{t:Rolle}) dla funkcji $h$ wynika teza.
+    \end{proof}
+
+    \begin{theorem}[Cauchy'ego]
+        Jeśli funkcje $f, g$ są ciągłe na przedziale $[a, b]$ oraz różniczkowalne na przedziale $(a, b)$, to istnieje takie $c \in (a, b)$, że
+        \[ g'(c) (f(b) - f(a)) = f'(c) (g(b) - g(a)). \]
+    \end{theorem}
+    \begin{proof}
+        Niech $h(x) = g(x)(f(b) - f(a)) - f(x)(g(b) - g(a))$. Z twierdzenia Rolle'a (\ref{t:Rolle}) dla funkcji $h$ wynika teza.
+    \end{proof}
+
+    Twierdzenia Rolle'a, Lagrange'a oraz Cauchy'ego nazywamy \vocab{twierdzeniami o wartości średniej}.
+
+    \begin{theorem}[reguła de l'Hospitala]
+        \label{t:Hospital}
+        Jeśli funkcje $f, g$ są różniczkowalne w pewnym sąsiedztwie $S$ punktu $x_0 \in \ol{\RR}$ oraz
+        \begin{enumerate}
+            \item dla każdego $x \in S$ zachodzi $g(x) \neq 0$ oraz $g'(x) \neq 0$,
+            \item $\lim\limits_{x\lthen x_0} f(x) = \lim\limits_{x\lthen x_0} g(x) \in \{0, \infty, -\infty\}$,
+            \item \label{enum:Hospital exists} istnieje $\lim\limits_{x\lthen x_0}\frac{f'(x)}{g'(x)}$,
+        \end{enumerate}
+        to prawdą jest, że
+        \[ \lim_{x\lthen x_0}\frac{f(x)}{g(x)} = \lim_{x\lthen x_0}\frac{f'(x)}{g'(x)}. \]
+    \end{theorem}
+    \begin{proof}
+        TODO
+    \end{proof}
     \begin{remark}
-        Warunek TODO jest bardzo ważny; gdybyśmy regułę de l'Hospitala wykorzystali do obliczenia granicy
+        Warunek \ref{enum:Hospital exists} jest bardzo ważny; gdybyśmy regułę de l'Hospitala wykorzystali do obliczenia granicy
         \[ \lim_{x\lthen\infty}\frac{x}{x + \sin x} \]
         wyszłoby nam, że
         \[ \lim_{x\lthen\infty}\frac{1}{1 + \cos x} \]
         nie istnieje, bo ma podciągi zbieżne do $1$ i $\frac{1}{2}$. Moglibyśmy (błędnie stosując wspomianą regułę) wyciągnąć wniosek, że dana wcześniej granica również nie istnieje, co jednak jest nieprawdą, bo jest równa $1$ na mocy twierdzenia o trzech funkcjach (\ref{t:squeeze theorem}).
     \end{remark}
+
+    \subsection{Wzory Taylora i Maclaurina}
+    \begin{theorem}[Taylora]
+        \label{t:Taylor}
+        Jeśli funkcja $f$ jest $n$-krotnie różniczkowalna na przedziale $[a, b]$, to dla $x \in (a, b)$ zachodzi
+        \[ f(x) = f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \ldots + \frac{f^{(n-1)}(a)}{(n-1)!}(x - a)^{n-1} + R_n(x, a), \]
+        gdzie
+        \[ R_n(x, a) = \frac{f^{(n)}(c)}{n!}(x - a)^n \]
+        dla $c \in [a, x]$ jest nazywane \vocab{resztą Lagrange'a}.
+    \end{theorem}
+
+    Resztę Lagrange'a możemy również zapisać w postaci
+    \[ R_n(x, a) = \frac{f^{(n)}(a + \theta(x - a))}{n!}(x - a)^n \]
+    dla $\theta \in [0, 1]$.
+
+    \begin{definition}
+        We wzorze Taylora (\ref{t:Taylor}), jeśli $a = 0$, to ten wzór nazywamy \vocab{wzorem Maclaurina}.
+    \end{definition}
+
+    \begin{example}
+        Oblicz $\cos\frac{1}{40}$ z dokładnością do $10^{-9}$.
+    \end{example}
+    \begin{solution}
+        Skorzystamy ze wzoru Maclaurina przy $f = \cos$.
+        \[ \cos\frac{1}{40} = \cos(0) + \frac{-\sin(0)}{1!}\left(\frac{1}{40}\right) + \ldots + R_n, \]
+        gdzie
+        \begin{align*}
+            \left|R_n\right| &\leq 10^{-9} \\
+            \left|\frac{\cos^{(n)}(c)}{n!}\left(\frac{1}{40}\right)^n\right| &\leq 10^{-9}.
+        \end{align*}
+        Dla $n = 5$ możemy oszacować
+        \[ \left|\frac{-\sin(c)}{5!}\left(\frac{1}{40}\right)^5\right| = \frac{\sin(c)}{5! \cdot 40^5} \leq \frac{c}{120 \cdot 40^5}. \]
+        A skoro $c \in [0, \frac{1}{40}]$, to
+        \[ \frac{c}{120 \cdot 40^5} \leq \frac{1}{120 \cdot 40^6} = \frac{1}{12 \cdot 16^3} \cdot 10^{-7} < 10^{-9}, \]
+        więc
+        \begin{align*}
+            \cos\frac{1}{40} &\approx 1 + 0 + \frac{-1}{2!}\left(\frac{1}{40}\right)^2 + 0 + \frac{1}{4!}\left(\frac{1}{40}\right)^4 \\
+            &= 1 - \frac{1}{2 \cdot 40^2} + \frac{1}{24 \cdot 40^4}.
+        \end{align*}
+        Pomagając sobie kalkulatorem można sprawdzić, że nasz błąd wynosi około $3.39\cdot 10^{-13}$.
+    \end{solution}
 
     \appendix
     \section{Dodatek}
