@@ -76,17 +76,6 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
     Prosty, z definicji.
 \end{proof}
 
-\begin{fact}
-    Pole równoległoboku rozpiętego przez wektory będące wierszami (lub kolumnami) macierzy $A_{2\times 2}$ jest równe wartości bezwzględnej wyznacznika tej macierzy.
-\end{fact}
-
-\begin{proof}
-    Pole takiego równoległoboku to dwukrotność pola trójkąta o współrzędnych $(0, 0), (a_{11}, a_{12}), (a_{21}, a_{22})$. Ze wzoru
-    \[ [\triangle ABC] = \frac{1}{2}\left|(x_B - x_A)(y_C - y_A) - (y_B - y_A)(x_C - x_A)\right| \]
-    otrzymujemy, że szukane pole $P$ równoległoboku jest równe
-    \[ P = 2\cdot\frac{1}{2}\left|(a_{11} - 0)(a_{22} - 0) - (a_{12} - 0)(a_{21} - 0)\right| = |a_{11}a_{22} - a_{12}a_{21}|. \]
-\end{proof}
-
 \begin{theorem}[reguła Sarrusa]
     Wyznacznik macierzy $3 \times 3$ jest równy
     \[ \det\begin{bmatrix}
@@ -105,10 +94,6 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
     \includegraphics[width=0.35\textwidth]{Sarrus_rule.pdf}
     \caption{Reguła Sarrusa, źródło: Wikipedia.}
 \end{figure}
-
-\begin{fact}
-    Objętość równoległościanu rozpiętego przez wektory będące wierszami (lub kolumnami) macierzy $A_{3\times 3}$ jest równa wartości bezwzględnej wyznacznika tej macierzy.
-\end{fact}
 
 \begin{theorem}[Cauchy'ego]
     \label{t:det is multiplicative}

@@ -1,0 +1,203 @@
+W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o jednostkowej długości):
+\[ \hat{i} = (1, 0, 0), \quad \hat{j} = (0, 1, 0), \quad \hat{k} = (0, 0, 1). \]
+
+\begin{definition}
+    Metryka euklidesowa w $\RR^n$ to funkcja $d : \RR^n \times \RR^n \lthen \RR$, która dla punktów $P = (x_1, x_2, \ldots, x_n), Q = (y_1, y_2, \ldots, y_n)$ jest zdefiniowana jako
+    \[ d(P, Q) = \sqrt{\sum_{i = 1}^n (y_i - x_i)^2}. \]
+    Wartość tej funkji dla punktów $X, Y$ to \vocab{odległość euklidesowa} tych punktów.
+\end{definition}
+
+\begin{definition}
+    Norma euklidesowa w $\RR^n$ to funkcja $\Vert\cdot\Vert : \overrightarrow{\RR^n} \lthen \RR_{\geq 0}$, która dla wektora $v = [v_1, v_2, \ldots, v_n]$ jest zdefiniowana jako
+    \[ \Vert v\Vert = \sqrt{\sum_{i=1}^n v_i^2}. \]
+    Wartość normy wektora $v$ to \vocab{długość} tego wektora.
+\end{definition}
+
+Łatwo zauważyć korelację między tymi dwoma wzorami: dla dwóch punktów $P, Q$, wektor $\overrightarrow{PQ}$ jest równy
+\[ \ol{PQ} = [y_1 - x_1, \ldots, y_n - x_n], \]
+więc
+\[ d(P, Q) = \Vert\overrightarrow{PQ}\Vert. \]
+
+\begin{definition}
+    Iloczyn skalarny wektorów $u = [u_1, \ldots, u_n]$ i $v = [v_1, \ldots, v_n]$ w przestrzeni $\RR^n$ to liczba
+    \[ u \circ v = \sum_{i=1}^n u_iv_i. \]
+\end{definition}
+
+\begin{fact}
+    Jeśli $U^T$ jest jednokolumnową macierzą powstałą z wektora $u$, a $V$ to jednowierszową macierz powstała w wektora $v$, to
+    \[ u \circ v = U^T \cdot V. \]
+\end{fact}
+
+\begin{fact}
+    Dla każdego wektora $v \in \RR^n$ zachodzi
+    \[ \sqrt{v \circ v} = \Vert v \Vert. \]
+\end{fact}
+
+Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów, to taka przestrzeń jest \vocab{przestrzenią euklidesową}, którą oznaczamy przez $E_n$. Warto zauważyć, że taki iloczyn skalarny jest łączny, przemienny, zgodny z mnożeniem przez skalar oraz rozdzielny względem dodawania.
+
+\begin{theorem}[Cauchy'ego-Schwarza]
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$ zachodzi nierówność
+    \[ |\mathbf{u} \circ \mathbf{v}| \leq \Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert, \]
+    przy czym równość zachodzi wtedy i tylko wtedy, gdy wektory są liniowo zależne.
+\end{theorem}
+\begin{proof}
+    Twierdzenie jest trywialne, jeśli któryś z wektorów jest zerowy, dlatego przyjmijmy $\mathbf{u}, \mathbf{v} \neq \ol{0}$. Dla dowolnego $\alpha \in \RR$ mamy
+    \[ 0 \leq \Vert\mathbf{u} - \alpha\mathbf{v}\Vert^2 = (\mathbf{u} - \alpha\mathbf{v}) \circ (\mathbf{u} - \alpha\mathbf{v}) = \mathbf{u} \circ \mathbf{u} - 2\alpha(\mathbf{u} \circ \mathbf{v}) + \alpha^2(\mathbf{v} \circ \mathbf{v}). \]
+    Podstawiając $\alpha = (\mathbf{u} \circ \mathbf{v})(\mathbf{v} \circ \mathbf{v})^{-1}$ otrzymamy
+    \[ 0 \leq (\mathbf{u} \circ \mathbf{u}) - (\mathbf{v} \circ \mathbf{v})^{-1}(\mathbf{u} \circ \mathbf{v})^2 \]
+    \[ (\mathbf{v} \circ \mathbf{v})^{-1}(\mathbf{u} \circ \mathbf{v})^2 \leq (\mathbf{u} \circ \mathbf{u}) \]
+    \[ (\mathbf{u} \circ \mathbf{v})^2 \leq (\mathbf{u} \circ \mathbf{u})(\mathbf{v} \circ \mathbf{v}) \]
+    \[ (\mathbf{u} \circ \mathbf{v})^2 \leq \Vert \mathbf{u} \Vert^2 \cdot \Vert \mathbf{v} \Vert^2 \]
+    \[ |\mathbf{u} \circ \mathbf{v}| \leq \Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert. \]
+    Równość zachodzi tylko w przypadku, gdy $\alpha = 0$, czyli gdy $\mathbf{u}, \mathbf{v}$ są liniowo zależne.
+\end{proof}
+
+\begin{corollary}[Nierówność trójkąta]
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$ zachodzi nierówność
+    \[ \Vert \mathbf{u} + \mathbf{v} \Vert  \leq \Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert, \]
+\end{corollary}
+\begin{proof}
+    Z nierówności Cauchy'ego-Schwarza wynika, że
+    \begin{align*}
+        \mathbf{u} \circ \mathbf{v} &\leq \sqrt{\mathbf{u} \circ \mathbf{u}} \cdot \sqrt{\mathbf{v} \circ \mathbf{v}} \\
+        \mathbf{u} \circ \mathbf{u} + 2 \cdot \mathbf{u} \circ \mathbf{v} + \mathbf{v} \circ \mathbf{v} &\leq \mathbf{u} \circ \mathbf{u} + 2 \cdot \sqrt{\mathbf{u} \circ \mathbf{u}} \cdot \sqrt{\mathbf{v} \circ \mathbf{v}} + \mathbf{v} \circ \mathbf{v} \\
+        (\mathbf{u} + \mathbf{v}) \circ (\mathbf{u} + \mathbf{v}) &\leq (\sqrt{\mathbf{u} \circ \mathbf{u}} + \sqrt{\mathbf{v} \circ \mathbf{v}})^2 \\
+        \Vert \mathbf{u} + \mathbf{v} \Vert^2  &\leq (\Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert)^2 \\
+        \Vert \mathbf{u} + \mathbf{v} \Vert  &\leq \Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert.
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Kąt między niezerowymi wektorami $\mathbf{u}, \mathbf{v} \in E_n$ to taka liczba $\sphericalangle(\mathbf{u}, \mathbf{v}) = \varphi \in [0, \pi]$, że
+    \[ \cos\varphi = \frac{\mathbf{u} \circ \mathbf{v}}{\Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert}. \]
+\end{definition}
+
+Jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = \frac{\pi}{2}$, to wektory są \vocab{prostopadłe} $\mathbf{u} \perp \mathbf{v}$, a jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = 0$ lub $\pi$, to są \vocab{równoległe} $\mathbf{u} \parallel \mathbf{v}$. Przyjmujemy, że wektor zerowy jest prostopadły i równoloegły do wszystkich innych wektorów.
+
+\begin{fact}
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$
+    \[ \mathbf{u} \perp \mathbf{v} \quad \iff \quad \mathbf{u} \circ \mathbf{v} = 0 \]
+\end{fact}
+\begin{proof}
+    Wynika z definicji.
+\end{proof}
+
+Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $\mathbf{u}, \mathbf{v}$ są liniowo zależne.
+
+\subsection{Przestrzeń trójwymiarowa}
+\begin{fact}
+    Trójka liniowo niezależnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ tworzy układ prawoskrętny, jeśli
+    \[ \begin{vmatrix}
+        \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
+        \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3 \\
+        \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
+    \end{vmatrix} > 0. \]
+\end{fact}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{definition}
+    \label{d:cross product}
+    Iloczyn wektorowy to to takie działanie $\times : (\overrightarrow{E_3})^2 \lthen \overrightarrow{E_3}$, że:
+    \begin{enumerate}
+        \item jeśli $\mathbf{u} \parallel \mathbf{v}$, to $\mathbf{u} \times \mathbf{v} = \ol{0}$,
+        \item w przeciwnym wypadku, $\mathbf{u} \times \mathbf{v} = \mathbf{w}$, gdzie
+            \begin{itemize}
+                \item $\Vert\mathbf{w}\Vert = \Vert\mathbf{u}\Vert \cdot \Vert\mathbf{v}\Vert\cdot\sin\sphericalangle(\mathbf{u}, \mathbf{v})$,
+                \item $\mathbf{w} \perp \mathbf{u}$ oraz $\mathbf{w} \perp \mathbf{v}$,
+                \item wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ tworzą układ prawoskrętny.
+            \end{itemize}
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$
+    \[ \mathbf{u} \times \mathbf{v} = \left[\begin{vmatrix}
+        \mathbf{u}_2 & \mathbf{u}_3 \\
+        \mathbf{v}_2 & \mathbf{v}_3
+    \end{vmatrix}, \begin{vmatrix}
+        \mathbf{u}_3 & \mathbf{u}_1 \\
+        \mathbf{v}_3 & \mathbf{v}_1
+    \end{vmatrix}, \begin{vmatrix}
+        \mathbf{u}_1 & \mathbf{u}_2 \\
+        \mathbf{v}_1 & \mathbf{v}_2
+    \end{vmatrix}\right]\]
+\end{theorem}
+\begin{proof}
+    Żmudny, ale prosty; z definicji.
+\end{proof}
+
+W praktyce łatwiej stosować (zapamiętać) ,,wzór''
+\begin{equation} \label{eq:easy cross product}
+    \mathbf{u} \times \mathbf{v} = \begin{vmatrix}
+        \hat{i} & \hat{j} & \hat{k} \\
+        \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
+        \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3
+    \end{vmatrix} = \hat{i}\begin{vmatrix}
+        \mathbf{u}_2 & \mathbf{u}_3 \\
+        \mathbf{v}_2 & \mathbf{v}_3
+    \end{vmatrix} + \hat{j}\begin{vmatrix}
+        \mathbf{u}_3 & \mathbf{u}_1 \\
+        \mathbf{v}_3 & \mathbf{v}_1
+    \end{vmatrix} + \hat{k}\begin{vmatrix}
+        \mathbf{u}_1 & \mathbf{u}_2 \\
+        \mathbf{v}_1 & \mathbf{v}_2
+    \end{vmatrix}
+\end{equation}
+
+Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times \mathbf{v} = -\mathbf{v} \times \mathbf{u})$, zgodny z mnożeniem przez skalar oraz rozdzielny względem dodawania.
+
+\begin{fact}
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$
+    \[ \mathbf{u} \parallel \mathbf{v} \quad \iff \quad \mathbf{u} \times \mathbf{v} = \ol{0} \]
+\end{fact}
+\begin{proof}
+    Wynika z definicji.
+\end{proof}
+
+\begin{theorem}
+    \label{t:area of parallelogram}
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$ liczba $\Vert\mathbf{u}\times\mathbf{v}\Vert$ jest polem równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$.
+\end{theorem}
+\begin{proof}
+    Z definicji iloczynu wektorowego (\ref{d:cross product}) mamy
+    \[ \Vert\mathbf{u}\times\mathbf{v}\Vert = \Vert\mathbf{u}\Vert\cdot\Vert\mathbf{v}\Vert\cdot\sin\sphericalangle(\mathbf{u}, \mathbf{v}), \]
+    czyli iloczyn długości obu boków oraz sinusa kąta między nimi, który istotnie jest równy polu równoległoboku.
+\end{proof}
+
+Prosty wniosek z tego twierdzenia jest taki, że pole trójkąta rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$ jest równe $\frac{1}{2}\Vert\mathbf{u}\times\mathbf{v}\Vert$.
+
+\begin{theorem}
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$ jest objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
+\end{theorem}
+Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
+\begin{proof}
+    TODO
+\end{proof}
+
+Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ jest równe $\frac{1}{6}|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$.
+
+\begin{fact}
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$
+    \[ (\mathbf{u}\times\mathbf{v}) \circ \mathbf{w} = \begin{vmatrix}
+        \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
+        \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3 \\
+        \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
+    \end{vmatrix}. \]
+    Jest to prostrzy sposób na liczenie objętości równoległościanu.
+\end{fact}
+\begin{proof}
+    Łatwo zauważyć zależność między rozwinięciem Laplace'a (\ref{t:Laplace}) oraz wzorem~\ref{eq:easy cross product}.
+\end{proof}
+
+\subsection{Przykłady}
+\begin{example}[Współliniowość punktów]
+    Sprawdź, czy punkty $A = (1, 0, 2), B = (3, 1, -1), C = (-1, -1, 5)$ są współliniowe.
+\end{example}
+\begin{solution}
+    Punkty $A, B, C$ są współliniowe wtedy i tylko wtedy, gdy wektory $\overrightarrow{AB}, \overrightarrow{AC}$ są współliniowe, czyli rozpinają równoległobok o zerowym polu. Na podstawie twierdzenie \ref{t:area of parallelogram} wystarczy obliczyć
+    \[ \left\Vert\overrightarrow{AB}\times\overrightarrow{AC}\right\Vert = \Vert[2, 1, -3] \times [-2, -1, 3]\Vert = \Vert[3 - 3, 6 - 6, -2 + 2]\Vert = 0,\]
+    z czego wynika, że punkty $A, B, C$ są współliniowe.
+\end{solution}
