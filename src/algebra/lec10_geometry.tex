@@ -1,7 +1,8 @@
 W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o jednostkowej długości):
-\[ \hat{i} = (1, 0, 0), \quad \hat{j} = (0, 1, 0), \quad \hat{k} = (0, 0, 1). \]
+\[ \mathbf{\hat{i}} = (1, 0, 0), \quad \mathbf{\hat{j}} = (0, 1, 0), \quad \mathbf{\hat{k}} = (0, 0, 1). \]
 
 \begin{definition}
+    \label{d:Euclidean metric}
     Metryka euklidesowa w $\RR^n$ to funkcja $d : \RR^n \times \RR^n \lthen \RR$, która dla punktów $P = (x_1, x_2, \ldots, x_n), Q = (y_1, y_2, \ldots, y_n)$ jest zdefiniowana jako
     \[ d(P, Q) = \sqrt{\sum_{i = 1}^n (y_i - x_i)^2}. \]
     Wartość tej funkji dla punktów $X, Y$ to \vocab{odległość euklidesowa} tych punktów.
@@ -53,6 +54,7 @@ Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów,
 \end{proof}
 
 \begin{corollary}[Nierówność trójkąta]
+    \label{c:triangle inequality}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$ zachodzi nierówność
     \[ \Vert \mathbf{u} + \mathbf{v} \Vert  \leq \Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert, \]
 \end{corollary}
@@ -72,7 +74,7 @@ Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów,
     \[ \cos\varphi = \frac{\mathbf{u} \circ \mathbf{v}}{\Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert}. \]
 \end{definition}
 
-Jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = \frac{\pi}{2}$, to wektory są \vocab{prostopadłe} $\mathbf{u} \perp \mathbf{v}$, a jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = 0$ lub $\pi$, to są \vocab{równoległe} $\mathbf{u} \parallel \mathbf{v}$. Przyjmujemy, że wektor zerowy jest prostopadły i równoloegły do wszystkich innych wektorów.
+Jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = \frac{\pi}{2}$, to wektory są \vocab{prostopadłe} $\mathbf{u} \perp \mathbf{v}$, a jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = 0$ lub $\pi$, to są \vocab{równoległe} $\mathbf{u} \parallel \mathbf{v}$. Przyjmujemy, że wektor zerowy jest prostopadły i równoległy do wszystkich innych wektorów.
 
 \begin{fact}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$
@@ -102,7 +104,7 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
     Iloczyn wektorowy to to takie działanie $\times : (\overrightarrow{E_3})^2 \lthen \overrightarrow{E_3}$, że:
     \begin{enumerate}
         \item jeśli $\mathbf{u} \parallel \mathbf{v}$, to $\mathbf{u} \times \mathbf{v} = \ol{0}$,
-        \item w przeciwnym wypadku, $\mathbf{u} \times \mathbf{v} = \mathbf{w}$, gdzie
+        \item w przeciwnym wypadku $\mathbf{u} \times \mathbf{v} = \mathbf{w}$, gdzie
             \begin{itemize}
                 \item $\Vert\mathbf{w}\Vert = \Vert\mathbf{u}\Vert \cdot \Vert\mathbf{v}\Vert\cdot\sin\sphericalangle(\mathbf{u}, \mathbf{v})$,
                 \item $\mathbf{w} \perp \mathbf{u}$ oraz $\mathbf{w} \perp \mathbf{v}$,
@@ -132,16 +134,16 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
 W praktyce łatwiej stosować (zapamiętać) ,,wzór''
 \begin{equation} \label{eq:easy cross product}
     \mathbf{u} \times \mathbf{v} = \begin{vmatrix}
-        \hat{i} & \hat{j} & \hat{k} \\
+        \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
         \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
         \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3
-    \end{vmatrix} = \hat{i}\begin{vmatrix}
+    \end{vmatrix} = \mathbf{\hat{i}}\begin{vmatrix}
         \mathbf{u}_2 & \mathbf{u}_3 \\
         \mathbf{v}_2 & \mathbf{v}_3
-    \end{vmatrix} + \hat{j}\begin{vmatrix}
+    \end{vmatrix} + \mathbf{\hat{j}}\begin{vmatrix}
         \mathbf{u}_3 & \mathbf{u}_1 \\
         \mathbf{v}_3 & \mathbf{v}_1
-    \end{vmatrix} + \hat{k}\begin{vmatrix}
+    \end{vmatrix} + \mathbf{\hat{k}}\begin{vmatrix}
         \mathbf{u}_1 & \mathbf{u}_2 \\
         \mathbf{v}_1 & \mathbf{v}_2
     \end{vmatrix}
@@ -170,6 +172,7 @@ Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times 
 Prosty wniosek z tego twierdzenia jest taki, że pole trójkąta rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$ jest równe $\frac{1}{2}\Vert\mathbf{u}\times\mathbf{v}\Vert$.
 
 \begin{theorem}
+    \label{t:volume of parallelepiped}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$ jest objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
 \end{theorem}
 Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
@@ -177,9 +180,10 @@ Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{ilocz
     TODO
 \end{proof}
 
-Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ jest równe $\frac{1}{6}|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$.
+Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ jest równa $\frac{1}{6}|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$.
 
 \begin{fact}
+    \label{f:triple product}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$
     \[ (\mathbf{u}\times\mathbf{v}) \circ \mathbf{w} = \begin{vmatrix}
         \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
@@ -192,12 +196,235 @@ Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpi
     Łatwo zauważyć zależność między rozwinięciem Laplace'a (\ref{t:Laplace}) oraz wzorem~\ref{eq:easy cross product}.
 \end{proof}
 
+\subsubsection{Równanie płaszczyzny w przestrzeni}
+Płaszczyznę jednoznacznie wyznaczają trzy niewspółliniowe punkty (lub wyznaczone przez nie dwa wektory). Płaszczyznę jednoznacznie wyznaczyć może również jeden niezerowy wektor, zwany \vocab{wektorem normalnym}; jest on prostopadły do wyznaczanej płaszczyny.
+
+\paragraph{Równanie parametryczne płaszczyzny} Jeśli $P_0 = (x_0, y_0, z_0) \in \pi$ oraz $\mathbf{u} = [\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3]$, $\mathbf{v} = [\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3] \in E_3$ są liniowo niezależne i równoległe do płaszczyzny $\pi$, to
+\begin{equation} \pi : \begin{cases}
+    x = x_0 + s\mathbf{u}_1 + t\mathbf{v}_1 \\
+    y = y_0 + s\mathbf{u}_2 + t\mathbf{v}_2 \\
+    z = z_0 + s\mathbf{u}_3 + t\mathbf{v}_3
+\end{cases} \qquad s, t \in \RR \end{equation}
+jest równaniem parametrycznym płaszczyzny. Wtedy każdy punkt płaszczyzny jest po prostu punktem $P_0$, który został przesunięty o pewien wektor równoległy do płaszczyzny.
+
+\paragraph{Równanie normalne płaszczyzny} Jeśli $n = [A, B, C]$ jest wektorem normalnym płaszczyzny $\pi$ oraz $P_0 = (x_0, y_0, z_0) \in \pi$, to
+\[ \pi : [x - x_0, y - y_0, z - z_0] \circ [A, B, C] = 0 \]
+czyli
+\begin{equation}
+    \pi : A(x - x_0) + B(y - y_0) + C(z - z_0) = 0
+\end{equation}
+nazywamy równaniem normalnym płaszczyzny $\pi$. Wtedy każdy punkt $P_1 \in \pi$ jest taki, że wektor $\overrightarrow{P_0P_1}$ jest prostopadły do wektora normalnego, czyli równoległy do płaszczyzny.
+
+\paragraph{Równanie ogólne płaszczyzny} Równanie normalne można wymnożyć do równania ogólnego
+\begin{equation}
+    \pi : Ax + By + Cz + D = 0.
+\end{equation}
+
+\paragraph{Równanie odcinkowe płaszczyzny} Jeśli $a, b, c \in \RR$ są niezerowe, to
+\begin{equation}
+    \pi : \frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1
+\end{equation}
+jest równaniem odcinkowym płaszczyzny. Taka płaszczyzna przecina się z osiami układu współrzędnych w punktach $(a, 0, 0), (0, b, 0), (0, 0, c)$; tak więc nie każda płaszczyzna ma równianie odcinkowe.
+
+\subsubsection{Równanie prostej w przestrzeni}
+Prostą jednoznacznie wyznaczają dwa punkty (lub jeden wyznaczony przez nie wektor). Prosta jest również jednoznacznie wyznaczona przez przecięcie dwóch nierównoległych płaszczyzn.
+
+\paragraph{Równanie parametryczne prostej} Jeśli $P_0 = (x_0, y_0, z_0) \in l$ oraz $\mathbf{v} = [\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3] \in E_3$ jest niezerowym wektorem równoległym do prostej $l$, to
+\begin{equation} l : \begin{cases}
+    x = x_0 + t\mathbf{v}_1 \\
+    y = y_0 + t\mathbf{v}_2 \\
+    z = z_0 + t\mathbf{v}_3
+\end{cases} \qquad t \in \RR \end{equation}
+jest równaniem parametrycznym prostej. Wektor $\mathbf{v}$ nazywamy wektorem \vocab{kierunkowym} (lub tworzącym, rozpinającym) prostej $l$.
+
+\paragraph{Równanie kierunkowe prostej} Jeśli $P_0 = (x_0, y_0, z_0) \in l$ oraz $\mathbf{v} = [a, b, c] \in E_3$ jest równoległy do prostej $l$ i $a, b, c \in \RR$ są niezerowe, to
+\begin{equation}
+    l : \frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}
+\end{equation}
+jest równaniem kierunkowym prostej.
+
+\paragraph{Równanie krawędziowe prostej} Niech
+\[ \pi_1 : A_1x + B_1y + C_1z + D_1 = 0, \pi_2 : A_2x + B_2y + C_2z + D_2 = 0. \]
+Jeśli $\pi_1$ nie jest równoległa z $\pi_2$, to równanie krawędziowe prostej ma postać
+\begin{equation}
+    l : \begin{cases}
+        A_1x + B_1y + C_1z + D_1 = 0 \\
+        A_2x + B_2y + C_2z + D_2 = 0
+    \end{cases}.
+\end{equation}
+
+\begin{remark*}
+    Jeśli chcemy łatwo przejść z równania krawędziowego do parametrycznego, to wystarczy zauważyć, że $n_1 = [A_1, B_1, C_1], n_2 = [A_2, B_2, C_2]$ są wektorami normalnymi płaszczyzn. Chcemy znaleźć więc wektor (kierunkowy), który leży na obu tych płaszczyznach, a więc jest prostopadły do obu wektorów normalnych. Tę własność ma wektor $\mathbf{v} = n_1 \times n_2$.
+\end{remark*}
+
+\subsection{Odległości}
+Zdefiniowaliśmy już odległość między dwoma punktami w definicji \ref{d:Euclidean metric}. Bez formalnego wyprowadzenia będziemy używać pojęcia odległości również w kontekście odległości między punktem a płaszczyzną, punktem a prostą, prostą a płaszczyzną czy między płaszczyznami lub prostymi. Taka odległość będzie najmniejszą odległością między pewnym punktem jednej figury oraz pewnym punktem drugiej figury.
+\[ d(\Phi, \Psi) = \min_{A \in \Phi, B \in \Psi} d(A, B) \]
+Z nierówności trójkąta (\ref{c:triangle inequality}) wynika, ze wektor między tymi dwoma punktami będzie prospodały do obu danych figur.
+
+\begin{theorem}[Odległość punktu od płaszczyzny]
+    \label{t:distance between point and plane}
+    Odległość punktu $Q = (x_1, y_1, z_1)$ od płaszczyzny $\pi : Ax + Bx + Cx + D = 0$ jest równa
+    \[ d(Q, \pi) = \frac{|Ax_1 + By_1 + Cz_1 + D|}{\sqrt{A^2 + B^2 + C^2}}. \]
+\end{theorem}
+\begin{proof}
+    Niech prosta $l$ będzie prostopadła do płaszczyzny $\pi$ oraz niech $Q \in l$. Taka prosta jest równoległa do wektora normalnego $n = [A, B, C]$, więc
+    \[ l : \begin{cases}
+        x = x_1 + At \\
+        y = y_1 + Bt \\
+        z = z_1 + Ct
+    \end{cases} \qquad t \in \RR. \]
+    Niech $Q' = \pi \cap l$ będzie punktem przecięcia prostej $l$ i płaszczyzny $\pi$. Podstawiamy równanie prostej do równania płaszczyzny:
+    \begin{align*}
+        Q' \in l &: A(x_1 + tA) + B(y_1 + tB) + C(z_1 + tC) + D = 0 \\
+        Q' \in l &: t = \frac{Ax_1 + By_1 + Cz_1 + D}{-(A^2 + B^2 + C^2)}
+    \end{align*}
+    Mamy więc
+    \[ d(Q, Q') = \sqrt{(tA)^2 + (tB)^2 + (tC)^2} = |t| \cdot \sqrt{A^2 + B^2 + C^2} = \frac{|Ax_1 + By_1 + Cz_1 + D|}{\sqrt{A^2 + B^2 + C^2}}. \]
+\end{proof}
+
+Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzić, czy są one równoległe (to znaczy, czy ich wektory normalne są równoległe). Jeśli nie, to odległość jest oczywiście zerowa; w przeciwnym wypadku wystarczy wziąć dowolny punkt z jednej płaszczyzny i znaleźć odległość między tym punktem a drugą płaszczyzną.
+
+\begin{theorem}[Odległość punktu od prostej]
+    Odległość punktu $Q$ od prostej $l$ jest równa
+    \[ d(Q, l) = \frac{\Vert \mathbf{v} \times \overrightarrow{LQ}\Vert}{\Vert\mathbf{v}\Vert}, \]
+    gdzie $\mathbf{v}$ jest wektorem kierunkowym prostej $l$, a $L \in l$.
+\end{theorem}
+\begin{proof}
+    Mamy $l : (x, y, z) = L + t\mathbf{v}$. Na podstawie twierdzenia \ref{t:area of parallelogram}, pole równoległoboku rozpiętego przez wektory $\mathbf{v}, \overrightarrow{LQ}$ jest równe
+    \[ \Vert \mathbf{v} \times \overrightarrow{LQ} \Vert. \]
+    \begin{center}
+        \begin{tikzpicture}[scale=.8]
+            \tkzDefPoints{2/5/Q,-1/3/L,1/2/L'}
+            \tkzDefPointBy[projection = onto L--L'](Q) \tkzGetPoint{H}
+            \tkzDefPointBy[translation = from L to L'](Q) \tkzGetPoint{Q'}
+            \tkzFillPolygon[color=MainColor1!10](L,L',Q',Q)
+            \tkzDrawLine[add= .5 and .5](L,L')
+            \tkzDrawSegment[dashed](Q,H)
+            \tkzDrawSegments[MainColor1, vector style](L,Q L,L')
+            \tkzDrawSegments[dotted, MainColor1](L',Q' Q,Q')
+            \tkzDrawPoints(Q, L)
+            \tkzLabelSegment[swap](L,L'){$\mathbf{v}$}
+            \tkzLabelPoints[above right](Q)
+            \tkzLabelPoints[below left](L)
+        \end{tikzpicture}
+    \end{center}
+    Ze standardwego wzoru na pole równoległoboku jest ono również równe
+    \[ \Vert \mathbf{v} \Vert \cdot d(Q, l), \]
+    z czego wynika teza.
+\end{proof}
+
+Jeśli dwie proste są równoległe, to odległość między nimi można obliczyć przez wzięcie dowolnego punktu z jednej prostej i obliczenie jego odległości od drugiej prostej. Jeśli proste się przecinają, to odległość między nimi jest zerowa. Sytuacja się komplikuje, jeśli dane dwie proste nie są równoległe lub przecinające się (to znaczy są \vocab{skośne}).
+
+\begin{theorem}[Odległość prostych skośnych]
+    \label{t:distance between lines}
+    Niech $l_1, l_2$ są prostymi skośnymi. Odległość między nimi jest równa
+    \[ d(l_1, l_2) = \frac{|(\mathbf{v} \times \mathbf{u}) \circ \overrightarrow{L_1L_2}|}{\Vert\mathbf{v}\times\mathbf{u}\Vert}, \]
+    gdzie $\mathbf{v}, \mathbf{u}$ są odpowiednio wektorami kierunkowym prostych $l_1, l_2$, a $L_1 \in l_1$ i $L_2 \in l_2$.
+\end{theorem}
+\begin{proof}
+    Mamy $l_1 : (x, y, z) = L_1 + t\mathbf{v}$ oraz $l_2 : (x, y, z) = L_2 + t\mathbf{u}$. Na podstawie twierdzenia \ref{t:volume of parallelepiped} objętość równoległościanu rozpiętego przez wektory $\mathbf{v}, \mathbf{u}, \overrightarrow{L_1L_2}$ jest równa
+    \[ |(\mathbf{v} \times \mathbf{u}) \circ \overrightarrow{L_1L_2}|. \]
+    Ze standardowego wzoru na objętość (tzn.\ pole podstawy $\cdot$ wysokość) jest ona również równa
+    \[ \Vert\mathbf{v}\times\mathbf{u}\Vert \cdot d(l_1, l_2), \]
+    z czego wynika teza.
+\end{proof}
+
 \subsection{Przykłady}
 \begin{example}[Współliniowość punktów]
     Sprawdź, czy punkty $A = (1, 0, 2), B = (3, 1, -1), C = (-1, -1, 5)$ są współliniowe.
 \end{example}
 \begin{solution}
-    Punkty $A, B, C$ są współliniowe wtedy i tylko wtedy, gdy wektory $\overrightarrow{AB}, \overrightarrow{AC}$ są współliniowe, czyli rozpinają równoległobok o zerowym polu. Na podstawie twierdzenie \ref{t:area of parallelogram} wystarczy obliczyć
-    \[ \left\Vert\overrightarrow{AB}\times\overrightarrow{AC}\right\Vert = \Vert[2, 1, -3] \times [-2, -1, 3]\Vert = \Vert[3 - 3, 6 - 6, -2 + 2]\Vert = 0,\]
+    Punkty $A, B, C$ są współliniowe wtedy i tylko wtedy, gdy wektory $\overrightarrow{AB}, \overrightarrow{AC}$ są współliniowe, czyli rozpinają równoległobok o zerowym polu. Na podstawie twierdzenia \ref{t:area of parallelogram} wystarczy obliczyć
+    \[ \left\Vert\overrightarrow{AB}\times\overrightarrow{AC}\right\Vert = \Vert[2, 1, -3] \times [-2, -1, 3]\Vert = \Vert[3 - 3, 6 - 6, -2 + 2]\Vert = 0, \]
     z czego wynika, że punkty $A, B, C$ są współliniowe.
 \end{solution}
+
+\begin{example}[Współpłaszczyznowość punktów]
+    Sprawdź, czy punkty $A = (0, 2, 2), B = (2, 1, 0), C = (3, -1, 2), D = (1, -2, 3)$ są współpłaszczyznowe.
+\end{example}
+\begin{solution}
+    Punkty $A, B, C, D$ są współpłaszczyznowe wtedy i tylko wtedy, gdy wektory $\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD}$ rozpinają równoległościan o zerowej objętości. Na podstawie twierdzenia \ref{t:volume of parallelepiped} i faktu \ref{f:triple product} wystarczy obliczyć
+    \[ \begin{vmatrix}
+        \overrightarrow{AB} \\
+        \overrightarrow{AC} \\
+        \overrightarrow{AD}
+    \end{vmatrix} = \begin{vmatrix}
+        2 & -1 & -2 \\
+        3 & -3 & 0 \\
+        1 & -4 & 1
+    \end{vmatrix} = -6 + 24 - 6 + 3 = 15 \neq 0, \]
+    z czego wynika, że punkty $A, B, C, D$ nie są współpłaszczyznowe.
+\end{solution}
+
+\begin{example}[Wzajemne położenie prostych, odległość]
+    Zbadaj wzajemne położenie prostych
+    \[ l_1 : \begin{cases}
+        x = 1 - 3t \\
+        y = 2 - 6t \\
+        z = 3 - 5t
+    \end{cases} \quad t \in \RR, \qquad
+    l_2 : \begin{cases}
+        x = 2 + t \\
+        y = -1 + 2t \\
+        z = 4 + 2t
+    \end{cases} \quad t \in \RR \]
+    oraz oblicz odległość między nimi.
+\end{example}
+\begin{solution}
+    Zaczniemy od sprawdzenia, czy proste są równoległe. Weźmy wektory kierunkowe tych prostych i obliczmy ich iloczyn wektorowy. Mamy
+    \[ [-3, -6, -5] \times [1, 2, 2] = \begin{vmatrix}
+        \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+        -3 & -6 & -5 \\
+        1 & 2 & 2
+    \end{vmatrix} = [-12 + 10, -5 + 6, -6 + 6] = [-2, 1, 0] \neq \ol{0}, \]
+    więc proste nie są równoległe. Odległość między nimi, zgodnie z twierdzeniem \ref{t:distance between lines}, jest równa
+    \[ d(l_1, l_2) = \frac{|[-2, 1, 0] \circ [2-1, -1-2, 4-3]|}{\Vert[-2, 1, 0]\Vert} = \frac{|-2 - 3|}{\sqrt{5}} = \sqrt{5}. \]
+    Z tego wynika również, że proste są skośne; nie są przecinające się, bo $d(l_1, l_2) \neq 0$.
+\end{solution}
+
+\begin{example}[Wzajemne położenie prostych, wspólna płaszczyzna]
+    Zbadaj wzajemne położenie prostych
+    \[ l_1 : \begin{cases}
+        x = t \\
+        y = -2t \\
+        z = 3t
+    \end{cases} \quad t \in \RR, \qquad
+    l_2 : \begin{cases}
+        x = -1 + t \\
+        y = 2 - t \\
+        z = -3 + 4t
+    \end{cases} \quad t \in \RR \]
+    oraz wyznacz ich wspólną płaszczyznę (jeśli istnieje).
+\end{example}
+\begin{solution}
+    Obliczmy najpierw iloczyn wektory wektorów kierunkowych danych prostych.
+    \[ [1, -2, 3] \times [1, -1, 4] = \begin{vmatrix}
+        \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+        1 & -2 & 3 \\
+        1 & -1 & 4
+    \end{vmatrix} = [-8 + 3, 3 - 4, -1 + 2] = [-5, -1, 1] \]
+    Widzimy więc, że proste nie są równoległe. Zamiast liczyć odległość między nimi (i tak stwierdzić, czy się przecinają), możemy spróbować znaleźć punkt przecięcia.
+    \[ \begin{cases}
+        t = -1 + s \\
+        -2t = 2 - s \\
+        3t = -3 + 4s
+    \end{cases} \implies s = 0, t = -1. \]
+    Z tego wynika, że punkt przecięcia istnieje, jest nim $P = (-1, 2, -3)$, więc proste nie są skośne, a więc tworzą płaszczyznę.
+
+    Do tej płaszczyzny należą wektory kierunkowe prostych $l_1, l_2$, więc jej wektorem normalnym będzie ich iloczyn wektorowy. Podstawiając do równania normalnego płaszczyzny mamy
+    \begin{align*}
+        \pi :& -5(x - (-1)) -1(y - 2) + 1(z - (-3)) = 0 \\
+             & -5x - 5 - y + 2 + z + 3 = 0 \\
+             & -5x - y + z = 0
+    \end{align*}
+    co jest równaniem ogólnym płaszczyzny $\pi$.
+\end{solution}
+
+\begin{remark*}
+    Jeśli chcemy znaleźć rzut prostokątny punktu $P$ na prostą $l$, to najłatwiej będzie znaleźć płaszczyznę $\pi$ zawierającą punkt $P$ i prostopadłą do prostej $l$ (wektor normalny szukanej płaszczyzny będzie wektorem kierunkowym prostej $l$). Następnie wystarczy znaleźć punkt przecięcia $\pi \cap l$.
+
+    Podobnie, jeśli chcemy znaleźć rzut prostokątny punktu $P$ na płaszczyznę $\pi$, to należy znaleźć prostą $l$ taką, że $l \perp \pi$ oraz $P \in l$ (jak poprzednio, wektor kierunkowy szukanej prostej będzie wektorem normalnym płaszczyzny $\pi$).
+\end{remark*}
+
+Zastosowanie powyższej uwagi niech będzie ćwiczeniem dla Czytelnika\footnote{który z pewnością zauważył już, że wykorzystaliśmy ją w dowodzie twierdzenia \ref{t:distance between point and plane}}.
