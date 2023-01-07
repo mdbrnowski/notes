@@ -1,0 +1,130 @@
+\begin{definition}
+    \label{d:linear map}
+    Odwzorowanie
+    \[ f : V \lthen W, \]
+    gdzie $V, W$ są przestrzeniami liniowymi nad tym samym ciałem $\KK$ jest \vocab{liniowe}, jeśli
+    \[ \dforall{u, v \in V} f(u + v) = f(u) + f(v) \]
+    oraz
+    \[ \dforall{v \in V, \alpha \in \KK} f(\alpha v) = \alpha f(v). \]
+\end{definition}
+
+Podobnie jak w przypadku homomorfizmu grup (definicja \ref{d:homomorphism}), elementy przeciwne oraz neutralne są zachowywane. Analogicznie do równoważnej charakterystyki podprzestrzeni (fakt \ref{f:equivalent subspace characteristics}) warunki z powyższej definicji są równoważne warunkowi
+\begin{equation}
+    \label{eq:equivalent liner map condition}
+    \dforall{\alpha, \beta \in \KK}\dforall{u, v \in V} f(\alpha u + \beta v) = \alpha f(u) + \beta f(v).
+\end{equation}
+
+\begin{corollary}[z równania \ref{eq:equivalent liner map condition}]
+    \label{c:linear map is unique by the values f(B)}
+    Odwzorowanie liniowe $f$ jest jednoznacznie określone przez wartości $f$ na wektorach bazowych dziedziny.
+\end{corollary}
+\begin{proof}
+    Wzór \ref{eq:equivalent liner map condition} można rozszerzyć do większej liczby składników używając $(\alpha, \beta, \gamma, \ldots)$ oraz $(u, v, w, \ldots)$. Taka postać również będzie równoważna definicji \ref{d:linear map}. Możemy policzyć wartość $f$ dla każdego wektora, znając jego współrzędne w pewnej bazie $B$ oraz wartości $f$ dla wszystkich wektorów z tej bazy.
+\end{proof}
+
+\begin{definition}
+    Jądro odwzorowania liniowego $f : V \lthen W$ to zbiór
+    \[ \Ker f = f^{-1}(\{\ol{0}\}) = \{v \in V \mid f(v) = \ol{0}\}. \]
+\end{definition}
+
+\begin{definition}
+    Obraz odwzorowania liniowego $f : V \lthen W$ to zbiór
+    \[ \Im f = f(V) = \{w \in W \mid \exists v \in V : w = f(v)\}. \]
+    Jeśli $B$ jest bazą przestrzeni $V$, to
+    \[ \Im f = \Lin f(B). \]
+\end{definition}
+
+\begin{fact}
+    Dla każdego odwzorowania liniowego $f : V \lthen W$, jądro $f$ jest podprzestrzenią $V$, a obraz $f$ jest podprzestrzenią $W$.
+\end{fact}
+
+Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy $\nullity f$, a wymiar jego obrazu nazywamy \vocab{rzędem} i oznaczamy $\rank f$.
+
+\begin{example}
+    Weźmy odwzorowanie $f : \RR^3 \lthen \RR^2$ takie, że
+    \[ f(x, y, z) = (x, y). \]
+    Znajdźmy jądro i obraz tego odwzorowania.
+    \[ \Ker f = \{(0, 0, z) : z \in \RR\}, \quad \dim = 1. \]
+    \[ \Im f = \RR^2, \quad \dim = 2. \]
+    Teraz weźmy $g : \RR^2 \lthen \RR^3$ takie, że
+    \[ g(x, y) = (x, y, x + y). \]
+    Znajdźmy jądro i obraz tego odwzorowania.
+    \[ \Ker g = \{\ol{0}\}, \quad \dim = 0. \]
+    \[ \Im g = \{(x, y, x+y) : x, y \in \RR\}, \quad \dim = 2. \]
+\end{example}
+
+\begin{theorem}[o rzędzie]
+    Jeśli $V, W$ są skończenie wymiarowymi przestrzeniami wektorowymi nad ciałem $\KK$ oraz $f : V \lthen W$ jest odwzorowaniem liniowym, to
+    \[ \nullity f + \rank f = \dim V, \]
+    \[ \dim \Ker f + \dim \Im f = \dim V. \]
+\end{theorem}
+\begin{proof}
+    Niech $n = \dim V$ oraz $k = \dim \Ker f$. Skoro $\Ker f$ jest podprzestrzenią przestrzeni $V$, to jeśli $n = k$, to dla każdego $\mathbf{v} \in V$ zachodzi $f(\mathbf{v}) = \ol{0}$, więc $\Im f = \{\ol{0}\}$, ergo teza jest spełniona. Dalej załóżmy więc, że $n > k$. Istnieje taka baza przestrzeni $V$, która ma postać
+    \[ \{\mathbf{v}_1, \ldots, \mathbf{v}_k, \mathbf{u}_{k+1}, \ldots, \mathbf{u}_n\}, \]
+    gdzie $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ jest bazą $\Ker f$. Weźmy dowolny wektor $\mathbf{v} \in V,$
+    \[ \mathbf{v} = t_1\mathbf{v}_1 + \ldots + t_k\mathbf{v}_k + t_{k+1}\mathbf{u}_{k+1} + \ldots + t_n\mathbf{u}_n. \]
+    Wtedy
+    \begin{align*}
+        \mathbf{w} = f(\mathbf{v}) &= f(t_1\mathbf{v}_1 + \ldots + t_k\mathbf{v}_k + t_{k+1}\mathbf{u}_{k+1} + \ldots + t_n\mathbf{u}_n) \\
+            &= f(t_1\mathbf{v}_1) + \ldots + f(t_k\mathbf{v}_k) + f(t_{k+1}\mathbf{u}_{k+1}) + \ldots + f(t_n\mathbf{u}_n) \\
+            &= t_1f(\mathbf{v}_1) + \ldots + t_kf(\mathbf{v}_k) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n) \\
+            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n) \\
+            &= t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n),
+    \end{align*}
+    więc
+    \[ \Im f = \Lin\{f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)\}. \]
+    Wystarczy już tylko udowodnić, że wektory $f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)$ są liniowo niezależne. Weźmy ciąg skalarów $(s_i)$ taki, że
+    \begin{align*}
+        s_{k+1}f(\mathbf{u}_{k+1}) + \ldots + s_nf(\mathbf{u}_n) &= \ol{0} \\
+        f(s_{k+1}\mathbf{u}_{k+1}) + \ldots + f(s_n\mathbf{u}_n) &= \ol{0} \\
+        f(s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) &= \ol{0}.
+    \end{align*}
+    Z tego wynika, że
+    \[ (s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in \Ker f, \]
+    więc $(s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in V$ możemy zapisać jako kombinację liniową wektorów $\mathbf{v}_1, \ldots, \mathbf{v}_k$. Zakładając, że ciąg $(s_i)$ jest niezerowy, mamy dwa sposoby zapisu jednego wektora z $V$, co stoi w sprzeczności z twierdzeniem \ref{t:explicit coefficients}. Z tego wynika, że $\forall i : s_i = 0$, więc wektory $f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)$ są liniowo niezależne, ergo
+    \[ \dim \Im f = n - k \]
+    \[ \rank f = \dim V - \nullity f. \]
+\end{proof}
+
+\begin{definition}
+    Przy danych przestrzeniach wektorowych $V, W$ nad ciałem $\KK$, odwzorowanie liniowe $f : V \lthen W$ to:
+    \begin{itemize}
+        \item \vocab{monomorfizm}, jeśli jest injekcją,
+        \item \vocab{epimorfizm}, jeśli jest surjekcją,
+        \item \vocab{izomorfizm}, jeśli jest bijekcją,
+        \item \vocab{endomorfizm}, jeśli $V = W$,
+        \item \vocab{automorfizm}, jeśli jest endomorfizmem i izomorfizmem,
+        \item \vocab{forma liniowa}, jeśli $W = \KK$.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}
+    Odwzorowanie liniowe $f : V \lthen W$ jest epimorfizmem wtedy i tylko wtedy, gdy $\dim\Im f = \dim W$.
+\end{theorem}
+\begin{proof}
+    $\Im f$ jest podprzestrzenią $W$, więc wynika z twierdzenia \ref{t:dimU = dimV, U subspace V}.
+\end{proof}
+
+\begin{theorem}
+    Odwzorowanie liniowe $f : V \lthen W$ jest monomorfizmem wtedy i tylko wtedy, gdy $\Ker f = \{\ol{0}\}$.
+\end{theorem}
+\begin{proof}
+    Implikacja prawostronna jest trywialna, dlatego udowodnimy tylko lewostronną. Załóżmy przeciwnie, że istnieje takie $\mathbf{v}_1 \neq \mathbf{v}_2$, że
+    \[ f(\mathbf{v}_1) = f(\mathbf{v}_2). \]
+    Wtedy
+    \[ f(\mathbf{v}_1) - f(\mathbf{v}_2) = f(\mathbf{v}_2) - f(\mathbf{v}_1) = \ol{0} \]
+    \[ f(\mathbf{v}_1 - \mathbf{v}_2) = f(\mathbf{v}_2 - \mathbf{v}_1) = \ol{0}, \]
+    co, skoro $\mathbf{v}_1 - \mathbf{v}_2 \neq \ol{0}$, przeczy założeniu $\Ker f = \{\ol{0}\}$.
+\end{proof}
+
+\begin{theorem}
+    Jeśli $V, W$ są skończenie wymiarowymi przestrzeniami wektorowymi nad ciałem $\KK$, to ich izomorficzność jest równoważna równości ich wymiarów
+    \[ V \sim W \quad \iff \quad \dim V = \dim W. \]
+\end{theorem}
+\begin{proof}
+    Wynika z wniosku \ref{c:linear map is unique by the values f(B)}.
+\end{proof}
+
+\begin{theorem}
+    Niech $V, W$ będą pewnymi przestrzeniami nad ciałem $\KK$, a $\sL(V, W)$ zbiorem wszystkich odwzorowań liniowych między nimi. Struktura $(\sL(V, W), \KK, +, \cdot)$ jest przestrzenią wektorową.
+\end{theorem}
