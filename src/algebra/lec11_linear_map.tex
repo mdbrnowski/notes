@@ -5,7 +5,8 @@
     gdzie $V, W$ są przestrzeniami liniowymi nad tym samym ciałem $\KK$ jest \vocab{liniowe}, jeśli
     \[ \dforall{u, v \in V} f(u + v) = f(u) + f(v) \]
     oraz
-    \[ \dforall{v \in V, \alpha \in \KK} f(\alpha v) = \alpha f(v). \]
+    \[ \dforall{v \in V, \alpha \in \KK} f(\alpha v) = \alpha f(v), \]
+    to znaczy, kiedy jest \vocab{addytywne} oraz \vocab{jednorodne}.
 \end{definition}
 
 Podobnie jak w przypadku homomorfizmu grup (definicja \ref{d:homomorphism}), elementy przeciwne oraz neutralne są zachowywane. Analogicznie do równoważnej charakterystyki podprzestrzeni (fakt \ref{f:equivalent subspace characteristics}) warunki z powyższej definicji są równoważne warunkowi
@@ -54,6 +55,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 \end{example}
 
 \begin{theorem}[o rzędzie]
+    \label{t:rank-nullity}
     Jeśli $V, W$ są skończenie wymiarowymi przestrzeniami wektorowymi nad ciałem $\KK$ oraz $f : V \lthen W$ jest odwzorowaniem liniowym, to
     \[ \nullity f + \rank f = \dim V, \]
     \[ \dim \Ker f + \dim \Im f = \dim V. \]
@@ -128,3 +130,169 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 \begin{theorem}
     Niech $V, W$ będą pewnymi przestrzeniami nad ciałem $\KK$, a $\sL(V, W)$ zbiorem wszystkich odwzorowań liniowych między nimi. Struktura $(\sL(V, W), \KK, +, \cdot)$ jest przestrzenią wektorową.
 \end{theorem}
+\begin{proof}
+    Z definicji.
+\end{proof}
+
+\subsection{Macierze odwzorowań liniowych}
+\begin{definition}
+    \label{d:transformation matrix}
+    Niech $B_V = (e_1, e_2, \ldots, e_n), B_W = (l_1, l_2, \ldots, l_m)$ będą pewnymi bazami odpowiednio przestrzeni $V, W$ nad ciałem $\KK$. Niech $f : V \lthen W$ będzie odwzorowaniem liniowym takim, że
+    \begin{align*}
+        f(e_1) &= a_{11}l_1 + a_{21}l_2 + \ldots + a_{m1}l_m, \\
+        f(e_2) &= a_{12}l_1 + a_{22}l_2 + \ldots + a_{m2}l_m, \\
+        \vdots \\
+        f(e_n) &= a_{1n}l_1 + a_{2n}l_2 + \ldots + a_{mn}l_m.
+    \end{align*}
+    \vocab{Macierz odwzorowania liniowego} $f$ w bazach $B_V, B_W$ to macierz
+    \[ M_f(B_V, B_W) = \begin{bNiceMatrix}
+        a_{11} & a_{12} & \Cdots & a_{1n} \\
+        a_{21} & a_{22} & \Cdots & a_{2n} \\
+        \Vdots & \Vdots & \Ddots & \Vdots \\
+        a_{m1} & a_{m2} & \Cdots & a_{mn}
+    \end{bNiceMatrix}. \]
+\end{definition}
+
+\begin{fact}
+    \label{f:matix form of linear map}
+    Równanie $y = f(x)$ można zapisać w postaci macierzowej jako
+    \[ \begin{bNiceMatrix}y_1 \\ y_2  \\ \Vdots \\ y_m\end{bNiceMatrix} = \begin{bNiceMatrix}
+        a_{11} & a_{12} & \Cdots & a_{1n} \\
+        a_{21} & a_{22} & \Cdots & a_{2n} \\
+        \Vdots & \Vdots & \Ddots & \Vdots \\
+        a_{m1} & a_{m2} & \Cdots & a_{mn}
+    \end{bNiceMatrix}\begin{bNiceMatrix}x_1 \\ x_2  \\ \Vdots \\ x_n\end{bNiceMatrix}, \]
+    gdzie $f : B_V \lthen B_W$ jest odwzorowaniem liniowym, $[a_{ij}]_{m\times n} = M_f(B_V, B_W)$ oraz
+    \[ x = [x_1, x_2, \ldots, x_n]_{B_V}^T, \quad y = [y_1, y_2, \ldots, y_m]_{B_W}^T. \]
+\end{fact}
+\begin{proof}
+    Skoro $x = [x_1, x_2, \ldots, x_n]_{B_V}^T$ oraz $y = [y_1, y_2, \ldots, y_m]_{B_W}^T$, to
+    \[ x = x_1e_1 + x_2e_2 + \ldots + x_ne_n, \quad y = y_1l_1 + y_2l_2 + \ldots + y_ml_m, \]
+    więc
+    \begin{align}
+        f(x) &= f(x_1e_1 + x_2e_2 + \ldots + x_ne_n) \nonumber \\
+        f(x) &= x_1f(e_1) + x_2f(e_2) + \ldots + x_nf(e_n) \nonumber \\
+        f(x) &= x_1\begin{bNiceMatrix}a_{11} \\ a_{21} \\ \Vdots \\ a_{m1}\end{bNiceMatrix}
+            + x_2\begin{bNiceMatrix}a_{12} \\ a_{22} \\ \Vdots \\ a_{m2}\end{bNiceMatrix}
+            + \ldots
+            + x_n\begin{bNiceMatrix}a_{1n} \\ a_{2n} \\ \Vdots \\ a_{mn}\end{bNiceMatrix}
+            \label{eq:matrix form of linear map - linear combination}
+    \end{align}
+
+    Mnożąc macierze jak w udowadnianej tezie otrzymalibyśmy
+    \[ y = \begin{bNiceMatrix}
+        a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n \\
+        a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \\
+        \Vdots \\
+        a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \\
+    \end{bNiceMatrix}, \]
+    czyli to samo co wyżej.
+\end{proof}
+
+Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie $B$ oznaczamy jako $M_f(B)$.
+
+\begin{theorem}
+    Jeśli $f : V \lthen W$ będzie odwzorowaniem liniowym, a $B_V, B_W$ to bazy odpowiednio przestrzeni $V, W$, to
+    \[ \rank f = \rank M_f(B_V, B_W). \]
+\end{theorem}
+\begin{proof}
+    Przypomnijmy, że
+    \[ \Im f = \{y \in W \mid \exists x \in V : y = f(x)\}. \]
+    Korzystając z faktu \ref{f:matix form of linear map}, możemy przekształcić powyższe do
+    \[ \Im f = \{M_f(B_V, B_W)\cdot x \mid x \in V\}, \]
+    z czego wynika, że obraz przekształcenia $f$ jest tożsamy z przestrzenią rozpinaną przez kolumny macierzy $M_f(B_V, B_W)$ (zobacz równanie \ref{eq:matrix form of linear map - linear combination}). Z tego powodu również ich wymiary są równe.
+\end{proof}
+
+\begin{theorem}
+    Niech $f, g : V \lthen W$ będą odwzorowaniami liniowymi, $B_V, B_W$ to bazy odpowiednio przestrzeni $V, W$ nad ciałem $\KK$, a $\alpha \in \KK$, to
+    \begin{enumerate}
+        \item $M_{f+g}(B_V, B_W) = M_f(B_V, B_W) + M_g(B_V, B_W)$,
+        \item $M_{\alpha f}(B_V, B_W) = \alpha M_f(B_V, B_W)$,
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Z definicji.
+\end{proof}
+
+\begin{theorem}
+    Niech $f : V \lthen W, g : W \lthen U$ będą odwzorowaniami liniowymi, a $B_V, B_W, B_U$ to bazy odpowiednio przestrzeni $V, W, U$, to
+    \[ M_{g\circ f}(B_V, B_U) = M_g(B_W, B_U) + M_f(B_V, B_W). \]
+\end{theorem}
+\begin{proof}
+    Z definicji oraz faktu \ref{f:matix form of linear map}.
+\end{proof}
+
+\begin{corollary}[z faktu \ref{f:matix form of linear map}]
+    Endomorfizm $f : V \lthen V$ jest automorfizmem (bijekcją) wtedy i tylko wtedy, gdy macierz przekształcenia liniowego jest odwracalna (nieosobliwa). Łatwo również znaleźć przekształcenie odwrotne $f^{-1}$:
+    \[ M_{f^{-1}}(B_2, B_1) = (M_f(B_1, B_2))^{-1}. \]
+\end{corollary}
+
+\begin{definition}
+    Macierz przejścia $P_{B \lthen B'}$ od bazy $B = (e_1, e_2, \ldots, e_n)$ do bazy $B' = (e_1', e_2', \ldots, e_n')$ przestrzeni $V$ to macierz odwzorowania identycznościowego danej przestrzeni w bazach $B', B$,
+    \[ P_{B\lthen B'} = M_{\opname{Id}_V}(B', B). \]
+    Wtedy, jeśli $X, X'$ są wektorami kolumnowymi z $V$ względem baz $B, B'$, to
+    \[ X = P_{B \lthen B'}X'. \]
+\end{definition}
+
+\begin{remark*}
+    W powyżej opisanej macierzy $j$-tą kolumnę tworzą współrzędne $j$-tego wektora bazy $B'$ względem bazy $B$. Najłatwiej jest więc wtedy, gdy baza $B$ jest bazą kanoniczną.
+\end{remark*}
+
+\begin{theorem}[o zmianie macierzy odwzorowania przy zmianie baz]
+    \label{t:changing transformation matrix when changing bases}
+    Niech $f: V \lthen W$ będzie odwzorowaniem liniowym, a $B_V, B_V', B_W, B_W'$ pewnymi bazami odpowiednich przestrzeni liniowych. Wtedy
+    \[ M_f(B_V', B_W') = (P_{B_W \lthen B_W'})^{-1} \cdot M_f(B_V, B_W) \cdot P_{B_V \lthen B_V'}. \]
+\end{theorem}
+\begin{proof}
+    Mamy
+    \[ P_{B_W' \lthen B_W} \cdot M_f(B_V, B_W) \cdot P_{B_V \lthen B_V'} = M_{\opname{Id}_W}(B_W, B_W') \cdot M_f(B_V, B_W) \cdot M_{\opname{Id}_V}(B_V', B_V) \]
+\end{proof}
+
+\begin{example}
+    Dane jest odwzorowanie liniowe $f : \RR^3 : \RR^2$ takie, że
+    \[ M_f(B_1', B_2') = \begin{bmatrix}
+        2 & 1 & 2 \\
+        -1 & 0 & 0
+    \end{bmatrix}, \]
+    gdzie
+    \begin{align*}
+        B_1' &= ((1, 1, 0), (0, 1, 1), (1, 1, 1)), \\
+        B_2' &= ((1, 1), (-1, 1)).
+    \end{align*}
+    Znajdź macierz odwzorowania $f$ w bazach
+    \begin{align*}
+        B_1 &= ((1, 0, 0), (0, 1, 0), (0, 0, 1)), \\
+        B_2 &= ((1, 0), (0, 1)).
+    \end{align*}
+\end{example}
+\begin{solution}
+    Z twierdzenia \ref{t:changing transformation matrix when changing bases} mamy
+    \[ M_f(B_1, B_2) = P_{B_2 \lthen B_2'} \cdot M_f(B_1', B_2') \cdot P_{B_1' \lthen B_1}. \]
+    Macierz przejścia $B_2 \lthen B_2'$ jest bardzo łatwo wyznaczyć, ponieważ $B_2$ to baza kanoniczna. W przypadku macierzy przejścia $B_1' \lthen B_1$ najłatwiej będzie wyznaczyć jej odwrotność, ponieważ $B_1$ jest bazą kanoniczną. Mamy więc
+    \[ M_f(B_1, B_2) = \begin{bmatrix}
+        1 & -1 \\
+        1 & 1
+    \end{bmatrix} \cdot \begin{bmatrix}
+        2 & 1 & 2 \\
+        -1 & 0 & 0
+    \end{bmatrix} \cdot \begin{bmatrix}
+        1 & 0 & 1\\
+        1 & 1 & 1\\
+        0 & 1 & 1
+    \end{bmatrix}^{-1} = \cdots = \begin{bmatrix}
+        1 & 2 & -1 \\
+        1 & 0 & 1
+    \end{bmatrix} \]
+\end{solution}
+
+\begin{definition}
+    Macierze $A, B \in M_{m\times n}$ są równoważne, jeśli istnieją takie nieosobliwe macierze $P, Q$, że
+    \[ B = Q^{-1} \cdot A \cdot P. \]
+\end{definition}
+
+\begin{definition}
+    Macierze $A, B \in M_{m\times n}$ są podobne, jeśli istnieje taka nieosobliwa macierz $P$, że
+    \[ B = P^{-1} \cdot A \cdot P. \]
+\end{definition}
+
+Z definicji wynika, że dwie macierze pewnego odwzorowania liniowego są równoważne, a dwie macierze pewnego endomorfizmu są podobne. Ponadto, łatwo wykazać, że macierze równoważne mają równe rzędy, a podobne --- rzędy i wyznaczniki.
