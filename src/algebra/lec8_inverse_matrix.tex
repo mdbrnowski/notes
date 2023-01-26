@@ -51,7 +51,13 @@ z twierdzenia \ref{t:invertible matrix}, ale zwykle szybszą\footnote{na pewno w
     \[ \begin{bNiceArray}{cSc}A & I\end{bNiceArray} \sim \begin{bNiceArray}{cSc}I & B\end{bNiceArray} \quad\implies\quad B = A^{-1}. \]
 \end{fact}
 \begin{proof}
-    TODO
+    Aby zrozumieć poniższy dowód trzeba się zapoznać z treścią sekcji \nameref{s:linear map}.
+
+    Łatwo udowodnić, że każda operacja elementarna może być rozumiana jako pewne odwzorowanie liniowe, a tym samym --- jako operacja pomnożenia przez pewną macierz (odwzorowania liniowego). Drugi fakt, z którego należy sobie zdać sprawę, to równość
+    \[ X\begin{bNiceArray}{cSc}A & I\end{bNiceArray} = \begin{bNiceArray}{cSc}XA & XI\end{bNiceArray}, \]
+    która wynika bezpośrednio z definicji mnożenia macierzy. Z tych dwóch stwierdzeń wynika
+    \[ \begin{bNiceArray}{cSc}A & I\end{bNiceArray} \sim \begin{bNiceArray}{cSc}X_1A & X_1I\end{bNiceArray} \sim \begin{bNiceArray}{cSc}X_2X_1A & X_2X_1I\end{bNiceArray} \sim \ldots \sim \begin{bNiceArray}{cSc}A^{-1}A & A^{-1}I\end{bNiceArray} = \begin{bNiceArray}{cSc}I & A^{-1}\end{bNiceArray}, \]
+    gdzie $A^{-1}$ jest niejako ciągiem odwzorowań liniowych $X_i$, które wykonujemy podczas eliminacji Gaussa.
 \end{proof}
 
 \begin{example}
