@@ -5,17 +5,20 @@ tasks:
     desc: Compile filtr.tex to pdf
     sources:
       - src/filtr/*
+      - mystd.sty
     cmds:
       - tectonic "./src/filtr/filtr.tex" -Z search-path="src" --outdir "pdf"
   fft:
     desc: Compile fft.tex to pdf
     sources:
       - src/fft/*
+      - mystd.sty
     cmds:
       - tectonic "./src/fft/fft.tex" -Z search-path="src" --outdir "pdf"
   algebra:
     desc: Compile algebra.tex to pdf
     sources:
       - src/algebra/*
+      - mystd.sty
     cmds:
       - tectonic "./src/algebra/algebra.tex" -Z search-path="src" --outdir "pdf"
