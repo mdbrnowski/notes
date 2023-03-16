@@ -26,6 +26,9 @@
 \usepackage{tkz-euclide}
 \usetikzlibrary{shapes.geometric,calc,positioning}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
 
 \newif\ifstdthm\stdthmfalse
 \newif\ifstdcolorsec\stdcolorsecfalse
@@ -121,6 +124,12 @@
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
 %  ----------------------------------------------  %
+
+\renewcommand{\thepart}{}
+\renewcommand{\partname}{}
+\addto{\captionspolish}{
+  \renewcommand{\partname}{}
+}
 
 \ifstdthm
     \usepackage[framemethod=TikZ]{mdframed}
@@ -273,6 +282,7 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{textcomp}
 \usepackage{multirow}
+\usepackage{multicol}
 % Tiny optimizations:
 \usepackage{mathtools}
 \usepackage{microtype}
