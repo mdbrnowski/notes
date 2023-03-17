@@ -120,7 +120,7 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
     Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregu $\sum_{n=1}^\infty a_n$ są dodatnie oraz istnieje taka malejąca (na przedziale $[n_0, \infty)$) funkcja $f$, że $a_n = f(n)$ dla każdego $n$, to szereg
     \[ \sum_{n=1}^\infty a_n \]
     jest zbieżny wtedy i tylko wtedy, gdy całka niewłaściwa
-    \[ \int_1^\infty f(x) dx \]
+    \[ \int_1^\infty f(x) \d x \]
     jest zbieżna.
 \end{theorem}
 
@@ -138,7 +138,7 @@ Szereg opisywany przez kryterium Leibniza nazywamy szeregiem \vocab{naprzemienny
     Korzystając z kryterium Leibniza bardzo łatwo pokazać, że dany szereg jest zbieżny. Ciąg $a_n = \frac{1}{n\ln{n}}$ ma oczywiście wyrazy dodatnie i jest zbieżny do zera. Ponadto jest malejący, bo zarówno $n$, jak i $\ln{n}$ rosną.
 
     Aby określić, czy dany szereg jest bezwzględnie zbieżny skorzystamy z kryterium całkowego.
-    \[ \int \frac{1}{x\ln{x}} dx = \left|\begin{alignedat}{2}&u = \ln{x} \\ &du = \frac{1}{x} dx\end{alignedat}\right| = \int \frac{1}{u} du = \ln{u} + C = \ln(\ln(x)) + C. \]
-    \[ \int_1^\infty \frac{1}{x\ln{x}} dx = \ln(\ln(x)) \Big|_1^\infty \text{ -- rozbieżna.} \]
+    \[ \int \frac{1}{x\ln{x}} \d x = \left|\begin{alignedat}{2}&u = \ln{x} \\ &\!\d u = \frac{1}{x} \d x\end{alignedat}\right| = \int \frac{1}{u} \d u = \ln{u} + C = \ln(\ln(x)) + C. \]
+    \[ \int_1^\infty \frac{1}{x\ln{x}} \d x = \ln(\ln(x)) \Big|_1^\infty \text{ -- rozbieżna.} \]
     Z tego wynika, że dany szereg jest tylko warunkowo zbieżny.
 \end{solution}
