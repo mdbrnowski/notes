@@ -1,0 +1,237 @@
+\begin{definition}[Cauchy'ego granicy właściwej]
+    \label{d:cauchy_lim_series}
+    Ciąg $(a_n)$ ma granicę $g = \displaystyle\lim_{n\lthen\infty} a_n$ wtedy, gdy
+    \[ \dforall{\eps > 0} \dexists{N \in\NN} \dforall{n\geq N} |a_n - g| < \eps. \]
+\end{definition}
+
+Jeśli ciąg $(a_n)$ ma granicę $g$, to mówimy że jest zbieżny do $g$ i piszemy $\lim a_n = g$ lub po prostu $a_n \lthen g$.
+
+\begin{definition}[granicy niewłaściwej $+\infty$]
+    Ciąg $(a_n)$ ma granicę niewłaściwą $\displaystyle\lim_{n\lthen\infty} a_n = \infty$ wtedy, gdy
+    \[ \dforall{M\in\RR} \dexists{N\in\NN} \dforall{n\geq N} a_n > M. \]
+\end{definition}
+
+Analogicznie definiujemy granicę niewłaściwą w $-\infty$. Może się również zdarzyć, że ciąg nie ma granicy, na przykład $a_n = n(-1)^n$.
+
+\begin{fact}
+    Równość $\lim |a_n| = 0$ jest równoważna $\lim a_n = 0$.
+\end{fact}
+\begin{proof}
+    Równoważność wynika z definicji \ref{d:cauchy_lim_series} i równości $\left||a|\right| = |a|$.
+\end{proof}
+
+\begin{theorem}
+    \label{t:lim_subsequence=lim_sequence}
+    Jeśli $\lim a_n = g$, to dla każdego podciągu $(a_{n_k})$ zachodzi $\lim a_{n_k} = g$.
+\end{theorem}
+\begin{proof}
+    Zakładając przeciwnie, że istnieją dwa podciągi o różnych granicach, to w definicji Cauchy'ego (\ref{d:cauchy_lim_series}) wystarczy wybrać $\eps$ mniejszy niż połowa różnicy między tymi dwie granicami, aby uzyskać sprzeczność.
+\end{proof}
+
+Prosty wniosek z tego twierdzenia jest taki, że jeśli znajdziemy dwa podciągi ciągu $(a_n)$ zbiegające do różnych granic, to ciąg $(a_n)$ jest rozbieżny.
+
+\begin{theorem}[o ciągu monotonicznym i ograniczonym]
+    \label{t:sequence monotonic and bounded}
+    Każdy ciąg monotoniczny i ograniczony jest zbieżny.
+\end{theorem}
+\begin{proof}
+    Bez starty ogólności przyjmijmy, że dany ciąg $(a_n)$ jest niemalejący i ograniczony z góry przez $M = \sup\{a_n : n \in \NN\}$. Dla wszystkich $n$ zachodzi więc nierówność
+    \[ a_n \leq M. \]
+    Dla dowolnego $\eps > 0$ istnieje takie $a_N$, że
+    \[ M - \eps < a_N \leq M, \]
+    jako że w przeciwnym wypadku to $M - \eps$ byłoby supremum $(a_n)$. Skoro $(a_n)$ jest niemalejący, to dla każdego $n > N$
+    \[ |M - a_n| = M - a_n \leq M - a_N < \eps, \]
+    więc $\lim a_n = M$.
+\end{proof}
+
+\begin{theorem}[Bolzano-Weierstrassa]
+    Jeśli ciąg jest ograniczony, to ma podciąg zbieżny.
+\end{theorem}
+\begin{proof}
+    Udowodnimy, że jeśli z ciągu nie można wybrać podciągu niemalejącego, to można wybrać ciąg malejący, czego natychmiastowym wnioskiem (z pomocą twierdzenia \ref{t:sequence monotonic and bounded}) będzie teza.
+
+    Najpierw zauważymy, że jeśli z ciągu nie można wybrać podciągu rosnącego, to ma on wyraz największy. Zakładając przeciwnie, mamy, że $a_1$ nie jest największy, więc szukamy większego $a_k$, który znowu nie jest największy i w ten sposób (powtarzając rozumowanie) uzyskujemy konstrukcję ciągu rosnącego. Taką konstrukcję zakłóci tylko znalezienie elementu największego.
+
+    Załóżmy, że ciąg $(a_n)$ nie zawiera podciągu niemalejącego. Tym bardziej nie zawiera więc podciągu rosnącego, a więc ma wyraz największy, który oznaczymy $a_m$. Z ciągu $(a_{m+1}, a_{m+2}, \ldots)$ nie można wybrać podciągu niemalejącego (bo jest to podciąg ciągu $(a_n)$), więc ma on element największy, jednak mniejszy od $a_m$. Powtarzając to rozumowanie konstruujemy ciąg malejący.
+\end{proof}
+
+\begin{theorem}[o ciągu ograniczonym i ciągu zbieżnym do zera]
+    \label{t:sequence bounded and convergent to 0}
+    Jeśli ciag $(a_n)$ jest ograniczony oraz $\lim b_n = 0$, to
+    \[ \lim_{n \lthen \infty} (a_n \cdot b_n) = 0 \]
+\end{theorem}
+\begin{proof}
+    Z założenia istnieje takie $M > 0$, że dla każdego $n \in \NN$ zachodzi
+    \[ -M \leq a_n \leq M. \]
+    Z definicji (\ref{d:cauchy_lim_series}) dla każdego $\eps > 0$ istnieje takie $N \in \NN$, że dla każdego $n > N$ zachodzi
+    \[ |b_n| < \frac{\eps}{M}, \]
+    więc (również dla każdego $n > N$) zachodzi
+    \[ |a_n \cdot b_n| < M \cdot \frac{\eps}{M} = \eps. \]
+\end{proof}
+
+\subsection{Proste granice}
+\begin{theorem}[o arytmetyce granic ciągów]
+    Jeśli $\lim\limits_{n \lthen \infty} a_n = A$ oraz $\lim\limits_{n \lthen \infty} b_n = B$, to:
+    \begin{enumerate}
+        \item $\lim\limits_{n \lthen \infty} (a_n \pm b_n) = A \pm B,$
+        \item $\lim\limits_{n \lthen \infty} (a_n \cdot b_n) = A \cdot B,$
+        \item $\lim\limits_{n \lthen \infty} \frac{a_n}{b_n} = \frac{A}{B},$ jeśli $(b_n) \neq 0, B \neq 0$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Wynika w prosty sposób z definicji $\ref{d:cauchy_lim_series}$.
+\end{proof}
+
+\begin{theorem}[o trzech ciągach]
+    \label{t:sequence squeeze theorem}
+    Jeśli $\lim a_n = \lim c_n = g$ oraz istnieje takie $N \in \NN$, że dla wszystkich $n > N$ zachodzi
+    \[ a_n \leq b_n \leq c_n, \]
+    to
+    \[ \lim b_n = g. \]
+\end{theorem}
+\begin{proof}
+    Weźmy $\eps > 0$. Z definicji granicy (\ref{d:cauchy_lim_series}) mamy
+    \[ |a_n - g| < \eps \]
+    \[ a_n < g + \eps \quad\land\quad a_n > g - \eps \]
+    dla wszystkich $n > N_1$.
+    Analogicznie dla wszystkich $n > N_2$ zachodzi
+    \[ c_n < g + \eps \quad\land\quad c_n > g - \eps. \]
+    Mamy więc
+    \[ g - \eps < a_n \leq b_n \leq c_n < g + \eps \]
+    \[ g - \eps < b_n < g + \eps \]
+    \[ |b_n - g| < \eps \]
+    dla wszystkcih $n > \max(N, N_1, N_2)$.
+\end{proof}
+
+\begin{fact}
+    Ciąg geometryczny jest zbieżny do $0$, jeśli jego iloraz jest mniejszy od $1$. Jeśli jest większy od $1$, to ciąg jest rozbieżny.
+\end{fact}
+Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia o ciagu monotonicznym i ograniczonym (\ref{t:sequence monotonic and bounded}), a sama jego treść na tyle oczywista i powszechna, że nie będziemy się nie niego powoływać bezpośrednio.
+
+\begin{theorem}
+    \label{t:(a)^(1/n)->1}
+    Zachodzi równość
+    \[ \lim_{n \lthen \infty}\sqrt[n]{a} = 1 \]
+    dla każdego $a > 0$.
+\end{theorem}
+\begin{proof}
+    Dla $a = 1$ równość jest trywialna. Jeśli założymy, że $a > 1$, to mamy $\sqrt[n]{a} = 1 + x_n$, gdzie $x_n > 0$. Korzystając z nierówności Bernoulliego (\ref{t:Bernoulli's inequality}) mamy
+    \[ a = (1 + x_n)^n \geq 1 + nx_n \]
+    \[ \therefore 0 < x_n \leq \frac{a - 1}{n} \]
+    z czego wynika, że $\lim x_n = 0$, a więc $\lim a_n = 1$.
+
+    Jeśli $a < 1$, to, jak właśnie wykazaliśmy,
+    \[ \lim \sqrt[n]{a^{-1}} = 1, \]
+    więc
+    \[ \lim \sqrt[n]{a} = \lim \frac{1}{\sqrt[n]{a^{-1}}} = \frac{1}{\lim\sqrt[n]{a^{-1}}} = 1. \]
+\end{proof}
+
+\begin{theorem}
+    Zachodzi równość
+    \[ \lim_{n \lthen \infty}\sqrt[n]{n} = 1. \]
+\end{theorem}
+\begin{proof}
+    W poniższym dowodzie będziemy korzystać z nierówności między średnimi (\ref{t:mean ineqality}). Z nierówności między średnią geometryczną i harmoniczną (GM-HM) mamy
+    \[ \sqrt[n]{n} = \sqrt[n]{n \cdot 1^{n-1}} \geq \frac{n}{\frac{1}{n} + \frac{1}{1} + \frac{1}{1} + \cdots + \frac{1}{1}} = \frac{n}{\frac{1}{n} + n - 1}, \]
+    a z nierówności między średnią arytmetyczną i geometryczną (AM-GM)
+    \[ \sqrt[n]{n} = \sqrt[n]{\sqrt{n} \cdot \sqrt{n} \cdot 1^{n-2}} \leq \frac{2\sqrt{n} + n -2}{n}. \]
+    Oba te ciągi dążą do $1$ i z dwóch stron ograniczają ciąg dany wzorem $\sqrt[n]{n}$, więc na mocy twierdzenia o trzech ciągach (\ref{t:sequence squeeze theorem}) teza jest prawdziwa.
+\end{proof}
+
+\begin{theorem}
+    \label{t:lim an/a_n+1 = lim a_n^(1/n)}
+    Jeśli $(a_n) > 0$ oraz $\lim\frac{a_{n+1}}{a_n}$ istnieje i jest równe $L$, to również $\lim \sqrt[n]{a_n} = L$.
+\end{theorem}
+\begin{proof}
+    Z definicji \ref{d:cauchy_lim_series} dla każdego $\eps$ i pewnego $N$ mamy
+    $$\begin{aligned}
+        L - \eps &<& \frac{a_{n+1}}{a_n} &<& L + \eps \\
+        L - \eps &<& \frac{a_n}{a_{n-1}} &<& L + \eps \\
+        L - \eps &<& \frac{a_{n-1}}{a_{n-2}} &<& L + \eps \\
+                 & & \vdots\quad  \\
+        L - \eps &<& \frac{a_{N+1}}{a_N} &<& L + \eps \\
+    \end{aligned}$$
+    Przemnażając wszystkie nierówności (oprócz pierwszej, dla wygody zapisu) przez siebie mamy
+    \[ (L - \eps)^{n-N} < \frac{a_n}{a_N} < (L + \eps)^{n-N} \]
+    \[ \frac{(L - \eps)^n}{(L - \eps)^{N}} \cdot a_N < a_n < \frac{(L + \eps)^n}{(L + \eps)^{N}} \cdot a_N \]
+    \[ (L - \eps)\sqrt[n]{\frac{a_N}{(L - \eps)^{N}}} < \sqrt[n]{a_n} < (L + \eps)\sqrt[n]{\frac{a_N}{(L + \eps)^{N}}}. \]
+    Korzystając z twierdzenia \ref{t:(a)^(1/n)->1} przy obliczeniu granicy przy $n \lthen \infty$ dla trzech powyższych wyrażeń mamy
+    \[ L - \eps < \lim\sqrt[n]{n} < L - \eps, \]
+    z czego wynika (z definicji \ref{d:cauchy_lim_series}), że
+    \[ \lim\sqrt[n]{n} = L = \lim\frac{a_{n+1}}{a_n}. \]
+\end{proof}
+
+\subsection{Liczba Eulera}
+\begin{definition}[Liczba Eulera]
+    \[ e = \lim \left(1 + \frac{1}{n}\right)^n \]
+\end{definition}
+\begin{proof}[Uzasadnienie]
+    Oznaczmy $e_n = \left(1 + \frac{1}{n}\right)^n$. Udowodnimy, że $(e_n)$ jest rosnący.
+    \[\begin{aligned}
+        \frac{e_{n+1}}{e_n} &= \frac{\left(1 + \frac{1}{n+1}\right)^{n + 1}}{\left(1 + \frac{1}{n}\right)^n} = \frac{\left(\frac{n+ 2}{n+1}\right)^n}{\left(\frac{n+1}{n}\right)^{n+1}} = \left(\frac{n+2}{n+1} \cdot \frac{n}{n+1}\right)^{n+1} \cdot \frac{n+1}{n} \\
+        &= \left(1 - \frac{1}{(n+1)^2}\right)^{n+1} \cdot \frac{n+1}{n}.
+    \end{aligned}\]
+    Z nierówności Bernoulliego (\ref{t:Bernoulli's inequality}) mamy
+    \[ \left(1 - \frac{1}{(n+1)^2}\right)^{n+1} > 1 - \frac{n+1}{(n+1)^2} = 1 - \frac{1}{n+1} = \frac{n}{n+1}, \]
+    więc
+    \[ \frac{e_{n+1}}{e_n} > \frac{n}{n+1} \cdot \frac{n+1}{n} = 1, \]
+    co dowodzi, że ciąg $(e_n)$ jest rosnący.
+
+    Następnie pokażemy, że ciąg $(a_n)$ jest również ograniczony.
+    \[\begin{aligned}
+        e_n &= \left(1 + \frac{1}{n}\right)^n = 2 + \sum_{k=2}^n\binom{n}{k}\frac{1}{n^k} \\
+        &< 2 + \sum_{k=2}^n\frac{1}{k(k-1)} = 2 + \sum_{k=2}^n\left(\frac{1}{k-1} - \frac{1}{k}\right) = 3 - \frac{1}{n} \\
+        &< 3.
+    \end{aligned}\]
+
+    Skoro $(a_n)$ jest rosnący i ograniczony od góry, to (z twierdzenia \ref{t:sequence monotonic and bounded}) jest zbieżny. Jego granicą jest $e \approx 2.71828$.
+\end{proof}
+
+\begin{lemma}
+    \label{l:lim e^k}
+    Zachodzi równość
+    \[ \lim_{n\lthen\infty}\left(1 + \frac{k}{n}\right)^n = e^k, \]
+    a w szególności (dla $k = -1$)
+    \[ \lim_{n\lthen\infty}\left(1 - \frac{1}{n}\right)^n = \frac{1}{e}. \]
+\end{lemma}
+\begin{proof}
+    Dla $k = 0$ równość jest trywialna, dla $k \neq 0$ obliczamy
+    \[ \lim_{n\lthen\infty}\left(1 + \frac{k}{n}\right)^n = \lim_{n\lthen\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^n = \lim_{\frac{n}{k}\lthen\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^{\frac{n}{k} \cdot k} = e^k. \]
+\end{proof}
+
+\subsection{Mniej proste granice}
+\begin{theorem}
+    Zachodzi równość
+    \[ \lim\frac{\sqrt[n]{n!}}{n} = \frac{1}{e}. \]
+\end{theorem}
+\begin{proof}
+    Stosując twierdzenie \ref{t:lim an/a_n+1 = lim a_n^(1/n)} mamy
+    \[\begin{aligned} \lim\frac{\sqrt[n]{n!}}{n} = \lim\sqrt[n]{\frac{n!}{n^n}} &= \lim\frac{\frac{(n+1)!}{(n+1)^{n+1}}}{\frac{n!}{n^n}} = \lim\frac{(n+1)n^n}{(n+1)^{n+1}} = \\
+        &= \lim\frac{n^n}{(n+1)^n} = \lim\left(\frac{n+1}{n}\right)^{-n} = e^{-1}. \end{aligned}\]
+\end{proof}
+
+\subsection{\textit{Limes superior} i \textit{limes inferior}}
+\begin{definition}
+    Dla ciągu $(a_n)$ definiujemy granicę górną (\textit{limes superior})
+    \[ \limsup_{n \lthen \infty} a_n = \sup\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\} \]
+    oraz granicę dolną (\textit{limes inferior})
+    \[ \liminf_{n \lthen \infty} a_n = \inf\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\}. \]
+\end{definition}
+
+\begin{example}
+    Obliczyć granicę górną i dolną ciągu $a_n = n^{\sin\frac{n\pi}{2}}$.
+\end{example}
+\begin{solution}
+    Wyróżniamy trzy podciągi ciagu $(a_n)$, które łącznie zawierają wszystkie wyrazy tego ciągu:
+    \begin{itemize}
+        \item $n$ przystaje do $1 \pmod{4}$, mamy $b_k = (4k + 1)^1$,
+        \item $n$ jest parzyste, mamy $c_k = (2k)^0$,
+        \item $n$ przystaje do $3 \pmod{4}$, mamy $d_k = (4k + 3)^{-1}$.
+    \end{itemize}
+
+    Obliczając ich granice dostajemy
+    \[ \lim b_n = \infty, \quad \lim c_n = 1, \quad \lim d_n = 0. \]
+
+    Z twierdzenia \ref{t:lim_subsequence=lim_sequence} wynika, że każdy zbieżny podciąg $(a_n)$ jest zbieżny do granicy któregoś z ciągów $(b_n), (c_n), (d_n)$, więc
+    \[ \limsup a_n = \infty, \qquad \liminf a_n = 0. \]
+\end{solution}

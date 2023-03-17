@@ -38,6 +38,9 @@
     BoldItalicFont=*-BoldItalic
 ]
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
 
 \newif\ifstdthm\stdthmfalse
 \newif\ifstdcolorsec\stdcolorsecfalse
@@ -79,6 +82,7 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand{\dg}{^\circ}
 \newcommand{\gr}{\ensuremath{\operatorname{gr}\!}}
+\newcommand{\ddx}{\frac{d}{dx}}
 \newcommand{\dforall}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\forall}}}_{#1}\ }
 \newcommand{\dexists}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\exists}}}_{#1}\ }
 \newcommand{\dexistsone}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\exists!}}}_{#1}\ }
@@ -136,6 +140,12 @@
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
 %  ----------------------------------------------  %
+
+\renewcommand{\thepart}{}
+\renewcommand{\partname}{}
+\addto{\captionspolish}{
+  \renewcommand{\partname}{}
+}
 
 \ifstdthm
     \usepackage[framemethod=TikZ]{mdframed}
@@ -290,6 +300,7 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{textcomp}
 \usepackage{multirow}
+\usepackage{multicol}
 % Tiny optimizations:
 \usepackage{mathtools}
 \usepackage{microtype}

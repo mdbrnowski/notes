@@ -22,3 +22,9 @@ tasks:
       - mystd.sty
     cmds:
       - tectonic "./src/algebra/algebra.tex" -Z search-path="src" --outdir "pdf"
+  analiza:
+    desc: Compile analiza.tex to pdf
+    sources:
+      - src/analiza/*
+    cmds:
+      - tectonic "./src/analiza/analiza.tex" -Z search-path="src" --outdir "pdf"

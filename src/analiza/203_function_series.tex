@@ -1,0 +1,16 @@
+Podobnie do szeregów liczbowych, szeregi funkcyjne to para $((f_n(x))_{n\in\NN}, (S_n(x))_{n\in\NN})$: ciąg funkcyjny oraz ciąg sum częściowych ciągu funkcyjnego. Taki szereg jest zbieżny (punktowo / jednostajnie) do sumy szeregu $S$, jeśli ciąg $(S_n(x))$ jest zbieżny (częściowo / jednostajnie) do $S$.
+
+Analogicznie do twierdzenia \ref{t:uniform convergence implies pointwise convergence}, warukiem koniecznym zbieżności jednostajnej szeregu jest jego zbieżność punktowa.
+
+Z kolei w analogii do twierdzenia \ref{t:necessary condition of convergence}, warunkiem koniecznym zbieżności (punktowej / jednostajnej) szeregu $\sum_{n=1}^\infty f_n(x)$ jest zbieżność (punktowa / jednostajna) ciągu funkcyjnego $(f_n(x))$ do zera, to znaczy
+\[ \sum_{n=1}^\infty f_n(x) \rightarrow S \Longrightarrow f_n(x) \rightarrow 0 \equiv f \]
+oraz
+\[ \sum_{n=1}^\infty f_n(x) \rightrightarrows S \Longrightarrow f_n(x) \rightrightarrows 0 \equiv f. \]
+
+\begin{theorem}[kryterium Weierstrassa]
+    Jeśli istnieje taki ciąg $(a_n)$, że dla każdego $n \in \NN$ i dla każdego $x \in X \subset \RR$ mamy nierówność
+    \[ |f_n(x)| \leq a_n \]
+    oraz szereg $\sum_{n=1}^\infty a_n$ jest zbieżny, to szereg funkcyjny
+    \[ \sum_{n=1}^\infty f_n(x) \]
+    jest jednostajnie zbieżny na $X$.
+\end{theorem}

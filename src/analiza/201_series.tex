@@ -1,0 +1,144 @@
+\begin{definition}
+    Szereg liczbowy to para $((a_n)_{n\in\NN}, (S_n)_{n\in\NN})$, gdzie $S_n = \sum_{i=1}^n a_i$.
+\end{definition}
+
+Mówimy, że szereg liczbowy jest \vocab{zbieżny}, jeśli $\lim_{n\lthen\infty} S_n = S \in \CC$. Liczbę $S$ nazywamy wtedy \vocab{sumą} tego szeregu.
+
+\begin{theorem}[warunek konieczny zbieżności szeregu]
+    \label{t:necessary condition of convergence}
+    Jeśli szereg
+    \[ \sum_{n = 1}^\infty a_n \]
+    jest zbieżny, to
+    \[ \lim_{n\lthen\infty} a_n = 0. \]
+\end{theorem}
+
+\begin{example}
+    Znajdź sumę szeregu
+    \[ \sum_{n=1}^\infty \frac{1}{n(n+2)}. \]
+\end{example}
+\begin{solution}
+    Wykorzystamy tak zwane \vocab{sumy teleskopowe}.
+    \begin{align*}
+        &\sum_{n=1}^\infty \frac{1}{n(n+2)} = \frac{1}{2}\sum_{n=1}^\infty \left(\frac{1}{n} - \frac{1}{n+2}\right) \\
+        =&\ \frac{1}{2}\lim_{n\lthen\infty}\left(\frac{1}{1} - \frac{1}{3} + \frac{1}{2} - \frac{1}{4} + \frac{1}{3} - \frac{1}{5} + \ldots + \frac{1}{n} - \frac{1}{n+2}\right) \\
+        =&\ \frac{1}{2}\lim_{n\lthen\infty}\left(1 + \frac{1}{2} - \frac{1}{n+1} - \frac{1}{n+2}\right) = \frac{3}{4}
+    \end{align*}
+\end{solution}
+
+Można łatwo pokazać, że szereg harmoniczny $\sum_{n=1}^\infty \frac{1}{n}$ nie jest zbieżny (czyli jest \vocab{rozbieżny}), mimo że spełnia warunek konieczny:
+\[ \underbrace{\left(\frac{1}{1}\right)}_1 + \underbrace{\left(\frac{1}{2} + \frac{1}{3}\right)}_{>1} + \underbrace{\left(\frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7}\right)}_{>1} + \ldots .\]
+
+Okazuje się, że zachodzi również dużo mocniejsze twierdzenie:
+\begin{theorem}[o zbieżności szeregów harmonicznych]
+    \label{t:harmonic series}
+    Szereg harmoniczny rzędu $\alpha \in \RR$
+    \[ \sum_{n=1}^\infty \frac{1}{n^\alpha} \]
+    jest zbieżny wtedy i tylko wtedy, gdy $\alpha > 1$.
+\end{theorem}
+
+Jeśli szereg $\sum_{n=1}^\infty |a_n|$ jest zbieżny, to mówimy, że szereg $\sum_{n=1}^\infty a_n$ jest \vocab{bezwzględnie zbieżny}, w przeciwnym przypadku jest \vocab{warunkowo zbieżny}. Bezwzględna zbieżność szeregu pociąga za sobą jego zbieżność.
+
+Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności.
+
+\begin{theorem}[kryterium porównawcze]
+    Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ zachodzi
+    \[ a_n \leq b_n \]
+    oraz $a_n, b_n > 0$, to ze zbieżności szeregu $\sum_{n=1}^\infty b_n$ wynika zbieżność $\sum_{n=1}^\infty a_n$, a z rozbieżności szeregu $\sum_{n=1}^\infty a_n$ wynika rozbieżność $\sum_{n=1}^\infty b_n$.
+\end{theorem}
+
+\begin{remark*}
+    \begin{multicols}{2}
+    Wraz z powyższym twierdzeniem warto stosować nierówności, które zachodzą w przedziale $[0,1]$:
+    \begin{itemize}
+        \item $\frac{x}{2} \leq {\color{MainColor1} \sin{x}} \leq x$
+        \item $\frac{x}{2} \leq {\color{BoxColor2} \ln{x + 1}} \leq x$
+        \item $x \leq {\color{LinkColor2} \tan{x}} \leq 2x$
+        \item $1 - x \leq \cos{x}$
+    \end{itemize}
+    \hspace{2em}
+
+    \begin{tikzpicture}[scale=1]
+        \begin{axis}[domain=0:1, restrict y to domain=0:1.5,
+            xmin=0, xmax=1, ymin=0, ymax=1, grid=both,
+            xtick distance=0.25, ytick distance=0.25,
+            tick label style={font=\scriptsize}, xscale=0.78, yscale=0.78]
+            \addplot[samples=10,smooth,ultra thin] {x/2};
+            \addplot[samples=10,smooth,ultra thin] {x};
+            \addplot[samples=10,smooth,ultra thin] {2*x};
+            \addplot[samples=100,smooth,very thick,MainColor1] {sin(deg(x))};
+            \addplot[samples=100,smooth,very thick,LinkColor2] {tan(deg(x))};
+            \addplot[samples=100,smooth,very thick,BoxColor2] {ln(x + 1)};
+        \end{axis}
+    \end{tikzpicture}
+    \end{multicols}
+\end{remark*}
+
+\begin{example}
+    Zbadaj zbieżność szeregu
+    \[ \sum_{n=1}^\infty \ln\left(\frac{n^2 + 1}{n^2}\right). \]
+\end{example}
+\begin{solution}
+    \[ \sum_{n=1}^\infty \ln\left(\frac{n^2 + 1}{n^2}\right) = \sum_{n=1}^\infty \ln\left(1 + \frac{1}{n^2}\right) \]
+    Wyrazy szeregu są dodatnie oraz dla każdego $n \in \NN$
+    \[ \ln\left(1 + \frac{1}{n^2}\right)  < \frac{1}{n^2}, \]
+    więc, na podstawie twierdzenia \ref{t:harmonic series}, dany szereg jest zbieżny.
+\end{solution}
+
+\begin{theorem}[kryterium ilorazowe]
+    Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregów $\sum_{n=1}^\infty a_n$ i $\sum_{n=1}^\infty b_n$ są dodatnie oraz
+    \[ \lim_{n\lthen\infty} \frac{a_n}{b_n} = g \in (0, \infty), \]
+    to dane szeregi są jednecześnie zbieżne lub jednocześnie rozbieżne.
+\end{theorem}
+
+\begin{theorem}[kryterium d'Alemberta]
+    Niech będzie dany szereg $\sum_{n=1}^\infty a_n$ o niezerowych wyrazach oraz niech
+    \[ \lim_{n\lthen\infty} \frac{a_{n+1}}{a_n} = g. \]
+    Jeśli $g > 1$, to dany szereg jest rozbieżny, a jeśli $g < 1$, to szereg jest zbieżny.
+\end{theorem}
+
+\begin{theorem}[kryterium Cauchy'ego]
+    Niech będzie dany szereg $\sum_{n=1}^\infty a_n$ oraz niech
+    \[ \lim_{n\lthen\infty} \sqrt[n]{|a_n|} = g. \]
+    Jeśli $g > 1$, to dany szereg jest rozbieżny, a jeśli $g < 1$, to szereg jest zbieżny.
+\end{theorem}
+
+\begin{remark*}
+    Jeśli w kryteriach d'Alemberta lub Cauchy'ego wyjdzie $g = 1$, to nie możemy powiedzieć nic o zbieżności ciągu.
+\end{remark*}
+
+\begin{example}
+    Zbadaj zbieżność szeregu
+    \[ \sum_{n=1}^\infty \frac{3^n \cdot n}{4^n}. \]
+\end{example}
+\begin{solution}
+    Korzystając z kryterium Cauchy'ego mamy
+    \[ \lim_{n\lthen\infty} \sqrt[n]{\frac{3^n \cdot n}{4^n}} = \lim_{n\lthen\infty} \frac{3}{4} \cdot \sqrt[n]{n} = \frac{3}{4} < 1, \]
+    więc dany szereg jest zbieżny.
+\end{solution}
+
+\begin{theorem}[kryterium całkowe]
+    Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregu $\sum_{n=1}^\infty a_n$ są dodatnie oraz istnieje taka malejąca (na przedziale $[n_0, \infty)$) funkcja $f$, że $a_n = f(n)$ dla każdego $n$, to szereg
+    \[ \sum_{n=1}^\infty a_n \]
+    jest zbieżny wtedy i tylko wtedy, gdy całka niewłaściwa
+    \[ \int_1^\infty f(x) dx \]
+    jest zbieżna.
+\end{theorem}
+
+\begin{theorem}[kryterium Leibniza]
+    Dany jest szereg $\sum_{n=1}^\infty (-1)^na_n$. Jeśli ciąg $(a_n)$ jest dodatni, zbieżny do zera oraz malejący, to jest dany szereg jest zbieżny.
+\end{theorem}
+
+Szereg opisywany przez kryterium Leibniza nazywamy szeregiem \vocab{naprzemiennym}.
+
+\begin{example}
+    Zbadać zbieżność warunkową i bezwzględną szeregu
+    \[ \sum_{n=1}^\infty (-1)^n \frac{1}{n\ln{n}}. \]
+\end{example}
+\begin{solution}
+    Korzystając z kryterium Leibniza bardzo łatwo pokazać, że dany szereg jest zbieżny. Ciąg $a_n = \frac{1}{n\ln{n}}$ ma oczywiście wyrazy dodatnie i jest zbieżny do zera. Ponadto jest malejący, bo zarówno $n$, jak i $\ln{n}$ rosną.
+
+    Aby określić, czy dany szereg jest bezwzględnie zbieżny skorzystamy z kryterium całkowego.
+    \[ \int \frac{1}{x\ln{x}} dx = \left|\begin{alignedat}{2}&u = \ln{x} \\ &du = \frac{1}{x} dx\end{alignedat}\right| = \int \frac{1}{u} du = \ln{u} + C = \ln(\ln(x)) + C. \]
+    \[ \int_1^\infty \frac{1}{x\ln{x}} dx = \ln(\ln(x)) \Big|_1^\infty \text{ -- rozbieżna.} \]
+    Z tego wynika, że dany szereg jest tylko warunkowo zbieżny.
+\end{solution}
