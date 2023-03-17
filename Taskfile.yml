@@ -26,5 +26,6 @@ tasks:
     desc: Compile analiza.tex to pdf
     sources:
       - src/analiza/*
+      - mystd.sty
     cmds:
       - tectonic "./src/analiza/analiza.tex" -Z search-path="src" --outdir "pdf"

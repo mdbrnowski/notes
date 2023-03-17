@@ -4,7 +4,8 @@
 
 ### Computer Science at AGH UST
 
-* 🚧 **algebra.tex** ([pdf](pdf/algebra.pdf)) – *Algebra, dr hab. Jakub Przybyło*
+* 🚧 **analiza.tex** ([pdf](pdf/analiza.pdf)) – *Analiza II*
+* 🚧 **algebra.tex** ([pdf](pdf/algebra.pdf)) – *Algebra*
 
 ### Miscellaneous
 
