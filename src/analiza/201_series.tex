@@ -2,7 +2,7 @@
     Szereg liczbowy to para $((a_n)_{n\in\NN}, (S_n)_{n\in\NN})$, gdzie $S_n = \sum_{i=1}^n a_i$.
 \end{definition}
 
-Mówimy, że szereg liczbowy jest \vocab{zbieżny}, jeśli $\lim_{n\lthen\infty} S_n = S \in \CC$. Liczbę $S$ nazywamy wtedy \vocab{sumą} tego szeregu.
+Mówimy, że szereg liczbowy jest \vocab{zbieżny}, jeśli istnieje skończona granica $\lim\limits_{n\lthen\infty} S_n = S$. Liczbę $S$ nazywamy wtedy \vocab{sumą} tego szeregu.
 
 \begin{theorem}[warunek konieczny zbieżności szeregu]
     \label{t:necessary condition of convergence}
@@ -87,7 +87,7 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
 \begin{theorem}[kryterium ilorazowe]
     Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregów $\sum_{n=1}^\infty a_n$ i $\sum_{n=1}^\infty b_n$ są dodatnie oraz
     \[ \lim_{n\lthen\infty} \frac{a_n}{b_n} = g \in (0, \infty), \]
-    to dane szeregi są jednecześnie zbieżne lub jednocześnie rozbieżne.
+    to dane szeregi są jednocześnie zbieżne lub jednocześnie rozbieżne.
 \end{theorem}
 
 \begin{theorem}[kryterium d'Alemberta]

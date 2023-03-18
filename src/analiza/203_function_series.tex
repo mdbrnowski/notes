@@ -14,3 +14,58 @@ oraz
     \[ \sum_{n=1}^\infty f_n(x) \]
     jest jednostajnie zbieżny na $X$.
 \end{theorem}
+
+Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuous limit}.
+
+\begin{theorem}
+    Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest ciągiem funkcji ciągłych i jest jednostajnie zbieżny $\sum_{n=1}^\infty f_n(x) \rightrightarrows S(x)$, to funkcja $S$ jest ciągła.
+\end{theorem}
+
+Zachodzą również twierdzenia o różniczkowalności i całkowalności, analogiczne do twierdzeń \ref{t:differentiable limit} i \ref{t:integrable limit}.
+
+\begin{theorem}
+    Niech $(f_n(x))$ będzie ciągiem funkcji różniczkowalnych. Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest zbieżny na $X$, a szereg $\sum_{n=1}^\infty f_n'(x)$ jest jednostajnie zbieżny na $X$, to dla każdego $x \in X$ zachodzi
+    \[ \left(\sum_{n=1}^\infty f_n(x)\right)' = \sum_{n=1}^\infty f_n'(x). \]
+\end{theorem}
+
+\begin{theorem}
+    Niech $(f_n(x))$ będzie ciągiem funkcji całkowalnych. Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest jednostajnie zbieżny na $X$, to dla każdych $x_1, x_2 \in X$ zachodzi
+    \[ \int_{x_1}^{x_2}\left(\sum_{n=1}^\infty f_n(x)\right)\d x = \sum_{n=1}^\infty \left(\int_{x_1}^{x_2}f_n(x)\d x\right). \]
+\end{theorem}
+
+\subsection{Szeregi potęgowe}
+\begin{definition}
+    \label{d:power series}
+    Szereg potęgowy o środku w punkcie $c$ to szereg funkcyjny
+    \[ \sum_{n=1}^\infty a_n(x - c)^n, \]
+    gdzie $a_n, x, c \in \CC$.
+\end{definition}
+
+\begin{theorem}
+    Jeśli szereg potęgowy
+    \[ \sum_{n=1}^\infty a_n(x - c)^n \]
+    jest zbieżny dla pewnego $x_1$, to jest zbieżny dla wszystkich $x_2$ takich, że
+    \[ |x_2 - c| < |x_1 - c|, \]
+    a jeśli nie jest zbieżny dla pewnego $x_1$, to nie jest zbieżny dla wszystkich $x_2$ takich, że
+    \[ |x_2 - c| > |x_1 - c|. \]
+\end{theorem}
+
+Powyższe twierdzenie każe nam podzielić płaszczyznę zespoloną (względem danego szeregu potęgowego) na trzy rozłączne zbiory. Formalnie, jeśli weźmiemy
+\[ r = \sup\left\{|x - c| : \text{ szereg } \sum_{n=1}^\infty a_n(x - c)^n \text{ jest zbieżny}\right\}, \]
+to zbiór
+\[ \{x \in \CC : |x - x_0| < r\} \]
+nazwiemy \vocab{kołem zbieżności}. Dla wszystkich elementów z tego zbioru dany szereg jest zbieżny. Dla elementów na brzegu tego koła zbieżność jest nieokreślona, a dla elementów poza nim dany szereg nie jest zbieżny. Liczba $r$ to \vocab{promień zbieżności}. Dla $x=c$ dany szereg jest zbieżny.
+
+\begin{remark*}
+    Jeśli przyjmiemy w definicji szeregu potęgowego (\ref{d:power series}), że $a_n, x, c \in \RR$, to koło zbieżności staje się \vocab{przedziałem zbieżności}, a nieokreśloną zbieżność mamy tylko dla dwóch elementów: $c - r$ oraz $c + r$.
+\end{remark*}
+
+\begin{theorem}[Cauchy'ego-Hadamarda]
+    \label{t:Cauchy-Hadamard}
+    Promień zbieżności jest dany jako
+    \[ r = \frac{1}{\limsup\limits_{n\lthen\infty}\sqrt[n]{|a_n|}}, \]
+    gdzie $r = \frac{1}{0}$ interpretujemy jako $r = \infty$, a $r = \frac{1}{\infty}$ jako $r = 0$.
+\end{theorem}
+
+Można podać dwa słabsze twierdzenia, które jednak często łatwiej jest stosować:
+\[ r = \frac{1}{\lim\limits_{n\lthen\infty} \left|\frac{a_{n+1}}{a_n}\right|} \hspace{1em}\Longrightarrow\hspace{1em} r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{|a_n|}} \hspace{1em}\Longrightarrow\hspace{1em} (\ref{t:Cauchy-Hadamard}). \]
