@@ -18,17 +18,46 @@ oraz
 Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuous limit}.
 
 \begin{theorem}
-    Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest ciągiem funkcji ciągłych i jest jednostajnie zbieżny $\sum_{n=1}^\infty f_n(x) \rightrightarrows S(x)$, to funkcja $S$ jest ciągła.
+    \label{t:continuous series}
+    Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest szeregiem funkcji ciągłych i jest jednostajnie zbieżny $\sum_{n=1}^\infty f_n(x) \rightrightarrows S(x)$, to funkcja $S$ jest ciągła.
 \end{theorem}
+
+\begin{example}
+    Zbadaj zbieżność punktową i jednostajną szeregu
+    \[ \sum_{n=1}^\infty x^n(1-x) \]
+    na przedziale $[0,1]$.
+\end{example}
+\begin{solution}
+    Dla $x \in [0, 1)$ mamy:
+    \[ \sum_{n=1}^\infty x^n(1-x) = x(1-x)\frac{1}{1-x} = x, \]
+    natomiast dla $x = 1$ mamy
+    \[ \sum_{n=1}^\infty x^n(1-x) = \sum_{n=1}^\infty 1^n \cdot 0 = 0, \]
+    więc szereg jest zbieżny punktowo. Funkcja
+    \[ S(x) = \begin{cases}x, & \text{dla } x \in [0, 1) \\ 0, & \text{dla } x = 1 \end{cases}, \]
+    do której dany szereg zbiega nie jest ciągła, a funkcje $f_n(x) = x^n(1-x)$ są ciągłe, więc, na mocy twierdzenia \ref{t:continuous series}, szereg nie zbiega jednostajnie.
+\end{solution}
+
+\begin{example}
+    Zbadaj zbieżność punktową i jednostajną szeregu
+    \[ \sum_{n=1}^\infty \frac{nx}{1+n^4x^2} \]
+    na przedziale $[1,\infty)$.
+\end{example}
+\begin{solution}
+    Dla każdego $x \in [1, \infty]$ oraz $n \in \NN$ mamy
+    \[ \left|\frac{nx}{1+n^4x^2}\right| = \frac{nx}{1+n^4x^2} \leq \frac{nx}{n^4x^2} = \frac{1}{n^3x} \leq \frac{1}{n^3}, \]
+    więc, na mocy kryterium Weierstrassa, dany szereg jest jednostajnie zbieżny, bo szereg harmoniczy rzędu $3$ jest zbieżny.
+\end{solution}
 
 Zachodzą również twierdzenia o różniczkowalności i całkowalności, analogiczne do twierdzeń \ref{t:differentiable limit} i \ref{t:integrable limit}.
 
 \begin{theorem}
+    \label{t:differentiable series}
     Niech $(f_n(x))$ będzie ciągiem funkcji różniczkowalnych. Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest zbieżny na $X$, a szereg $\sum_{n=1}^\infty f_n'(x)$ jest jednostajnie zbieżny na $X$, to dla każdego $x \in X$ zachodzi
     \[ \left(\sum_{n=1}^\infty f_n(x)\right)' = \sum_{n=1}^\infty f_n'(x). \]
 \end{theorem}
 
 \begin{theorem}
+    \label{t:integrable series}
     Niech $(f_n(x))$ będzie ciągiem funkcji całkowalnych. Jeśli szereg $\sum_{n=1}^\infty f_n(x)$ jest jednostajnie zbieżny na $X$, to dla każdych $x_1, x_2 \in X$ zachodzi
     \[ \int_{x_1}^{x_2}\left(\sum_{n=1}^\infty f_n(x)\right)\d x = \sum_{n=1}^\infty \left(\int_{x_1}^{x_2}f_n(x)\d x\right). \]
 \end{theorem}
@@ -60,6 +89,8 @@ nazwiemy \vocab{kołem zbieżności}. Dla wszystkich elementów z tego zbioru da
     Jeśli przyjmiemy w definicji szeregu potęgowego (\ref{d:power series}), że $a_n, x, c \in \RR$, to koło zbieżności staje się \vocab{przedziałem zbieżności}, a nieokreśloną zbieżność mamy tylko dla dwóch elementów: $c - r$ oraz $c + r$.
 \end{remark*}
 
+\vocab{Obszarem zbieżności} nazywamy zbiór będący sumą koła zbieżności oraz zbioru elementów z jego brzegu, dla których dany szereg potęgowy jest zbieżny. 
+
 \begin{theorem}[Cauchy'ego-Hadamarda]
     \label{t:Cauchy-Hadamard}
     Promień zbieżności jest dany jako
@@ -69,3 +100,78 @@ nazwiemy \vocab{kołem zbieżności}. Dla wszystkich elementów z tego zbioru da
 
 Można podać dwa słabsze twierdzenia, które jednak często łatwiej jest stosować:
 \[ r = \frac{1}{\lim\limits_{n\lthen\infty} \left|\frac{a_{n+1}}{a_n}\right|} \hspace{1em}\Longrightarrow\hspace{1em} r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{|a_n|}} \hspace{1em}\Longrightarrow\hspace{1em} (\ref{t:Cauchy-Hadamard}). \]
+
+Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} na przedziale $(a, b)$ jeśli jest jednostajnie zbieżny na każdym przedziale $[c, d] \in (a, b)$.
+
+\begin{fact}
+    Jeśli szereg potęgowy jest zbieżny w $(c-r, c+r)$, to jest bezwzględnie zbieżny w $(c-r, c+r)$ oraz niemal jednostajnie zbieżny w $(c-r, c+r)$.
+\end{fact}
+
+\begin{fact}
+    Jeśli szereg potęgowy jest zbieżny w $(c-r, c+r)$ do $S(x)$, to funkcja $S(x)$ jest ciągła, różniczkowalna i całkowalna w $(c-r, c+r)$. Prawdziwe dla szeregów potęgowych są również tezy twierdzeń \ref{t:differentiable series} i \ref{t:integrable series}.
+\end{fact}
+
+\begin{theorem}[Abela]
+    \label{t:Abel}
+    Niech $\sum_{n=1}^\infty a_n(x - c)^n$ będzie szeregiem potęgowym zbieżnym do $S(x)$ o promieniu zbieżności równym $r$. Jeśli ten szereg jest zbieżny dla $x_1 = c - r$ oraz istnieje granica $\lim\limits_{x\lthen x_1^+}S(x)$, to
+    \[ \lim_{x\lthen x_1^+}S(x) = S(x_1), \]
+    czyli funkcja $S(x)$ jest prawostronnie ciągła w $x = c - r$. Analogicznie, jeśli szereg jest zbieżny dla $x_2 = c + r$ oraz istnieje granica $\lim\limits_{x\lthen x_2^-}S(x)$, to
+    \[ \lim_{x\lthen x_2^-}S(x) = S(x_2), \]
+    czyli funkcja $S(x)$ jest lewostronnie ciągła w $x = c + r$.
+\end{theorem}
+
+\begin{example}
+    Znajdź sumę szeregu
+    \[ \sum_{n=1}^\infty\frac{(n+1)(x+2)^n}{2^n} \]
+    w każdym punkcie obszaru zbieżności.
+\end{example}
+\begin{solution}
+    Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności danego szeregu
+    \[ r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{\frac{n+1}{2^n}}} = \frac{1}{\frac{1}{2}} = 2, \]
+    tak więc przedział zbieżności to $(-4, 0)$.
+    Dla $x = -4$ mamy
+    \[ \sum_{n=1}^\infty\frac{(n+1)(-2)^n}{2^n} = \sum_{n=1}^\infty(-1)^n(n+1) \text{ -- rozbieżny, nie spełnia warunku koniecznego}, \]
+    a dla $x = 0$
+    \[ \sum_{n=1}^\infty\frac{(n+1)2^n}{2^n} = \sum_{n=1}(n+1) \text{ -- rozbieżny, nie spełnia warunku koniecznego}. \]
+    Obszarem zbieżności jest więc przedział $(-4, 0)$. Policzmy teraz sumę. Dla każdego $x \in (-4, 0)$ mamy
+    \begin{align*}
+        S(x) &= \sum_{n=1}^\infty\frac{(n+1)(x+2)^n}{2^n} = \sum_{n=1}^\infty \left(\frac{(x+2)^{n+1}}{2^n}\right)' \overset{(\ref{t:differentiable series})}{=} \left(\sum_{n=1}^\infty\frac{(x+2)^{n+1}}{2^n}\right)' \\
+        &= \left(\frac{(x+2)^2}{2}\frac{1}{1 - \frac{x+2}{2}}\right)' = \left(\frac{(x+2)^2}{-x}\right)' = \frac{2x(x+2) + (x+2)^2}{x^2} = \frac{4 - x^2}{x^2}.
+    \end{align*}
+\end{solution}
+
+\begin{example}
+    Znajdź sumę szeregu
+    \[ \sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^n}{n+1} \]
+    w każdym punkcie obszaru zbieżności.
+\end{example}
+\begin{solution}
+    Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności danego szeregu
+    \[ r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{\frac{2^n}{n+1}}} = \frac{1}{2}, \]
+    tak więc przedział zbieżności to $(0, 1)$.
+    Dla $x = 0$ mamy
+    \[ \sum_{n=0}^\infty \frac{2^n\left(-\frac{1}{2}\right)^n}{n+1} = \sum_{n=0}^\infty \frac{(-1)^n}{n+1} \text{ -- zbieżny z kryterium Leibniza}, \]
+    a dla $x = 1$
+    \[ \sum_{n=0}^\infty \frac{2^n\left(\frac{1}{2}\right)^n}{n+1} = \sum_{n=0}^\infty \frac{1}{n+1} \text{ -- rozbieżny z kryterium ilorazowego}. \]
+    Obszarem zbieżności jest więc przedział $[0, 1)$. Policzmy teraz sumę. Dla $x = \frac{1}{2}$ mamy
+    \[ S(\tfrac{1}{2}) = \sum_{n=0}^\infty \frac{2^n0^n}{n+1} = 1 + 0 + 0 + \cdots = 1. \]
+    Dla pozostałych $x$ zapiszemy
+    \[ S(x) = \sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^n}{n+1} = \frac{1}{x - \frac{1}{2}}\sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^{n+1}}{n+1} = \frac{1}{x - \frac{1}{2}}\sum_{n=0}^\infty \int_{1/2}^x 2^n\left(t-\frac{1}{2}\right)^n\d t. \]
+    Szeregi potęgowe są niemal jednostajnie zbieżne w swoim przedziale zbieżności, więc dla $x \in (0, 1)$ możemy zamienić znaki sumy i całki (twierdzenie \ref{t:integrable series})
+    \begin{align*}
+        S(x) &= \frac{1}{x - \frac{1}{2}}\int_{1/2}^x \sum_{n=0}^\infty 2^n\left(t-\frac{1}{2}\right)^n\d t = \frac{1}{x - \frac{1}{2}}\int_{\frac{1}{2}}^x \frac{1}{1 - 2(t - \frac{1}{2})}\d t \\
+        &= \frac{1}{x - \frac{1}{2}}\int_{\frac{1}{2}}^x \frac{1}{2 - 2t}\d t = \frac{1}{x - \frac{1}{2}}\left[-\frac{1}{2}\ln(1 - t)\right]_{\frac{1}{2}}^x = \frac{1}{1 - 2x}\left(\ln(1 - x) - \ln{\frac{1}{2}}\right) \\
+        &= \frac{\ln(2 - 2x)}{1 - 2x}.
+    \end{align*}
+    Z twierdzenia Abela (\ref{t:Abel}) wynika, że
+    \[ S(0) = \lim_{x\lthen 0^+}\frac{\ln(2 - 2x)}{1 - 2x} = \ln(2), \]
+    więc ostatecznie mamy
+    \[ S(x) = \begin{cases}1, & \text{dla } x = \tfrac{1}{2} \\ \frac{\ln(2 - 2x)}{1 - 2x}, & \text{dla } x \in [0, 1)\setminus \{\tfrac{1}{2}\} \end{cases}. \]
+\end{solution}
+
+\subsection{Szeregi Taylora}
+\begin{definition}[szereg Taylora]
+    Jeśli funkcja $f$ ma pochodne wszystkich rzędów w pewnym otoczeniu $U$ punktu $x_0$, to szereg
+    \[ \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n \]
+    nazywamy szeregiem Taylora. Jeśli $x_0 = 0$, to nazywamy go szeregiem Maclaurina.
+\end{definition}
