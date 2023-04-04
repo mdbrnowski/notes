@@ -48,6 +48,24 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
     więc, na mocy kryterium Weierstrassa, dany szereg jest jednostajnie zbieżny, bo szereg harmoniczy rzędu $3$ jest zbieżny.
 \end{solution}
 
+\begin{example}
+    Zbadaj obszar zbieżności\footnote{czyli zbiór punktów, w których szereg jest zbieżny} punktowej oraz zbieżność jednostajną szeregu
+    \[ \sum_{n=1}^\infty \frac{x^2}{e^{nx}}. \]
+\end{example}
+\begin{solution}
+    Możemy od razu stwierdzić, że dla $x = 0$ otrzymamy szereg ciąg zer, który oczywiście jest (jednostajnie) zbieżny do zera. Możemy potraktować $x$ jako parametr, wtedy zamiast szeregu funkcyjnego będziemy mieć szereg liczbowy, którego zbieżność możemy pokazać z kryterium d'Alemberta:
+    \[ g = \lim_{n\lthen\infty} \frac{x^2}{e^{x(n+1)}}\frac{e^{xn}}{x^2} = \lim_{n\lthen\infty}\frac{1}{e^x} = \frac{1}{e^x}. \]
+    Szereg jest więc zbieżny dla każdego $x > 0$ i rozbieżny dla każdego $x < 0$. Ostatecznie, obszar zbieżności punktowej danego szeregu funkcyjnego to $[0,\infty)$.
+
+    Zajmijmy się teraz zbieżnością jednostajną. Oczywiście można by ją wykazywać przez znalezienie ciągu sum cześciowych, a następnie skorzystanie z twierdzenia \ref{t:uniform convergence iff metric = 0}, ale możemy też skorzystać z kryterium Weierstrassa, chociaż w dosyć nieoczywisty sposób.
+
+    Znajdźmy najpierw supremum ciągu $a_n = \frac{x^2}{e^{nx}}$. Możemy znaleźć miejsca zerowe pochodnej:
+    \[ \ddx \frac{x^2}{e^{nx}} = \frac{2x(e^{nx}) - x^2(ne^{nx})}{e^{2nx}} = \frac{x(2 - xn)}{e^{nx}} = 0 \iff x \in \left\{0, \frac{2}{n}\right\}. \]
+    Szkicując wykres przekonamy się, że funkcja $a_n(x)$ osiąga maksimum w $x = \frac{2}{n}$, więc
+    \[ a_n(x) \leq a_n\left(\tfrac{2}{n}\right) = \frac{\left(\frac{2}{n}\right)^2}{e^2} = \frac{4}{e^2n^2}. \]
+    Szereg $\sum_{n=1}^\infty \frac{4}{e^2n^2}$ jest zbieżny (ponieważ jest harmoniczny rzędu $2$), więc możemy użyć kryterium Weierstrassa udowadniając, że dany szereg funkcyjny jest jednostajnie zbieżny.
+\end{solution}
+
 Zachodzą również twierdzenia o różniczkowalności i całkowalności, analogiczne do twierdzeń \ref{t:differentiable limit} i \ref{t:integrable limit}.
 
 \begin{theorem}
@@ -89,7 +107,7 @@ nazwiemy \vocab{kołem zbieżności}. Dla wszystkich elementów z tego zbioru da
     Jeśli przyjmiemy w definicji szeregu potęgowego (\ref{d:power series}), że $a_n, x, c \in \RR$, to koło zbieżności staje się \vocab{przedziałem zbieżności}, a nieokreśloną zbieżność mamy tylko dla dwóch elementów: $c - r$ oraz $c + r$.
 \end{remark*}
 
-\vocab{Obszarem zbieżności} nazywamy zbiór będący sumą koła zbieżności oraz zbioru elementów z jego brzegu, dla których dany szereg potęgowy jest zbieżny. 
+\vocab{Obszarem zbieżności} nazywamy zbiór będący sumą koła zbieżności oraz zbioru elementów z jego brzegu, dla których dany szereg potęgowy jest zbieżny.
 
 \begin{theorem}[Cauchy'ego-Hadamarda]
     \label{t:Cauchy-Hadamard}
@@ -173,5 +191,5 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
 \begin{definition}[szereg Taylora]
     Jeśli funkcja $f$ ma pochodne wszystkich rzędów w pewnym otoczeniu $U$ punktu $x_0$, to szereg
     \[ \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n \]
-    nazywamy szeregiem Taylora. Jeśli $x_0 = 0$, to nazywamy go szeregiem Maclaurina.
+    nazywamy szeregiem Taylora. Jeśli $x_0 = 0$, to nazywamy go szeregiem Maclaurina. Taki szereg jest niemal jednostajnie zbieżny (na pewnym przedziale) do funkcji $f$.
 \end{definition}
