@@ -5,7 +5,7 @@
 ### Computer Science at AGH UST
 
 * 🚧 **analiza.tex** ([pdf](pdf/analiza.pdf)) – *Analiza II*
-* 🚧 **algebra.tex** ([pdf](pdf/algebra.pdf)) – *Algebra*
+* **algebra.tex** ([pdf](pdf/algebra.pdf)) – *Algebra*
 
 ### Miscellaneous
 
