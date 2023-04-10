@@ -1,0 +1,90 @@
+Zbiór funkcji \vocab{całkowalnych z kwadratem} będziemy oznaczać przez $L^2[a, b]$. Formalnie
+\[ L^2[a, b] = \left\{f: [a, b] \lthen \RR : \int\limits_{[a, b]} f^2(x) \d x < \infty \right\}. \]
+Jeśli utożsamimy ze sobą funkcje, które różnią się zbiorze miary Riemanna równej zero, to struktura $(L^2[a, b], \RR, +, \cdot)$ jest przestrzenią wektorową, w której możemy wprowadzić iloczyn skalarny
+\[ f \circ g = \int\limits_{[a, b]} f(x)g(x) \d x. \]
+Mamy więc przestrzeń unitarną, ergo zdefiniowana jest w niej też norma
+\[ \Vert f \Vert = \sqrt{f \circ f} = \sqrt{\int_a^b f^2(x) \d x} \]
+oraz metryka
+\[ d(f, g) = \Vert f - g \Vert = \sqrt{\int_a^b \left(f(x) - g(x)\right)^2 \d x}. \]
+Zbieżność w sensie metryki $d$ nazywa się \vocab{zbieżność przeciętną z kwadratem}.
+
+\begin{definition}
+    Ciąg ortogonalny to taki ciag funkcyjny $(\varphi_n)_{n\geq 0}$, którego funkcje nie są tożsamościowo równe zeru, są całkowalne z kwadratem oraz jego elementy są prostopadłe, czyli
+    \[ \dforall{i \neq j} \varphi_i \circ \varphi_j = 0. \]
+\end{definition}
+
+\begin{definition}
+    Ciąg ortonormalny to taki ciąg ortogonalny, że jego elementy są wersorami, czyli
+    \[ \dforall{i, j} \varphi_i \circ \varphi_j = \begin{cases}1, & \text{dla } i = j \\ 0, & \text{dla } i \neq j\end{cases}. \]
+    Wartość $\varphi_i \circ \varphi_j$ oznaczamy $\delta_{ij}$ i nazywamy \vocab{deltą Kroneckera}.
+\end{definition}
+
+\vocab{Szeregiem ortogonalnym} będziemy nazywać szereg funkcyjny w postaci $\sum_{n=0}^\infty c_n\varphi_n$, gdzie $(c_n)$ jest ciągiem liczb rzeczywistych, a $(\varphi_n)$ ciągiem ortogonalnym.
+
+\begin{theorem}[współczynniki Eulera-Fouriera]
+    \label{t:Euler-Fourier}
+    Jeśli szereg
+    \[ \sum_{n=0}^\infty c_n\varphi_n \rightrightarrows f \]
+    jest ortogonalny i zbiega jednostajnie do funkcji $f \in L^2[a, b]$, to dla każdego $n \in \NN$
+    \[ c_n = \frac{f \circ \varphi_n}{\Vert \varphi_n \Vert^2}. \]
+\end{theorem}
+
+Szereg ortogonalny, w którym współczynniki mają powyższą formę, nazywamy \vocab{szeregiem Fouriera} funkcji $f$. Oznaczamy
+\[ f \sim \sum_{n=0}^\infty c_n\varphi_n. \]
+Jeśli powyższy szereg ortogonalny jest zbieżny do $f$ na całym przedziale $[a, b]$ to mówimy, że ta funkcja jest \vocab{rozwijalna} w szereg Fouriera.
+
+\begin{theorem}[nierówność Bessela]
+    Jeśli szereg
+    \[ \sum_{n=0}^\infty c_n\varphi_n \]
+    jest szeregiem Fouriera funkcji $f$ względem ciągu $(\varphi_n)$, to
+    \[ \Vert f \Vert^2 \geq \sum_{n=0}^\infty c_n^2 \Vert \varphi_n \Vert^2. \]
+\end{theorem}
+
+\begin{theorem}[tożsamość Parsevala]
+    Jeśli szereg
+    \[ \sum_{n=0}^\infty c_n\varphi_n \]
+    jest szeregiem Fouriera funkcji $f$ względem ciągu $(\varphi_n)$, to
+    \[ \Vert f \Vert^2 = \sum_{n=0}^\infty c_n^2 \Vert \varphi_n \Vert^2 \]
+    wtedy i tylko wtedy, gdy $\sum_{n=0}^\infty c_n\varphi_n$ jest przeciętnie zbieżny z kwadratem do $f$.
+\end{theorem}
+
+Jeśli pewien szereg spełnia tożsamość Parsevala dla każdej funkcji $f \in L^2[a, b]$, to mówimy, że ciąg $(\varphi_n)$ jest \vocab{zupełny}.
+
+\begin{corollary}
+    Jeśli ciąg $(\varphi_n)$ jest zupełny oraz $f \sim \sum_{n=0}^\infty c_n\varphi_n$, to szereg
+    \[ \sum_{n=0}^\infty c_n\varphi_n \]
+    jest przeciętnie zbieżny z kwadratem do $f$ na $[a, b]$.
+\end{corollary}
+
+\subsection{Trygonometryczne szeregi Fouriera}
+\begin{fact}
+    Ciąg
+    \[ 1, \cos x, \sin x, \cos 2x, \sin 2x, \ldots, \cos nx, \sin nx, \ldots \]
+    jest zupełny (a więc i ortogonalny).
+\end{fact}
+
+\begin{corollary}[z twierdzenia \ref{t:Euler-Fourier}]
+    Szeregiem trygonometrycznym Fouriera funkcji całkowalnej $f : [-\pi, \pi] \lthen \RR$ będziemy nazywać szereg
+    \[ \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx + b_n\sin nx, \]
+    gdzie
+    \begin{align*}
+        a_0 &= \frac{1}{\pi}\int_{-\pi}^\pi f(x) \d x \\
+        a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos nx \d x \\
+        b_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin nx \d x.
+    \end{align*}
+\end{corollary}
+
+\begin{definition}[Warunki Dirichleta] ~
+    \begin{enumerate}
+        \item funkcja $f : [a, b] \lthen \RR$ jest ograniczona,
+        \item funkcja $f$ ma skończoną liczbę przedziałów monotonoczności,
+        \item funkcja $f$ ma skończoną liczbę punktów nieciągłości $x_0$ oraz
+        \[ f(x_0) = \frac{\lim\limits_{x\lthen x_0^-}f(x) + \lim\limits_{x\lthen x_0^+}f(x)}{2}, \]
+        \item zachodzi równość
+        \[ f(a) = f(b) = \frac{\lim\limits_{x\lthen a^+}f(x) + \lim\limits_{x\lthen b^-}f(x)}{2}. \]
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[o rozwijaniu funkcji w szereg Fouriera]
+    Jeśli funkcja $f$ spełnia warunki Dirichleta w przedziale $[-\pi, \pi]$, to szereg trygonometryczny Fouriera tej funkcji jest zbieżny punktowo do $f$ na $[-\pi, \pi]$.
+\end{theorem}

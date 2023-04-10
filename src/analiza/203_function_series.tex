@@ -174,10 +174,10 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
     Obszarem zbieżności jest więc przedział $[0, 1)$. Policzmy teraz sumę. Dla $x = \frac{1}{2}$ mamy
     \[ S(\tfrac{1}{2}) = \sum_{n=0}^\infty \frac{2^n0^n}{n+1} = 1 + 0 + 0 + \cdots = 1. \]
     Dla pozostałych $x$ zapiszemy
-    \[ S(x) = \sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^n}{n+1} = \frac{1}{x - \frac{1}{2}}\sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^{n+1}}{n+1} = \frac{1}{x - \frac{1}{2}}\sum_{n=0}^\infty \int_{1/2}^x 2^n\left(t-\frac{1}{2}\right)^n\d t. \]
+    \[ S(x) = \sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^n}{n+1} = \frac{1}{x - \frac{1}{2}}\sum_{n=0}^\infty \frac{2^n(x - \frac{1}{2})^{n+1}}{n+1} = \frac{1}{x - \frac{1}{2}}\sum_{n=0}^\infty \int_{\frac{1}{2}}^x 2^n\left(t-\frac{1}{2}\right)^n\d t. \]
     Szeregi potęgowe są niemal jednostajnie zbieżne w swoim przedziale zbieżności, więc dla $x \in (0, 1)$ możemy zamienić znaki sumy i całki (twierdzenie \ref{t:integrable series})
     \begin{align*}
-        S(x) &= \frac{1}{x - \frac{1}{2}}\int_{1/2}^x \sum_{n=0}^\infty 2^n\left(t-\frac{1}{2}\right)^n\d t = \frac{1}{x - \frac{1}{2}}\int_{\frac{1}{2}}^x \frac{1}{1 - 2(t - \frac{1}{2})}\d t \\
+        S(x) &= \frac{1}{x - \frac{1}{2}}\int_{\frac{1}{2}}^x \sum_{n=0}^\infty 2^n\left(t-\frac{1}{2}\right)^n\d t = \frac{1}{x - \frac{1}{2}}\int_{\frac{1}{2}}^x \frac{1}{1 - 2(t - \frac{1}{2})}\d t \\
         &= \frac{1}{x - \frac{1}{2}}\int_{\frac{1}{2}}^x \frac{1}{2 - 2t}\d t = \frac{1}{x - \frac{1}{2}}\left[-\frac{1}{2}\ln(1 - t)\right]_{\frac{1}{2}}^x = \frac{1}{1 - 2x}\left(\ln(1 - x) - \ln{\frac{1}{2}}\right) \\
         &= \frac{\ln(2 - 2x)}{1 - 2x}.
     \end{align*}
@@ -187,9 +187,23 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
     \[ S(x) = \begin{cases}1, & \text{dla } x = \tfrac{1}{2} \\ \frac{\ln(2 - 2x)}{1 - 2x}, & \text{dla } x \in [0, 1)\setminus \{\tfrac{1}{2}\} \end{cases}. \]
 \end{solution}
 
-\subsection{Szeregi Taylora}
-\begin{definition}[szereg Taylora]
-    Jeśli funkcja $f$ ma pochodne wszystkich rzędów w pewnym otoczeniu $U$ punktu $x_0$, to szereg
-    \[ \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n \]
-    nazywamy szeregiem Taylora. Jeśli $x_0 = 0$, to nazywamy go szeregiem Maclaurina. Taki szereg jest niemal jednostajnie zbieżny (na pewnym przedziale) do funkcji $f$.
-\end{definition}
+\begin{example}
+    Znajdź sumę szeregu liczbowego
+    \[ 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \ldots. \]
+\end{example}
+\begin{solution}
+    Weźmy szereg funkcyjny
+    \[ S(x) = \sum_{n=0}^\infty \frac{(-1)^n}{2n+1}x^{2n+1}. \]
+    Wartość $S(1)$ jest szukaną sumą, jeśli tylko szereg jest zbieżny w tym punkcie. Niech $t = x^2$. Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności szeregu:
+    \[ r_t = \frac{1}{\lim\limits_{n\lthen\infty}\frac{2n+1}{2n+3}} = 1, \]
+    tak więc szereg zbiega, gdy $t \in (-1, 1) \implies x \in (-1, 1)$. W punktach $x = -1$ i $x = 1$ szereg również jest zbieżny, co można pokazać z kryterium Lebniza.
+
+    Policzmy teraz sumę (dla przedziału zbieżności $(-1, 1)$):
+    \begin{align*}
+        S(x) &= \sum_{n=0}^\infty \frac{(-1)^n}{2n+1}x^{2n+1} = \sum_{n=0}^\infty\int_0^x (-1)^n u^{2n} \d u = \int_0^x\sum_{n=0}^\infty (-1)^n u^{2n} \d u \\
+        &= \int_0^x\sum_{n=0}^\infty (-u^2)^n \d u = \int_0^x \frac{1}{1 + u^2} \d u = \left[\arctan(u)\right]_0^x = \arctan(x).
+    \end{align*}
+
+    Skoro w $x = 1$ ten szereg też jest zbieżny, to z twierdzenia Abela (\ref{t:Abel}) mamy
+    \[ S(1) = \lim_{x\lthen 1}\arctan(x) = \arctan(1) = \frac{\pi}{4}. \]
+\end{solution}

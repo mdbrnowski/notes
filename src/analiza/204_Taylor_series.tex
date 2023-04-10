@@ -1,0 +1,44 @@
+\begin{theorem}[o rozwijaniu funkcji w szereg Taylora]
+    Jeśli funkcja $f$ ma pochodne wszystkich rzędów w pewnym otoczeniu $U$ punktu $x_0$, to na pewnym przedziale zachodzi równość
+    \[ f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n. \]
+    Taki szereg nazywamy szeregiem Taylora, a jeśli $x_0 = 0$, to nazywamy go szeregiem Maclaurina.
+\end{theorem}
+
+\begin{example}
+    Rozwiń w szereg Taylora funkcję $f(x) = \ln{x}$ w otoczeniu $x_0 = 1$.
+\end{example}
+\begin{solution}
+    Spróbujmy znaleźć ogólny wzór na $f^{(n)}(x)$. Mamy
+    \begin{align*}
+        f'(x) &= \frac{1}{x} \\
+        f''(x) &= \frac{-1}{x^2} \\
+        f'''(x) &= \frac{2}{x^2} \\
+        f^{(4)}(x) &= \frac{-6}{x^3} \\
+        &\ldots \\
+        f^{(n)}(x) &= (-1)^{n+1}\frac{(n-1)!}{x^n} \\
+        &\implies f^{(n)}(1) = (-1)^{n+1}(n-1)!,
+    \end{align*}
+    tak więc
+    \[ f(x) = \sum_{n=0}^\infty \frac{(-1)^{n+1}(n-1)!}{n!}(x-1)^n = \frac{(-1)^{n+1}}{n}(x-1)^n. \]
+    Z twierdzenia Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard})
+    \[ r = \frac{1}{\lim\limits_{n\lthen\infty}\frac{n}{n+1}} = 1 \]
+    wynika, że ten szereg jest zbieżny, a więc równość jest prawdziwa, dla każdego $x \in (0, 2)$. Łatwo sprawdzić (z kryterium Leibniza), że jest zbieżny też dla $x = 2$, więc (z twierdzenia Abela) również dla $x = 2$ równość jest prawdziwa.
+\end{solution}
+
+\begin{example}
+    Rozwiń w szereg Maclaurina funkcję $f(x) = x^3\arctan{x^4}$.
+\end{example}
+\begin{solution}
+    Weźmy $g(x) = \arctan{x^4}$. Mamy
+    \[ g'(x) = \frac{4x^3}{1 + x^8} = \frac{4x^3}{1 - (-x^8)}, \hspace{2em} |x^8| < 1 \implies x \in (-1, 1) \]
+    więc
+    \[ g'(x) = \sum_{n=0}^\infty 4x^3 (-x^8)^n = \sum_{n=0}^\infty (-1)^n 4x^{8n+3}, \]
+    ergo
+    \begin{align*}
+        g(x) &= \int_0^x g'(t) \d t = \int_0^x\sum_{n=0}^\infty (-1)^n 4t^{8n+3} \d t \\
+        &= \sum_{n=0}^\infty (-1)^n 4 \int_0^x t^{8n+3} \d t = \sum_{n=0}^\infty (-1)^n \frac{4x^{8n+4}}{8n+4}.
+    \end{align*}
+    Ostatecznie mamy
+    \[ f(x) = \sum_{n=0}^\infty \frac{(-1)^n}{2n+1}x^{8n+7}. \]
+    Równość jest prawdziwa dla $x \in (-1, 1)$ oraz (z kryterium Leibniza i twierdzenia Abela) dla $x = \pm 1$.
+\end{solution}
