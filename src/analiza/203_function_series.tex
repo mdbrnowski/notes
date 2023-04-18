@@ -61,7 +61,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
 
     Znajdźmy najpierw supremum ciągu $a_n = \frac{x^2}{e^{nx}}$. Możemy znaleźć miejsca zerowe pochodnej:
     \[ \ddx \frac{x^2}{e^{nx}} = \frac{2x(e^{nx}) - x^2(ne^{nx})}{e^{2nx}} = \frac{x(2 - xn)}{e^{nx}} = 0 \iff x \in \left\{0, \frac{2}{n}\right\}. \]
-    Szkicując wykres przekonamy się, że funkcja $a_n(x)$ osiąga maksimum w $x = \frac{2}{n}$, więc
+    Szkicując wykres pochodnej przekonamy się, że funkcja $a_n(x)$ osiąga maksimum w $x = \frac{2}{n}$, więc
     \[ a_n(x) \leq a_n\left(\tfrac{2}{n}\right) = \frac{\left(\frac{2}{n}\right)^2}{e^2} = \frac{4}{e^2n^2}. \]
     Szereg $\sum_{n=1}^\infty \frac{4}{e^2n^2}$ jest zbieżny (ponieważ jest harmoniczny rzędu $2$), więc możemy użyć kryterium Weierstrassa udowadniając, że dany szereg funkcyjny jest jednostajnie zbieżny.
 \end{solution}
@@ -201,7 +201,7 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
     Policzmy teraz sumę (dla przedziału zbieżności $(-1, 1)$):
     \begin{align*}
         S(x) &= \sum_{n=0}^\infty \frac{(-1)^n}{2n+1}x^{2n+1} = \sum_{n=0}^\infty\int_0^x (-1)^n u^{2n} \d u = \int_0^x\sum_{n=0}^\infty (-1)^n u^{2n} \d u \\
-        &= \int_0^x\sum_{n=0}^\infty (-u^2)^n \d u = \int_0^x \frac{1}{1 + u^2} \d u = \left[\arctan(u)\right]_0^x = \arctan(x).
+        &= \int_0^x\sum_{n=0}^\infty (-u^2)^n \d u = \int_0^x \frac{1}{1 + u^2} \d u = \Big[\arctan(u)\Big]_0^x = \arctan(x).
     \end{align*}
 
     Skoro w $x = 1$ ten szereg też jest zbieżny, to z twierdzenia Abela (\ref{t:Abel}) mamy
