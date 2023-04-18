@@ -41,6 +41,7 @@ Jeśli powyższy szereg ortogonalny jest zbieżny do $f$ na całym przedziale $[
 \end{theorem}
 
 \begin{theorem}[tożsamość Parsevala]
+    \label{t:Parseval}
     Jeśli szereg
     \[ \sum_{n=0}^\infty c_n\varphi_n \]
     jest szeregiem Fouriera funkcji $f$ względem ciągu $(\varphi_n)$, to
@@ -63,7 +64,8 @@ Jeśli pewien szereg spełnia tożsamość Parsevala dla każdej funkcji $f \in 
     jest zupełny (a więc i ortogonalny).
 \end{fact}
 
-\begin{corollary}[z twierdzenia \ref{t:Euler-Fourier}]
+\begin{corollary}[współczynniki Eulera-Fouriera (\ref{t:Euler-Fourier}) dla szeregów trygonometrycznych]
+    \label{c:Euler-Fourier for trig}
     Szeregiem trygonometrycznym Fouriera funkcji całkowalnej $f : [-\pi, \pi] \lthen \RR$ będziemy nazywać szereg
     \[ \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx + b_n\sin nx, \]
     gdzie
@@ -88,3 +90,55 @@ Jeśli pewien szereg spełnia tożsamość Parsevala dla każdej funkcji $f \in 
 \begin{theorem}[o rozwijaniu funkcji w szereg Fouriera]
     Jeśli funkcja $f$ spełnia warunki Dirichleta w przedziale $[-\pi, \pi]$, to szereg trygonometryczny Fouriera tej funkcji jest zbieżny punktowo do $f$ na $[-\pi, \pi]$.
 \end{theorem}
+
+\begin{remark}
+    Jeśli funkcja $f$ spełnia warunki Dirichleta w przedziale $[-\pi, \pi]$ oraz jest nieparzysta, to
+    \[ f(x) = \sum_{n=1}^\infty b_n\sin nx, \]
+    gdzie $b_n = \frac{2}{\pi}\int_0^\pi f(x)\sin nx \d x$. Jeśli jest parzysta, to
+    \[ f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx, \]
+    gdzie $a_n = \frac{2}{\pi}\int_0^\pi f(x)\cos nx \d x$. Tworzą one wtedy odpowiednio szereg sinusów i cosinusów.
+\end{remark}
+
+\begin{example}
+    Rozwiń w szereg Fouriera funkcję
+    \[ f(x) = \begin{cases}
+        0, & \text{dla } x \in (-\pi, 0) \\
+        x, & \text{dla } x \in [0, \pi)
+    \end{cases}. \]
+    Korzystając z niego, oblicz sumę szeregu liczbowego $1 + \frac{1}{3^2} + \frac{1}{5^2} + \ldots$.
+\end{example}
+\begin{solution}
+    Aby funkcja $f$ spełniała wszystkie warunki Dirichleta, musimy dodać wartość w punkcie $x = \pm \pi$.
+    \[ f(-\pi) = f(\pi) = \frac{\lim\limits_{x\lthen -\pi^+}f(x) + \lim\limits_{x\lthen \pi^-}f(x)}{2} = \frac{0 + \pi}{2} = \frac{\pi}{2}. \]
+    Możemy więc już napisać
+    \[ f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n\cos nx + b_n\sin nx, \]
+    gdzie
+    \begin{align*}
+        a_0 &= \frac{1}{\pi}\int_{-\pi}^\pi f(x) \d x = \frac{1}{\pi}\left(\int_{-\pi}^0 0 \d x + \int_0^\pi x \d x\right) = \frac{1}{\pi}\left(\frac{\pi^2}{2}\right) = \frac{\pi}{2}, \\
+        a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos{nx} \d x = \frac{1}{\pi}\left(\int_{-\pi}^0 0 \d x + \int_0^\pi x \cos{nx} \d x\right) = \\
+            &= \frac{1}{\pi}\left(\left[\frac{nx\sin{nx} + \cos{nx}}{n^2}\right]_0^\pi\right) = \frac{n\pi\sin{n\pi} + \cos{n\pi}}{\pi n^2} = \frac{\cos{nx} - 1}{\pi n^2} = \frac{(-1)^n - 1}{\pi n^2}, \\
+        b_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin{nx} \d x = \frac{1}{\pi}\left(\int_{-\pi}^0 0 \d x + \int_0^\pi x \sin{nx} \d x\right) = \\
+            &= \frac{1}{\pi}\left(\left[\frac{-nx\cos{nx} + \sin{nx}}{n^2}\right]_0^\pi\right) = \frac{1}{\pi}\frac{\sin{n\pi} - n\pi\cos{n\pi}}{n} = \frac{-\cos{nx}}{n} = \frac{(-1)^{n+1}}{n}.
+    \end{align*}
+    Mamy więc
+    \[ f(x) = \frac{\pi}{4} + \sum_{n=1}^\infty \frac{(-1)^n - 1}{\pi n^2}\cos{nx} + \frac{(-1)^{n+1}}{n}\sin{nx}. \]
+    W punkcie $x = \pi$:
+    \[ f(\pi) = \frac{\pi}{4} + \sum_{n=1}^\infty \frac{(-1)^n - 1}{\pi n^2}(-1)^n = \frac{\pi}{4} + \sum_{n=1}^\infty \frac{1 - (-1)^n}{\pi n^2} = \frac{\pi}{4} + \frac{2}{\pi}\left(1 + \frac{1}{3^2} + \frac{1}{5^2} + \ldots\right), \]
+    ergo
+    \[ 1 + \frac{1}{3^2} + \frac{1}{5^2} + \ldots = \frac{\pi}{2}\left(f(\pi) - \frac{\pi}{4}\right) = \frac{\pi}{2}\left(\frac{\pi}{2} - \frac{\pi}{4}\right) = \frac{\pi^2}{8}. \]
+\end{solution}
+
+\begin{corollary}[tożsamość Parsevala (\ref{t:Parseval}) dla szeregów trygonometrycznych]
+    Przyjmujemy oznaczenia jak we wniosku \ref{c:Euler-Fourier for trig}. Zachodzi równość
+    \[ \frac{1}{\pi}\int_{-\pi}^\pi \left(f(x)\right)^2 \d x = \frac{a_0^2}{2} + \sum_{n=1}^\infty a_n^2 + b_n^2. \]
+\end{corollary}
+
+\begin{example}
+    Rozwiń w szereg Fouriera funkcję
+    \[ f(x) = x^2 \]
+    dla $x \in [-\pi, \pi]$. Korzystając z tego rozwiniecia, oblicz sumę szeregów liczbowych
+    \[ \sum_{n=1}^\infty \frac{1}{n^2} \text{ oraz } \sum_{n=1}^\infty \frac{1}{n^4}. \]
+\end{example}
+\begin{solution}
+    \href{https://www.youtube.com/watch?v=2VYBGF_MPIU}{blackpenredpen na YouTube}.
+\end{solution}
