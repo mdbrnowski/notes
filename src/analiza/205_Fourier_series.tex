@@ -116,9 +116,9 @@ Jeśli pewien szereg spełnia tożsamość Parsevala dla każdej funkcji $f \in 
     \begin{align*}
         a_0 &= \frac{1}{\pi}\int_{-\pi}^\pi f(x) \d x = \frac{1}{\pi}\left(\int_{-\pi}^0 0 \d x + \int_0^\pi x \d x\right) = \frac{1}{\pi}\left(\frac{\pi^2}{2}\right) = \frac{\pi}{2}, \\
         a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\cos{nx} \d x = \frac{1}{\pi}\left(\int_{-\pi}^0 0 \d x + \int_0^\pi x \cos{nx} \d x\right) = \\
-            &= \frac{1}{\pi}\left(\left[\frac{nx\sin{nx} + \cos{nx}}{n^2}\right]_0^\pi\right) = \frac{n\pi\sin{n\pi} + \cos{n\pi}}{\pi n^2} = \frac{\cos{nx} - 1}{\pi n^2} = \frac{(-1)^n - 1}{\pi n^2}, \\
+            &= \frac{1}{\pi}\left(\left[\frac{nx\sin{nx} + \cos{nx}}{n^2}\right]_0^\pi\right) = \frac{n\pi\sin{n\pi} + \cos{n\pi}}{\pi n^2} = \frac{\cos{n\pi} - 1}{\pi n^2} = \frac{(-1)^n - 1}{\pi n^2}, \\
         b_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x)\sin{nx} \d x = \frac{1}{\pi}\left(\int_{-\pi}^0 0 \d x + \int_0^\pi x \sin{nx} \d x\right) = \\
-            &= \frac{1}{\pi}\left(\left[\frac{-nx\cos{nx} + \sin{nx}}{n^2}\right]_0^\pi\right) = \frac{1}{\pi}\frac{\sin{n\pi} - n\pi\cos{n\pi}}{n} = \frac{-\cos{nx}}{n} = \frac{(-1)^{n+1}}{n}.
+            &= \frac{1}{\pi}\left(\left[\frac{-nx\cos{nx} + \sin{nx}}{n^2}\right]_0^\pi\right) = \frac{1}{\pi}\frac{\sin{n\pi} - n\pi\cos{n\pi}}{n} = \frac{-\cos{n\pi}}{n} = \frac{(-1)^{n+1}}{n}.
     \end{align*}
     Mamy więc
     \[ f(x) = \frac{\pi}{4} + \sum_{n=1}^\infty \frac{(-1)^n - 1}{\pi n^2}\cos{nx} + \frac{(-1)^{n+1}}{n}\sin{nx}. \]
