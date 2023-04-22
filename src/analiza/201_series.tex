@@ -2,14 +2,14 @@
     Szereg liczbowy to para $((a_n)_{n\in\NN}, (S_n)_{n\in\NN})$, gdzie $S_n = \sum_{i=1}^n a_i$.
 \end{definition}
 
-Mówimy, że szereg liczbowy jest \vocab{zbieżny}, jeśli istnieje skończona granica $\lim\limits_{n\lthen\infty} S_n = S$. Liczbę $S$ nazywamy wtedy \vocab{sumą} tego szeregu.
+Mówimy, że szereg liczbowy jest \vocab{zbieżny}, jeśli istnieje skończona granica $\lim\limits_{n\to\infty} S_n = S$. Liczbę $S$ nazywamy wtedy \vocab{sumą} tego szeregu.
 
 \begin{theorem}[warunek konieczny zbieżności szeregu]
     \label{t:necessary condition of convergence}
     Jeśli szereg
     \[ \sum_{n = 1}^\infty a_n \]
     jest zbieżny, to
-    \[ \lim_{n\lthen\infty} a_n = 0. \]
+    \[ \lim_{n\to\infty} a_n = 0. \]
 \end{theorem}
 
 \begin{example}
@@ -20,8 +20,8 @@ Mówimy, że szereg liczbowy jest \vocab{zbieżny}, jeśli istnieje skończona g
     Wykorzystamy tak zwane \vocab{sumy teleskopowe}.
     \begin{align*}
         &\sum_{n=1}^\infty \frac{1}{n(n+2)} = \frac{1}{2}\sum_{n=1}^\infty \left(\frac{1}{n} - \frac{1}{n+2}\right) \\
-        =&\ \frac{1}{2}\lim_{n\lthen\infty}\left(\frac{1}{1} - \frac{1}{3} + \frac{1}{2} - \frac{1}{4} + \frac{1}{3} - \frac{1}{5} + \ldots + \frac{1}{n} - \frac{1}{n+2}\right) \\
-        =&\ \frac{1}{2}\lim_{n\lthen\infty}\left(1 + \frac{1}{2} - \frac{1}{n+1} - \frac{1}{n+2}\right) = \frac{3}{4}
+        =&\ \frac{1}{2}\lim_{n\to\infty}\left(\frac{1}{1} - \frac{1}{3} + \frac{1}{2} - \frac{1}{4} + \frac{1}{3} - \frac{1}{5} + \ldots + \frac{1}{n} - \frac{1}{n+2}\right) \\
+        =&\ \frac{1}{2}\lim_{n\to\infty}\left(1 + \frac{1}{2} - \frac{1}{n+1} - \frac{1}{n+2}\right) = \frac{3}{4}
     \end{align*}
 \end{solution}
 
@@ -86,19 +86,19 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
 
 \begin{theorem}[kryterium ilorazowe]
     Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregów $\sum_{n=1}^\infty a_n$ i $\sum_{n=1}^\infty b_n$ są dodatnie oraz
-    \[ \lim_{n\lthen\infty} \frac{a_n}{b_n} = g \in (0, \infty), \]
+    \[ \lim_{n\to\infty} \frac{a_n}{b_n} = g \in (0, \infty), \]
     to dane szeregi są jednocześnie zbieżne lub jednocześnie rozbieżne.
 \end{theorem}
 
 \begin{theorem}[kryterium d'Alemberta]
     Niech będzie dany szereg $\sum_{n=1}^\infty a_n$ o niezerowych wyrazach oraz niech
-    \[ \lim_{n\lthen\infty} \frac{a_{n+1}}{a_n} = g. \]
+    \[ \lim_{n\to\infty} \frac{a_{n+1}}{a_n} = g. \]
     Jeśli $g > 1$, to dany szereg jest rozbieżny, a jeśli $g < 1$, to szereg jest zbieżny.
 \end{theorem}
 
 \begin{theorem}[kryterium Cauchy'ego]
     Niech będzie dany szereg $\sum_{n=1}^\infty a_n$ oraz niech
-    \[ \lim_{n\lthen\infty} \sqrt[n]{|a_n|} = g. \]
+    \[ \lim_{n\to\infty} \sqrt[n]{|a_n|} = g. \]
     Jeśli $g > 1$, to dany szereg jest rozbieżny, a jeśli $g < 1$, to szereg jest zbieżny.
 \end{theorem}
 
@@ -112,7 +112,7 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
 \end{example}
 \begin{solution}
     Korzystając z kryterium Cauchy'ego mamy
-    \[ \lim_{n\lthen\infty} \sqrt[n]{\frac{3^n \cdot n}{4^n}} = \lim_{n\lthen\infty} \frac{3}{4} \cdot \sqrt[n]{n} = \frac{3}{4} < 1, \]
+    \[ \lim_{n\to\infty} \sqrt[n]{\frac{3^n \cdot n}{4^n}} = \lim_{n\to\infty} \frac{3}{4} \cdot \sqrt[n]{n} = \frac{3}{4} < 1, \]
     więc dany szereg jest zbieżny.
 \end{solution}
 

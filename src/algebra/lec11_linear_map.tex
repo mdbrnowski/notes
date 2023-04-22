@@ -1,7 +1,7 @@
 \begin{definition}
     \label{d:linear map}
     Odwzorowanie
-    \[ f : V \lthen W, \]
+    \[ f : V \to W, \]
     gdzie $V, W$ są przestrzeniami liniowymi nad tym samym ciałem $\KK$ jest \vocab{liniowe}, jeśli
     \[ \dforall{u, v \in V} f(u + v) = f(u) + f(v) \]
     oraz
@@ -24,30 +24,30 @@ Podobnie jak w przypadku homomorfizmu grup (definicja \ref{d:homomorphism}), ele
 \end{proof}
 
 \begin{definition}
-    Jądro odwzorowania liniowego $f : V \lthen W$ to zbiór
+    Jądro odwzorowania liniowego $f : V \to W$ to zbiór
     \[ \Ker f = f^{-1}(\{\ol{0}\}) = \{v \in V \mid f(v) = \ol{0}\}. \]
 \end{definition}
 
 \begin{definition}
-    Obraz odwzorowania liniowego $f : V \lthen W$ to zbiór
+    Obraz odwzorowania liniowego $f : V \to W$ to zbiór
     \[ \Im f = f(V) = \{w \in W \mid \exists v \in V : w = f(v)\}. \]
     Jeśli $B$ jest bazą przestrzeni $V$, to
     \[ \Im f = \Lin f(B). \]
 \end{definition}
 
 \begin{fact}
-    Dla każdego odwzorowania liniowego $f : V \lthen W$, jądro $f$ jest podprzestrzenią $V$, a obraz $f$ jest podprzestrzenią $W$.
+    Dla każdego odwzorowania liniowego $f : V \to W$, jądro $f$ jest podprzestrzenią $V$, a obraz $f$ jest podprzestrzenią $W$.
 \end{fact}
 
 Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy $\nullity f$, a wymiar jego obrazu nazywamy \vocab{rzędem} i oznaczamy $\rank f$.
 
 \begin{example}
-    Weźmy odwzorowanie $f : \RR^3 \lthen \RR^2$ takie, że
+    Weźmy odwzorowanie $f : \RR^3 \to \RR^2$ takie, że
     \[ f(x, y, z) = (x, y). \]
     Znajdźmy jądro i obraz tego odwzorowania.
     \[ \Ker f = \{(0, 0, z) : z \in \RR\}, \quad \dim = 1. \]
     \[ \Im f = \RR^2, \quad \dim = 2. \]
-    Teraz weźmy $g : \RR^2 \lthen \RR^3$ takie, że
+    Teraz weźmy $g : \RR^2 \to \RR^3$ takie, że
     \[ g(x, y) = (x, y, x + y). \]
     Znajdźmy jądro i obraz tego odwzorowania.
     \[ \Ker g = \{\ol{0}\}, \quad \dim = 0. \]
@@ -56,7 +56,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 
 \begin{theorem}[o rzędzie]
     \label{t:rank-nullity}
-    Jeśli $V, W$ są skończenie wymiarowymi przestrzeniami wektorowymi nad ciałem $\KK$ oraz $f : V \lthen W$ jest odwzorowaniem liniowym, to
+    Jeśli $V, W$ są skończenie wymiarowymi przestrzeniami wektorowymi nad ciałem $\KK$ oraz $f : V \to W$ jest odwzorowaniem liniowym, to
     \[ \nullity f + \rank f = \dim V, \]
     \[ \dim \Ker f + \dim \Im f = \dim V. \]
 \end{theorem}
@@ -89,7 +89,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 \end{proof}
 
 \begin{definition}
-    Przy danych przestrzeniach wektorowych $V, W$ nad ciałem $\KK$, odwzorowanie liniowe $f : V \lthen W$ to:
+    Przy danych przestrzeniach wektorowych $V, W$ nad ciałem $\KK$, odwzorowanie liniowe $f : V \to W$ to:
     \begin{itemize}
         \item \vocab{monomorfizm}, jeśli jest injekcją,
         \item \vocab{epimorfizm}, jeśli jest surjekcją,
@@ -101,14 +101,14 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 \end{definition}
 
 \begin{theorem}
-    Odwzorowanie liniowe $f : V \lthen W$ jest epimorfizmem wtedy i tylko wtedy, gdy $\dim\Im f = \dim W$.
+    Odwzorowanie liniowe $f : V \to W$ jest epimorfizmem wtedy i tylko wtedy, gdy $\dim\Im f = \dim W$.
 \end{theorem}
 \begin{proof}
     $\Im f$ jest podprzestrzenią $W$, więc wynika z twierdzenia \ref{t:dimU = dimV, U subspace V}.
 \end{proof}
 
 \begin{theorem}
-    Odwzorowanie liniowe $f : V \lthen W$ jest monomorfizmem wtedy i tylko wtedy, gdy $\Ker f = \{\ol{0}\}$.
+    Odwzorowanie liniowe $f : V \to W$ jest monomorfizmem wtedy i tylko wtedy, gdy $\Ker f = \{\ol{0}\}$.
 \end{theorem}
 \begin{proof}
     Implikacja prawostronna jest trywialna, dlatego udowodnimy tylko lewostronną. Załóżmy przeciwnie, że istnieje takie $\mathbf{v}_1 \neq \mathbf{v}_2$, że
@@ -137,7 +137,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 \subsection{Macierze odwzorowań liniowych}
 \begin{definition}
     \label{d:transformation matrix}
-    Niech $B_V = (e_1, e_2, \ldots, e_n), B_W = (l_1, l_2, \ldots, l_m)$ będą pewnymi bazami odpowiednio przestrzeni $V, W$ nad ciałem $\KK$. Niech $f : V \lthen W$ będzie odwzorowaniem liniowym takim, że
+    Niech $B_V = (e_1, e_2, \ldots, e_n), B_W = (l_1, l_2, \ldots, l_m)$ będą pewnymi bazami odpowiednio przestrzeni $V, W$ nad ciałem $\KK$. Niech $f : V \to W$ będzie odwzorowaniem liniowym takim, że
     \begin{align*}
         f(e_1) &= a_{11}l_1 + a_{21}l_2 + \ldots + a_{m1}l_m, \\
         f(e_2) &= a_{12}l_1 + a_{22}l_2 + \ldots + a_{m2}l_m, \\
@@ -162,7 +162,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
         \Vdots & \Vdots & \Ddots & \Vdots \\
         a_{m1} & a_{m2} & \Cdots & a_{mn}
     \end{bNiceMatrix}\begin{bNiceMatrix}x_1 \\ x_2  \\ \Vdots \\ x_n\end{bNiceMatrix}, \]
-    gdzie $f : B_V \lthen B_W$ jest odwzorowaniem liniowym, $[a_{ij}]_{m\times n} = M_f(B_V, B_W)$ oraz
+    gdzie $f : B_V \to B_W$ jest odwzorowaniem liniowym, $[a_{ij}]_{m\times n} = M_f(B_V, B_W)$ oraz
     \[ x = [x_1, x_2, \ldots, x_n]_{B_V}^T, \quad y = [y_1, y_2, \ldots, y_m]_{B_W}^T. \]
 \end{fact}
 \begin{proof}
@@ -192,7 +192,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
 Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie $B$ oznaczamy jako $M_f(B)$.
 
 \begin{theorem}
-    Jeśli $f : V \lthen W$ będzie odwzorowaniem liniowym, a $B_V, B_W$ to bazy odpowiednio przestrzeni $V, W$, to
+    Jeśli $f : V \to W$ będzie odwzorowaniem liniowym, a $B_V, B_W$ to bazy odpowiednio przestrzeni $V, W$, to
     \[ \rank f = \rank M_f(B_V, B_W). \]
 \end{theorem}
 \begin{proof}
@@ -204,7 +204,7 @@ Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie
 \end{proof}
 
 \begin{theorem}
-    Niech $f, g : V \lthen W$ będą odwzorowaniami liniowymi, $B_V, B_W$ to bazy odpowiednio przestrzeni $V, W$ nad ciałem $\KK$, a $\alpha \in \KK$, to
+    Niech $f, g : V \to W$ będą odwzorowaniami liniowymi, $B_V, B_W$ to bazy odpowiednio przestrzeni $V, W$ nad ciałem $\KK$, a $\alpha \in \KK$, to
     \begin{enumerate}
         \item $M_{f+g}(B_V, B_W) = M_f(B_V, B_W) + M_g(B_V, B_W)$,
         \item $M_{\alpha f}(B_V, B_W) = \alpha M_f(B_V, B_W)$,
@@ -215,7 +215,7 @@ Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie
 \end{proof}
 
 \begin{theorem}
-    Niech $f : V \lthen W, g : W \lthen U$ będą odwzorowaniami liniowymi, a $B_V, B_W, B_U$ to bazy odpowiednio przestrzeni $V, W, U$, to
+    Niech $f : V \to W, g : W \to U$ będą odwzorowaniami liniowymi, a $B_V, B_W, B_U$ to bazy odpowiednio przestrzeni $V, W, U$, to
     \[ M_{g\circ f}(B_V, B_U) = M_g(B_W, B_U) \cdot M_f(B_V, B_W). \]
 \end{theorem}
 \begin{proof}
@@ -223,15 +223,15 @@ Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie
 \end{proof}
 
 \begin{corollary}[z faktu \ref{f:matix form of linear map}]
-    Endomorfizm $f : V \lthen V$ jest automorfizmem (bijekcją) wtedy i tylko wtedy, gdy macierz przekształcenia liniowego jest odwracalna (nieosobliwa). Łatwo również znaleźć przekształcenie odwrotne $f^{-1}$:
+    Endomorfizm $f : V \to V$ jest automorfizmem (bijekcją) wtedy i tylko wtedy, gdy macierz przekształcenia liniowego jest odwracalna (nieosobliwa). Łatwo również znaleźć przekształcenie odwrotne $f^{-1}$:
     \[ M_{f^{-1}}(B_2, B_1) = (M_f(B_1, B_2))^{-1}. \]
 \end{corollary}
 
 \begin{definition}
-    Macierz przejścia $P_{B \lthen B'}$ od bazy $B = (e_1, e_2, \ldots, e_n)$ do bazy $B' = (e_1', e_2', \ldots, e_n')$ przestrzeni $V$ to macierz odwzorowania identycznościowego danej przestrzeni w bazach $B', B$,
-    \[ P_{B\lthen B'} = M_{\opname{Id}_V}(B', B). \]
+    Macierz przejścia $P_{B \to B'}$ od bazy $B = (e_1, e_2, \ldots, e_n)$ do bazy $B' = (e_1', e_2', \ldots, e_n')$ przestrzeni $V$ to macierz odwzorowania identycznościowego danej przestrzeni w bazach $B', B$,
+    \[ P_{B\to B'} = M_{\opname{Id}_V}(B', B). \]
     Wtedy, jeśli $X, X'$ są wektorami kolumnowymi z $V$ względem baz $B, B'$, to
-    \[ X = P_{B \lthen B'}X'. \]
+    \[ X = P_{B \to B'}X'. \]
 \end{definition}
 
 \begin{remark*}
@@ -240,12 +240,12 @@ Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie
 
 \begin{theorem}[o zmianie macierzy odwzorowania przy zmianie baz]
     \label{t:changing transformation matrix when changing bases}
-    Niech $f: V \lthen W$ będzie odwzorowaniem liniowym, a $B_V, B_V', B_W, B_W'$ pewnymi bazami odpowiednich przestrzeni liniowych. Wtedy
-    \[ M_f(B_V', B_W') = (P_{B_W \lthen B_W'})^{-1} \cdot M_f(B_V, B_W) \cdot P_{B_V \lthen B_V'}. \]
+    Niech $f: V \to W$ będzie odwzorowaniem liniowym, a $B_V, B_V', B_W, B_W'$ pewnymi bazami odpowiednich przestrzeni liniowych. Wtedy
+    \[ M_f(B_V', B_W') = (P_{B_W \to B_W'})^{-1} \cdot M_f(B_V, B_W) \cdot P_{B_V \to B_V'}. \]
 \end{theorem}
 \begin{proof}
     Mamy
-    \[ P_{B_W' \lthen B_W} \cdot M_f(B_V, B_W) \cdot P_{B_V \lthen B_V'} = M_{\opname{Id}_W}(B_W, B_W') \cdot M_f(B_V, B_W) \cdot M_{\opname{Id}_V}(B_V', B_V) \]
+    \[ P_{B_W' \to B_W} \cdot M_f(B_V, B_W) \cdot P_{B_V \to B_V'} = M_{\opname{Id}_W}(B_W, B_W') \cdot M_f(B_V, B_W) \cdot M_{\opname{Id}_V}(B_V', B_V) \]
 \end{proof}
 
 \begin{example}
@@ -267,8 +267,8 @@ Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie
 \end{example}
 \begin{solution}
     Z twierdzenia \ref{t:changing transformation matrix when changing bases} mamy
-    \[ M_f(B_1, B_2) = P_{B_2 \lthen B_2'} \cdot M_f(B_1', B_2') \cdot P_{B_1' \lthen B_1}. \]
-    Macierz przejścia $B_2 \lthen B_2'$ jest bardzo łatwo wyznaczyć, ponieważ $B_2$ to baza kanoniczna. W przypadku macierzy przejścia $B_1' \lthen B_1$ najłatwiej będzie wyznaczyć jej odwrotność, ponieważ $B_1$ jest bazą kanoniczną. Mamy więc
+    \[ M_f(B_1, B_2) = P_{B_2 \to B_2'} \cdot M_f(B_1', B_2') \cdot P_{B_1' \to B_1}. \]
+    Macierz przejścia $B_2 \to B_2'$ jest bardzo łatwo wyznaczyć, ponieważ $B_2$ to baza kanoniczna. W przypadku macierzy przejścia $B_1' \to B_1$ najłatwiej będzie wyznaczyć jej odwrotność, ponieważ $B_1$ jest bazą kanoniczną. Mamy więc
     \[ M_f(B_1, B_2) = \begin{bmatrix}
         1 & -1 \\
         1 & 1

@@ -1,7 +1,7 @@
-Ciąg funkcyjny to ciąg, którego przeciwdziedziną jest zbiór funkcji określonych na tej samej dziedzinie. W kolejnych sekcjach będziemy rozważać ciągi funkcji $X \lthen \RR$, gdzie $X \subset \RR$, chyba że stwierdzono inaczej. Jest to ważne założenie niektórych twierdzeń.
+Ciąg funkcyjny to ciąg, którego przeciwdziedziną jest zbiór funkcji określonych na tej samej dziedzinie. W kolejnych sekcjach będziemy rozważać ciągi funkcji $X \to \RR$, gdzie $X \subset \RR$, chyba że stwierdzono inaczej. Jest to ważne założenie niektórych twierdzeń.
 
 \begin{definition}[zbieżność punktowa]
-    Ciąg funkcyjny $(f_n(x))$ jest zbieżny punktowo na $X$, jeśli istnieje taka funkcja $f: X \lthen Y$, że $\lim\limits_{n\lthen\infty} f_n(x) = f(x)$, czyli gdy
+    Ciąg funkcyjny $(f_n(x))$ jest zbieżny punktowo na $X$, jeśli istnieje taka funkcja $f: X \to Y$, że $\lim\limits_{n\to\infty} f_n(x) = f(x)$, czyli gdy
     \[ \dforall{x \in X} \dforall{\eps > 0} \dexists{n_0 \in \NN} \dforall{n \geq n_0} |f_n(x) - f(x)| < \eps. \]
 \end{definition}
 
@@ -30,7 +30,7 @@ Ciąg funkcyjny to ciąg, którego przeciwdziedziną jest zbiór funkcji określ
     na zbiorze $\RR$.
 \end{example}
 \begin{solution}
-    \[ \lim_{n\lthen\infty}\frac{1}{1 + nx^2} = \begin{cases}
+    \[ \lim_{n\to\infty}\frac{1}{1 + nx^2} = \begin{cases}
         1, & \text{dla } x = 0 \\
         0, & \text{dla } x \neq 0.
     \end{cases} \]
@@ -66,7 +66,7 @@ Można udowodnić, że funkcja $d_c$ jest metryką (zwaną metryką Czebyszewa).
 \begin{theorem}
     \label{t:uniform convergence iff metric = 0}
     Jeśli każda funkcja ciągu funkcyjnego $(f_n(x))$ jest ograniczona, to
-    \[ f_n \rightrightarrows f \Longleftrightarrow \lim_{n\lthen\infty}d_c(f_n, f) = 0 .\]
+    \[ f_n \rightrightarrows f \Longleftrightarrow \lim_{n\to\infty}d_c(f_n, f) = 0 .\]
 \end{theorem}
 
 \begin{example}
@@ -76,13 +76,13 @@ Można udowodnić, że funkcja $d_c$ jest metryką (zwaną metryką Czebyszewa).
 \end{example}
 \begin{solution}
     Mamy
-    \[ \lim_{n\lthen\infty} \frac{x^n}{1 + x^n} = 1 \equiv f, \]
+    \[ \lim_{n\to\infty} \frac{x^n}{1 + x^n} = 1 \equiv f, \]
     więc ciąg jest zbieżny punktowo do funkcji ciągłej, możemy zatem sprawdzić, czy zbiega do niej jednostajnie.
-    \[ \lim_{n\lthen\infty}\sup_{x\in X} \left|\frac{x^n}{1 + x^n} - 1\right| = \lim_{n\lthen\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right)\]
+    \[ \lim_{n\to\infty}\sup_{x\in X} \left|\frac{x^n}{1 + x^n} - 1\right| = \lim_{n\to\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right)\]
     Obliczmy supremum danej funkcji.
     \[ \ddx \left(1 - \frac{x^n}{1 + x^n}\right) = \frac{nx^{n-1}(1 + x^n) - x^n(nx^{n-1})}{\left(1 + x^n\right)^2} = \frac{nx^{n-1}}{\left(1 + x^n\right)^2} \]
-    Pochodna zawsze jest dodatnia, więc supremum będzie przy $x \lthen \infty$. Mamy
-    \[ \lim_{n\lthen\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\lthen\infty}\lim_{x\lthen\infty} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\lthen\infty} \left(1 - 1\right) = 0, \]
+    Pochodna zawsze jest dodatnia, więc supremum będzie przy $x \to \infty$. Mamy
+    \[ \lim_{n\to\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\to\infty}\lim_{x\to\infty} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\to\infty} \left(1 - 1\right) = 0, \]
     więc dany ciąg jest zbieżny jednostajnie.
 \end{solution}
 
@@ -93,26 +93,26 @@ Można udowodnić, że funkcja $d_c$ jest metryką (zwaną metryką Czebyszewa).
 \end{example}
 \begin{solution}
     Mamy
-    \[ \lim_{n\lthen\infty} \frac{nx}{n^2 + x^2} = \lim_{n\lthen\infty} \frac{x}{n} = 0 \equiv f, \]
+    \[ \lim_{n\to\infty} \frac{nx}{n^2 + x^2} = \lim_{n\to\infty} \frac{x}{n} = 0 \equiv f, \]
     więc ciąg jest zbieżny punktowo do funkcji ciągłej, możemy zatem sprawdzić, czy zbiega do niej jednostajnie.
-    \[ \lim_{n\lthen\infty}\sup_{x\in X} \left|\frac{nx}{n^2 + x^2}\right| = \lim_{n\lthen\infty}\sup_{x\in X} \left(\frac{nx}{n^2 + x^2}\right) \]
+    \[ \lim_{n\to\infty}\sup_{x\in X} \left|\frac{nx}{n^2 + x^2}\right| = \lim_{n\to\infty}\sup_{x\in X} \left(\frac{nx}{n^2 + x^2}\right) \]
     Obliczmy supremum danej funkcji.
     \[ \ddx \left(\frac{nx}{n^2 + x^2}\right) = \frac{n(n^2 + x^2) - nx(2x)}{\left(n^2 + x^2\right)^2} = \frac{n^3 - nx^2}{\left(n^2 + x^2\right)^2} \]
     Pochodna zeruje się, gdy
     \[ n^3 = nx^2 \implies x = \pm n, \]
     więc supremum będzie przy $x = n$. Mamy
-    \[ \lim_{n\lthen\infty}\frac{n^2}{n^2 + n^2} = \frac{1}{2}, \]
+    \[ \lim_{n\to\infty}\frac{n^2}{n^2 + n^2} = \frac{1}{2}, \]
     więc dany ciąg nie jest zbieżny jednostajnie.
 \end{solution}
 
 \begin{theorem}[o różniczkowalności granicy ciągu funkcyjnego]
     \label{t:differentiable limit}
     Jeśli każda funkcja ciągu funkcyjnego $(f_n(x))$ jest różniczkowalna, ciąg $(f_n)$ jest zbieżny, a ciąg $(f_n')$ zbieżny jednostajnie, to dla każdego $x \in X$ zachodzi
-    \[ \left(\lim_{n\lthen\infty} f_n(x)\right)' = \lim_{n\lthen\infty} \left(f_n'(x)\right). \]
+    \[ \left(\lim_{n\to\infty} f_n(x)\right)' = \lim_{n\to\infty} \left(f_n'(x)\right). \]
 \end{theorem}
 
 \begin{theorem}[o całkowalności granicy ciągu funkcyjnego]
     \label{t:integrable limit}
     Jeśli każda funkcja ciągu funkcyjnego $(f_n(x))$ jest całkowalna, a ciąg $(f_n)$ jest zbieżny jednostajnie, to dla każdych $x_1, x_2 \in X$ zachodzi
-    \[ \int_{x_1}^{x_2}\left(\lim_{n\lthen\infty} f_n(x)\right) \d x = \lim_{n\lthen\infty} \left(\int_{x_1}^{x_2} f_n(x) \d x\right). \]
+    \[ \int_{x_1}^{x_2}\left(\lim_{n\to\infty} f_n(x)\right) \d x = \lim_{n\to\infty} \left(\int_{x_1}^{x_2} f_n(x) \d x\right). \]
 \end{theorem}

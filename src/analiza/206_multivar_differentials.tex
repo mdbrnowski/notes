@@ -1,24 +1,24 @@
-W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \lthen \RR$. W tym kontekście warto zauwazyć, że struktura $(\RR^k, \RR, +, \cdot)$ jest przestrzenią wektorową. Jest ona również przestrzenią Banacha ze zdefiniowaną normą euklidesową.
+W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym kontekście warto zauważyć, że struktura $(\RR^k, \RR, +, \cdot)$ jest przestrzenią wektorową. Jest ona również przestrzenią Banacha ze zdefiniowaną normą euklidesową.
 
 \begin{fact}[granica ciągu]
     Weźmy ciąg $(x_n)$ elementów zbioru $\RR^k$ i oznaczmy $x_n = (x_{n,1}, x_{n,2}, \ldots, x_{n,k})$. Zachodzi równoważność
-    \[ \lim_{n\lthen\infty} x_n = (g_1, g_2, \ldots, g_k) \iff \dforall{1\leq i\leq k} \lim_{n\lthen\infty}x_{n,i} = g_i. \]
+    \[ \lim_{n\to\infty} x_n = (g_1, g_2, \ldots, g_k) \iff \dforall{1\leq i\leq k} \lim_{n\to\infty}x_{n,i} = g_i. \]
 \end{fact}
 
 \begin{definition}[Heinego]
-    Funkcja $f : D \lthen \RR$, gdzie $D\subset\RR^k$, ma granicę w punkcie $x_0$ równą $g$ wtedy i tylko wtedy, gdy dla każdego ciągu $(x_n)$ takiego, że $x_n \in D, x_n \neq x_0$ oraz $\lim_{n\lthen\infty} x_n = x_0$ zachodzi
-    \[ \lim_{n\lthen\infty} f(x_n) = g. \]
+    Funkcja $f : D \to \RR$, gdzie $D\subset\RR^k$, ma granicę w punkcie $x_0$ równą $g$ wtedy i tylko wtedy, gdy dla każdego ciągu $(x_n)$ takiego, że $x_n \in D, x_n \neq x_0$ oraz $\lim_{n\to\infty} x_n = x_0$ zachodzi
+    \[ \lim_{n\to\infty} f(x_n) = g. \]
 \end{definition}
 
 \begin{example}
     Zbadaj granicę
-    \[ \lim_{(x, y)\lthen (0, 0)} \frac{x^2}{x^2 + y^2}. \]
+    \[ \lim_{(x, y)\to (0, 0)} \frac{x^2}{x^2 + y^2}. \]
 \end{example}
 \begin{solution}
     Podstawiając $x = 0$ mamy
-    \[ \lim_{y\lthen 0} \frac{0}{0 + y^2} = 0, \]
+    \[ \lim_{y\to 0} \frac{0}{0 + y^2} = 0, \]
     a dla $y = 0$ otrzymujemy
-    \[ \lim_{x\lthen 0} \frac{x^2}{x^2 + 0} = 1, \]
+    \[ \lim_{x\to 0} \frac{x^2}{x^2 + 0} = 1, \]
     więc granica nie istnieje. Bardziej formalnie możemy powiedzieć, że wzięliśmy dwa ciągi: $a_n = (0, \frac{1}{n}), b_n = (\frac{1}{n}, 0)$ i pokazaliśmy sprzeczność z definicją Heinego.
 \end{solution}
 
@@ -38,12 +38,12 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \lthen \RR$. W tym
 
 \begin{example}
     Zbadaj granicę
-    \[ \lim_{(x, y)\lthen (0, 0)} \frac{\sin(x^2 + y^2)}{x^2 + y^2}. \]
+    \[ \lim_{(x, y)\to (0, 0)} \frac{\sin(x^2 + y^2)}{x^2 + y^2}. \]
 \end{example}
 \begin{solution}
     \begin{align*}
-        &\lim_{(x, y)\lthen (0, 0)} \frac{\sin(x^2 + y^2)}{x^2 + y^2} = \left|\begin{alignedat}{2}&x = r\cos\varphi \\ &y = r\sin\varphi\end{alignedat}\right| = \lim_{r\lthen 0} \frac{\sin(r^2\cos^2\varphi + r^2\sin^2\varphi)}{r^2\cos^2\varphi + r^2\sin^2\varphi} = \\
-        &= \lim_{r\lthen 0} \frac{\sin(r^2)}{r^2} = \lim_{t\lthen 0} \frac{\sin t}{t} = 1.
+        &\lim_{(x, y)\to (0, 0)} \frac{\sin(x^2 + y^2)}{x^2 + y^2} = \left|\begin{alignedat}{2}&x = r\cos\varphi \\ &y = r\sin\varphi\end{alignedat}\right| = \lim_{r\to 0} \frac{\sin(r^2\cos^2\varphi + r^2\sin^2\varphi)}{r^2\cos^2\varphi + r^2\sin^2\varphi} = \\
+        &= \lim_{r\to 0} \frac{\sin(r^2)}{r^2} = \lim_{t\to 0} \frac{\sin t}{t} = 1.
     \end{align*}
 \end{solution}
 
@@ -63,15 +63,15 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \lthen \RR$. W tym
 
 \begin{example}
     Zbadaj granicę
-    \[ \lim_{(x, y)\lthen (0, 0)} \frac{xy^2}{x^2 + y^2}. \]
+    \[ \lim_{(x, y)\to (0, 0)} \frac{xy^2}{x^2 + y^2}. \]
 \end{example}
 \begin{solution}
     Skoro
     \[ 0 \leq \left|\frac{xy^2}{x^2 + y^2}\right| = |x|\frac{y^2}{x^2 + y^2} \leq |x| \]
-    oraz $\lim_{(x, y)\lthen (0, 0)} 0 = \lim_{(x, y)\lthen (0, 0)} |x| = 0$, to, na mocy twierdzenia o trzech ciągach,
-    \[ \lim_{(x, y)\lthen (0, 0)} \left|\frac{xy^2}{x^2 + y^2}\right| = 0, \]
+    oraz $\lim_{(x, y)\to (0, 0)} 0 = \lim_{(x, y)\to (0, 0)} |x| = 0$, to, na mocy twierdzenia o trzech ciągach,
+    \[ \lim_{(x, y)\to (0, 0)} \left|\frac{xy^2}{x^2 + y^2}\right| = 0, \]
     więc
-    \[ \lim_{(x, y)\lthen (0, 0)} \frac{xy^2}{x^2 + y^2} = 0. \]
+    \[ \lim_{(x, y)\to (0, 0)} \frac{xy^2}{x^2 + y^2} = 0. \]
 \end{solution}
 
 \begin{figure}[H]
@@ -90,23 +90,23 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \lthen \RR$. W tym
 
 \begin{example}
     Zbadaj granicę
-    \[ \lim_{(x, y)\lthen (0, 0)} \frac{xy^2}{x^2 + y^4} \]
+    \[ \lim_{(x, y)\to (0, 0)} \frac{xy^2}{x^2 + y^4} \]
 \end{example}
 \begin{solution}
     Podstawiając $y = x$ mamy
-    \[ \lim_{x\lthen 0} \frac{x^3}{x^2 + x^4} = 0, \]
+    \[ \lim_{x\to 0} \frac{x^3}{x^2 + x^4} = 0, \]
     a dla $x = y^2$ otrzymujemy
-    \[ \lim_{y\lthen 0} \frac{y^4}{y^4 + y^4} = \frac{1}{2}, \]
+    \[ \lim_{y\to 0} \frac{y^4}{y^4 + y^4} = \frac{1}{2}, \]
     więc granica nie istnieje.
 \end{solution}
 
 \begin{remark*}
     Powyższy przykład jest o tyle ciekawy, że jeśli $x$ oraz $y$ zbiegają w tym samym tempie (czyli łączy jest liniowa zależność) to zawsze granica wyjdzie zerowa. Aby pokazać ten fakt, przejdziemy do współrzędnych biegunowych:
-    \[ \lim_{(x, y)\lthen (0, 0)} \frac{xy^2}{x^2 + y^4}  = \lim_{r\lthen 0} \frac{r^3 \cos\varphi\sin^2\varphi}{r^2\cos^2\varphi + r^4\sin^4\varphi} = \lim_{r\lthen 0} \frac{r \cos\varphi\sin^2\varphi}{\cos^2\varphi + r^2\sin^4\varphi}. \]
+    \[ \lim_{(x, y)\to (0, 0)} \frac{xy^2}{x^2 + y^4}  = \lim_{r\to 0} \frac{r^3 \cos\varphi\sin^2\varphi}{r^2\cos^2\varphi + r^4\sin^4\varphi} = \lim_{r\to 0} \frac{r \cos\varphi\sin^2\varphi}{\cos^2\varphi + r^2\sin^4\varphi}. \]
     Jeśli $\varphi = \pm\frac{\pi}{2}$, to (skoro $\cos\varphi = 0$)
-    \[ \lim_{r\lthen 0} \frac{r \cos\varphi\sin^2\varphi}{\cos^2\varphi + r^2\sin^4\varphi} = \lim_{r\lthen 0} \frac{0}{0 \pm r^2} = 0, \]
+    \[ \lim_{r\to 0} \frac{r \cos\varphi\sin^2\varphi}{\cos^2\varphi + r^2\sin^4\varphi} = \lim_{r\to 0} \frac{0}{0 \pm r^2} = 0, \]
     a jeśli $\varphi \neq \pm\frac{\pi}{2}$, to (skoro $\sin$ i $\cos$ są ograniczone)
-    \[ \lim_{r\lthen 0} \frac{r \cos\varphi\sin^2\varphi}{\cos^2\varphi + r^2\sin^4\varphi} = \frac{0}{\cos^2\varphi + 0} = 0. \]
+    \[ \lim_{r\to 0} \frac{r \cos\varphi\sin^2\varphi}{\cos^2\varphi + r^2\sin^4\varphi} = \frac{0}{\cos^2\varphi + 0} = 0. \]
 
     Natomiast jeśli $\varphi$ nie jest stałe, ale na przykład zbiega do $\frac{\pi}{2}$, to, jak można zauważyć na poniższym rusynku, granica niekoniecznie będzie zerowa.
 \end{remark*}

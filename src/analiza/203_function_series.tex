@@ -54,7 +54,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
 \end{example}
 \begin{solution}
     Możemy od razu stwierdzić, że dla $x = 0$ otrzymamy szereg ciąg zer, który oczywiście jest (jednostajnie) zbieżny do zera. Możemy potraktować $x$ jako parametr, wtedy zamiast szeregu funkcyjnego będziemy mieć szereg liczbowy, którego zbieżność możemy pokazać z kryterium d'Alemberta:
-    \[ g = \lim_{n\lthen\infty} \frac{x^2}{e^{x(n+1)}}\frac{e^{xn}}{x^2} = \lim_{n\lthen\infty}\frac{1}{e^x} = \frac{1}{e^x}. \]
+    \[ g = \lim_{n\to\infty} \frac{x^2}{e^{x(n+1)}}\frac{e^{xn}}{x^2} = \lim_{n\to\infty}\frac{1}{e^x} = \frac{1}{e^x}. \]
     Szereg jest więc zbieżny dla każdego $x > 0$ i rozbieżny dla każdego $x < 0$. Ostatecznie, obszar zbieżności punktowej danego szeregu funkcyjnego to $[0,\infty)$.
 
     Zajmijmy się teraz zbieżnością jednostajną. Oczywiście można by ją wykazywać przez znalezienie ciągu sum cześciowych, a następnie skorzystanie z twierdzenia \ref{t:uniform convergence iff metric = 0}, ale możemy też skorzystać z kryterium Weierstrassa, chociaż w dosyć nieoczywisty sposób.
@@ -112,12 +112,12 @@ nazwiemy \vocab{kołem zbieżności}. Dla wszystkich elementów z tego zbioru da
 \begin{theorem}[Cauchy'ego-Hadamarda]
     \label{t:Cauchy-Hadamard}
     Promień zbieżności jest dany jako
-    \[ r = \frac{1}{\limsup\limits_{n\lthen\infty}\sqrt[n]{|a_n|}}, \]
+    \[ r = \frac{1}{\limsup\limits_{n\to\infty}\sqrt[n]{|a_n|}}, \]
     gdzie $r = \frac{1}{0}$ interpretujemy jako $r = \infty$, a $r = \frac{1}{\infty}$ jako $r = 0$.
 \end{theorem}
 
 Można podać dwa słabsze twierdzenia, które jednak często łatwiej jest stosować:
-\[ r = \frac{1}{\lim\limits_{n\lthen\infty} \left|\frac{a_{n+1}}{a_n}\right|} \hspace{1em}\Longrightarrow\hspace{1em} r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{|a_n|}} \hspace{1em}\Longrightarrow\hspace{1em} (\ref{t:Cauchy-Hadamard}). \]
+\[ r = \frac{1}{\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|} \hspace{1em}\Longrightarrow\hspace{1em} r = \frac{1}{\lim\limits_{n\to\infty}\sqrt[n]{|a_n|}} \hspace{1em}\Longrightarrow\hspace{1em} (\ref{t:Cauchy-Hadamard}). \]
 
 Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} na przedziale $(a, b)$ jeśli jest jednostajnie zbieżny na każdym przedziale $[c, d] \in (a, b)$.
 
@@ -131,10 +131,10 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
 
 \begin{theorem}[Abela]
     \label{t:Abel}
-    Niech $\sum_{n=1}^\infty a_n(x - c)^n$ będzie szeregiem potęgowym zbieżnym do $S(x)$ o promieniu zbieżności równym $r$. Jeśli ten szereg jest zbieżny dla $x_1 = c - r$ oraz istnieje granica $\lim\limits_{x\lthen x_1^+}S(x)$, to
-    \[ \lim_{x\lthen x_1^+}S(x) = S(x_1), \]
-    czyli funkcja $S(x)$ jest prawostronnie ciągła w $x = c - r$. Analogicznie, jeśli szereg jest zbieżny dla $x_2 = c + r$ oraz istnieje granica $\lim\limits_{x\lthen x_2^-}S(x)$, to
-    \[ \lim_{x\lthen x_2^-}S(x) = S(x_2), \]
+    Niech $\sum_{n=1}^\infty a_n(x - c)^n$ będzie szeregiem potęgowym zbieżnym do $S(x)$ o promieniu zbieżności równym $r$. Jeśli ten szereg jest zbieżny dla $x_1 = c - r$ oraz istnieje granica $\lim\limits_{x\to x_1^+}S(x)$, to
+    \[ \lim_{x\to x_1^+}S(x) = S(x_1), \]
+    czyli funkcja $S(x)$ jest prawostronnie ciągła w $x = c - r$. Analogicznie, jeśli szereg jest zbieżny dla $x_2 = c + r$ oraz istnieje granica $\lim\limits_{x\to x_2^-}S(x)$, to
+    \[ \lim_{x\to x_2^-}S(x) = S(x_2), \]
     czyli funkcja $S(x)$ jest lewostronnie ciągła w $x = c + r$.
 \end{theorem}
 
@@ -145,7 +145,7 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
 \end{example}
 \begin{solution}
     Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności danego szeregu
-    \[ r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{\frac{n+1}{2^n}}} = \frac{1}{\frac{1}{2}} = 2, \]
+    \[ r = \frac{1}{\lim\limits_{n\to\infty}\sqrt[n]{\frac{n+1}{2^n}}} = \frac{1}{\frac{1}{2}} = 2, \]
     tak więc przedział zbieżności to $(-4, 0)$.
     Dla $x = -4$ mamy
     \[ \sum_{n=1}^\infty\frac{(n+1)(-2)^n}{2^n} = \sum_{n=1}^\infty(-1)^n(n+1) \text{ -- rozbieżny, nie spełnia warunku koniecznego}, \]
@@ -165,7 +165,7 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
 \end{example}
 \begin{solution}
     Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności danego szeregu
-    \[ r = \frac{1}{\lim\limits_{n\lthen\infty}\sqrt[n]{\frac{2^n}{n+1}}} = \frac{1}{2}, \]
+    \[ r = \frac{1}{\lim\limits_{n\to\infty}\sqrt[n]{\frac{2^n}{n+1}}} = \frac{1}{2}, \]
     tak więc przedział zbieżności to $(0, 1)$.
     Dla $x = 0$ mamy
     \[ \sum_{n=0}^\infty \frac{2^n\left(-\frac{1}{2}\right)^n}{n+1} = \sum_{n=0}^\infty \frac{(-1)^n}{n+1} \text{ -- zbieżny z kryterium Leibniza}, \]
@@ -182,7 +182,7 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
         &= \frac{\ln(2 - 2x)}{1 - 2x}.
     \end{align*}
     Z twierdzenia Abela (\ref{t:Abel}) wynika, że
-    \[ S(0) = \lim_{x\lthen 0^+}\frac{\ln(2 - 2x)}{1 - 2x} = \ln(2), \]
+    \[ S(0) = \lim_{x\to 0^+}\frac{\ln(2 - 2x)}{1 - 2x} = \ln(2), \]
     więc ostatecznie mamy
     \[ S(x) = \begin{cases}1, & \text{dla } x = \tfrac{1}{2} \\ \frac{\ln(2 - 2x)}{1 - 2x}, & \text{dla } x \in [0, 1)\setminus \{\tfrac{1}{2}\} \end{cases}. \]
 \end{solution}
@@ -195,7 +195,7 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
     Weźmy szereg funkcyjny
     \[ S(x) = \sum_{n=0}^\infty \frac{(-1)^n}{2n+1}x^{2n+1}. \]
     Wartość $S(1)$ jest szukaną sumą, jeśli tylko szereg jest zbieżny w tym punkcie. Niech $t = x^2$. Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności szeregu:
-    \[ r_t = \frac{1}{\lim\limits_{n\lthen\infty}\frac{2n+1}{2n+3}} = 1, \]
+    \[ r_t = \frac{1}{\lim\limits_{n\to\infty}\frac{2n+1}{2n+3}} = 1, \]
     tak więc szereg zbiega, gdy $t \in (-1, 1) \implies x \in (-1, 1)$. W punktach $x = -1$ i $x = 1$ szereg również jest zbieżny, co można pokazać z kryterium Lebniza.
 
     Policzmy teraz sumę (dla przedziału zbieżności $(-1, 1)$):
@@ -205,5 +205,5 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
     \end{align*}
 
     Skoro w $x = 1$ ten szereg też jest zbieżny, to z twierdzenia Abela (\ref{t:Abel}) mamy
-    \[ S(1) = \lim_{x\lthen 1}\arctan(x) = \arctan(1) = \frac{\pi}{4}. \]
+    \[ S(1) = \lim_{x\to 1}\arctan(x) = \arctan(1) = \frac{\pi}{4}. \]
 \end{solution}

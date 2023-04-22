@@ -1,6 +1,6 @@
 \begin{definition}
     Pochodną funkcji $f$ nazwiemy taką funkcję $f'$, że
-    \[ f'(x) = \lim_{h\lthen 0}\frac{f(x + h) - f(x)}{h}. \]
+    \[ f'(x) = \lim_{h\to 0}\frac{f(x + h) - f(x)}{h}. \]
     Jeśli wartość $f'(x_0)$ istnieje, to mówimy, że funkcja $f$ jest różniczkowalna w punkcie $x_0$.
 \end{definition}
 
@@ -10,9 +10,9 @@ Oprócz notacji Lagrange'a ($f'$) stosuje się również notację Leibniza ($f' 
     Jeśli $f$ jest różniczkowalna w punkcie $x_0$, to jest w tym punkcie ciągła.
 \end{theorem}
 \begin{proof}
-    \[ \lim_{h \lthen 0}(f(x_0 + h) - f(x_0)) = \lim_{h \lthen 0}\frac{f(x_0 + h) - f(x_0)}{h} \cdot h = f'(x_0) \cdot h = 0 \]
+    \[ \lim_{h \to 0}(f(x_0 + h) - f(x_0)) = \lim_{h \to 0}\frac{f(x_0 + h) - f(x_0)}{h} \cdot h = f'(x_0) \cdot h = 0 \]
     więc
-    \[\ \lim_{h\lthen 0}f(x_0 + h) = f(x_0), \]
+    \[\ \lim_{h\to 0}f(x_0 + h) = f(x_0), \]
     ergo $f$ jest ciąła w $x_0$.
 \end{proof}
 
@@ -48,7 +48,7 @@ TODO rysunek
 \end{proof}
 
 \begin{theorem}[o pochodnej funkcji odwrotnej]
-    Dana jest bijekcja $f: U \lthen V$, gdzie $U$ jest otoczeniem punktu $x_0$, a $V$ -- otoczeniem $y_0 = f(x_0)$. Jeśli $f$ jest różniczkowalna w $x_0$ oraz $f'(x_0) \neq 0$, to
+    Dana jest bijekcja $f: U \to V$, gdzie $U$ jest otoczeniem punktu $x_0$, a $V$ -- otoczeniem $y_0 = f(x_0)$. Jeśli $f$ jest różniczkowalna w $x_0$ oraz $f'(x_0) \neq 0$, to
     \[ \left(f^{-1}\right)'(y_0) = \frac{1}{f'(x_0)}. \]
 \end{theorem}
 \begin{proof}
@@ -59,7 +59,7 @@ TODO rysunek
     Obliczyć pochodną funkcji $\arctan$.
 \end{example}
 \begin{solution}
-    Funkcja $\tan : (-\frac{\pi}{2}, \frac{\pi}{2}) \lthen (-\infty, \infty)$ jest bijekcją oraz jest różniczkowalna na całym przedziale. Ponadto, jej pochodna nigdy się nie zeruje. Mamy więc
+    Funkcja $\tan : (-\frac{\pi}{2}, \frac{\pi}{2}) \to (-\infty, \infty)$ jest bijekcją oraz jest różniczkowalna na całym przedziale. Ponadto, jej pochodna nigdy się nie zeruje. Mamy więc
     \[ \arctan'(\tan x) = \frac{1}{\tan'(x)} = \frac{1}{\frac{1}{\cos^2 x}} = \cos^2 x \]
     \[ \arctan'(x) = \cos^2(\arctan x) \]
     \[ \arctan'(x) = \frac{\cos^2(\arctan x)}{\sin^2(\arctan x)} \cdot \sin^2(\arctan x) \]
@@ -91,7 +91,7 @@ TODO rysunek
     Przypadek z minimum jest analogiczny, wykażemy tylko dla maksimum. Dla każdego $x < x_0$ mamy
     \[ f(x) \leq f(x_0) \]
     \[ \frac{f(x) - f(x_0)}{x - x_0} \geq 0 \]
-    \[ \lim_{x\lthen x_0^-}\frac{f(x) - f(x_0)}{x - x_0} \geq 0 \]
+    \[ \lim_{x\to x_0^-}\frac{f(x) - f(x_0)}{x - x_0} \geq 0 \]
     \[ f'_-(x_0) \geq 0, \]
     a dla każdego $x > x_0$ analogicznie
     \[ f'_+(x_0) \leq 0, \]
@@ -132,20 +132,20 @@ Twierdzenia Rolle'a, Lagrange'a oraz Cauchy'ego nazywamy \vocab{twierdzeniami o 
     Jeśli funkcje $f, g$ są różniczkowalne w pewnym sąsiedztwie $S$ punktu $x_0 \in \ol{\RR}$ oraz
     \begin{enumerate}
         \item dla każdego $x \in S$ zachodzi $g(x) \neq 0$ oraz $g'(x) \neq 0$,
-        \item $\lim\limits_{x\lthen x_0} f(x) = \lim\limits_{x\lthen x_0} g(x) \in \{0, \infty, -\infty\}$,
-        \item \label{enum:Hospital exists} istnieje $\lim\limits_{x\lthen x_0}\frac{f'(x)}{g'(x)}$,
+        \item $\lim\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} g(x) \in \{0, \infty, -\infty\}$,
+        \item \label{enum:Hospital exists} istnieje $\lim\limits_{x\to x_0}\frac{f'(x)}{g'(x)}$,
     \end{enumerate}
     to prawdą jest, że
-    \[ \lim_{x\lthen x_0}\frac{f(x)}{g(x)} = \lim_{x\lthen x_0}\frac{f'(x)}{g'(x)}. \]
+    \[ \lim_{x\to x_0}\frac{f(x)}{g(x)} = \lim_{x\to x_0}\frac{f'(x)}{g'(x)}. \]
 \end{theorem}
 \begin{proof}
     TODO
 \end{proof}
 \begin{remark}
     Warunek \ref{enum:Hospital exists} jest bardzo ważny; gdybyśmy regułę de l'Hospitala wykorzystali do obliczenia granicy
-    \[ \lim_{x\lthen\infty}\frac{x}{x + \sin x} \]
+    \[ \lim_{x\to\infty}\frac{x}{x + \sin x} \]
     wyszłoby nam, że
-    \[ \lim_{x\lthen\infty}\frac{1}{1 + \cos x} \]
+    \[ \lim_{x\to\infty}\frac{1}{1 + \cos x} \]
     nie istnieje, bo ma podciągi zbieżne do $1$ i $\frac{1}{2}$. Moglibyśmy (błędnie stosując wspomianą regułę) wyciągnąć wniosek, że dana wcześniej granica również nie istnieje, co jednak jest nieprawdą, bo jest równa $1$ na mocy twierdzenia o trzech funkcjach (\ref{t:squeeze theorem}).
 \end{remark}
 

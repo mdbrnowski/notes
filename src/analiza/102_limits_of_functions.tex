@@ -1,15 +1,15 @@
 \vocab{Otoczeniem} $U(x_0, r)$ punktu $x_0 \in \RR$ o promieniu $r > 0$ nazywamy przedział $(x_0 - r, x_0 + r)$, a jego \vocab{sąsiedztwem} $S(x_0, r)$ -- otoczenie bez niego samego, czyli $U(x_0, r) \setminus \{x_0\}$. Definiujemy również sąsiedztwo lewo- i prawostronne punktu $x_0$ -- odpowiednio zbiory $S^-(x_0, r) = (x_0 - r, x_0)$ i $S^+(x_0, r) = (x_0, x_0 + r)$. Dla $\infty$ każde sąsiedztwo jest sąsiedztwem lewostronnym, a dla $-\infty$ prawostronnym.
 
 \begin{definition}[Heinego granicy funkcji]
-    Funkcja $f: \RR \supset D_f \lthen \RR$ ma granicę $g = \lim\limits_{x \lthen x_0} f(x)$ w $x_0 \in \ol{\RR}$ wtedy, gdy jest określona w sąsiedztwie punktu $x_0$ oraz dla każdego ciągu $(x_n)$ takiego, że $\forall n \in \NN : x_n \neq x_0, x_n \in D_f$ oraz $(x_n) \lthen x_0$ zachodzi
-    \[ \lim_{n\lthen\infty} f(x_n) = g. \]
+    Funkcja $f: \RR \supset D_f \to \RR$ ma granicę $g = \lim\limits_{x \to x_0} f(x)$ w $x_0 \in \ol{\RR}$ wtedy, gdy jest określona w sąsiedztwie punktu $x_0$ oraz dla każdego ciągu $(x_n)$ takiego, że $\forall n \in \NN : x_n \neq x_0, x_n \in D_f$ oraz $(x_n) \to x_0$ zachodzi
+    \[ \lim_{n\to\infty} f(x_n) = g. \]
 \end{definition}
 
 Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ musi być zdefiniowana w lewo- lub prawostronnym sąsiedztwie punktu $x_0$, a elementy ciągu $x_n$ muszą leżeć po lewej lub prawej stronie od $x_0$.
 
 \begin{theorem}
     Funkcja $f$ ma granicę wtedy i tylko wtedy, gdy obie granice jednostronne istnieją i są sobie równe.
-    \[ \lim_{x \lthen x_0} f(x) = g \quad\iff\quad \lim_{x \lthen x_0^-} f(x) = g \land \lim_{x \lthen x_0^+} f(x) = g \]
+    \[ \lim_{x \to x_0} f(x) = g \quad\iff\quad \lim_{x \to x_0^-} f(x) = g \land \lim_{x \to x_0^+} f(x) = g \]
 \end{theorem}
 \begin{proof}
     Wynika wprost z definicji Heinego granicy funkcji i granic jednostronnych.
@@ -17,16 +17,16 @@ Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ mu
 
 \begin{definition}[Cauchy'ego granicy funkcji]
     \label{d:cauchy_lim}
-    Funkcja $f: \RR \supset D_f \lthen \RR$ ma granicę $g = \lim\limits_{x \lthen x_0} f(x)$ w $x_0 \in \ol{\RR}$ wtedy, gdy jest określona w sąsiedztwie punktu $x_0$ oraz zachodzi warunek
+    Funkcja $f: \RR \supset D_f \to \RR$ ma granicę $g = \lim\limits_{x \to x_0} f(x)$ w $x_0 \in \ol{\RR}$ wtedy, gdy jest określona w sąsiedztwie punktu $x_0$ oraz zachodzi warunek
     \[ \dforall{\eps > 0} \dexists{\delta > 0} \dforall{x \in S(x_0, \delta)} |f(x) - g| < \eps. \]
 \end{definition}
 
 \begin{theorem}[o arytmetyce granic funkcji]
     Jeśli funkcje $f$ i $g$ są określone w sąsiedztwie $x_0 \in \ol{\RR}$, to:
     \begin{enumerate}
-        \item $\lim\limits_{x\lthen x_0} (f(x) \pm g(x)) = \lim\limits_{x\lthen x_0} f(x) \pm \lim\limits_{x\lthen x_0} g(x),$
-        \item $\lim\limits_{x\lthen x_0} (f(x) \cdot g(x)) = \lim\limits_{x\lthen x_0} f(x) \cdot \lim\limits_{x\lthen x_0} g(x),$
-        \item $\lim\limits_{x\lthen x_0} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x\lthen x_0} f(x)}{\lim\limits_{x\lthen x_0} g(x)},$ jeśli $g(x) \neq 0$ w sąsiedztwie $x_0$ oraz $\lim\limits_{x\lthen x_0} g(x) \neq 0$.
+        \item $\lim\limits_{x\to x_0} (f(x) \pm g(x)) = \lim\limits_{x\to x_0} f(x) \pm \lim\limits_{x\to x_0} g(x),$
+        \item $\lim\limits_{x\to x_0} (f(x) \cdot g(x)) = \lim\limits_{x\to x_0} f(x) \cdot \lim\limits_{x\to x_0} g(x),$
+        \item $\lim\limits_{x\to x_0} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x\to x_0} f(x)}{\lim\limits_{x\to x_0} g(x)},$ jeśli $g(x) \neq 0$ w sąsiedztwie $x_0$ oraz $\lim\limits_{x\to x_0} g(x) \neq 0$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -35,10 +35,10 @@ Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ mu
 
 \begin{theorem}[o trzech funkcjach]
     \label{t:squeeze theorem}
-    Jeśli $\lim\limits_{x\lthen x_0} f(x) = \lim\limits_{x\lthen x_0} h(x) = g$ oraz dla każdego $x$ w sąsiedztwie $x_0$ zachodzi
+    Jeśli $\lim\limits_{x\to x_0} f(x) = \lim\limits_{x\to x_0} h(x) = g$ oraz dla każdego $x$ w sąsiedztwie $x_0$ zachodzi
     \[ f(x) \leq g(x) \leq h(x), \]
     to
-    \[ \lim\limits_{x\lthen x_0} g(x) = g. \]
+    \[ \lim\limits_{x\to x_0} g(x) = g. \]
 \end{theorem}
 \begin{proof}
     Analogiczny jak dowód twierdzenia o trzech ciąchach (\ref{t:sequence squeeze theorem}).
@@ -50,19 +50,19 @@ Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ mu
 
 \begin{example}  % source: Demidovich, p. 26
     Znajdź
-    \[ \lim_{x \lthen 0} \frac{\sqrt{1+ x} - 1}{\sqrt[3]{1 + x} - 1}. \]
+    \[ \lim_{x \to 0} \frac{\sqrt{1+ x} - 1}{\sqrt[3]{1 + x} - 1}. \]
 \end{example}
 \begin{solution}
     Biorąc
     \[ 1 + x = y^6, \]
     mamy
-    \[ \lim_{x \lthen 0} \frac{\sqrt{1+ x} - 1}{\sqrt[3]{1 + x} - 1} = \lim_{y \lthen 1} \frac{y^3 - 1}{y^2 - 1} = \lim_{y \lthen 1} \frac{y^2 + y + 1}{y + 1} = \frac{3}{2}. \]
+    \[ \lim_{x \to 0} \frac{\sqrt{1+ x} - 1}{\sqrt[3]{1 + x} - 1} = \lim_{y \to 1} \frac{y^3 - 1}{y^2 - 1} = \lim_{y \to 1} \frac{y^2 + y + 1}{y + 1} = \frac{3}{2}. \]
 \end{solution}
 
 \begin{theorem}
     \label{t:lim_sinx/x}
     Zachodzi równość
-    \[ \lim_{x \lthen 0}\frac{\sin{x}}{x} = 1. \]
+    \[ \lim_{x \to 0}\frac{\sin{x}}{x} = 1. \]
 \end{theorem}
 \begin{proof}
     Narysujmy pewne długości na okręgu jednostkowym i oznaczmy jak na rysunku.
@@ -94,52 +94,52 @@ Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ mu
     \[ 1 \leq \frac{x}{\sin{x}} \leq \frac{1}{\cos x} \]
     \[ 1 \geq \frac{\sin{x}}{x} \geq \cos x. \]
     Z twierdzenia o trzech funkcjach (\ref{t:squeeze theorem}) otrzymujemy
-    \[ \lim_{x \lthen 0} \frac{\sin{x}}{x} = 1. \]
+    \[ \lim_{x \to 0} \frac{\sin{x}}{x} = 1. \]
 \end{proof}
 
 \begin{example}
     Oblicz
-    \[ \lim_{x \lthen 0} \frac{\cos{3x} - \cos{2x}}{x^2}. \]
+    \[ \lim_{x \to 0} \frac{\cos{3x} - \cos{2x}}{x^2}. \]
 \end{example}
 \begin{solution}
     Korzystając ze wzoru na różnicę cosinusów mamy
-    \[ \lim_{x \lthen 0} \frac{\cos{3x} - \cos{2x}}{x^2} = \lim_{x \lthen 0} -2\frac{\sin\frac{5x}{2}\sin\frac{x}{2}}{x^2}. \]
+    \[ \lim_{x \to 0} \frac{\cos{3x} - \cos{2x}}{x^2} = \lim_{x \to 0} -2\frac{\sin\frac{5x}{2}\sin\frac{x}{2}}{x^2}. \]
     Na mocy twierdzenia \ref{t:lim_sinx/x} otrzymujemy
-    \[ \lim_{x \lthen 0} -2\frac{\sin\frac{5x}{2}\sin\frac{x}{2}}{x^2} = -2\cdot\frac{\frac{5}{2}\cdot\frac{1}{2}}{1}\lim_{x\lthen 0}\frac{\sin\frac{5x}{2}}{\frac{5x}{2}}\lim_{x\lthen 0}\frac{\sin\frac{x}{2}}{\frac{x}{2}} =  \frac{-5}{2}. \]
+    \[ \lim_{x \to 0} -2\frac{\sin\frac{5x}{2}\sin\frac{x}{2}}{x^2} = -2\cdot\frac{\frac{5}{2}\cdot\frac{1}{2}}{1}\lim_{x\to 0}\frac{\sin\frac{5x}{2}}{\frac{5x}{2}}\lim_{x\to 0}\frac{\sin\frac{x}{2}}{\frac{x}{2}} =  \frac{-5}{2}. \]
 \end{solution}
 
 \begin{theorem}
     \label{t:lim ln(1+x)/x}
     Zachodzi równość
-    \[ \lim_{x\lthen 0}\frac{\ln(1 + x)}{x} = 1. \]
+    \[ \lim_{x\to 0}\frac{\ln(1 + x)}{x} = 1. \]
 \end{theorem}
 \begin{proof}
     TODO (logarytm granicy = granica logarytmu)
-    \[ \lim_{x\lthen 0}\frac{\ln(1 + x)}{x} = \lim_{x\lthen 0} \ln((1 + x)^{\frac{1}{x}}) = \ln\left(\lim_{x\lthen 0} (1 + x)^{\frac{1}{x}}\right) = \ln e = 1 \]
+    \[ \lim_{x\to 0}\frac{\ln(1 + x)}{x} = \lim_{x\to 0} \ln((1 + x)^{\frac{1}{x}}) = \ln\left(\lim_{x\to 0} (1 + x)^{\frac{1}{x}}\right) = \ln e = 1 \]
 \end{proof}
 
 \begin{theorem}
     Zachodzi równość
-    \[ \lim_{x\lthen 0}\frac{a^x - 1}{x} = \ln a \]
+    \[ \lim_{x\to 0}\frac{a^x - 1}{x} = \ln a \]
     dla $a > 0$.
 \end{theorem}
 \begin{proof}
     Skorzystamy z twierdzenia \ref{t:lim ln(1+x)/x}. Podstawiając $y = a^x - 1$ mamy
-    \begin{align*} \lim_{x\lthen 0}\frac{a^x - 1}{x} &= \lim_{y\lthen 0}\frac{y}{\log_a(1 + y)} = \lim_{y\lthen 0}\frac{y\ln{a}}{\ln {a}\log_a(1 + y)} = \\
-    &= \lim_{y\lthen 0}\frac{y\ln{a}}{\ln(1 + y)} = \lim_{y\lthen 0}\frac{y\ln{a}}{y} = \ln{a}. \end{align*}
+    \begin{align*} \lim_{x\to 0}\frac{a^x - 1}{x} &= \lim_{y\to 0}\frac{y}{\log_a(1 + y)} = \lim_{y\to 0}\frac{y\ln{a}}{\ln {a}\log_a(1 + y)} = \\
+    &= \lim_{y\to 0}\frac{y\ln{a}}{\ln(1 + y)} = \lim_{y\to 0}\frac{y\ln{a}}{y} = \ln{a}. \end{align*}
 \end{proof}
 
 \begin{theorem}
-    Jeśli $\lim\limits_{x\lthen x_0} f(x) = \pm\infty$, to zachodzi równość
-    \[ \lim_{x\lthen x_0}\left(1 + \frac{1}{f(x)}\right)^{f(x)} = e. \]
+    Jeśli $\lim\limits_{x\to x_0} f(x) = \pm\infty$, to zachodzi równość
+    \[ \lim_{x\to x_0}\left(1 + \frac{1}{f(x)}\right)^{f(x)} = e. \]
 \end{theorem}
 \begin{proof}
     TODO
 \end{proof}
 
 \begin{theorem}[o granicy funkcji złożonej]
-    Jeśli $\lim\limits_{x\lthen x_0} f(x) = y_0, \lim\limits_{x\lthen y_0} g(x) = z_0$ oraz dla każdego punktu $x$ w sąsiedztwie $x_0$ $f(x) \neq y_0$, to
-    \[ \lim_{x\lthen x_0} g(f(x)) = z_0. \]
+    Jeśli $\lim\limits_{x\to x_0} f(x) = y_0, \lim\limits_{x\to y_0} g(x) = z_0$ oraz dla każdego punktu $x$ w sąsiedztwie $x_0$ $f(x) \neq y_0$, to
+    \[ \lim_{x\to x_0} g(f(x)) = z_0. \]
 \end{theorem}
 \begin{proof}
     TODO
@@ -148,7 +148,7 @@ Granice lewo- lub prawostronne są definiowane analogicznie, lecz funkcja $f$ mu
 \subsection{Ciągłość funkcji}
 \begin{definition}[ciągłość funkcji w punkcie]
     Jeśli funkcja $f$ jest określona w otoczeniu punktu $x_0 \in D_f$ to mówimy, że funkcja $f$ jest ciągła w tym punkcie, jeśli
-    \[ \lim_{x \lthen x_0} f(x) = f(x_0). \]
+    \[ \lim_{x \to x_0} f(x) = f(x_0). \]
 \end{definition}
 
 Mówimy, że funkcja jest \vocab{ciągła}, jeśli jest ciągła w każdym punkcie swojej dziedziny.

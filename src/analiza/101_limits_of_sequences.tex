@@ -1,13 +1,13 @@
 \begin{definition}[Cauchy'ego granicy właściwej]
     \label{d:cauchy_lim_series}
-    Ciąg $(a_n)$ ma granicę $g = \displaystyle\lim_{n\lthen\infty} a_n$ wtedy, gdy
+    Ciąg $(a_n)$ ma granicę $g = \displaystyle\lim_{n\to\infty} a_n$ wtedy, gdy
     \[ \dforall{\eps > 0} \dexists{N \in\NN} \dforall{n\geq N} |a_n - g| < \eps. \]
 \end{definition}
 
-Jeśli ciąg $(a_n)$ ma granicę $g$, to mówimy że jest zbieżny do $g$ i piszemy $\lim a_n = g$ lub po prostu $a_n \lthen g$.
+Jeśli ciąg $(a_n)$ ma granicę $g$, to mówimy że jest zbieżny do $g$ i piszemy $\lim a_n = g$ lub po prostu $a_n \to g$.
 
 \begin{definition}[granicy niewłaściwej $+\infty$]
-    Ciąg $(a_n)$ ma granicę niewłaściwą $\displaystyle\lim_{n\lthen\infty} a_n = \infty$ wtedy, gdy
+    Ciąg $(a_n)$ ma granicę niewłaściwą $\displaystyle\lim_{n\to\infty} a_n = \infty$ wtedy, gdy
     \[ \dforall{M\in\RR} \dexists{N\in\NN} \dforall{n\geq N} a_n > M. \]
 \end{definition}
 
@@ -58,7 +58,7 @@ Prosty wniosek z tego twierdzenia jest taki, że jeśli znajdziemy dwa podciągi
 \begin{theorem}[o ciągu ograniczonym i ciągu zbieżnym do zera]
     \label{t:sequence bounded and convergent to 0}
     Jeśli ciag $(a_n)$ jest ograniczony oraz $\lim b_n = 0$, to
-    \[ \lim_{n \lthen \infty} (a_n \cdot b_n) = 0 \]
+    \[ \lim_{n \to \infty} (a_n \cdot b_n) = 0 \]
 \end{theorem}
 \begin{proof}
     Z założenia istnieje takie $M > 0$, że dla każdego $n \in \NN$ zachodzi
@@ -71,11 +71,11 @@ Prosty wniosek z tego twierdzenia jest taki, że jeśli znajdziemy dwa podciągi
 
 \subsection{Proste granice}
 \begin{theorem}[o arytmetyce granic ciągów]
-    Jeśli $\lim\limits_{n \lthen \infty} a_n = A$ oraz $\lim\limits_{n \lthen \infty} b_n = B$, to:
+    Jeśli $\lim\limits_{n \to \infty} a_n = A$ oraz $\lim\limits_{n \to \infty} b_n = B$, to:
     \begin{enumerate}
-        \item $\lim\limits_{n \lthen \infty} (a_n \pm b_n) = A \pm B,$
-        \item $\lim\limits_{n \lthen \infty} (a_n \cdot b_n) = A \cdot B,$
-        \item $\lim\limits_{n \lthen \infty} \frac{a_n}{b_n} = \frac{A}{B},$ jeśli $(b_n) \neq 0, B \neq 0$.
+        \item $\lim\limits_{n \to \infty} (a_n \pm b_n) = A \pm B,$
+        \item $\lim\limits_{n \to \infty} (a_n \cdot b_n) = A \cdot B,$
+        \item $\lim\limits_{n \to \infty} \frac{a_n}{b_n} = \frac{A}{B},$ jeśli $(b_n) \neq 0, B \neq 0$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -111,7 +111,7 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
 \begin{theorem}
     \label{t:(a)^(1/n)->1}
     Zachodzi równość
-    \[ \lim_{n \lthen \infty}\sqrt[n]{a} = 1 \]
+    \[ \lim_{n \to \infty}\sqrt[n]{a} = 1 \]
     dla każdego $a > 0$.
 \end{theorem}
 \begin{proof}
@@ -128,7 +128,7 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
 
 \begin{theorem}
     Zachodzi równość
-    \[ \lim_{n \lthen \infty}\sqrt[n]{n} = 1. \]
+    \[ \lim_{n \to \infty}\sqrt[n]{n} = 1. \]
 \end{theorem}
 \begin{proof}
     W poniższym dowodzie będziemy korzystać z nierówności między średnimi (\ref{t:mean ineqality}). Z nierówności między średnią geometryczną i harmoniczną (GM-HM) mamy
@@ -155,7 +155,7 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
     \[ (L - \eps)^{n-N} < \frac{a_n}{a_N} < (L + \eps)^{n-N} \]
     \[ \frac{(L - \eps)^n}{(L - \eps)^{N}} \cdot a_N < a_n < \frac{(L + \eps)^n}{(L + \eps)^{N}} \cdot a_N \]
     \[ (L - \eps)\sqrt[n]{\frac{a_N}{(L - \eps)^{N}}} < \sqrt[n]{a_n} < (L + \eps)\sqrt[n]{\frac{a_N}{(L + \eps)^{N}}}. \]
-    Korzystając z twierdzenia \ref{t:(a)^(1/n)->1} przy obliczeniu granicy przy $n \lthen \infty$ dla trzech powyższych wyrażeń mamy
+    Korzystając z twierdzenia \ref{t:(a)^(1/n)->1} przy obliczeniu granicy przy $n \to \infty$ dla trzech powyższych wyrażeń mamy
     \[ L - \eps < \lim\sqrt[n]{n} < L - \eps, \]
     z czego wynika (z definicji \ref{d:cauchy_lim_series}), że
     \[ \lim\sqrt[n]{n} = L = \lim\frac{a_{n+1}}{a_n}. \]
@@ -190,13 +190,13 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
 \begin{lemma}
     \label{l:lim e^k}
     Zachodzi równość
-    \[ \lim_{n\lthen\infty}\left(1 + \frac{k}{n}\right)^n = e^k, \]
+    \[ \lim_{n\to\infty}\left(1 + \frac{k}{n}\right)^n = e^k, \]
     a w szególności (dla $k = -1$)
-    \[ \lim_{n\lthen\infty}\left(1 - \frac{1}{n}\right)^n = \frac{1}{e}. \]
+    \[ \lim_{n\to\infty}\left(1 - \frac{1}{n}\right)^n = \frac{1}{e}. \]
 \end{lemma}
 \begin{proof}
     Dla $k = 0$ równość jest trywialna, dla $k \neq 0$ obliczamy
-    \[ \lim_{n\lthen\infty}\left(1 + \frac{k}{n}\right)^n = \lim_{n\lthen\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^n = \lim_{\frac{n}{k}\lthen\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^{\frac{n}{k} \cdot k} = e^k. \]
+    \[ \lim_{n\to\infty}\left(1 + \frac{k}{n}\right)^n = \lim_{n\to\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^n = \lim_{\frac{n}{k}\to\infty}\left(1 + \frac{1}{\frac{n}{k}}\right)^{\frac{n}{k} \cdot k} = e^k. \]
 \end{proof}
 
 \subsection{Mniej proste granice}
@@ -213,9 +213,9 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
 \subsection{\textit{Limes superior} i \textit{limes inferior}}
 \begin{definition}
     Dla ciągu $(a_n)$ definiujemy granicę górną (\textit{limes superior})
-    \[ \limsup_{n \lthen \infty} a_n = \sup\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\} \]
+    \[ \limsup_{n \to \infty} a_n = \sup\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\} \]
     oraz granicę dolną (\textit{limes inferior})
-    \[ \liminf_{n \lthen \infty} a_n = \inf\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\}. \]
+    \[ \liminf_{n \to \infty} a_n = \inf\{\lim a_{n_k} : (a_{n_k}) \text{ jest zbieżnym podciągiem } (a_n)\}. \]
 \end{definition}
 
 \begin{example}

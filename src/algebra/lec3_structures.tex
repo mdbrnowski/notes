@@ -1,7 +1,7 @@
 \vocab{Działaniem} (wewnętrznym) w zbiorze $A$ nazwiemy każde odwzorowanie $h$ takie, że
-$$ h : A \times A \lthen A. $$
+$$ h : A \times A \to A. $$
 \vocab{Działaniem zewnętrznym} w zbiorze $A$ jest odwzorowanie
-$$ h : F \times A \lthen A. $$
+$$ h : F \times A \to A. $$
 
 Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to zamiast $h(a, b)$ będziemy pisać $a \circ b$.
 
@@ -191,12 +191,12 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym) jeż
 \subsection{Morfizmy}
 \begin{definition}
     \label{d:homomorphism}
-    Homomorfizmem grupy $(A_1, +)$ w grupę $(A_2, \oplus)$ jest takie odwzorowanie $h : A_1 \lthen A_2$, że
+    Homomorfizmem grupy $(A_1, +)$ w grupę $(A_2, \oplus)$ jest takie odwzorowanie $h : A_1 \to A_2$, że
     $$ \forall x, y \in A_1 : h(x + y) = h(x) \oplus h(y). $$
 \end{definition}
 
 \begin{fact}
-    Jeśli $h : A_1 \lthen A_2$ jest homomorfizmem grupy $(A_1, +)$ w $(A_2, \oplus)$, to
+    Jeśli $h : A_1 \to A_2$ jest homomorfizmem grupy $(A_1, +)$ w $(A_2, \oplus)$, to
     \begin{enumerate}[noitemsep,nolistsep]
         \item $e \in A_1$ jest elementem neutralnym w $(A_1, +)$ $\Longrightarrow$ $h(e) \in A_2$ jest elementem neutralnym w $(A_2, \oplus)$,
         \item $\forall x \in A_1 : h(x') = h(x)'$.
