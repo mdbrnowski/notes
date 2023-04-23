@@ -1,0 +1,75 @@
+\begin{definition}
+    Pochodną funkcji $f : \RR^k \supset D \to \RR^m$ wzdłuż wektora $\vec{v}$ nazwiemy taką funkcję $D_v f$, że
+    \[ D_v f(x) = \lim_{t\to 0}\frac{f(x + t\vec{v}) - f(x)}{t}. \]
+\end{definition}
+
+Oprócz notacji Eulera ($D_v f$) stosuje się również notację Leibniza ($D_v f(x) = \frac{\p f(x)}{\p{\vec{v}}})$. Notacji Lagrange'a ($f'$) raczej nie używa się w przypadku pochodnych funkcji wielu zmiennych.
+
+Pochodna wzdłuż wektora $\vec{v}$ jest pochodną \vocab{w kierunku} wektora $\frac{\vec{v}}{\Vert\vec{v}\Vert}$. Te pojęcia są oczywiście równoważne, jeśli $\vec{v}$ jest wersorem. Najczęściej używamy jednak \vocab{pochodnych cząstkowych} to znaczy pochodnych wzdłuż wersorów osiowych, oznaczając
+\[ \frac{\p f}{\p x}(x, y) = \frac{\p f}{\p [1, 0]}(x, y) \hspace{1em}\text{ oraz }\hspace{1em} \frac{\p f}{\p y}(x, y) = \frac{\p f}{\p [0, 1]}(x, y). \]
+
+\begin{definition}[różniczka]
+    Funkcja $f : \RR^k \supset D \to \RR^m$ jest różniczkowalna w $p$, gdy istnieje takie przekształcenie liniowe $L_{p} : \RR^k \to \RR^m$, że dla każdego $p + h$ w otoczeniu $p$ zachodzi
+    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p) - L_{p}(h)}{\Vert h \Vert} = \vec{0}. \]
+    Funkcję $L_{p}(h)$ nazywamy różniczką funkcji $f$ w punkcie $p$ i oznaczamy $\d f(p)(h)$.
+\end{definition}
+
+\begin{theorem}[warunek konieczny różniczkowalności]
+    Jeśli funkcja $f : \RR^k \supset D \to \RR^m$ jest różniczkowalna w punkcie $p$, to istnieje pochodna funkcji $f$ w punkcie $p$ wzdłuż dowolnego wektora $h \in \RR^k$ i zachodzi
+    \[ \frac{\p f}{\p h}(p) = \d f(p)(h). \]
+\end{theorem}
+\begin{proof}
+    Pamiętając, że $\d f(p)$ jest przekształceniem liniowym, więc może być rozpatrywane jako macierz, możemy równoważnie stwierdzić, że
+    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p) - \d f(p)(h)}{\Vert h \Vert} = \vec{0} \]
+    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p) - \d f(p) \cdot h}{\Vert h \Vert} = \vec{0} \]
+    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p)}{\Vert h \Vert} = \d f(p)\cdot\hat{h} \]
+    \[ \lim_{t\to 0} \frac{f(p + t\hat{h}) - f(p)}{t} = \d f(p)\cdot\hat{h} \]
+    \[ \frac{\p f}{\p{\hat{h}}}(p) = \d f(p)\cdot\hat{h}. \]
+\end{proof}
+
+\begin{definition}[jakobian]
+    Dana jest funkcja $f : \RR^k \supset D \to \RR^m$, gdzie
+    \[ f(p) = f(x_1, \ldots, x_k) = (f_1(x_1, \ldots, x_k), \ldots, f_m(x_1, \ldots, x_k)).\]
+    Macierz
+    \[ \d f(p) = \begin{bNiceMatrix}
+        \frac{\p f_1}{\p x_1}(p) & \frac{\p f_1}{\p x_2}(p) & \Cdots & \frac{\p f_1}{\p x_k}(p) \\
+        \frac{\p f_2}{\p x_1}(p) & \frac{\p f_2}{\p x_2}(p) & \Cdots & \frac{\p f_2}{\p x_k}(p) \\
+        \Vdots & \Vdots & \Ddots & \Vdots \\
+        \frac{\p f_m}{\p x_1}(p) & \frac{\p f_m}{\p x_2}(p) & \Cdots & \frac{\p f_m}{\p x_k}(p) \\
+    \end{bNiceMatrix} \]
+     nazywamy macierzą Jacobiego funkcji $f$ w punkcie $p$. Jeśli macierz ta jest kwadratowa, to jej wyznacznik nazywamy jakobianem funkcji $f$ w punkcie $p$ i oznaczamy $J(p)$.
+\end{definition}
+
+Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macierz $\d f(p)$ i wektor $h$, więc
+\begin{align*}
+    \d f(p)(h) &= \begin{bNiceMatrix}
+        \frac{\p f_1}{\p x_1}(p) & \frac{\p f_1}{\p x_2}(p) & \Cdots & \frac{\p f_1}{\p x_k}(p) \\
+        \frac{\p f_2}{\p x_1}(p) & \frac{\p f_2}{\p x_2}(p) & \Cdots & \frac{\p f_2}{\p x_k}(p) \\
+        \Vdots & \Vdots & \Ddots & \Vdots \\
+        \frac{\p f_m}{\p x_1}(p) & \frac{\p f_m}{\p x_2}(p) & \Cdots & \frac{\p f_m}{\p x_k}(p) \\
+    \end{bNiceMatrix}\begin{bNiceMatrix}
+        h_1 \\ h_2 \\ \Vdots \\ h_k
+    \end{bNiceMatrix} \\ \\
+    &= \begin{bNiceMatrix}
+        \frac{\p f}{\p x_1}(p)h_1 & \frac{\p f}{\p x_2}(p)h_2 & \Cdots & \frac{\p f}{\p x_k}(p)h_k
+    \end{bNiceMatrix}
+\end{align*}
+
+\begin{theorem}[warunek konieczny różniczkowalności]
+    Jeśli funkcja jest różniczkowalna w $x_0$, to jest ciągła w $x_0$.
+\end{theorem}
+
+\begin{theorem}[warunek wystarczający różniczkowalności]
+    Jeśli istnieją i są ciągłe wszystkie pochodne cząstkowe funkcji $f$ w punkcie $x_0$, to funkcja $f$ jest różniczkowalna w $x_0$.
+\end{theorem}
+
+W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretwać geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest równiczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
+\begin{equation}
+    z - f(x_0, y_0) = \frac{\p f}{\p x}(x_0, y_0) \cdot (x - x_0) + \frac{\p f}{\p y}(x_0, y_0) \cdot (y -y_0).
+\end{equation}
+
+Również analogicznie do funkcji $\RR \to \RR$ możemy za pomocą pochodnych przybliżać wartości funkcji $\RR^k \to \RR$. Mamy
+\begin{equation}
+    f(x_0 + h) \approx f(x_0) + \d f(x_0)(h),
+\end{equation}
+jeśli tylko funkcja $f$ jest różniczkowalna w otoczeniu $x_0$.

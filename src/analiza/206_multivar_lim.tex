@@ -141,3 +141,27 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym ko
     \end{tikzpicture}
     \caption[short]{Wykres funkcji $f(x, y) = \frac{xy^2}{x^2 + y^4}$ z zaznaczoną prostą $y = \frac{x}{3}$.}
 \end{figure}
+
+Granicę funkcji $f(x, y)$ w formie $\lim_{(x, y) \to (x_0, y_0)} f(x, y)$ nazywamy czasami \vocab{granicą podwójną}\footnote{co może być nazwą mylącą; w literaturze angielskiej jest to \textit{ordinary limit}, który nie jest tym samym pojęciem co \textit{double limit}. W szczególności dla \textit{double limit} nie zachodzi fakt \ref{f:iterated and ordinary limit}, zobacz też: \href{https://en.wikipedia.org/wiki/Iterated_limit\#Limit_of_function}{wikipedia}.}, w odróżnieniu od granic $\lim_{x\to x_0} \lim_{y\to y_0} f(x, y)$ czy $\lim_{x\to x_0} \lim_{y\to y_0} f(x, y)$, które są \vocab{granicami iterowanymi}.
+
+\begin{fact}
+    \label{f:iterated and ordinary limit}
+    Jeśli funkcja $f(x, y)$ ma w punkcie $(x_0, y_0)$ granicę podwójną oraz istnieją obie jej granice iterowane, to wszystkie trzy są sobie równe.
+\end{fact}
+\begin{proof}[Uzasadnienie]
+    Granica iterowana w punkcie $(x_0, y_0)$ modeluje dążenie do tego punktu po dwóch bokach prostokąta.
+\end{proof}
+
+\begin{remark*}
+    Jeśli obie granice iterowane nie istnieją, to nie znaczy, że granica podwójna nie istnieje. Jeśli obie granice iterowanie istnieją i są sobie równe, to nie znaczy, że granica podwójna istnieje.
+
+    Natomiast z powyższego faktu wynika, że jeśli obie granice iterowane istnieją i nie są sobie równe, to granica podwójna nie istnieje.
+\end{remark*}
+
+\begin{fact}
+    Jeśli funkca (wielu zmiennych) $f$ jest ciągła w $x_0$, a funkcja $g$ jest ciągła w $f(x_0)$, to funkcja $g\circ f$ jest ciągła w $x_0$.
+\end{fact}
+
+\begin{fact}
+    Jeśli funkcje (wielu zmiennych) $f, g$ są ciągłe w $x_0$, to funkcje $f+g, f-g, f\cdot g$ również są ciągłe w tym punkcie. Jeśli dodamy warunek, że $g(x) \neq 0$ dla pewnego otoczenia $x_0$, to ciągła w tym puncie jest również funkcja $\frac{f}{g}$.
+\end{fact}
