@@ -18,13 +18,12 @@ Pochodna wzdłuż wektora $\vec{v}$ jest pochodną \vocab{w kierunku} wektora $\
     Jeśli funkcja $f : \RR^k \supset D \to \RR^m$ jest różniczkowalna w punkcie $p$, to istnieje pochodna funkcji $f$ w punkcie $p$ wzdłuż dowolnego wektora $h \in \RR^k$ i zachodzi
     \[ \frac{\p f}{\p h}(p) = \d f(p)(h). \]
 \end{theorem}
-\begin{proof}
+\begin{proof}[Wyprowadzenie wzoru]
     Pamiętając, że $\d f(p)$ jest przekształceniem liniowym, więc może być rozpatrywane jako macierz, możemy równoważnie stwierdzić, że
-    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p) - \d f(p)(h)}{\Vert h \Vert} = \vec{0} \]
     \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p) - \d f(p) \cdot h}{\Vert h \Vert} = \vec{0} \]
-    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p)}{\Vert h \Vert} = \d f(p)\cdot\hat{h} \]
-    \[ \lim_{t\to 0} \frac{f(p + t\hat{h}) - f(p)}{t} = \d f(p)\cdot\hat{h} \]
-    \[ \frac{\p f}{\p{\hat{h}}}(p) = \d f(p)\cdot\hat{h}. \]
+    \[ \lim_{t\to 0} \frac{f(p + th) - f(p) - \d f(p) \cdot th}{t} = \vec{0} \]
+    \[ \lim_{t\to 0} \frac{f(p + th) - f(p)}{t} = \d f(p)\cdot h \]
+    \[ \frac{\p f}{\p h}(p) = \d f(p)\cdot h. \]
 \end{proof}
 
 \begin{definition}[jakobian]
@@ -41,35 +40,93 @@ Pochodna wzdłuż wektora $\vec{v}$ jest pochodną \vocab{w kierunku} wektora $\
 \end{definition}
 
 Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macierz $\d f(p)$ i wektor $h$, więc
-\begin{align*}
-    \d f(p)(h) &= \begin{bNiceMatrix}
-        \frac{\p f_1}{\p x_1}(p) & \frac{\p f_1}{\p x_2}(p) & \Cdots & \frac{\p f_1}{\p x_k}(p) \\
-        \frac{\p f_2}{\p x_1}(p) & \frac{\p f_2}{\p x_2}(p) & \Cdots & \frac{\p f_2}{\p x_k}(p) \\
-        \Vdots & \Vdots & \Ddots & \Vdots \\
-        \frac{\p f_m}{\p x_1}(p) & \frac{\p f_m}{\p x_2}(p) & \Cdots & \frac{\p f_m}{\p x_k}(p) \\
-    \end{bNiceMatrix}\begin{bNiceMatrix}
-        h_1 \\ h_2 \\ \Vdots \\ h_k
-    \end{bNiceMatrix} \\ \\
-    &= \begin{bNiceMatrix}
-        \frac{\p f}{\p x_1}(p)h_1 & \frac{\p f}{\p x_2}(p)h_2 & \Cdots & \frac{\p f}{\p x_k}(p)h_k
-    \end{bNiceMatrix}
-\end{align*}
+\[ \d f(p)(h) = \begin{bNiceMatrix}
+    \frac{\p f_1}{\p x_1}(p) & \frac{\p f_1}{\p x_2}(p) & \Cdots & \frac{\p f_1}{\p x_k}(p) \\
+    \frac{\p f_2}{\p x_1}(p) & \frac{\p f_2}{\p x_2}(p) & \Cdots & \frac{\p f_2}{\p x_k}(p) \\
+    \Vdots & \Vdots & \Ddots & \Vdots \\
+    \frac{\p f_m}{\p x_1}(p) & \frac{\p f_m}{\p x_2}(p) & \Cdots & \frac{\p f_m}{\p x_k}(p) \\
+\end{bNiceMatrix}\begin{bNiceMatrix}
+    h_1 \\ h_2 \\ \Vdots \\ h_k
+\end{bNiceMatrix} = \begin{bNiceMatrix}
+    \frac{\p f_1}{\p x}(p)h_1 \\ \frac{\p f_2}{\p x}(p)h_2 \\ \Vdots \\ \frac{\p f_m}{\p x}(p)h_k
+\end{bNiceMatrix} \]
 
 \begin{theorem}[warunek konieczny różniczkowalności]
     Jeśli funkcja jest różniczkowalna w $x_0$, to jest ciągła w $x_0$.
 \end{theorem}
 
 \begin{theorem}[warunek wystarczający różniczkowalności]
+    \label{t:differentiability of multivar functions}
     Jeśli istnieją i są ciągłe wszystkie pochodne cząstkowe funkcji $f$ w punkcie $x_0$, to funkcja $f$ jest różniczkowalna w $x_0$.
 \end{theorem}
 
 W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretwać geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest równiczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
 \begin{equation}
-    z - f(x_0, y_0) = \frac{\p f}{\p x}(x_0, y_0) \cdot (x - x_0) + \frac{\p f}{\p y}(x_0, y_0) \cdot (y -y_0).
+    z = f(x_0, y_0) + \frac{\p f}{\p x}(x_0, y_0) \cdot (x - x_0) + \frac{\p f}{\p y}(x_0, y_0) \cdot (y -y_0).
 \end{equation}
+
+\begin{example}
+    Znajdź równanie płaszczyzny stycznej do funkcji
+    \[ f(x, y) = e^{x^2 - y} \]
+    w punkcie $p = (1, 0)$.
+\end{example}
+\begin{solution}
+    Najpierw znajdźmy pochodne cząstowe:
+    \begin{align*}
+        \frac{\p f}{\p x}f(x, y) = e^{x^2 - y} \cdot 2x = 2xe^{x^2 - y} \\
+        \frac{\p f}{\p y}f(x, y) = e^{x^2 - y} \cdot (-1) = -e^{x^2 - y}.
+    \end{align*}
+    Płaszczyzna styczna w punkcie $p$ ma więc wzór
+    \[ z  = e^{1 - 0} + 2\cdot 1\cdot e^{1 - 0}\cdot (x - 1) - e^{1 - 0}\cdot (y - 0) \]
+    \[ z  = 2ex - ey - e. \]
+\end{solution}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[my axis style, view = {-15}{30}]
+            \addplot3[surf, opacity=0.1, colormap={CM}{rgb255=(255,0,0) rgb255=(255,0,0)},
+                domain = -1.5:1.5, domain y = -1.5:1.5,
+                samples = 10, samples y = 10
+            ]{e*(2*x - y - 1)};
+            \addplot3[
+                domain = -1.5:1.5, domain y = -1.5:1.5,
+                samples = 24, samples y = 24,
+                mesh
+            ]{exp(x^2 - y)};
+            \node[draw=none, shape=circle, fill, opacity=0.7, red, inner sep=1.5pt] (d1) at (1,0,e){};
+        \end{axis}
+    \end{tikzpicture}
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[my axis style, view = {10}{10}]
+            \addplot3[surf, opacity=0.1, colormap={CM}{rgb255=(255,0,0) rgb255=(255,0,0)},
+                domain = -1.5:1.5, domain y = -1.5:1.5,
+                samples = 10, samples y = 10
+            ]{e*(2*x - y - 1)};
+            \addplot3[
+                domain = -1.5:1.5, domain y = -1.5:1.5,
+                samples = 24, samples y = 24,
+                mesh
+            ]{exp(x^2 - y)};
+            \node[draw=none, shape=circle, fill, opacity=0.7, red, inner sep=1.5pt] (d1) at (1,0,e){};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Wykres funkcji $f(x, y) = e^{x^2 - y}$ z płaszczyzną styczną w $(1, 0)$.}
+\end{figure}
 
 Również analogicznie do funkcji $\RR \to \RR$ możemy za pomocą pochodnych przybliżać wartości funkcji $\RR^k \to \RR$. Mamy
 \begin{equation}
     f(x_0 + h) \approx f(x_0) + \d f(x_0)(h),
 \end{equation}
 jeśli tylko funkcja $f$ jest różniczkowalna w otoczeniu $x_0$.
+
+Pochodna cząstkowa \vocab{drugiego rzędu} to pochodna
+\[ \frac{\p{}^2 f}{\p x_j \p x_i} = \frac{\p{}}{\p x_j}\left(\frac{\p f}{\p x_i}\right). \]
+Jeśli $i = j$, czyli pochodna ma postać $\frac{\p{}^2 f}{\p{} x^2}$, to nazywamy ją pochodną \vocab{czystą}, a przeciwnym wypadku jest \vocab{mieszana}.
+
+Analogicznie do twierdzenia \ref{t:differentiability of multivar functions} funkcja $f: D \supset \RR^k \to \RR^m$ jest \vocab{$2$-krotnie różniczkowalna} w punkcie $p$, gdy istnieją i są ciągłe wszystkie (jest ich $k^2$) pochodne cząstkowe $2$-go rzędu funkcji $f$ w punkcie $p$.
+
+\begin{theorem}[Schwarza o pochodnych mieszanych]
+    Jeśli funkcja $f$ jest $2$-krotnie różniczkowalna w $p$, to
+    \[ \frac{\p{}^2 f}{\p x \p y}(p) = \frac{\p{}^2 f}{\p y \p x}(p). \]
+\end{theorem}
