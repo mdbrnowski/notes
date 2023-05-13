@@ -1,8 +1,12 @@
 # notes
 
+> Too many authors to cite?
+>
+> No problem et al.
+
 ## My notes, articles, papers, etc.
 
-### Computer Science at AGH UST
+### Computer Science at AGH University
 
 * 🚧 **analiza.tex** ([pdf](pdf/analiza.pdf)) – *Analiza II*
 * **algebra.tex** ([pdf](pdf/algebra.pdf)) – *Algebra*
