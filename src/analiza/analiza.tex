@@ -2,7 +2,7 @@
 \usepackage[pretty,polish]{mystd}
 \title{Analiza}
 \author{Michał Dobranowski}
-\date{semestr letni 2023\\ v0.7}
+\date{semestr letni 2023\\ v0.8}
 
 \begin{document}
     \maketitle
@@ -46,7 +46,7 @@
         my axis style/.style={
             grid,
             tick label style={font=\scriptsize},
-            colormap={CM}{rgb255=(0,0,255) color=(black) rgb255=(210,100,200)},
+            colormap={CM}{rgb255=(50,50,255) color=(black) rgb255=(210,100,200)},
             xlabel={$x$},
             ylabel={$y$},
             zlabel={$f(x, y)$}
@@ -57,6 +57,8 @@
     \input{206_multivar_lim.tex}
         \subsection{Pochodne funkcji wielu zmiennych}
         \input{207_multivar_derivative.tex}
+        \subsection{Ekstrema lokalne}
+        \input{208_multivar_extrema.tex}
 
     % \appendix
     % \section{Dodatek}

@@ -1,0 +1,167 @@
+\begin{definition}[maksimum lokalne]
+    Funkcja $f : D \to \RR$ określona na obszarze $D \subset \RR^n$ ma maksimum lokalne w punkcie $x_0 \in D$, jeśli istnieje takie sąsiedztwo $U \subset D$ punktu $x_0$, że dla każdego $x \in U$
+    \[ f(x) < f(x_0). \]
+\end{definition}
+
+Analogicznie definiujemy minimum lokalne.
+
+\begin{theorem}[warunek konieczny istnienia ekstremum lokalnego]
+    \label{t:necessity for local extrema of differentiable function}
+    Jeśli funkcja $f$ jest różniczkowalna oraz ma ekstremum lokalne w $x_0$, to
+    \[ \d f(x_0) = \mathbf{0}. \]
+\end{theorem}
+
+
+\begin{definition}
+    Forma kwadratowa to funkcja $\varphi : \RR^n \to \RR$ taka, że
+    \begin{align*}
+        \varphi(x_1, x_2, \ldots, x_n) = a_{11}x_1^2 + a_{12}x_1x_2 + \ldots + a_{1n}x_1x_n \\
+            + a_{21}x_{2}x_2 + a_{22}x_2^2 + \ldots + a_{2n}x_2x_n \\
+            + \ldots + \ldots + a_nnx_n^2
+    \end{align*}
+    \[ \varphi(x_1, x_2, \ldots, x_n) = \begin{bNiceMatrix}
+        x_1 & \Cdots & x_n
+    \end{bNiceMatrix}\begin{bNiceMatrix}
+        a_{11} & \Cdots & a_{1n} \\
+        \Vdots & \Ddots & \Vdots \\
+        a_{n1} & \Cdots & a_{nn}
+    \end{bNiceMatrix}\begin{bNiceMatrix}
+        x_1 \\ \Vdots \\ x_n
+    \end{bNiceMatrix} = X^T \cdot A \cdot X, \]
+    gdzie macierz $A$ jest symetryczną macierzą, którą nazywamy \vocab{macierzą formy kwadratowej}. Forma kwadratowa $\varphi$ jest \vocab{określona} dodatnio / ujemnie / nieujemnie / niedodatnio, jeśli dla każdego niezerowego $h \in \RR^n$, $\varphi(h)$ jest dodatnie / ujemne / nieujemne / niedodatnie. Jeśli istnieją dwa wektory, dla których $\varphi$ przyjmuje niezerowe wartości różnych znaków, to mówimy, że forma jest nieokreślona.
+\end{definition}
+
+\begin{theorem}[Sylvestera]
+    Jeśli $A$ jest macierzą formy kwadratowej $\varphi$ oraz
+    \[ d_k = \det \begin{bNiceMatrix}
+        a_{11} & \Cdots & a_{1k} \\
+        \Vdots & \Ddots & \Vdots \\
+        a_{k1} & \Cdots & a_{kk}
+    \end{bNiceMatrix}, \]
+    jest ciągiem minorów wiodących, to:
+    \begin{enumerate}
+        \item $\forall_k\ d_k > 0 \implies \varphi$ jest dodatnio określona
+        \item $\forall_k\ (-1)^k d_k > 0 \implies \varphi$ jest ujemnie określona
+        \item $\forall_k\ d_k \geq 0 \implies \varphi$ jest nieujemnie określona
+        \item $\forall_k\ (-1)^k d_k \geq 0 \implies \varphi$ jest niedodatnio określona
+        \item w innym wypadku $\varphi$ jest niookreślona
+    \end{enumerate}
+\end{theorem}
+
+\begin{definition}[hesjan]
+    Jeśli funkcja $f : \RR^n \supset D \to \RR$ jest dwukrotnie różniczkowalna w punkcie $p$, to macierz
+    \[ H(p) = \begin{bNiceMatrix}
+        \frac{\p{}^2 f}{\p x_1^2}(p) & \frac{\p{}^2 f}{\p x_1 \p x_2}(p) & \Cdots & \frac{\p{}^2 f}{\p x_1 \p x_n}(p) \\
+        \frac{\p{}^2 f}{\p x_n \p x_1}(p) & \frac{\p{}^2 f}{\p x_2^2}(p) & \Cdots & \frac{\p{}^2 f}{\p x_2 \p x_n}(p) \\
+        \Vdots & \Vdots & \Ddots & \Vdots \\
+        \frac{\p{}^2 f}{\p x_n \p x_1}(p) & \frac{\p{}^2 f}{\p x_n \p x_2}(p) & \Cdots & \frac{\p{}^2 f}{\p x_n \p x_n}(p) \\
+    \end{bNiceMatrix} \]
+    nazywamy \vocab{macierzą Hessego} funkcji $f$ w punkcie $p$. Jej wyznacznik nazywamy hesjanem tej funkcji w $p$.
+\end{definition}
+
+\begin{theorem}[warunek wystarczający istnienia ekstremum lokalnego]
+    \label{t:local extrema with Hessian matrix}
+    Dana jest funkcja $f : D \to \RR$ określona na obszarze $D \subset \RR^n$. Jeśli wszystkie jej pochodne cząstkowe drugiego rzędu są ciągłe w pewnym otoczeniu $U \ni p$ oraz spełniony jest warunek konieczny (\ref{t:necessity for local extrema of differentiable function}), to jeśli forma kwadratowa, której macierzą jest macierz Hessego funkcji $f$ w punkcie $p$ jest:
+    \begin{enumerate}
+        \item określona dodatnio, to istnieje minimum lokalne w punkcie $p$,
+        \item określona ujemnie, to istnieje maksimum lokalne w punkcie $p$,
+        \item nieokreślona, to nie ma ekstremum lokalnego w punkcie $p$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+    Punkty dziedziny, w których różniczka jest tożsamościowa równa zeru lub nie istnieje to \vocab{punkty krytyczne}. Te, które spełniają pierwszy warunek, to \vocab{punkty stacjonarne}. Z warunku koniecznego istnienia ekstremum lokalnego (twierdzenie \ref{t:necessity for local extrema of differentiable function}) wynika, że ektrema istnieją tylko w punktach krytycznych, jednak nie w każdym punkcie krytycznym jest ekstremum. Takie punkty stacjonarne, w których nie ma minimum ani maksimum, to \vocab{punkty siodłowe}.
+
+    Z warunku wystarczającego istnienia ekstremum lokalnego (twierdzenie \ref{t:local extrema with Hessian matrix}) wynika, że jeśli badamy punkty stacjonarne za pomocą macierzy Hessego i wyjdzie nam chociaż jeden minor zerowy, a forma będzie określona nieujemnie lub niedodatnio, to ta metoda okaże się po prostu nieskuteczna. W szczególności jeśli badamy funkcję dwóch zmiennych i hesjan wyjdzie zerowy, to nie możemy nic powiedzieć o istnieniu ekstremum.
+\end{remark}
+
+\begin{example}
+    Znajdź ekstrema lokalne funkcji
+    \[ f(x, y) = x^3 + y^3 - 3xy. \]
+\end{example}
+\begin{solution}
+    Najpierw policzmy pochodne cząstkowe:
+    \[ \frac{\p f}{\p x}(x, y) = 3x^2 - 3y, \qquad \frac{\p f}{\p y}(x, y) = 3y^2 - 3x.\]
+    Są one ciągłe, więc funkcja jest różniczkowalna (z \ref{t:differentiability of multivar functions}), więc ewentualne ekstrema na pewno będą w miejscach zerowania się obu pochodnych cząstkowych (z \ref{t:necessity for local extrema of differentiable function}). Mamy więc
+    \[ \begin{cases} 3x^2 - 3y = 0 \\ 3y^2 - 3x = 0 \end{cases} \implies \begin{cases} x^2 = y \\ y^2 = x \end{cases} \implies (x, y) \in \{(0, 0), (1, 1)\}. \]
+
+    Policzmy macierz Hessego:
+    \[ H(x, y) = \begin{bmatrix}
+        \frac{\p{}^2 f}{\p x^2}(x, y) & \frac{\p{}^2 f}{\p x \p y}(x, y) \\
+        \frac{\p{}^2 f}{\p y \p x}(x, y) & \frac{\p{}^2 f}{\p y^2}(x, y)
+    \end{bmatrix} = \begin{bmatrix}
+        \frac{\p{} }{\p x}(3x^2 - 3y) & \frac{\p{} }{\p x}(3y^2 - 3x) \\
+        \frac{\p{} }{\p y}(3x^2 - 3y) & \frac{\p{} }{\p y}(3y^2 - 3x)
+    \end{bmatrix} = \begin{bmatrix}
+        6x & -3 \\
+        -3 & 6y
+    \end{bmatrix}. \]
+
+    Dla punktu $(x, y) = (1, 1)$ mamy
+    \[ H(1, 1) = \begin{bmatrix}
+        6 & -3 \\
+        -3 & 6
+    \end{bmatrix} \implies \begin{cases} d_1 = 6 > 0,\\ d_2 = 6\cdot 6 - 3\cdot 3 > 0 \end{cases}, \]
+    więc na podstawie warunku wystarczającego (\ref{t:local extrema with Hessian matrix}) wnioskujemy, że w punkcie $(1, 1)$ jest minimum lokalne.
+
+    Dla punktu $(x, y) = (0, 0)$ mamy
+    \[ H(0, 0) = \begin{bmatrix}
+        0 & -3 \\
+        -3 & 0
+    \end{bmatrix} \implies \begin{cases} d_1 = 0,\\ d_2 = -9 < 0 \end{cases}, \]
+    więc twierdzenie \ref{t:local extrema with Hessian matrix} nie rozstrzyga istnienia ekstremum lokalnego. Mamy jednak
+    \[ f(\eps, 0) = \eps^3, \]
+    które przyjmuje wartości większe od $f(0, 0) = 0$ dla $\eps > 0$ oraz mniejsze dla $\eps < 0$, więc punkt $(0, 0)$ jest punktem siodłowym.
+\end{solution}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[my axis style, view = {-20}{30}]
+            \addplot3[
+                domain = -0.5:1.4, domain y = -0.5:1.4,
+                samples = 24, samples y = 24,
+                mesh
+            ]{x^3 + y^3 - 3*x*y};
+        \end{axis}
+    \end{tikzpicture}
+    \begin{tikzpicture}[scale=0.8]
+        \begin{axis}[my axis style, view = {0}{90}]
+            \addplot3[
+                domain = -0.5:1.4, domain y = -0.5:1.4,
+                samples = 24, samples y = 24,
+                surf
+            ]{x^3 + y^3 - 3*x*y};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Wykres funkcji $f(x, y) = x^3 + y^3 - 3xy$.}
+\end{figure}
+
+\begin{example}
+    Znaleźć odległość punktu $A = (0, 1, 0)$ od powierzchni $\pi : y = xz$.
+\end{example}
+\begin{solution}
+    Weźmy punkt $P \in \pi$. Wtedy $P = (x, xz, z)$, a odłegłość tego punktu od punktu $A$ wyraża się wzorem
+    \[ f(x, z) = \sqrt{x^2 + (xz- 1)^2 + z^2}. \]
+    Możemy skorzystać z faktu, że funkcja pierwiastkowa jest monotoniczna i spróbować znaleźć minimum funkcji
+    \[ g(x, z) = x^2 + (xz - 1)^2 + z^2. \]
+    Pochodne cząstkowe
+    \[ \frac{\p g(x, z)}{\p x} = 2x + 2xz^2 - 2z, \qquad \frac{\p g(x, z)}{\p z} = 2z + 2x^2z - 2x \]
+    są ciągłe, więc funkcja $g$ jest różniczkowalna, więc jej minimum może być jedynie w punktach stacjonarnych:
+    \[ \begin{cases} x + xz^2 - z = 0 \\ z + x^2z - x = 0 \end{cases}. \]
+    Po dodaniu stronami i podstawieniu odpowiednich wartości przekształcamy powyższy układ równań do
+    \[ x = z = 0. \]
+    Przyjemność zweryfikowania, że metoda macierzy Hessego dla tego puntu nie rozstrzygnie istnienia minimum pozostawione jest Czytelnikowi.
+
+    W takiej sytuacji musimy poradzić sobie jakoś inaczej. Wykorzystując nierówność między średnimi (AM-GM) mamy:
+    \[ g(x, z) = x^2 + z^2 + (xz - 1)^2 \geq 2\sqrt{x^2z^2} + (xz)^2 - 2xz + 1 = (xz)^2 + 1 \geq 1. \]
+    Aby zamiast słabych nierówności mogły pojawić się tutaj równości, musi być spełnione $x^2 = z^2$ (z AM-GM) oraz $xz = 0$. To oczywiście zachodzi dla $x = z = 0$, więc pokazaliśmy, że $d_e(A, \pi) = \sqrt{1} = 1$.
+\end{solution}
+
+Warto zauważyć, że zamiast sprawdzać kiedy słabe nierówności są równościami, można było również po prostu policzyć odległość punktu $A$ od punktu $P = (0, 0, 0)$, ponieważ wiemy, że tylko w nim może wystąpić minimum.
+
+\begin{theorem}[Weierstrassa o osiąganiu kresów]
+    \label{t:Weierstrass}
+    Jeśli funkcja $f : D \to \RR$ jest ciągła, a zbiór $D \in \RR^n$ jest zwarty, to funkcja $f$ osiąga swoje kresy, czyli istnieją takie $x_1, x_2 \in D$, że dla każdego $x \in D$ zachodzi
+    \[ f(x_1) \leq f(x) \leq f(x_2). \]
+\end{theorem}

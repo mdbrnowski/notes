@@ -15,6 +15,7 @@ Pochodna wzdłuż wektora $\vec{v}$ jest pochodną \vocab{w kierunku} wektora $\
 \end{definition}
 
 \begin{theorem}[warunek konieczny różniczkowalności]
+    \label{t:differentiability implies derivability}
     Jeśli funkcja $f : \RR^k \supset D \to \RR^m$ jest różniczkowalna w punkcie $p$, to istnieje pochodna funkcji $f$ w punkcie $p$ wzdłuż dowolnego wektora $h \in \RR^k$ i zachodzi
     \[ \frac{\p f}{\p h}(p) = \d f(p)(h). \]
 \end{theorem}
@@ -36,7 +37,7 @@ Pochodna wzdłuż wektora $\vec{v}$ jest pochodną \vocab{w kierunku} wektora $\
         \Vdots & \Vdots & \Ddots & \Vdots \\
         \frac{\p f_m}{\p x_1}(p) & \frac{\p f_m}{\p x_2}(p) & \Cdots & \frac{\p f_m}{\p x_k}(p) \\
     \end{bNiceMatrix} \]
-     nazywamy macierzą Jacobiego funkcji $f$ w punkcie $p$. Jeśli macierz ta jest kwadratowa, to jej wyznacznik nazywamy jakobianem funkcji $f$ w punkcie $p$ i oznaczamy $J(p)$.
+     nazywamy \vocab{macierzą Jacobiego} funkcji $f$ w punkcie $p$. Jeśli macierz ta jest kwadratowa, to jej wyznacznik nazywamy jakobianem funkcji $f$ w punkcie $p$ i oznaczamy $J(p)$.
 \end{definition}
 
 Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macierz $\d f(p)$ i wektor $h$, więc
@@ -59,6 +60,41 @@ Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macie
     \label{t:differentiability of multivar functions}
     Jeśli istnieją i są ciągłe wszystkie pochodne cząstkowe funkcji $f$ w punkcie $x_0$, to funkcja $f$ jest różniczkowalna w $x_0$.
 \end{theorem}
+
+\begin{example}
+    Zbadaj różniczkowalność funkcji
+    \[ f(x, y) = \begin{cases}\frac{x^3 + y^3}{x^2 + x^2}, & \text{dla } (x, y) \neq (0, 0) \\ 0, & \text{w przeciwnym wypadku}\end{cases} \]
+    w całej jej dziedzinie.
+\end{example}
+\begin{solution}
+    Skorzystajmy z warunku wystarczającego na różniczkowalność funkcji. Pochodne cząstkowe
+    \[ \frac{\p{}}{\p x}\left(\frac{x^3 + y^3}{x^2 + x^2}\right) = \frac{(3x^2)(x^2 + y^2) - (x^3 + y^3)(2x)}{(x^2 + y^2)^2} \]
+    \[ \frac{\p{}}{\p y}\left(\frac{x^3 + y^3}{x^2 + x^2}\right) = \frac{(3y^2)(x^2 + y^2) - (x^3 + y^3)(2y)}{(x^2 + y^2)^2} \]
+    są ciągłe w $\RR^2 \setminus \{(0, 0)\}$, więc w tym zbiorze funkcja $f$ jest różniczkowalna. Aby sprawdzić, czy funkcja jest również różniczkowalna w $p = (0, 0)$ policzymy pochodną w tym punkcie w kierunku wersora $h$:
+    \begin{align*}
+        &\lim_{t\to 0}\frac{f(p+th) - f(p)}{t} = \lim_{t\to 0}\frac{f(th)}{t} = \lim_{t\to 0}\frac{\frac{t^3\cos^3\varphi + t^3\sin^3\varphi}{t^2\cos^2\varphi + t^2\sin^2\varphi}}{t} = \\
+        =& \lim_{t\to 0}\frac{t^3\cos^3\varphi + t^3\sin^3\varphi}{t^3} = \cos^3\varphi + \sin^3\varphi = h_1^3 + h_2^3.
+    \end{align*}
+    Na mocy warunku koniecznego różniczkowalności (\ref{t:differentiability implies derivability}) funkcja $f$ nie jest różniczkowalna w $(0, 0)$, ponieważ pochodna w kierunku $h$ powinna być wynikiem przekształcenia \textbf{liniowego} wektora $h$.
+\end{solution}
+\begin{solution}
+    Pierwsza część alternatywnego rozwiązania przebiega tak samo, więc zbadamy tylko różniczkowalność funkcji $f$ w punkcie $(0, 0)$. Z definicji różniczki i macierzy Jacobiego mamy
+    \[ \lim_{h\to\vec{0}} \frac{f(p + h) - f(p) - L_{p}(h)}{\Vert h \Vert} = \lim_{h\to\vec{0}} \frac{f(h) - L_{p}(h)}{\Vert h \Vert} = \lim_{h\to\vec{0}} \frac{\frac{h_1^3 + h_2^3}{h_1^2 + h_2^2} - \frac{\p f(0, 0)}{\p x}h_1 - \frac{\p f(0, 0)}{\p y}h_2}{\Vert h \Vert}. \]
+    Możemy policzyć z definicji pochodnej
+    \[ \frac{\p f(0, 0)}{\p x} = \lim_{t\to 0}\frac{f(t, 0) - f(0, 0)}{t} = \frac{\frac{t^3}{t^2}}{t} = 1 \]
+    \[ \frac{\p f(0, 0)}{\p y} = \lim_{t\to 0}\frac{f(0, t) - f(0, 0)}{t} = \frac{\frac{t^3}{t^2}}{t} = 1, \]
+    więc
+    \begin{align*}
+        &\lim_{h\to\vec{0}} \frac{\frac{h_1^3 + h_2^3}{h_1^2 + h_2^2} - \frac{\p f(0, 0)}{\p x}h_1 - \frac{\p f(0, 0)}{\p y}h_2}{\Vert h \Vert} = \lim_{h\to\vec{0}} \frac{\frac{h_1^3 + h_2^3}{h_1^2 + h_2^2} - h_1 - h_2}{\Vert h \Vert} = \\
+        =& \lim_{r\to 0}\frac{\frac{r^3(\cos^3\varphi + \sin^3\varphi)}{r^2} - r\cos\varphi - r\sin\varphi}{r} = \cos^3\varphi + \sin^3\varphi - \cos\varphi + \sin\varphi \neq 0,
+    \end{align*}
+    więc funkcja $f$ nie jest różniczkowalna w $(0, 0)$.
+\end{solution}
+
+\begin{remark}
+    Warunek wystarczający (\ref{t:differentiability of multivar functions}) nie jest równocześnie warunkiem koniecznym (to znaczy, że twierdzenie nie jest tożsamością). Przykładem niech będzie funkcja
+    \[ f(x, y) = \begin{cases}(x^2 + y^2)\sin\left(\frac{1}{\sqrt{x^2 + x^2}}\right), & \text{dla } (x, y) \neq (0, 0) \\ 0, & \text{w przeciwnym wypadku}\end{cases}. \]
+\end{remark}
 
 W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretwać geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest równiczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
 \begin{equation}
@@ -130,3 +166,9 @@ Analogicznie do twierdzenia \ref{t:differentiability of multivar functions} funk
     Jeśli funkcja $f$ jest $2$-krotnie różniczkowalna w $p$, to
     \[ \frac{\p{}^2 f}{\p x \p y}(p) = \frac{\p{}^2 f}{\p y \p x}(p). \]
 \end{theorem}
+
+Jeśli funkcja $f:\RR^2 \to \RR$ jest $2$-krotnie różniczkowalna, to możemy zdefiniować różniczkę $2$-go rzędu:
+\begin{align*}
+    &\d{}^2 f(h_1, h_2) = \d{} \left(\frac{\p f}{\p x} h_1 + \frac{\p f}{\p y} h_2\right) = \frac{\p f}{\p x}\left(\frac{\p f}{\p x} h_1 + \frac{\p f}{\p y} h_2\right)h_1 + \frac{\p f}{\p y}\left(\frac{\p f}{\p x} h_1 + \frac{\p f}{\p y} h_2\right)h_2 \\
+    &= \frac{\p{}^2 f}{\p x^2} + 2\frac{\p f}{\p x\p y} + \frac{\p{}^2 f}{\p y^2}.
+\end{align*}
