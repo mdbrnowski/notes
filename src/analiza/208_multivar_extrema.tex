@@ -1,4 +1,5 @@
 \begin{definition}[maksimum lokalne]
+    \label{d:local maximum}
     Funkcja $f : D \to \RR$ określona na obszarze $D \subset \RR^n$ ma maksimum lokalne w punkcie $x_0 \in D$, jeśli istnieje takie sąsiedztwo $U \subset D$ punktu $x_0$, że dla każdego $x \in U$
     \[ f(x) < f(x_0). \]
 \end{definition}
@@ -56,7 +57,7 @@ Analogicznie definiujemy minimum lokalne.
         \Vdots & \Vdots & \Ddots & \Vdots \\
         \frac{\p{}^2 f}{\p x_n \p x_1}(p) & \frac{\p{}^2 f}{\p x_n \p x_2}(p) & \Cdots & \frac{\p{}^2 f}{\p x_n \p x_n}(p) \\
     \end{bNiceMatrix} \]
-    nazywamy \vocab{macierzą Hessego} funkcji $f$ w punkcie $p$. Jej wyznacznik nazywamy hesjanem tej funkcji w $p$.
+    nazywamy \vocab{macierzą Hessego} (lub po prostu \vocab{hesjanem}) funkcji $f$ w punkcie $p$.
 \end{definition}
 
 \begin{theorem}[warunek wystarczający istnienia ekstremum lokalnego]
@@ -72,12 +73,13 @@ Analogicznie definiujemy minimum lokalne.
 \begin{remark}
     Punkty dziedziny, w których różniczka jest tożsamościowa równa zeru lub nie istnieje to \vocab{punkty krytyczne}. Te, które spełniają pierwszy warunek, to \vocab{punkty stacjonarne}. Z warunku koniecznego istnienia ekstremum lokalnego (twierdzenie \ref{t:necessity for local extrema of differentiable function}) wynika, że ektrema istnieją tylko w punktach krytycznych, jednak nie w każdym punkcie krytycznym jest ekstremum. Takie punkty stacjonarne, w których nie ma minimum ani maksimum, to \vocab{punkty siodłowe}.
 
-    Z warunku wystarczającego istnienia ekstremum lokalnego (twierdzenie \ref{t:local extrema with Hessian matrix}) wynika, że jeśli badamy punkty stacjonarne za pomocą macierzy Hessego i wyjdzie nam chociaż jeden minor zerowy, a forma będzie określona nieujemnie lub niedodatnio, to ta metoda okaże się po prostu nieskuteczna. W szczególności jeśli badamy funkcję dwóch zmiennych i hesjan wyjdzie zerowy, to nie możemy nic powiedzieć o istnieniu ekstremum.
+    Z warunku wystarczającego istnienia ekstremum lokalnego (twierdzenie \ref{t:local extrema with Hessian matrix}) wynika, że jeśli badamy punkty stacjonarne za pomocą macierzy Hessego i wyjdzie nam chociaż jeden minor zerowy, a forma będzie określona nieujemnie lub niedodatnio, to ta metoda okaże się po prostu nieskuteczna. W szczególności jeśli badamy funkcję dwóch zmiennych i wyznacznik macierzy Hessego wyjdzie zerowy, to nie możemy nic powiedzieć o istnieniu ekstremum.
 \end{remark}
 
 \begin{example}
     Znajdź ekstrema lokalne funkcji
     \[ f(x, y) = x^3 + y^3 - 3xy. \]
+    \graphref{p8w}
 \end{example}
 \begin{solution}
     Najpierw policzmy pochodne cząstkowe:
@@ -159,9 +161,3 @@ Analogicznie definiujemy minimum lokalne.
 \end{solution}
 
 Warto zauważyć, że zamiast sprawdzać kiedy słabe nierówności są równościami, można było również po prostu policzyć odległość punktu $A$ od punktu $P = (0, 0, 0)$, ponieważ wiemy, że tylko w nim może wystąpić minimum.
-
-\begin{theorem}[Weierstrassa o osiąganiu kresów]
-    \label{t:Weierstrass}
-    Jeśli funkcja $f : D \to \RR$ jest ciągła, a zbiór $D \in \RR^n$ jest zwarty, to funkcja $f$ osiąga swoje kresy, czyli istnieją takie $x_1, x_2 \in D$, że dla każdego $x \in D$ zachodzi
-    \[ f(x_1) \leq f(x) \leq f(x_2). \]
-\end{theorem}

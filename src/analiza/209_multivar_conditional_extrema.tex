@@ -1,0 +1,149 @@
+\begin{definition}[maksimum warunkowe]
+    Funkcja $f : \RR^n \supset S \to \RR$ ma maksimum warunkowe w punkcie $x_0 \in D$ przy warunku $g : D \to \RR$, jeśli istnieje takie sąsiedztwo $U \subset D$ punktu $x_0$, że dla każdego $x \in U \cap S$
+    \[ f(x) < f(x_0), \]
+    przy
+    \[ S = \{x \in D : g(x) = 0\}. \]
+\end{definition}
+
+Analogicznie definiujemy minimum warunkowe.
+
+\begin{remark*}
+    W przeciwieństwie do definicji ekstremum lokalnego (definicja \ref{d:local maximum}) nie wymagamy, żeby zbiór $S$ był otwarty i spójny (był obszarem). Nie możemy więc bezpośrednio stosować twierdzeń i metod z poprzedniej sekcji.
+\end{remark*}
+
+\begin{theorem}[Weierstrassa o osiąganiu kresów]
+    \label{t:Weierstrass}
+    Jeśli funkcja $f : D \to \RR$ jest ciągła, a zbiór $D \in \RR^n$ jest zwarty, to funkcja $f$ osiąga swoje kresy, czyli istnieją takie $x_1, x_2 \in D$, że dla każdego $x \in D$ zachodzi
+    \[ f(x_1) \leq f(x) \leq f(x_2). \]
+\end{theorem}
+
+Zachodzi twierdzenie analogiczne do twierdzenia \ref{t:necessity for local extrema of differentiable function}:
+
+\begin{theorem}[warunek konieczny istnienia ekstremum warunkowego]
+    \label{t:necessity for conditional extrema of differentiable function}
+    Jeśli funkcje $f, g$ są różniczkowalne w sposób ciągły oraz $f$ ma ekstremum warunkowe w punkcie $x_0$ przy warunku $g$, to istnieje takie $\lambda \in \RR$, że
+    \[ \d L(x_0, \lambda) = \mathbf{0}, \]
+    gdzie $L(x, \lambda) = f(x) + \lambda g(x)$ to funkcja Lagrange'a.
+\end{theorem}
+
+\begin{definition}[hesjan obrzeżony]
+    Jeśli funkcja $f : \RR^n \supset D \to \RR$ jest dwukrotnie różniczkowalna w sposób ciągły w punkcie $p$, to macierz
+    \[ H(p, \lambda) = \begin{bNiceMatrix}
+        0 & \frac{\p g}{\p x_1}(p) & \frac{\p g}{\p x_2}(p) & \Cdots & \frac{\p g}{\p x_n}(p) \\
+        \frac{\p g}{\p x_1}(p) & \frac{\p{}^2 L}{\p x_1^2}(p, \lambda) & \frac{\p{}^2 L}{\p x_1 \p x_2}(p, \lambda) & \Cdots & \frac{\p{}^2 L}{\p x_1 \p x_n}(p, \lambda) \\
+        \frac{\p g}{\p x_2}(p) & \frac{\p{}^2 L}{\p x_n \p x_1}(p, \lambda) & \frac{\p{}^2 L}{\p x_2^2}(p, \lambda) & \Cdots & \frac{\p{}^2 L}{\p x_2 \p x_n}(p, \lambda) \\
+        \Vdots & \Vdots & \Vdots & \Ddots & \Vdots \\
+        \frac{\p g}{\p x_n}(p) & \frac{\p{}^2 L}{\p x_n \p x_1}(p, \lambda) & \frac{\p{}^2 L}{\p x_n \p x_2}(p, \lambda) & \Cdots & \frac{\p{}^2 L}{\p x_n \p x_n}(p, \lambda)
+    \end{bNiceMatrix} \]
+    nazywamy \vocab{hesjanem obrzeżonym} funkcji $f$ w punkcie $p$.
+\end{definition}
+
+Analogicznie do twierdzenia \ref{t:local extrema with Hessian matrix} mamy:
+
+\begin{theorem}[warunek wystarczający istnienia ekstremum warunkowego]
+    \label{t:conditional extrema with Hessian matrix}
+    Dane są funkcje $f : S \to \RR$ oraz $g : D \to \RR$, gdzie $\S \subset D \subset \RR^n$. Jeśli wszystkie ich pochodne cząstkowe drugiego rzędu są ciągłe w pewnym otoczeniu $U \ni p$ oraz spełniony jest warunek konieczny (\ref{t:necessity for conditional extrema of differentiable function}) dla punktu $(p, \lambda)$, to
+    \begin{enumerate}
+        \item $\forall_{k = 2, \ldots, n}\ d_k < 0 \implies$ istnieje minimum warunkowe w punkcie $p$,
+        \item $\forall_{k = 2, \ldots, n}\ (-1)^{k+1} d_k < 0 \implies$ istnieje maksimum warunkowe w punkcie $p$,
+        \item jeśli nie zachodzi warunek $\forall_k\ d_k \leq 0$ ani $\forall_k\ (-1)^{k+1} d_k \leq 0$, to nie ma ekstremum lokalnego w punkcie $p$,
+    \end{enumerate}
+    gdzie $d_k$ jest wyznacznikiem minora wiodącego hesjanu obrzeżonego o rozmiarze $(k+1)$.
+\end{theorem}
+
+\begin{example}
+    Znajdź maksymalną wartość funkcji
+    \[ f(x, y) = x^2 + xy + 2y - x \]
+    na zbiorze
+    \[ S = \{(x, y) \in \RR^2 : x^2 \leq y \leq 6\}. \]
+    \graphref{b4a}
+\end{example}
+
+\begin{solution}
+    Najpierw policzmy pochodne cząstkowe:
+    \[ \frac{\p f(x, y)}{\p x} = 2x + y - 1, \qquad \frac{\p f(x, y)}{\p y} = x + 2. \]
+
+    W zbiorze $S_1 = \{(x, y) \in \RR^2 : x^2 < y < 6\} \subset S$ (który jest obszarem) funkcja przyjmuje ewentualne maksimum lokalne, tylko gdy obie pochodne się zerują (na podstawie twierdzenia \ref{t:necessity for local extrema of differentiable function}), więc
+    \[ \begin{cases} 2x + y - 1 = 0 \\ x + 2 = 0 \end{cases} \implies (x, y) = (-2, 5) \in S_1. \]
+    Hesjan ma postać
+    \[ H(0, 0) = \begin{bmatrix}
+        2 & 1 \\
+        1 & 0
+    \end{bmatrix} \implies \begin{cases} d_1 = 2 > 0 \\ d_2 = -1 < 0 \end{cases}, \]
+    więc (z twierdzenia \ref{t:local extrema with Hessian matrix}) punkt $(-2, 5)$ jest punktem siodłowym, a na zbiorze $S_1$ funkcja $f$ nie przyjmuje maksimum.
+
+    Sprawdźmy teraz zbiór $S_2 = \{(x, y) \in \RR^2 : x^2 = y < 6\} \subset S$. Możemy posłużyć się funkcją Lagrange'a:
+    \[ L(x, y, \lambda) = f(x, y) + \lambda g(x, y), \qquad g(x, y) = x^2 - y. \]
+    Z twierdzenie \ref{t:necessity for conditional extrema of differentiable function} maksimum warunkowe może istnieć, tylko gdy
+    \[ \frac{\p L(x, y, \lambda)}{\p x} = 2x + y - 1 + \lambda(2x) = 0, \qquad \frac{\p L(x, y, \lambda)}{\p y} = x + 2 - \lambda = 0 \]
+    \[ \implies \begin{cases} 2x + y - 1 + 2\lambda x = 0 \\ \lambda = x + 2 \\ y = x^2 \end{cases} \implies \begin{cases} 2x + x^2 - 1 + 2(x+2)x = 0 \\ \lambda = x + 2 \\ y = x^2 \end{cases}. \]
+    Pierwsze równanie z układu przyjmuje postać
+    \begin{equation}
+        \label{eq:quadratic in example}
+        3x^2 + 6x - 1 = 0
+    \end{equation}
+    \[ \therefore x = -1 \pm \frac{2}{\sqrt{3}}. \]
+
+    Hesjan obrzeżony będzie więc równy
+    \[ H(x, y, \lambda) = \begin{bmatrix}
+        0 & \frac{\p{} g}{\p x}(x, y) & \frac{\p{} g}{\p y}(x, y) \\
+        \frac{\p g}{\p x}(x, y) & \frac{\p{}^2 L}{\p x^2}(x, y, \lambda) & \frac{\p{}^2 L}{\p x \p y}(x, y, \lambda) \\
+        \frac{\p g}{\p y}(x, y) & \frac{\p{}^2 L}{\p y \p x}(x, y, \lambda) & \frac{\p{}^2 L}{\p y^2}(x, y, \lambda)
+    \end{bmatrix} = \begin{bmatrix}
+        0 & 2x - y & -1 \\
+        2x - y & 2 + 2\lambda & 1 \\
+        -1 & 1 & 0
+    \end{bmatrix}, \]
+    a jego wyznacznik
+    \begin{align*}
+        d_2 &= -(2x -y) - (2x - y) - (2 + 2\lambda) = -4x + 2y - 2\lambda - 2 = \\
+        &= -6x + 2y - 6 = 2x^2 - 6x - 6 \stackrel{+(\ref{eq:quadratic in example})}{=} 5x^2 - 7.
+    \end{align*}
+    Dla $x = -1 - \frac{2}{\sqrt{3}}$ mamy
+    \[ d_2 = 5\left(1 + \frac{4}{\sqrt{3}} + \frac{4}{3}\right) - 7 > 0, \]
+    więc (z twierdzenia \ref{t:conditional extrema with Hessian matrix}) ten punkt jest lokalnym maksimum warunkowym, a dla $x = -1 + \frac{2}{\sqrt{3}}$ mamy
+    \[ d_2 = 5\left(1 - \frac{4}{\sqrt{3}} + \frac{4}{3}\right) - 7 = \frac{5}{3}\left(7-4\sqrt{3}\right) - 7 < 0, \]
+    więc ten punkt jest lokalnym minimum warunkowym. Na tej krzywej interesować nas więc będzie tylko punkt $\left(-1-\frac{2}{\sqrt{3}}, \frac{7}{3} + \frac{4}{\sqrt{3}}\right) \in S_2$.
+
+    Następnie zajmiemy się zbiorem $S_3 = \{(x, y) \in \RR^2 : x^2 \leq y = 6\} \subset S$. Wiemy, że $y = 6$, więc możemy potraktować funkcję $f$ jako funkcję jednej zmiennej.
+    \begin{align*} f(x, 6) = h(x) &= x^2 + 6x + 2\cdot 6 - x \\
+                                  &= x^2 + 5x + 12 \end{align*}
+    Teraz możemy standardowo zbadać jej ekstrema:
+    \[ h'(x) = 2x + 5 = 0 \iff x = -\frac{5}{2}. \]
+    Jednak $\left(-\frac{5}{2}\right)^2 = \frac{25}{4} > 6$, więc ten punkt nie należy do $S_3$. Ekstrema funkcji istnieją w puntkach krytycznych, więc musimy jeszcze sprawdzić punkty krańcowe: $(x, y) = (\pm\sqrt{6}, 6)$.
+
+    Skoro $S = S_1 \cup S_2 \cup S_3$, to wystarczy sprawdzić wartości funkcji w takich punktach poszczególnych zbiorów, w których potencjalnie może istnieć maksimum globalne:
+    \begin{align*}
+        & f\left(-1-\tfrac{2}{\sqrt{3}}, \tfrac{7}{3} + \tfrac{4}{\sqrt{3}}\right) = \ldots = 3 + \tfrac{16}{3\sqrt{3}}, \\
+        & f(-\sqrt{6}, 6) = h(-\sqrt{6}) = 6 - 5\sqrt{6} + 12 = 18 - 5\sqrt{6}, \\
+        & f(\sqrt{6}, 6) = h(\sqrt{6}) = 6 + 5\sqrt{6} + 12 = 18 + 5\sqrt{6}.
+    \end{align*}
+    Tak więc funkcja $f$ przyjmuje maksimum równe $18 + 5\sqrt{6}$ w punkcie $\left(\sqrt{6}, 6\right)$.
+\end{solution}
+
+\begin{example}
+    Znajdź ekstrema warunkowe funkcji
+    \[ f(x, y, z) = x + y + 2z \]
+    przy warunku $x^2 + y^2 + z^2 = 1$.
+\end{example}
+\begin{solution}
+    Weźmy funkcję Lagrange'a:
+    \[ L(x, y, z, \lambda) = f(x, y, z) + \lambda g(x, y, z), \qquad g(x, y, z) = x^2 + y^2 + z^2 - 1. \]
+    Policzmy pochodne cząstkowe:
+    \[ \frac{\p L(x, y, z, \lambda)}{\p x} = 1 + \lambda 2x, \quad \frac{\p L(x, y, z, \lambda)}{\p y} = 1 + \lambda 2y, \quad \frac{\p L(x, y, z, \lambda)}{\p z} = 2 + \lambda 2z. \]
+    Z twierdzenia \ref{t:necessity for conditional extrema of differentiable function} wynika, że wszystkie pochodne zerują się w ekstremum, więc
+    \[ \begin{cases} 1 + \lambda 2x = 0 \\ 1 + \lambda 2y = 0 \\ 2 + \lambda 2z = 0 \\ x^2 + y^2 + z^2 = 1 \end{cases} \implies \begin{cases} x = y = -\frac{1}{2\lambda} \\ z = -\frac{1}{\lambda} \\ x^2 + y^2 + z^2 - 1 = 0 \end{cases} \]
+    \[ \implies \frac{1}{4\lambda^2} + \frac{1}{4\lambda^2} + \frac{1}{\lambda^2} = 1 \implies \frac{3}{2\lambda^2} = 1 \]
+    \[ \therefore \lambda = \sqrt{\frac{3}{2}}. \]
+
+    Możemy zauważyć, że zbiór $\{(x, y, z) \in \RR^3 : x^2 + y^2 + z^2 = 1\}$ określa sferę w przestrzeni euklidesowej, więc jest ograniczony i domknięty, więc, na mocy twierdzenia Heinego-Borela, jest zwarty. Z twierdzenia Weierstrassa (\ref{t:Weierstrass}) wynika, że funkcja $f$ przyjmuje swoje ekstrema na tym zbiorze, więc wystarczy sprawdzić wyliczone wcześniej wartości.
+
+    Dla $\lambda = \sqrt{\frac{3}{2}}$ mamy
+    \[ x = y = \frac{-\sqrt{2}}{2\sqrt{3}}, \quad z = \frac{-\sqrt{2}}{\sqrt{3}} \]
+    \[ f(x, y, z) = 2\frac{-\sqrt{2}}{2\sqrt{3}} + 2\frac{-\sqrt{2}}{\sqrt{3}} = \frac{-3\sqrt{2}}{\sqrt{3}} = -\sqrt{6}. \]
+
+    Dla $\lambda = -\sqrt{\frac{3}{2}}$ mamy
+    \[ x = y = \frac{\sqrt{2}}{2\sqrt{3}}, \quad z = \frac{\sqrt{2}}{\sqrt{3}} \]
+    \[ f(x, y, z) = 2\frac{\sqrt{2}}{2\sqrt{3}} + 2\frac{\sqrt{2}}{\sqrt{3}} = \frac{3\sqrt{2}}{\sqrt{3}} = \sqrt{6}. \]
+    Otrzymaliśmy więc szukane maksimum i minimum.
+\end{solution}
