@@ -1,0 +1,52 @@
+\subsection*{Współrzędne biegunowe}
+\begin{equation} \begin{cases}
+    x = r \cos\varphi \\
+    y = r \sin\varphi
+\end{cases} \end{equation}
+Jakobian przejścia to
+\[ \det \frac{\p (x, y)}{\p (r, \varphi)} = \begin{vmatrix}
+    \frac{\p x}{\p r} & \frac{\p x}{\p \varphi} \\
+    \frac{\p y}{\p r} & \frac{\p y}{\p \varphi}
+\end{vmatrix} = \begin{vmatrix}
+    \cos\varphi & -r\sin\varphi \\
+    \sin\varphi & r\cos\varphi
+\end{vmatrix} = r\cos^2\varphi + r\sin^2\varphi = r. \]
+
+\subsection*{Współrzędne walcowe}
+\begin{equation} \begin{cases}
+    x = r \cos\varphi \\
+    y = r \sin\varphi \\
+    z = z
+\end{cases} \end{equation}
+Jakobian przejścia to
+\[ \det \frac{\p (x, y, z)}{\p (r, \varphi, z)} = \begin{vmatrix}
+    \frac{\p x}{\p r} & \frac{\p x}{\p \varphi} & \frac{\p x}{\p z} \\
+    \frac{\p y}{\p r} & \frac{\p y}{\p \varphi} & \frac{\p y}{\p z} \\
+    \frac{\p z}{\p r} & \frac{\p z}{\p \varphi} & \frac{\p z}{\p z}
+\end{vmatrix} = \begin{vmatrix}
+    \cos\varphi & -r\sin\varphi & 0 \\
+    \sin\varphi & r\cos\varphi & 0 \\
+    0 & 0 & 1
+\end{vmatrix} = r\cos^2\varphi + r\sin^2\varphi = r. \]
+
+\subsection*{Współrzędne sferyczne}
+\begin{equation} \begin{cases}
+    x = r \cos\psi \cos\varphi \\
+    y = r \cos\psi \sin\varphi \\
+    z = r \sin\psi
+\end{cases} \end{equation}
+Jakobian przejścia to
+\begin{align*}
+    \det \frac{\p (x, y, z)}{\p (r, \psi, \varphi)} &= \begin{vmatrix}
+        \frac{\p x}{\p r} & \frac{\p x}{\p \psi} & \frac{\p x}{\p \varphi} \\
+        \frac{\p y}{\p r} & \frac{\p y}{\p \psi} & \frac{\p y}{\p \varphi} \\
+        \frac{\p z}{\p r} & \frac{\p z}{\p \psi} & \frac{\p z}{\p \varphi}
+    \end{vmatrix} = \begin{vmatrix}
+        \cos\psi \cos\varphi & -r \sin\psi \cos\varphi & -r \cos\psi \sin\varphi \\
+        \cos\psi \sin\varphi & -r \sin\psi \sin\varphi & r \cos\psi \cos\varphi \\
+        \sin\psi & r \cos\psi & 0
+    \end{vmatrix} \\
+    &= r^2\cos\psi\left(-\sin^2\psi\cos^2\varphi - \cos^2\psi\sin^2\varphi - \sin^2\psi\sin^2\varphi - \cos^2\psi\cos^2\varphi\right) \\
+    &= r^2\cos\psi\left(-\sin^2\psi - \cos^2\psi\right) \\
+    &= -r^2\cos\psi.
+\end{align*}

@@ -1,0 +1,113 @@
+Całki wielokrotne definiujemy podobnie jak całki funkcji jednej zmiennej --- dzielimy dziedzinę na $n$ małych prostokątów (lub sześcianów, hipersześcianów) i sprawdzamy, czy istnieje granica przy $n \to \infty$ sumy iloczynów ich pól (objętości) i wartości funkcji w pewnych ich punktach.
+
+\subsection{Całka podwójna}
+W tej sekcji zajmiemy się całkami funkcji dwóch zmiennych $f : P \to \RR$, gdzie $P \supset \RR^2$.
+
+\begin{theorem}[warunek wystarczający całkowalności funkcji po prostokącie]
+    Jeśli funkcja $f$ jest ciągła na prostokącie $P$, to jest na nim całkowalna.
+\end{theorem}
+
+\begin{theorem}[Fubiniego]
+    Jeśli funkcja $f$ jest całkowalna na prostokącie $P = [a_1, b_1] \times [a_2, b_2]$, to
+    \[ \iint\limits_P f(x, y) \d x \d y = \int\limits_{a_1}^{b_1}\left(\int\limits_{a_2}^{b_2} f(x, y) \d y\right)\d x = \int\limits_{a_2}^{b_2}\left(\int\limits_{a_1}^{b_1} f(x, y) \d x\right)\d y. \]
+\end{theorem}
+
+Całkę iterowaną często oznaczamy przenosząc symbol $\d x$ na początek, na przykład:
+\[ \int\limits_{a_1}^{b_1} \left(\int\limits_{a_2}^{b_2} \left(\int\limits_{a_3}^{b_3} f(x, y, z) \d z\right)\d y\right)\d x = \int\limits_{a_1}^{b_1} \d x\int\limits_{a_2}^{b_2} \d y \int\limits_{a_3}^{b_3} f(x, y, z) \d z \]
+
+\begin{definition}
+    Funkcja charakterystyczna zbioru $D$ to funkcja
+    \[ \chi_D(x, y) = \begin{cases}
+        1, & (x, y) \in D \\
+        0, & (x, y) \notin D
+    \end{cases}. \]
+\end{definition}
+
+Korzystając z tej definicji, jeśli $D \in \RR^2$ jest zbiorem zawierającym się w pewnym prostokącie $P$, to
+\[ \iint\limits_D f(x, y) \d x \d y = \iint\limits_P (f\chi_D)(x, y) \d x \d y. \]
+
+\begin{definition}
+    Obszar normalny (względem osi $OX$) to taki zbiór
+    \[ D = \{(x, y) \in \RR^2 : x \in [a, b], y \in [\varphi(x), \psi(x)]\}, \]
+    że funkcje $\varphi, \psi$ są ciągłe.
+\end{definition}
+
+Analogicznie możemy zdefiniować obszar normalny względem osi $OY$.
+
+\begin{theorem}[zamiana całki powójnej na całkę iterowaną dla obszaru normalnego]
+    Jeśli funkcja $f$ jest ciągła oraz
+    \[ D = \{(x, y) \in \RR^2 : x \in [a, b], y \in [\varphi(x), \psi(x)]\} \]
+    jest obszarem normalnym względem osi $OX$ tej funkcji, to
+    \[ \iint\limits_D f(x, y) \d x \d y = \int\limits_a^b \d x \int\limits_{\varphi(x)}^{\psi(x)} f(x, y) \d y. \]
+\end{theorem}
+
+\begin{definition}
+    Obszar regularny jest skończoną sumą obszarów normalnych o parami rozłącznych wnętrzach.
+\end{definition}
+
+\begin{example}
+    Znaleźć pole obszaru $R$ ograniczonego krzywą $y = x^2$ i prostą $y = x + 2$.
+\end{example}
+\begin{solution}
+    Najpierw liczymy punkty przecięcia krzywych: $(-1, 1), (2, 4)$. Możemy potraktować cały obszar $R$ jako normalny względem osi $OX$ otrzymując
+    \[ [R] = \int\limits_{-1}^2 \d x \int\limits_{x^2}^{x+2} \d y = \int\limits_{-1}^2 (y + 2 - y^2) \d x = \left[\frac{y^2}{2} + 2y - \frac{y^3}{3}\right]_{-1}^2 = \frac{9}{2}. \]
+
+    Alternatywnie, możemy podzielić $R$ na dwa obszary normalne, jak na rysunku.
+    \begin{center}
+        \begin{tikzpicture}[scale=0.8]
+            \tkzInit[xmin=-1.5,ymin=-0.5,xmax=5,ymax=4.5]
+            \tkzGrid
+            \tkzDrawX
+            \tkzDrawY
+            \tkzDefPoint(-1,1){A}
+            \tkzDefPoint(2,4){B}
+
+            \draw[fill=MainColor1, opacity=.25] (-1,1) parabola bend (0,0) (2,4) -- cycle;
+            \node[black] at (0.2,0.5) {\scriptsize $R_1$};
+            \node[black] at (0.8,1.8) {\scriptsize $R_2$};
+
+            \draw[BoxColor1,thick,domain=-1.1:2.1] plot (\x,{pow(\x, 2)});
+            \draw[BoxColor2,thick,domain=-1.2:2.2] plot (\x,{\x+2});
+            \draw[black,thick,domain=-1:1] plot (\x, 1);
+
+            \tkzDrawPoints(A,B)
+            \tkzLabelPoint[font=\scriptsize, below left](A){$(-1,1)$}
+            \tkzLabelPoint[font=\scriptsize, right](B){$(2,4)$}
+        \end{tikzpicture}
+    \end{center}
+    Obszar $R_1$ jest normalny względem osi $OY$:
+    \[ [R_1] = \int\limits_0^1 \d y \int\limits_{-\sqrt{y}}^{\sqrt{y}} \d x = 2 \int\limits_0^1 \sqrt{y} \d y = \frac{4}{3}, \]
+    podobnie jak obszar $R_2$:
+    \[ [R_2] = \int\limits_1^4 \d y \int\limits_{y-2}^{\sqrt{y}} \d x = \int\limits_1^4 (\sqrt{y} - y + 2) \d y = \left[\frac{2y^{\frac{3}{2}}}{3} - \frac{y^2}{2} + 2y\right]_1^4 = \frac{14}{3} - \frac{1}{2}. \]
+\end{solution}
+
+\begin{theorem}[o zamianie zmiennych w całce podwójnej]
+    \label{t:change variables in double integral}
+    Dana jest funkcja $f : D \to \RR$, która jest ciągła na obszarze regularnym $D$ oraz przekształcenie $\varPhi : D' \to D$, gdzie
+    \[ \varPhi : (x, y) \mapsto (x(u, v), (y(u, v))). \]
+    Jeśli $\varPhi$ przekształca wnętrze obszaru regularnego $D'$ na wnętrze obszaru regularnego $D$ wznajemnie jednoznacznie (jest bijekcją), pochodne cząstkowe przekształcenia $\varPhi$ są ciągłe na pewnym zbiorze otwartym zawierającym obszar $D'$ oraz jakobian przekształcenia $J_\varPhi(u, v)$ jest niezerowy wewnątrz $D'$, to
+    \[ \iint\limits_D f(x, y) \d x \d y = \iint\limits_{D'} f(x(u, v), y(u, v)) \cdot |J(u, v)| \d u \d v. \]
+\end{theorem}
+
+\begin{example}
+    Obliczyć całkę
+    \[ \iint\limits_D (x + y) \d x \d y \]
+    po obszarze $D : 2 \leq 2x + y \leq 3, -1 \leq x - y \leq 1$.
+\end{example}
+\begin{solution}
+    Możemy podstawić
+    \[ \begin{cases} u = 2x + y \\ v = x - y \end{cases} \implies \begin{cases} x = \frac{u + v}{3} \\ y = \frac{u - 2v}{3} \end{cases}. \]
+    Teraz obszar jest prostokątem, $D' = 2 \leq u \leq 3, -1 \leq v \leq 1$. Obliczmy jakobian
+    \[ J(u, v) = \begin{vmatrix}
+        \frac{\p x}{\p u} & \frac{\p x}{\p v} \\
+        \frac{\p y}{\p u} & \frac{\p y}{\p v}
+    \end{vmatrix} = \begin{vmatrix}
+        \frac{1}{3} & \frac{1}{3} \\
+        \frac{1}{3} & \frac{-2}{3}
+    \end{vmatrix} = \frac{-2}{9} - \frac{1}{9} = \frac{-1}{3}. \]
+    Wykorzystując twierdzenie o zamianie zmiennych (\ref{t:change variables in double integral}) mamy
+    \begin{align*}
+        \iint\limits_D (x + y) \d x \d y &= \iint\limits_{D'} \left(\frac{u + v}{3} + \frac{u - 2v}{3}\right) \cdot |J(u, v)| \d u \d v = \iint\limits_{D'} \frac{2u - v}{9} \d u \d v \\
+        &= \frac{1}{9}\int\limits_{-1}^1 \d v \int\limits_2^3 (2u - v) \d u = \frac{1}{9}\int\limits_{-1}^1 (5 - v) \d v = \frac{10}{9}.
+    \end{align*}
+\end{solution}
