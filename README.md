@@ -15,6 +15,7 @@
 
 * **filtr.tex** ([pdf](pdf/filtr.pdf)) – *Funkcje tworzące i filtracja pierwiastkami jedności*
 * **fft.tex** ([pdf](pdf/fft.pdf)) - *Szybka transformacja Fouriera (FFT)*
+* **social-networks.tex** ([pdf](pdf/social-networks.pdf)) - *Deskryptory sieciowe jako narzędzia rozróżniające ludzkie i zwierzęce sieci społecznościowe*
 
 <br>
 

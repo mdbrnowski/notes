@@ -29,3 +29,10 @@ tasks:
       - mystd.sty
     cmds:
       - tectonic "./src/analiza/analiza.tex" -Z search-path="src" --outdir "pdf"
+  social-networks:
+    desc: Compile social-networks.tex to pdf
+    sources:
+      - src/social-networks/*
+      - mystd.sty
+    cmds:
+      - tectonic "./src/social-networks/social-networks.tex" -Z search-path="src" --outdir "pdf"
