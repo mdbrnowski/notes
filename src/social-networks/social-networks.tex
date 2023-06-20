@@ -1,18 +1,57 @@
 \documentclass[11pt]{scrartcl}
-\usepackage[pretty,polish]{mystd}
+\usepackage[polish]{mystd}
 \title{Deskryptory sieciowe}
 \subtitle{jako narzędzia rozróżniające ludzkie i zwierzęce sieci społecznościowe}
 \author{Michał Dobranowski}
 \date{czerwiec 2023}
+
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{refs.bib}
 
 \begin{document}
 \maketitle
 \tableofcontents
 \eject
 
-\section{Wstęp}
+\section{Wstęp i oznaczenia}
+Jeśli nie zaznaczono inaczej, to przez $V$ będziemy oznaczać zbiór $n$ wierzchołków w grafie, a przez $E$ zbiór $m$ krawędzi. Ponadto, $\deg(v)$ oznacza stopień wierzchołka $v$ (czyli liczbę jego sąsiadów).
+
+\subsection{Deskryptory sieciowe}
+\paragraph*{Rozkład stopni wierzchołków}
+\[ P(k) = \frac{n_k}{n}, \]
+gdzie $n_k$ to wierzchołków o stopniu $k$.
+
+\paragraph*{Clustering coefficient}
+\[ C(v) = \frac{T(v)}{\deg(v)(\deg(v) - 1)}, \]
+gdzie $T(v)$ to liczba trójkątów $K_3$ zawierających $v$. Jest miarą tego, jak wiele sąsiadów danego wierzchołka jest połączonych; pozwala ocenić, czy w sieci występują grupy wierzchołków połączonych ze sobą (klastry).
+
+\paragraph*{Closeness centrality}
+\[ C_C(v) = \frac{1}{\sum\limits_{t \in V} d_G(v, t)}, \]
+gdzie $d_G(v, t)$ to odległość od wierzchołka $v$ do $t$ (czyli długość najkrószej ścieżki między nimi). Określa, jak blisko znajduje się dany węzeł do wszystkich innych węzłów w sieci, a więc jak łatwo z danego wierzchołka możemy osiągnąć inne wierzchołki.
+
+\paragraph*{Betweenness centrality}
+\[ C_B(v) = \sum_{s\neq v\neq t} \frac{\sigma_{st}(v)}{\sigma_{st}}, \]
+gdzie $\sigma_{st}$ to liczba najkrótszych ścieżek między wierzchołkami $s, t$, a $\sigma_{st}(v)$ to liczba najkrótszych ścieżek między wierzchołkami $s, t$, które przechodzą przez wierzchołek $v \neq s, t$. Ta miara opisuje jak istotny jest dany węzeł w komunikacji między innymi węzłami w sieci. W porównaniu do poprzednich deskryptorów, jego optymalne wyliczenie nie jest tak proste, stosuje się do tego celu algorytm Brandesa \cite{Brandes2001}.
+
+\section{Deskryptory w modelach sieci losowych}
+W tej sekcji przedstawimy trzy standardowe modele losowych sieci oraz porównamy opisane deskryptory na ich przykładzie. Sieci zostały wygenerowane za pomocą biblioteki NetworkX \cite{NetworkX} języka Python. Wszystkie wykresy powstały z użyciem matplotlib \cite{matplotlib} oraz seaborn \cite{seaborn}.
+
+\subsection{Model Erdősa-Rényi'ego}
+Najprostrzym modelem losowych grafów (oraz najstarszym), jest ten rozważany przez Paula Erdősa oraz Alfréda Rényi'ego \cite{ErdosRenyi59}. Każda para wierzchołków jest jest połączona krawędzią z jednakowym prawdopodobieństem $p$.
+
+\subsection{Model Wattsa-Strogatza}
+Model przedstawiony przez Duncana Wattsa i Stevena Strogatza \cite{WattsStrogatz98} charakteryzuje się małą odległością między wierzchołkami (proporcjonalną do $\log n$) oraz wysoką klasteryzacją (ma cechy sieci typu \textit{small-world}). Algorytm tworzenia takiej sieci wygląda następująco: zaczynamy od grafu stanowiącego $\frac{k}{2}$-tą potęgę cyklu $C_n$. Następnie przepinamy każdą krawędź do innego wierzchołka (wybranego losowo) z prawdopodobieństwem $\beta$.
 
 
-\section{Deskryptory w standardowych modelach sieci}
+\subsection{Model Barabásiego-Albert}
+Zaproponowany przez Alberta-László Barabásiego i Rékę Albert \cite{BarabasiAlbert99} algorytm generowania losowych grafów tworzy sieci bezskalowe (\textit{scale-free}) to znaczy takie, w których rozkład stopni wierzchołków jest rozkładem potęgowym. Tego typu sieci tworzy się przez inkrementowanie liczby krawędzi, w każdym kroku faworyzując wierzchołki o dużym stopniu (to znaczy, że prawdopodobieństwo przyłączenia nowej krawędzi do danego wierzchołka jest wprost proporcjonalne do jego stopnia).
+W ten sposób otrzymujemy
+\[ P(k) \sim k^{-3}. \]
 
+
+
+
+Network Repository \cite{NetworkRepository}. Animal Social Network Repository \cite{AnimalSocialNetworkRepository}.
+
+\printbibliography[heading=bibintoc]
 \end{document}
