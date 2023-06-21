@@ -39,8 +39,26 @@ W tej sekcji przedstawimy trzy standardowe modele losowych sieci oraz porównamy
 \subsection{Model Erdősa-Rényi'ego}
 Najprostrzym modelem losowych grafów (oraz najstarszym), jest ten rozważany przez Paula Erdősa oraz Alfréda Rényi'ego \cite{ErdosRenyi59}. Każda para wierzchołków jest jest połączona krawędzią z jednakowym prawdopodobieństem $p$.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/ER_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/ER_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/ER_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/ER_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, \textit{clustering coefficient}, \textit{closeness centrality} oraz \textit{betweenness centrality} dla grafu wygenerowanym modelem ER z $n = 1000$, $p = 0.05$.}
+\end{figure}
+
 \subsection{Model Wattsa-Strogatza}
 Model przedstawiony przez Duncana Wattsa i Stevena Strogatza \cite{WattsStrogatz98} charakteryzuje się małą odległością między wierzchołkami (proporcjonalną do $\log n$) oraz wysoką klasteryzacją (ma cechy sieci typu \textit{small-world}). Algorytm tworzenia takiej sieci wygląda następująco: zaczynamy od grafu stanowiącego $\frac{k}{2}$-tą potęgę cyklu $C_n$. Następnie przepinamy każdą krawędź do innego wierzchołka (wybranego losowo) z prawdopodobieństwem $\beta$.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/WS_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/WS_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/WS_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/WS_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla grafu wygenerowanym modelem WS z $n = 1000$, $k = 50$, $\beta = 0.1$.}
+\end{figure}
 
 
 \subsection{Model Barabásiego-Albert}
@@ -48,6 +66,17 @@ Zaproponowany przez Alberta-László Barabásiego i Rékę Albert \cite{Barabasi
 W ten sposób otrzymujemy
 \[ P(k) \sim k^{-3}. \]
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/BA_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/BA_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/BA_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/BA_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla grafu wygenerowanym modelem BA z $n = 1000$, $m = 25000$}
+\end{figure}
+
+\section{Deskryptory w sieciach rzeczywistych}
+W tej sekcji skupimy się na rzeczywistych sieciach społecznościowych.
 
 
 
