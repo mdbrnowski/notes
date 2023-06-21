@@ -14,12 +14,12 @@
 \eject
 
 \section{Wstęp i oznaczenia}
-Jeśli nie zaznaczono inaczej, to przez $V$ będziemy oznaczać zbiór $n$ wierzchołków w grafie, a przez $E$ zbiór $m$ krawędzi. Ponadto, $\deg(v)$ oznacza stopień wierzchołka $v$ (czyli liczbę jego sąsiadów).
+Jeśli nie zaznaczono inaczej, to przez $V$ będziemy oznaczać zbiór $n$ wierzchołków w grafie, a przez $E$ zbiór $m$ krawędzi. Ponadto, $\deg(v)$ oznacza stopień wierzchołka $v$ (czyli liczbę jego sąsiadów). Przez \textit{graf} rozumiemy nieskierowany nieważony graf prosty, rozważamy jednak również grafy ważone, to znaczy z przypisanymi wagami do jego krawędzi.
 
 \subsection{Deskryptory sieciowe}
 \paragraph*{Rozkład stopni wierzchołków}
 \[ P(k) = \frac{n_k}{n}, \]
-gdzie $n_k$ to wierzchołków o stopniu $k$.
+gdzie $n_k$ to liczba wierzchołków o stopniu $k$.
 
 \paragraph*{Clustering coefficient}
 \[ C(v) = \frac{T(v)}{\deg(v)(\deg(v) - 1)}, \]
@@ -60,7 +60,6 @@ Model przedstawiony przez Duncana Wattsa i Stevena Strogatza \cite{WattsStrogatz
     \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla grafu wygenerowanym modelem WS z $n = 1000$, $k = 50$, $\beta = 0.1$.}
 \end{figure}
 
-
 \subsection{Model Barabásiego-Albert}
 Zaproponowany przez Alberta-László Barabásiego i Rékę Albert \cite{BarabasiAlbert99} algorytm generowania losowych grafów tworzy sieci bezskalowe (\textit{scale-free}) to znaczy takie, w których rozkład stopni wierzchołków jest rozkładem potęgowym. Tego typu sieci tworzy się przez inkrementowanie liczby krawędzi, w każdym kroku faworyzując wierzchołki o dużym stopniu (to znaczy, że prawdopodobieństwo przyłączenia nowej krawędzi do danego wierzchołka jest wprost proporcjonalne do jego stopnia).
 W ten sposób otrzymujemy
@@ -76,11 +75,71 @@ W ten sposób otrzymujemy
 \end{figure}
 
 \section{Deskryptory w sieciach rzeczywistych}
-W tej sekcji skupimy się na rzeczywistych sieciach społecznościowych.
+W tej sekcji skupimy się na rzeczywistych sieciach społecznościowych. Dane dotyczące zwierząt pochodzą z \textit{Animal Social Network Repository} \cite{AnimalSocialNetworkRepository}. Wszystkie pozostałe zostały zebrane w \textit{Stanford Network Analysis Platform} \cite{SNAP}.
 
+\subsection{Sieci zwierzęce}
+\subsubsection{Delfiny butlonose}
+Badany graf opisuje sieć społecznościową ssaków z gatunku \textit{Tursiops truncatus}, czyli butlonosów zwyczajnych. Wierzchołki grafu to poszczególne osobniki, które są połączone krawędzią, jeśli wchodziły ze sobą w interakcje, takie jak schwytanie zdobyczy lub nagminne przypadki poszukiwania zdobyczy. Sieć zawiera łącznie $291$ węzłów połączonych $3182$ krawędziami (ważonymi\footnote{Dostosowanie definicji poszczególnych deskryptorów nie stanosi żadnego problemu, operujemy tam tylko pojęciem odległości / długości scieżki między wierzchołkami.}, w zależności od liczby interakcji).
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/dolphin_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/dolphin_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/dolphin_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/dolphin_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla sieci społecznościowej delfinów butlonosych.}
+\end{figure}
 
-Network Repository \cite{NetworkRepository}. Animal Social Network Repository \cite{AnimalSocialNetworkRepository}.
+\subsubsection{Hieny cętkowane}
+Badany graf opisuje sieć społecznościową hien gatunku \textit{Crocuta crocuta} (hiena cętkowana). Zawiera $35$ węzłów połączonych $521$ krawędziami. Dane dwie osobniki są połączone krawędziami ważonymi, w zależności od tego, jak często pojawiały się w jednej polującej grupie.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/hyena_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/hyena_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/hyena_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/hyena_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla sieci społecznościowej hien cętkowanych.}
+\end{figure}
+
+\subsubsection{Myszy domowe}
+Bady graf opisuje społeczność $280$ myszy domowych z gatunku \textit{Mus musculus domesticus}. Krawędź między danymi dwoma osobnikami istnieje, jeśli weszły one do jednej klatki z jedzeniem w czasie obserwacji. Łącznie w sieci znajduje się $2792$ krawędzi.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/mouse_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/mouse_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/mouse_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/mouse_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla sieci społecznościowej myszy domowych.}
+\end{figure}
+
+\subsection{Sieci ludzkie}
+\subsubsection{Użytkownicy Facebooka}
+Badana sieć jest siecią znajomości $224$ użytkowników Facebooka, którzy zdecydowali się uzupełnić ankietę przy użyciu aplikacji mobilnej. Sieć ma łącznie $3192$ krawędzie.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/fb_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/fb_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/fb_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/fb_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla sieci społecznościowej użytkowników Facebooka.}
+\end{figure}
+
+\subsection{Użytkownicy Twitcha}
+Badana sieć jest siecią znajomości $4648$ użytkowników Twitcha, którzy oglądali streamy w języku hiszpańskim. Sieć ma łącznie $59382$ krawędzi.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.42\textwidth]{imgs/tw_es_P.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/tw_es_C.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/tw_es_CC.pdf}
+    \includegraphics[width=0.42\textwidth]{imgs/tw_es_CB.pdf}
+    \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla sieci społecznościowej hiszpańskojęzycznych użytkowników Twitcha.}
+\end{figure}
+
+\section{Wnioski}
 
 \printbibliography[heading=bibintoc]
 \end{document}
