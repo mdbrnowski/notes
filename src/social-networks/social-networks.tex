@@ -34,7 +34,7 @@ gdzie $d_G(v, t)$ to odległość od wierzchołka $v$ do $t$ (czyli długość n
 gdzie $\sigma_{st}$ to liczba najkrótszych ścieżek między wierzchołkami $s, t$, a $\sigma_{st}(v)$ to liczba najkrótszych ścieżek między wierzchołkami $s, t$, które przechodzą przez wierzchołek $v \neq s, t$. Ta miara opisuje jak istotny jest dany węzeł w komunikacji między innymi węzłami w sieci. W porównaniu do poprzednich deskryptorów, jego optymalne wyliczenie nie jest tak proste, stosuje się do tego celu algorytm Brandesa \cite{Brandes2001}.
 
 \section{Deskryptory w modelach sieci losowych}
-W tej sekcji przedstawimy trzy standardowe modele losowych sieci oraz porównamy opisane deskryptory na ich przykładzie. Sieci zostały wygenerowane za pomocą biblioteki NetworkX \cite{NetworkX} języka Python. Wszystkie wykresy powstały z użyciem matplotlib \cite{matplotlib} oraz seaborn \cite{seaborn}.
+W tej sekcji przedstawimy trzy standardowe modele losowych sieci oraz porównamy opisane deskryptory na ich przykładzie. Sieci zostały wygenerowane za pomocą biblioteki NetworkX \cite{NetworkX} języka Python. Wszystkie wykresy powstały w Pythonie z użyciem bibliotek matplotlib oraz seaborn \cite{seaborn}.
 
 \subsection{Model Erdősa-Rényi'ego}
 Najprostrzym modelem losowych grafów (oraz najstarszym), jest ten rozważany przez Paula Erdősa oraz Alfréda Rényi'ego \cite{ErdosRenyi59}. Każda para wierzchołków jest jest połączona krawędzią z jednakowym prawdopodobieństem $p$.
@@ -79,7 +79,7 @@ W tej sekcji skupimy się na rzeczywistych sieciach społecznościowych. Dane do
 
 \subsection{Sieci zwierzęce}
 \subsubsection{Delfiny butlonose}
-Badany graf opisuje sieć społecznościową ssaków z gatunku \textit{Tursiops truncatus}, czyli butlonosów zwyczajnych. Wierzchołki grafu to poszczególne osobniki, które są połączone krawędzią, jeśli wchodziły ze sobą w interakcje, takie jak schwytanie zdobyczy lub nagminne przypadki poszukiwania zdobyczy. Sieć zawiera łącznie $291$ węzłów połączonych $3182$ krawędziami (ważonymi\footnote{Dostosowanie definicji poszczególnych deskryptorów nie stanosi żadnego problemu, operujemy tam tylko pojęciem odległości / długości scieżki między wierzchołkami.}, w zależności od liczby interakcji).
+Badany graf opisuje sieć społecznościową ssaków z gatunku \textit{Tursiops truncatus}, czyli butlonosów zwyczajnych. Wierzchołki grafu to poszczególne osobniki, które są połączone krawędzią, jeśli wchodziły ze sobą w interakcje, takie jak schwytanie zdobyczy lub nagminne przypadki poszukiwania zdobyczy. Sieć zawiera łącznie $291$ węzłów połączonych $3182$ krawędziami (ważonymi\footnote{Dostosowanie definicji poszczególnych deskryptorów nie stanowi żadnego problemu, operujemy tam tylko pojęciem odległości / długości scieżki między wierzchołkami.}, w zależności od liczby interakcji).
 
 \begin{figure}[h!]
     \centering
@@ -127,8 +127,8 @@ Badana sieć jest siecią znajomości $224$ użytkowników Facebooka, którzy zd
     \caption{Rozkład stopni wierzchołków, $C(v)$, $C_C(v)$ oraz $C_B(v)$ dla sieci społecznościowej użytkowników Facebooka.}
 \end{figure}
 
-\subsection{Użytkownicy Twitcha}
-Badana sieć jest siecią znajomości $4648$ użytkowników Twitcha, którzy oglądali streamy w języku hiszpańskim. Sieć ma łącznie $59382$ krawędzi.
+\subsubsection{Użytkownicy Twitcha}
+Badana sieć jest siecią znajomości $4648$ użytkowników Twitcha, którzy oglądali streamy w języku hiszpańskim. Sieć ma łącznie $59382$ krawędzie.
 
 \begin{figure}[h!]
     \centering
@@ -140,6 +140,11 @@ Badana sieć jest siecią znajomości $4648$ użytkowników Twitcha, którzy ogl
 \end{figure}
 
 \section{Wnioski}
+Dosyć oczywistym wnioskiem jest fakt, że (ludzkie) sieci społecznościowe można symulować przy użyciu modelu Barabásiego-Albert. Istotnie, każda z trzech sieci (model BA, użytkownicy Facebooka, użytkownicy Twitcha) charakteryzuje się dużą liczbą wierzchołków o małych stopniach i małą liczbą tych ,,popularnych''; podobnie jest z rozkładem \textit{betweenness centrality}, która to miara przyjmuje raczej małe wartości.
+
+Od tego schematu bardzo odstają sieci opisujące relacje między hienami -- te tworzą bardzo gęstą sieć, a więc wierzchołków o dużym stopniu jest bardzo dużo -- oraz między myszami -- tutaj z kolei rozkład stopni wierzchołków przypomina rozkład normalny.
+
+Zdecydowanie najbardziej podobną do sieci ludzkich jest sieć delfinów. Jedynym deskryptorem, który mógłby posłużyć za miarę odróżniającą te sieci jest \textit{clustering coefficient} -- średnio zdecydowanie wyższy u delfinów, występuje też duża grupa osobników mająca ten wskaźnik bardzo wysoki, to znaczy bliski $1$. Wydaje się więc, że delfiny bardzo często przynależą tylko do jednej silnie połączonej grupy osobników, w przeciwieństwie do ludzi, którzy często mają kilka grup znajomych lub mniej znającą się nawzajem grupę znajomych.
 
 \printbibliography[heading=bibintoc]
 \end{document}
