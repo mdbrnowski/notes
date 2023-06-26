@@ -1,0 +1,94 @@
+\subsubsection{Całka krzywoliniowa nieskierowana}
+\begin{definition}
+    Łuk gładki to taka krzywa
+    \[ K = \{(x(t), y(t)) : t \in [a, b]\}, \]
+    że funkcje $x(t), y(t)$ są różniczkowalne w sposób ciągły oraz dla każdego $t \in [\alpha, \beta]$ zachodzi
+    \[ (x'(t))^2 + (y'(t))^2 > 0. \]
+\end{definition}
+
+\begin{definition}
+    Krzywa regularna to krzywa będąca sumą skończonej liczby łuków gładkich.
+\end{definition}
+
+Całkę funkcji $f$ po łuku gładkim $L$ definiujemy podobnie jak zwykłą całkę (tworzymy ciąg przedziałów i badamy granicę sumy iloczynów wartości funkcji i długości przedziałów przy dążącej do zera średnicy przedziałów). Jeśli krzywa $L$ jest zamknięta (czyli jej początek pokrywa się z końcem) używamy symbolu $\oint$.
+
+\begin{theorem}
+    Jeśli $f$ jest funkcją ciągłą, a $L$ jest łukiem gładkim, to
+    \[ \int\limits_L f(x, y) \d l = \int\limits_\alpha^\beta f(x(t), y(t))\sqrt{(x'(t))^2 + (y'(t))^2} \d t. \]
+\end{theorem}
+
+Jeśli łuk nie jest zadany parametrycznie, a jawnie, to wzór z powyższego twierdzenie ma postać
+\[ \int\limits_L f(x, y) \d l = \int\limits_\alpha^\beta f(x, y(x))\sqrt{1 + (y'(x))^2} \d x. \]
+Podobnie definiuje się łuk gładki w $\RR^3$; można również wyprowadzić wzory dla całek krzywoliniowych funkcji trzech zmiennych.
+
+\subsubsection{Całka krzywoliniowa skierowana}
+Jeśli krzywa $L$ jest łukiem gładkim, to możemy zdefiniować \vocab{pole wektorowe} $\vec{F} : L \to \RR^2$, gdzie
+\[ \vec{F}(x, y) = (P(x, y), Q(x, y)). \]
+Wtedy \vocab{całkę krzywoliniową skierowaną} oznaczamy
+\[ \int\limits_L \vec{F} \circ \d{\vec{r}} = \int\limits_L P(x, y) \d x + Q(x, y) \d y. \]
+Zachodzi również
+
+\begin{theorem}
+    Jeśli $\vec{F} = (P, Q)$ jest polem wektorowym, w którym funkcje $P, Q$  są ciągłe, a $L$ jest łukiem gładkim, to
+    \[ \int\limits_L P(x, y) \d x + Q(x, y) \d y = \int\limits_\alpha^\beta \left(P(x(t), y(t))\cdot x'(t) + Q(x(t), y(t))\cdot y'(t)\right) \d t. \]
+\end{theorem}
+
+Znów, analogiczne wzory istnieją dla całek krzywoliniowych skierowanych dla funkcji trzech zmiennych.
+
+Mówimy, że zadana parametrycznie krzywa regularna $K$ ma \vocab{orientację przeciwną} do krzywej $-K$, jeśli obrazy ich parametryzacji są równe (to znaczy, że krzywe nieskierowane są identyczne), ale zmieniając parametr $t$ w dwóch danych równaniach ,,poruszamy się'' w przeciwne strony.
+
+\begin{fact}
+    Zachodzi równość
+    \[ \int\limits_{-K} P \d x + Q \d y = -\int\limits_K P \d x + Q \d y. \]
+\end{fact}
+
+\begin{definition}
+    Krzywa Jordana to zamknięta krzywa, której parametryzacja jest różnowartościowa (to znaczy, że nie ma punktów wielokrotnych) z wyjątkiem punktu początkowego / końcowego.
+\end{definition}
+
+\begin{definition}
+    Obszar jednospójny $D$ to taki obszar, że wnętrze każdej krzywej Jordana zawartej w $D$ zawiera się w $D$.
+\end{definition}
+
+Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, że jest on zorientowany dodatnio, jeśli poruszając się po tym brzegu zgodnie z wybraną orientacją obszar $D$ znajduje się po lewej stronie.
+
+\begin{theorem}[Greena]
+    Niech $D$ będzie ograniczonym obszarem jednospójnym, a $\vec{F} = (P, Q)$ polem wektorowym, gdzie funkcje $P, Q$ są różniczkowalne w sposób ciągły wewnątrz obszaru $D$, a $\p D$ jest zorientowany dodatnio. Zachodzi równość
+    \[ \oint\limits_{\p D} P(x, y) \d x + Q(x, y) \d y = \iint\limits_D \left(\frac{\p Q}{\p x}(x, y) - \frac{\p P}{\p y}(x, y)\right) \d x \d y. \]
+\end{theorem}
+
+\begin{definition}
+    Pole potencjalne $\vec{F} = (P, Q)$ w obszarze $D$ to takie pole wektorowe, że istnieje funkcja różniczkowalna $u : D \to \RR$, że
+    \[ \d u = P(x, y) \d x + Q(x, y) \d y, \]
+    czyli $P, Q$ są jej pochodnymi cząstowymi. Funkcję $u$ nazywamy potencjałem pola potencjalnego $\vec{F}$.
+\end{definition}
+
+\begin{theorem}[warunek konieczny i wystarczający na potencjalność pola]
+    \label{t:necessary and sufficient condition for field potentiality}
+    Niech $\vec{F} = (P, Q)$ będzie polem wektorowym, a funkcje $P, Q$ są różniczkowalne w sposób ciągły na obszarze jednospójnym $D$. Pole $\vec{F}$ jest potencjalne wtedy i tylko wtedy, gdy dla każdego punktu $(x, y) \in D$ zachodzi
+    \[ \frac{\p Q}{\p x}(x, y) = \frac{\p P}{\p y}(x, y). \]
+\end{theorem}
+
+\begin{corollary}
+    Całka krzywoliniowa skierowana po dowolnej krzywej regularnej zamkniętej zawartej w obszarze $D$, na którym pole wektorowe jest potencjalne, jest równa $0$.
+\end{corollary}
+
+Możemy sformułować również ogólniejsze twierdzenie:
+\begin{theorem}[o niezależności całki krzywoliniowej od kształcu krzywej w polu potencjalnym]
+    Całka krzywoliniowa skierowana w polu potencjalnym nie zależy od kształu krzywej regularnej $K \subset D$, a jedynie od jej początku $A$ i końca $B$. Ponadto zachodzi równość
+    \[ \int\limits_{AB} P(x, y) \d x + Q(x, y) \d y = u(B) - u(A), \]
+    gdzie $u$ jest potencjałem pola potencjalnego w $D$.
+\end{theorem}
+
+\begin{example}
+    Oblicz całkę krzywoliniową skierowaną pola wektorowego $\vec{F} = \left(\frac{y}{x^2 + y^2}, \frac{-x}{x^2 + y^2}\right)$ po okręgu $x^2 + y^2 = 1$ skierowanym dodatnio.
+\end{example}
+\begin{solution}
+    Niech $P(x, y) = \frac{y}{x^2 + y^2}$, $Q(x, y) = \frac{-x}{x^2 + y^2}$. Funkcje te są różniczkowalne w sposób ciągły na pewnym zbiorze $D$, jednak $(0, 0) \notin D$, więc nie jest to obszar jednospójny. Nie możemy więc użyć warunku wystarczającego na potencjalność pola (\ref{t:necessary and sufficient condition for field potentiality}) i tym samym powiedzieć, że całka wynosi zero.
+
+    Zamiast tego wykorzystamy przejście na współrzędne biegunowe:
+    \begin{align*}
+        &\oint\limits_K P(x, y) \d x + Q(x, y) \d y = \int\limits_0^{2\pi}\left( \frac{\sin t}{1} (-\sin t \d t) + \frac{-\cos t}{1} (\cos t \d t)\right) = \\
+        &= \int\limits_0^{2\pi}\left(-\sin^2 t + -\cos^2 t \right) \d t = \int\limits_0^{2\pi} -1 \d t = -2 \pi.
+    \end{align*}
+\end{solution}

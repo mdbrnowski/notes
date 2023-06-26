@@ -81,7 +81,7 @@ Analogicznie możemy zdefiniować obszar normalny względem osi $OY$.
     \[ [R_2] = \int\limits_1^4 \d y \int\limits_{y-2}^{\sqrt{y}} \d x = \int\limits_1^4 (\sqrt{y} - y + 2) \d y = \left[\frac{2y^{\frac{3}{2}}}{3} - \frac{y^2}{2} + 2y\right]_1^4 = \frac{14}{3} - \frac{1}{2}. \]
 \end{solution}
 
-\begin{theorem}[o zamianie zmiennych w całce podwójnej]
+\begin{theorem}[o zamianie zmiennych w całce wielokrotnej]
     \label{t:change variables in double integral}
     Dana jest funkcja $f : D \to \RR$, która jest ciągła na obszarze regularnym $D$ oraz przekształcenie $\varPhi : D' \to D$, gdzie
     \[ \varPhi : (x, y) \mapsto (x(u, v), (y(u, v))). \]
@@ -109,5 +109,22 @@ Analogicznie możemy zdefiniować obszar normalny względem osi $OY$.
     \begin{align*}
         \iint\limits_D (x + y) \d x \d y &= \iint\limits_{D'} \left(\frac{u + v}{3} + \frac{u - 2v}{3}\right) \cdot |J(u, v)| \d u \d v = \iint\limits_{D'} \frac{2u - v}{9} \d u \d v \\
         &= \frac{1}{9}\int\limits_{-1}^1 \d v \int\limits_2^3 (2u - v) \d u = \frac{1}{9}\int\limits_{-1}^1 (5 - v) \d v = \frac{10}{9}.
+    \end{align*}
+\end{solution}
+
+\begin{example}
+    Znaleźć objętość bryły ograniczonej przez paraboloidę $z = 4 - x^2 - y^2$, brzeg walca $(x - 1)^2 + y^2 = 1$ oraz płaszczyznę $z = 0$ (od dołu).
+\end{example}
+\begin{solution}
+    Bryła ma objętość równą
+    \[ \iint\limits_{D} 4 - x^2 - y^2, \]
+    przy $D = \{(x, y) : (x - 1)^2 + y^2 \leq 1\}$. Możemy przejść do współrzędnych biegunowych\footnote{zobacz dodatek \ref{s:coordinate systems}}:
+    \[ \iint\limits_{D} 4 - x^2 - y^2 \d x \d y = \iint\limits_{D'} (4 - r^2) r \d r \d \varphi, \]
+    gdzie, skoro $x^2 + y^2 - 2x + 1 \leq 1 \implies r^2 \leq 2r\cos\varphi \implies r \leq 2\cos\varphi$,
+    \[ D' = \{(r, \varphi) : \varphi \in [0, \pi], r \in [0, 2\cos\varphi] \}. \]
+    Zbiór $D'$ jest obszarem normalnym, mamy więc
+    \begin{align*}
+        \iint\limits_{D'} (4r - r^3) \d r \d \varphi &= \int\limits_0^\pi \d \varphi \int\limits_0^{2\cos\varphi} 4r - r^3 \d r = \int\limits_0^\pi (8\cos^2\varphi - 4\cos^4\varphi) \d \varphi \\
+        &= \left[\frac{5}{2}\varphi + \frac{5}{2}\sin\varphi\cos\varphi - \sin\varphi\cos^3\varphi\right]_0^\pi = \frac{5\pi}{2}.
     \end{align*}
 \end{solution}

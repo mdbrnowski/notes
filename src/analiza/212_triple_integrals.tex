@@ -1,0 +1,71 @@
+W tej sekcji zajmiemy się całkami funkcji trzech zmiennych $f : P \to \RR$, gdzie $P \supset \RR^3$. Twierdzenia z poprzedniej sekcji można uogólnić na całki potrójne.
+
+\begin{definition}
+    Obszar normalny (względem płaszczyzny $OXY$) to zbiór
+    \[ V = \{(x, y, z) : (x, y) \in D, z \in [\varPhi(x, y), \varPsi(x, y)]\}, \]
+    gdzie $D$ jest obszarem regularnym w $\RR^2$, a funkcje $\varPhi, \varPsi$ są ciągłe.
+\end{definition}
+
+\begin{theorem}[zamiana całki potrójnej na całkę iterowaną dla obszaru normalnego]
+    Jeśli funkcja $f$ jest ciągła oraz
+    \[ V = \{(x, y, z) : (x, y) \in D, z \in [\varPhi(x, y), \varPsi(x, y)]\} \]
+    jest obszarem normalnym względem płaszczyzny $OXY$, to
+    \[ \iiint\limits_V f(x, y, z) \d x \d y \d z = \iint\limits_D \d x \d y \int\limits_{\varPhi(x, y)}^{\varPsi(x, y)} f(x, y, z) \d z. \]
+    Jeśli $D$ jest nie tylko obszarem regularnym, ale też normalnym względem osi $OX$, to
+    \[ \iiint\limits_V f(x, y, z) \d x \d y \d z = \int\limits_a^b \d x \int\limits_{\varphi(x)}^{\psi(x)} \d y \int\limits_{\varPhi(x, y)}^{\varPsi(x, y)} f(x, y, z) \d z. \]
+\end{theorem}
+
+\begin{example}
+    Obliczyć moment bezwładności wzglęm osi $OZ$ jednorodej bryły o masie $M$ ograniczonej przez elipsoidę $\frac{x^2}{4} + \frac{y^2}{9} + z^2 = 1$ i płaszczyznę $z = 0$ (od dołu).
+\end{example}
+\begin{solution}
+    Bryła jest jednorodna, więc ma stałą gęstość $\rho = \frac{M}{V}$. Aby obliczyć objętość $V$ oraz moment bezwładności $I$, przejdziemy na uogólnione współrzędne sferyczne:
+    \[ \begin{cases}
+        x = 2r\cos\psi\cos\varphi \\
+        y = 3r\cos\psi\sin\varphi \\
+        z = r\sin\psi
+    \end{cases}. \]
+    Jakobian takiego przejścia będzie równy $6r^2\cos\psi$, co, znając jakobian przejścia do współrzędnych sferycznych, łatwo uzasadnić algebraicznie. W nowym układzie współrzędnych bryła będzie prostopadłościanem ($r \in [0, 1], \psi \in [0, \frac{\pi}{2}], \varphi \in [0, 2\pi]$), więc
+    \begin{align*}
+        V &= \iiint\limits_D \d x \d y \d z = \iiint\limits_{D'} 6r^2\cos\psi \d r \d \psi \d \varphi = \\
+        &= 6 \int\limits_0^{2\pi} \d \varphi \int\limits_0^1 \d r \int\limits_0^{\frac{\pi}{2}} r^2\cos\psi \d \psi = 12\pi \int_0^1 r^2 \d r = 4\pi, \\
+        &\therefore \rho = \frac{M}{4\pi}.
+    \end{align*}
+    Moment bezwładności punktu materialnego to iloczyn jego masy i kwadratu odległości od osi obrotu, więc moment bezwładności opisanej bryły to
+    \begin{align*}
+        I &= \iiint\limits_D \rho (x^2 + y^2) \d x \d y \d z = \\
+        &= \frac{M}{4\pi} \iiint\limits_{D'} (4r^2\cos^2\psi\cos^2\varphi + 9r^2\cos^2\psi\sin^2\varphi) 6r^2\cos\psi \d r \d \psi \d \varphi = \\
+        &= \frac{3M}{2\pi} \iiint\limits_{D'} (4r^4\cos^3\psi + 5r^4\cos^3\psi\sin^2\varphi) \d r \d \psi \d \varphi = \\
+        &= \frac{3M}{2\pi} \int\limits_0^{2\pi} \d \varphi \int\limits_0^1 \d r \int\limits_0^{\frac{\pi}{2}} (r^4\cos^3\psi)(4 + 5\sin^2\varphi) \d \psi.
+    \end{align*}
+    Skoro $\int_0^{\frac{\pi}{2}} \cos^3 x \d x = \frac{1}{3}\left[\sin x \cos^2 x\right]_0^{\frac{\pi}{2}} + \frac{2}{3}\int_0^{\frac{\pi}{2}} \cos x \d x = 0 + \frac{2}{3}\cdot 1 = \frac{2}{3}$, to
+    \begin{align*}
+        I &= \frac{M}{\pi} \int\limits_0^{2\pi} \d \varphi \int\limits_0^1 (r^4)(4 + 5\sin^2\varphi) \d r = \frac{M}{5\pi} \int\limits_0^{2\pi} (4 + 5\sin^2\varphi) \d \varphi = \\
+        &= \frac{M}{5\pi}\left(8\pi + 5\int\limits_0^{2\pi} \sin^2 \varphi \d \varphi\right) = \frac{M}{5\pi}\left(8\pi + 5\pi\right) = \frac{13}{5} M.
+    \end{align*}
+\end{solution}
+
+Nic nie stoi na przeszkodzie, żebyśmy zdefiniowali również niewłaściwe całki wielokrotne. Jeśli $D$ nie jest zbiorem ograniczonym (lub funkcja $f$ nie jest na nim ograniczona), to tworzymy taki nieskończony ciąg obszarów regularnych $D_i$, że $D_i \in D_{i+1}$ oraz $\lim_{i\to\infty} D_i = D$ i definiujemy
+\[ \idotsint\limits_D f(x) \d x_1 \cdots \d x_n = \lim_{i\to\infty} \idotsint\limits_{D_i} f(x) \d x_1 \cdots \d x_n. \]
+
+\begin{example}
+    Oblicz
+    \[ I = \iiint\limits_{\RR^3} e^{-x^2 - y^2 - z^2}\sqrt{x^2 + y^2 + z^2} \d V. \]
+\end{example}
+\begin{solution}
+    Przejdziemy na współrzędne sferyczne:
+    \begin{align*}
+        I &= \iiint\limits_{\RR^3} e^{-x^2 - y^2 - z^2}\sqrt{x^2 + y^2 + z^2} \d V = \iiint\limits_D e^{-r^2}r^3\cos\psi \d r \d \psi \d \varphi = \\
+        &= \lim_{k\to\infty} \iiint\limits_{D_k} e^{-r^2}r^3\cos\psi \d r \d \psi \d \varphi,
+    \end{align*}
+    gdzie $D_k = \{(r, \psi, \varphi) : \psi \in [-\frac{\pi}{2}, \frac{\pi}{2}], \varphi \in [0, 2\pi], r \in [0, k]\}$. Mamy więc
+    \begin{align*}
+        I_k &= \int\limits_0^k \d r \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \d \psi \int\limits_0^{2\pi} e^{-r^2}r^3\cos\psi \d \varphi = 2\pi \int\limits_0^k \d r \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} e^{-r^2}r^3\cos\psi \d \psi \\
+        &= 4\pi \int\limits_0^k e^{-r^2}r^3 \d r
+    \end{align*}
+    Stosując podstawienie $u = x^2$ oraz całkowanie przez części mamy
+    \[ \int e^{-x^2}x^3 \d x = \frac{1}{2} \int e^{-u} u \d u = \frac{-1}{2}e^{-u} u + \frac{1}{2}\int e^{-u} \d u = \frac{-1}{2}e^{-u} u - \frac{e^{-u}}{2}, \]
+    więc
+    \[ I_k = 2\pi \left[-e^{-r^2}(r^2 + 1)\right]_0^k = 2\pi \left(-e^{-k^2}(k^2 + 1) + 1\right) \]
+    \[ I = \lim_{k\to\infty} I_k = 2\pi \lim_{k\to\infty} \left(1 - \frac{k^2 + 1}{e^{k^2}}\right) = 2\pi. \]
+\end{solution}
