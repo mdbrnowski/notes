@@ -2,7 +2,7 @@
 \usepackage[pretty,polish]{mystd}
 \title{Szybka transformacja Fouriera (FFT)}
 \author{Michał Dobranowski}
-\date{wrzesień 2022 \\ v1.0}
+\date{wrzesień 2022 \\ v1.1}
 
 \begin{document}
     \maketitle
@@ -16,9 +16,12 @@
         Iloczynem wielomianów $A(x)$ oraz $B(x)$ jest wielomian $C(x)$ taki, że dla każdego $x$ zachodzi $C(x) = A(x)\cdot B(x)$.
     \end{definition}
 
+    Splot (ang.\ \textit{convolution}) ciągów współczynników dwóch wielomianów jest ciągiem współczynników ich iloczynu, więc czesto zamiast iloczynu wielomianów będziemy używali pojęcia ,,splot wielomianów'' i oznaczali
+    \[ C = A * B. \]
+
     Weźmy wielomiany $A(x) = a_0 + a_1x + \ldots + a_nx^n$ oraz $B(x) = b_0 + b_1x + \ldots + b_nx^n$.
     \begin{fact}
-        Możemy obliczyć współczynniki wielomianu $C(x) = A(x) \cdot B(x)$ jako
+        Możemy obliczyć współczynniki wielomianu $C = A * B$ jako
         $$ c_j = \sum_{k = 0}^j a_kb_{j-k}. $$
     \end{fact}
     Na podstawie tego wzoru możemy z łatwością skonstruować algorytm mnożenia dwóch wielomianów, który będzie działać w czasie $\Theta(n^2)$. Niestety, taka złożoność nas nie zadowala; będziemy szukać algorytmu podkwadratowego.
@@ -32,12 +35,12 @@
     \end{theorem}
     \begin{proof}
         Ponieważ punkty $x_k$ są parami różne, to wyznacznik macierzy Vandermonde'a stworzonej z punktów $(x_1, x_2, \ldots, x_{n+1})$ jest różny od zera, więc macierz jest odwracalna. Niech $V$ będzię wspomnianą macierzą.
-        $$ V = \begin{pmatrix}
+        $$ V = \begin{bmatrix}
             1 & x_1 & x_1^2  & \cdots & x_1^{n-1} \\
             1 & x_2 & x_2^2  & \cdots & x_2^{n-1} \\
             \vdots & \vdots  & \vdots & \ddots & \vdots    \\
             1 & x_{n+1} & x_{n+1}^2  & \cdots & x_{n+1}^{n-1} \\
-        \end{pmatrix} $$
+        \end{bmatrix} $$
         Rozwiązania układu równań
         $$ (a_0, a_1, a_2, \ldots, a_n)^T = V^{-1}(y_1, y_2, \ldots, y_{n+1})^T $$
         pozwala jednoznacznie wyznaczyć współczynniki wielomianu.
@@ -112,9 +115,9 @@
     Łatwo zauważyć, że na mocy lematu o redukcji (\ref{l:reduction}) zbiór pierwiastków $n$-tego stopnia z jedności spełnia wymagania postawione w poprzedniej sekcji.
 
     \subsection{Szybka transformacja Fouriera}
-    Jeśli oznaczymy wektor współczynników wielomianu $A$ jako $a = (a_0, a_1, \ldots, a_{n-1})$ oraz weźmiemy $y_k = A(\omega_n^k)$, to wektor $y = (y_0, y_1, \ldots, y_{n-1})$ nazwiemy \vocab{dyskretną transformatą Fouriera}\footnote{ang. \textit{Discrete Fourier Transform}, DFT} wektora współczynników $a$ i oznaczymy $y = \opname{DFT}_n(a)$.
+    Jeśli oznaczymy wektor współczynników wielomianu $A$ jako $a = (a_0, a_1, \ldots, a_{n-1})$ oraz weźmiemy $y_k = A(\omega_n^k)$, to wektor $y = (y_0, y_1, \ldots, y_{n-1})$ nazwiemy \vocab{dyskretną transformatą Fouriera}\footnote{ang.\ \textit{Discrete Fourier Transform}, DFT} wektora współczynników $a$ i oznaczymy $y = \opname{DFT}_n(a)$.
 
-    Algorytm, którego główne założenia opisaliśmy wyżej, służy do obliczania $\opname{DFT}$ (czyli ewaluacji wielomianu w pierwiastkach jedności) w czasie $O(n\log n)$ i jest nazywany \vocab{szybką transformacją Fouriera}\footnote{ang. \textit{Fast Fourier Transform}, FFT}.
+    Algorytm, którego główne założenia opisaliśmy wyżej, służy do obliczania $\opname{DFT}$ (czyli ewaluacji wielomianu w pierwiastkach jedności) w czasie $O(n\log n)$ i jest nazywany \vocab{szybką transformacją Fouriera}\footnote{ang.\ \textit{Fast Fourier Transform}, FFT}.
 
     \subsubsection{Implementacja}
     Poniżej przedstawiony jest algorytm FFT, który dla danego wektora współczynników $a$ liczy $\opname{DFT}(a)$. Obliczenia wykonywane są w miejscu, a więc funkcja \lstinline{fft()} nie zwraca wektora $\opname{DFT}(a)$, tylko zmienia wektor $a$.
@@ -125,28 +128,28 @@
 
     Wróćmy do wspomnianego w dowodzie twierdzenia \ref{t:polynomial_interpolation} układu równań. Mamy
     \begin{equation*}
-        \begin{pmatrix}
+        \begin{bmatrix}
             y_0 \\
             y_1 \\
             y_2 \\
             \vdots \\
             y_{n-1} \\
-        \end{pmatrix}
+        \end{bmatrix}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & 1 & 1 & \cdots & 1 \\
             1 & \omega_n & \omega_n^2 & \cdots & \omega_n^{n-1} \\
             1 & \omega_n^2 & \omega_n^4  & \cdots & \omega_n^{2(n-1)} \\
             \vdots & \vdots  & \vdots & \ddots & \vdots    \\
             1 & \omega_n^{n-1} & \omega_n^{2(n-1)}  & \cdots & \omega_n^{(n-1)(n-1)} \\
-        \end{pmatrix}
-        \begin{pmatrix}
+        \end{bmatrix}
+        \begin{bmatrix}
             a_0 \\
             a_1 \\
             a_2 \\
             \vdots \\
             a_{n-1} \\
-        \end{pmatrix},
+        \end{bmatrix},
     \end{equation*}
     czyli
     \begin{equation}
@@ -156,28 +159,28 @@
 
     Nie wiemy jeszcze, jak szybko policzyć wektor $a = \opname{DFT}_n^{-1}(y)$ (czyli transformatę odwrotną do $\opname{DFT}$), ale możemy ten wektor wyznaczyć za pomocą
     \begin{equation*}
-        \begin{pmatrix}
+        \begin{bmatrix}
             a_0 \\
             a_1 \\
             a_2 \\
             \vdots \\
             a_{n-1} \\
-        \end{pmatrix}
+        \end{bmatrix}
         =
-        \begin{pmatrix}
+        \begin{bmatrix}
             1 & 1 & 1 & \cdots & 1 \\
             1 & \omega_n & \omega_n^2 & \cdots & \omega_n^{n-1} \\
             1 & \omega_n^2 & \omega_n^4  & \cdots & \omega_n^{2(n-1)} \\
             \vdots & \vdots  & \vdots & \ddots & \vdots    \\
             1 & \omega_n^{n-1} & \omega_n^{2(n-1)}  & \cdots & \omega_n^{(n-1)(n-1)} \\
-        \end{pmatrix}^{-1}
-        \begin{pmatrix}
+        \end{bmatrix}^{-1}
+        \begin{bmatrix}
             y_0 \\
             y_1 \\
             y_2 \\
             \vdots \\
             y_{n-1} \\
-        \end{pmatrix}.
+        \end{bmatrix}.
     \end{equation*}
 
     Macierz z omegami będziemy oznaczać $V$, ponieważ jest ona macierzą Vandermonde'a. Szukamy więc macierzy $V^{-1}$, aby otrzymać wzór na $a_k$.
@@ -202,7 +205,7 @@
     Zauważając podobieństwo między wzorami \ref{eq:y_k} i \ref{eq:a_k} możemy stwierdzić, że aby interpolować wielomian w pierwiastkach jedności, wystarczy użyć FFT, tylko zamiast $\omega$ wiąć $\omega^{-1}$ oraz wynik na końcu podzielić przez $n$. Tak zmodyfikowany algorytm oczywiście dalej ma złożoność obliczeniową $O(n\log n)$.
 
 \section{Implementacja}
-    Podsumowując, aby pomnożyć wielomiany $A(x), B(x)$ przez siebie w czasie $O(n\log n)$, należy najpierw zamienić je oba na postać punktową (ewaluację robimy za pomocą FFT w czasie liniowo-logarytmicznym), następnie pomnożyć punkty przez siebie (w czasie liniowym) i z powrotem zamienić na postać współczynnikową (interpolację robimy również w czasie liniowo-logarytmicznym\footnote{algorytmem nazywanym IFFT, ang. \textit{Inverse Fast Fourier Transform}}). Cały algorytm wykonywany jest w czasie $O(n\log n)$.
+    Podsumowując, aby pomnożyć wielomiany $A(x), B(x)$ przez siebie w czasie $O(n\log n)$, należy najpierw zamienić je oba na postać punktową (ewaluację robimy za pomocą FFT w czasie liniowo-logarytmicznym), następnie pomnożyć punkty przez siebie (w czasie liniowym) i z powrotem zamienić na postać współczynnikową (interpolację robimy również w czasie liniowo-logarytmicznym\footnote{algorytmem nazywanym IFFT, ang.\ \textit{Inverse Fast Fourier Transform}}). Cały algorytm wykonywany jest w czasie $O(n\log n)$.
 
     Z powodu podobieństwa algorytmów FFT oraz IFFT, zaimplementujemy je w jednej funkcji (z dodatkowym argumentem).
 
@@ -223,6 +226,23 @@
         \end{answer}
     \end{problem}
 
+\section{Optymalizacje FFT}
+    Mamy już opisany i zaimplementowany algorytm FFT -- każdy matematyk powinien się poczuć usatysfakcjonowany. Jednak kiedy piszemy go w praktyce, na przykład na konkursach algorytmicznych, może okazać się trochę za wolny (to znaczy mieć za dużą stałą). W tej sekcji opiszemy kilka usprawnień, które pochodzą głównie z \cite{ref:Smykalov}.
+
+    \subsection{Implementacja iteracyjna}
+    Jak wiadomo, zwykle implementacje iteracyjne górują nad rekurencyjnymi pod względem czasu działania, dlatego spróbujmy przekształcić algorytm FFT na algorytm iteracyjny.
+
+    Łatwo zauważyć, że najpierw zawsze używamy tych współczynników $a_i$, dla których $i$ jest, przy wielokronym dzieleniu przez $2$, jak najdłużej parzyste. Tak więc napierw będziemy chcieli policzyć $a_0$ i $a_{n/2}$, później $a_{n/4}$ i $a_{3a/4}$ i tak dalej. Jeśli zapiszemy indeksy tych współczynników w systemie binarnym (pamiętając, że $n$ jest potęgą dwójki)
+    \begin{center}
+        \begin{tabular}{ l c }
+            $0$    & $000000000000\ldots$ \\
+            $n/2$  & $100000000000\ldots$ \\
+            $n/4$  & $010000000000\ldots$ \\
+            $3n/4$ & $110000000000\ldots$ \\
+        \end{tabular}
+    \end{center}
+    to można zauważyć, że jeśli czytalibyśmy te bity od tyłu, to liczymy po prostu kolejne liczby naturalne. Możemy więc wstępnie obliczyć dla każdej liczby $\{0, \ldots, n-1\}$ jej bitowe odwrócenie, a następnie liczyć wszystko iteracyjnie.
+
 \section{Rozwiązania}
     \makeanswers
 
@@ -232,6 +252,8 @@
         \url{https://www.deltami.edu.pl/2022a/08/2022-08-delta-art-07-kujawa.pdf}
     \bibitem{ref:cp-algo} \textbf{cp-algorithms}.
         \url{https://cp-algorithms.com/algebra/fft.html}
+    \bibitem{ref:Smykalov} \textbf{FFT: optimizations}, Vladimir Smykalov.
+        \url{https://neerc.ifmo.ru/trains/toulouse/2017/fft2.pdf}
 \end{thebibliography}
 
 \end{document}

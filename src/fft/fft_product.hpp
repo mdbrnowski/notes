@@ -29,7 +29,7 @@ void fft(vector<cd>& a, bool invert) {
     }
 }
 
-vector<int> multiply(vector<int>& a, vector<int>& b) {
+vector<int> conv(vector<int>& a, vector<int>& b) {
     vector<cd> fa(a.begin(), a.end()), fb(b.begin(), b.end());
     int n = 1 << (__lg(a.size() + b.size() - 1) + 1);
     fa.resize(n);
