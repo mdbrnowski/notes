@@ -2,7 +2,7 @@
 \usepackage[pretty,polish]{mystd}
 \title{Funkcje tworzące i filtracja pierwiastkami jedności}
 \author{Michał Dobranowski}
-\date{czerwiec 2022 \\ v1.2}
+\date{czerwiec 2022 \\ v1.3}
 
 \begin{document}
     \maketitle
@@ -14,7 +14,7 @@
 \section{Pierwiastki jedności w ciele liczb zespolonych}
     \begin{definition}
         \label{d:root}
-        Pierwiastek $n$-tego stopnia z jedynki to liczba $\omega \in \CC$ spełniąjaca równanie $\omega^n = 1$.
+        Pierwiastek $n$-tego stopnia z jedynki to liczba $\omega \in \CC$ spełniająca równanie $\omega^n = 1$.
     \end{definition}
 
     \begin{lemma}
@@ -76,7 +76,7 @@
             $$ P = \prod_{k = 0}^6(1 + \omega^k + \omega^{2k}) = -\prod_{k = 0}^6(\phi - \omega)(\tau - \omega), $$
             gdzie $\phi, \tau$ to rozwiązania równania $x^2 - x - 1 = 0$.
 
-            Z lematu \ref{l:roots_group} oraz rozumownia podobnego do dowodu lematu \ref{l:roots_plus_one_prod} wiemy, że
+            Z lematu \ref{l:roots_group} oraz rozumowania podobnego do dowodu lematu \ref{l:roots_plus_one_prod} wiemy, że
             $$ P = -(\phi^7 - 1)(\tau^7 - 1). $$
 
             Teraz zauważmy, że dla $\phi$ i $\tau$ spełnione jest $x^2 = x + 1$. Za pomocą tej równości upraszczamy $x^7 - 1$ do momentu, aż uzyskamy wyrażenie liniowe (obliczenia pominiemy).
@@ -125,7 +125,7 @@
 
     Oczywiście ciąg nieskończony może równie dobrze być od pewnego miejsca zerowy -- wtedy śmiało można uznać go za skończony i odpowiednio zmodyfikować definicję funkcji tworzącej. Rozpatrzmy następujący przykład:
     \begin{example}
-        Rzucamy dwoma standardowymi, sześciennymi kośćmi. Takie zdarzenie losowe jest określane przez pewien \vocab{rozkład prawdopodobieństwa}\footnote{czyli funkcję, która każdemu wynikowi przypisuje jego prawdopodobieństwo.}, dotyczący sumy wyrzuconych oczek, przykładowo $P(2) = \frac{1}{36}, P(7) = \frac{1}{6}$. Rozważ, czy da się stworzyć dwie \textbf{niestandardowe} kości (lecz dalej sześcienne, z całkowitą dodatną liczbą oczek) tak, aby rozkład prawdopodobieństwa się nie zmienił.
+        Rzucamy dwoma standardowymi, sześciennymi kośćmi. Takie zdarzenie losowe jest określane przez pewien \vocab{rozkład prawdopodobieństwa}\footnote{czyli funkcję, która każdemu wynikowi przypisuje jego prawdopodobieństwo.}, dotyczący sumy wyrzuconych oczek, przykładowo $P(2) = \frac{1}{36}, P(7) = \frac{1}{6}$. Rozważ, czy da się stworzyć dwie \textbf{niestandardowe} kości (lecz dalej sześcienne, z całkowitą dodatnią liczbą oczek) tak, aby rozkład prawdopodobieństwa się nie zmienił.
     \end{example}
     \begin{solution}
         Łatwo zauważyć, że taką standardową kostkę możemy opisać jako
@@ -173,7 +173,9 @@
         Oblicz $$ A = \sum_{k = 0}^{33} \binom{100}{3k}. $$
     \end{example}
     \begin{solution}
-        Ze wzoru Newtona wynika, że funkcją tworzącą ciągu $\left(\binom{100}{0}, \binom{100}{1}, \cdots, \binom{100}{n}\right)$ jest
+        Ze wzoru Newtona wynika, że funkcją tworzącą ciągu
+        \[ \left(\textstyle{\binom{100}{0}, \binom{100}{1}, \cdots, \binom{100}{n}}\right) \]
+        jest
         $$ f(x) = (x + 1)^{100}. $$
         Musimy obliczyć co trzeci wyraz tego ciągu, więc, korzystając z filtrowania pierwiastkami jedności (twierdzenie \ref{t:filter}), weźmy $\omega = e^{2\pi i /3}$ i zapiszmy $A$ jako
         $$ A = \frac{1}{3}\left(f(1) + f(\omega) + f(\omega^2)\right). $$
@@ -214,7 +216,7 @@
     \begin{solution}
         Użyjmy następującej funkcji tworzącej ciąg $(a_{n,m})$:
         $$ f(x, y) = (1 + xy)(1 + x^2y)\cdots(1 + x^{2p}y). $$
-        Łatwo zauważyć, że będziemy chceli znaleźć sumę współczynników przy wyrazach postaci $x^s y^p$ gdzie $p\mid s$. Oznaczając $\omega = e^{2\pi i / p}$ i korzystając z filtrowania pierwiastkami jedności mamy
+        Łatwo zauważyć, że będziemy chcieli znaleźć sumę współczynników przy wyrazach postaci $x^s y^p$ gdzie $p\mid s$. Oznaczając $\omega = e^{2\pi i / p}$ i korzystając z filtrowania pierwiastkami jedności mamy
         $$ \sum_{s,k\geq 0} a_{s,k}y^k = \frac{1}{p}\left(f(\omega, y) + f(\omega^2, y) + \cdots + f(\omega^p, y)\right). $$
         Na mocy lematów \ref{l:roots_group} i \ref{l:roots_plus_one_prod} otrzymujemy
         \begin{align*}
@@ -247,7 +249,7 @@
             Uwaga, $9$ nie jest liczbą pierwszą.
         \end{hint}
         \begin{answer}
-            Niech $a$ będzie takim ciągiem, że $a_k$ jest liczbą podbiorów zbioru $S$ o sumie równej~$k$. Funkcją tworzącą tego ciągu jest
+            Niech $a$ będzie takim ciągiem, że $a_k$ jest liczbą podzbiorów zbioru $S$ o sumie równej~$k$. Funkcją tworzącą tego ciągu jest
             $$ f(x) = (1 + x)(1 + x^2)\cdots(1 + x^{2070}). $$
 
             Niech $\omega = e^{2\pi i/9}$. Używając filtrowania pierwiastkami jedności możemy stwierdzić, że odpowiedzią na pytanie jest liczba
@@ -287,15 +289,13 @@
         \begin{answer}
             Najpierw zauważmy, że funkcją tworzącą ciągu $(a_k)_{k\geq 0}$, gdzie $a_k$ jest liczbą $n$-cyfrowych liczb złożonych z cyfr $\{2, 3, 7, 9\}$ o sumie cyfr równej $k$ jest
             $$ f(x) = \left(x^2 + x^3 + x^7 + x^9\right)^n. $$
-            Szukamy takich liczb, których suma cyfr jest podzielna przez $3$, więc możemy wziąc $\omega = e^{2\pi i / 3}$ i, korzystając z filtrowania pierwiastkami jedności, obliczyć
+            Szukamy takich liczb, których suma cyfr jest podzielna przez $3$, więc możemy wziąć $\omega = e^{2\pi i / 3}$ i, korzystając z filtrowania pierwiastkami jedności, obliczyć
             $$ \frac{1}{3}\left(4^n + f(\omega) + f(\omega^2)\right) $$
             $$ = \frac{1}{3}\left(4^n + \left(\omega^2 + 1 + \omega + 1\right)^n + \left(\omega + 1 + \omega^2 + 1\right)^n\right) $$
             Z lematu \ref{l:roots_sum} otrzymujemy równość z
             $$ \frac{1}{3}\left(4^n + 2\right). $$
         \end{answer}
     \end{problem}
-
-    Warto jeszcze spojrzeć na (to znaczy zrobić) zadania wymienione w \cite{ref:NICE}.
 
 \begin{thebibliography}{9}
     \bibitem{ref:Kessler} \textbf{Complex Numbers}, Andre Kessler.
@@ -307,8 +307,6 @@
         \url{http://zacharyabel.com/papers/Multi-GF_A06_MathRefl.pdf}
     \bibitem{ref:Wilf} \textbf{generatingfunctionology}, Herbert Wilf.
         \url{https://www2.math.upenn.edu/~wilf/gfology2.pdf}
-    \bibitem{ref:NICE} \textbf{NICE Journal 2}, NICE Committee
-        \url{https://www.nicecontest.xyz/static/media/NJ2.942d32c0.pdf#page=12}
 \end{thebibliography}
 
 \newpage
