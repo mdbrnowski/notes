@@ -1,6 +1,6 @@
 Podobnie do szeregów liczbowych, szeregi funkcyjne to para $((f_n(x))_{n\in\NN}, (S_n(x))_{n\in\NN})$: ciąg funkcyjny oraz ciąg sum częściowych ciągu funkcyjnego. Taki szereg jest zbieżny (punktowo / jednostajnie) do sumy szeregu $S$, jeśli ciąg $(S_n(x))$ jest zbieżny (częściowo / jednostajnie) do $S$.
 
-Analogicznie do twierdzenia \ref{t:uniform convergence implies pointwise convergence}, warukiem koniecznym zbieżności jednostajnej szeregu jest jego zbieżność punktowa.
+Analogicznie do twierdzenia \ref{t:uniform convergence implies pointwise convergence}, warunkiem koniecznym zbieżności jednostajnej szeregu jest jego zbieżność punktowa.
 
 Z kolei w analogii do twierdzenia \ref{t:necessary condition of convergence}, warunkiem koniecznym zbieżności (punktowej / jednostajnej) szeregu $\sum_{n=1}^\infty f_n(x)$ jest zbieżność (punktowa / jednostajna) ciągu funkcyjnego $(f_n(x))$ do zera, to znaczy
 \[ \sum_{n=1}^\infty f_n(x) \rightarrow S \Longrightarrow f_n(x) \rightarrow 0 \equiv f \]
@@ -45,7 +45,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
 \begin{solution}
     Dla każdego $x \in [1, \infty]$ oraz $n \in \NN$ mamy
     \[ \left|\frac{nx}{1+n^4x^2}\right| = \frac{nx}{1+n^4x^2} \leq \frac{nx}{n^4x^2} = \frac{1}{n^3x} \leq \frac{1}{n^3}, \]
-    więc, na mocy kryterium Weierstrassa, dany szereg jest jednostajnie zbieżny, bo szereg harmoniczy rzędu $3$ jest zbieżny.
+    więc, na mocy kryterium Weierstrassa, dany szereg jest jednostajnie zbieżny, bo szereg harmoniczny rzędu $3$ jest zbieżny.
 \end{solution}
 
 \begin{example}
@@ -57,7 +57,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
     \[ g = \lim_{n\to\infty} \frac{x^2}{e^{x(n+1)}}\frac{e^{xn}}{x^2} = \lim_{n\to\infty}\frac{1}{e^x} = \frac{1}{e^x}. \]
     Szereg jest więc zbieżny dla każdego $x > 0$ i rozbieżny dla każdego $x < 0$. Ostatecznie, obszar zbieżności punktowej danego szeregu funkcyjnego to $[0,\infty)$.
 
-    Zajmijmy się teraz zbieżnością jednostajną. Oczywiście można by ją wykazywać przez znalezienie ciągu sum cześciowych, a następnie skorzystanie z twierdzenia \ref{t:uniform convergence iff metric = 0}, ale możemy też skorzystać z kryterium Weierstrassa, chociaż w dosyć nieoczywisty sposób.
+    Zajmijmy się teraz zbieżnością jednostajną. Oczywiście można by ją wykazywać przez znalezienie ciągu sum częściowych, a następnie skorzystanie z twierdzenia \ref{t:uniform convergence iff metric = 0}, ale możemy też skorzystać z kryterium Weierstrassa, chociaż w dosyć nieoczywisty sposób.
 
     Znajdźmy najpierw supremum ciągu $a_n = \frac{x^2}{e^{nx}}$. Możemy znaleźć miejsca zerowe pochodnej:
     \[ \ddx \frac{x^2}{e^{nx}} = \frac{2x(e^{nx}) - x^2(ne^{nx})}{e^{2nx}} = \frac{x(2 - xn)}{e^{nx}} = 0 \iff x \in \left\{0, \frac{2}{n}\right\}. \]
@@ -196,7 +196,7 @@ Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} 
     \[ S(x) = \sum_{n=0}^\infty \frac{(-1)^n}{2n+1}x^{2n+1}. \]
     Wartość $S(1)$ jest szukaną sumą, jeśli tylko szereg jest zbieżny w tym punkcie. Niech $t = x^2$. Stosując twierdzenie Cauchy'ego-Hadamarda (\ref{t:Cauchy-Hadamard}) możemy obliczyć promień zbieżności szeregu:
     \[ r_t = \frac{1}{\lim\limits_{n\to\infty}\frac{2n+1}{2n+3}} = 1, \]
-    tak więc szereg zbiega, gdy $t \in (-1, 1) \implies x \in (-1, 1)$. W punktach $x = -1$ i $x = 1$ szereg również jest zbieżny, co można pokazać z kryterium Lebniza.
+    tak więc szereg zbiega, gdy $t \in (-1, 1) \implies x \in (-1, 1)$. W punktach $x = -1$ i $x = 1$ szereg również jest zbieżny, co można pokazać z kryterium Leibniza.
 
     Policzmy teraz sumę (dla przedziału zbieżności $(-1, 1)$):
     \begin{align*}

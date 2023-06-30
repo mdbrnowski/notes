@@ -96,7 +96,7 @@ Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macie
     \[ f(x, y) = \begin{cases}(x^2 + y^2)\sin\left(\frac{1}{\sqrt{x^2 + x^2}}\right), & \text{dla } (x, y) \neq (0, 0) \\ 0, & \text{w przeciwnym wypadku}\end{cases}. \]
 \end{remark}
 
-W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretwać geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest równiczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
+W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretować geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest różniczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
 \begin{equation}
     z = f(x_0, y_0) + \frac{\p f}{\p x}(x_0, y_0) \cdot (x - x_0) + \frac{\p f}{\p y}(x_0, y_0) \cdot (y -y_0).
 \end{equation}
@@ -107,7 +107,7 @@ W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że ist
     w punkcie $p = (1, 0)$.
 \end{example}
 \begin{solution}
-    Najpierw znajdźmy pochodne cząstowe:
+    Najpierw znajdźmy pochodne cząstkowe:
     \begin{align*}
         \frac{\p f}{\p x}f(x, y) = e^{x^2 - y} \cdot 2x = 2xe^{x^2 - y} \\
         \frac{\p f}{\p y}f(x, y) = e^{x^2 - y} \cdot (-1) = -e^{x^2 - y}.

@@ -89,7 +89,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \begin{example}
     Oblicz
     \[ \oint\limits_C 3x^2y^2 \d x + 2x^2(1 + xy) \d y, \]
-    gdzie $C$ jest dodatno zorientowanym okręgiem o średnicy $a$ i środku w punkcie $(\frac{a}{2}, 0)$.
+    gdzie $C$ jest dodatnio zorientowanym okręgiem o średnicy $a$ i środku w punkcie $(\frac{a}{2}, 0)$.
 \end{example}
 \begin{solution}
     Na mocy twierdzenie Greena (\ref{t:Green}) mamy
@@ -118,7 +118,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \begin{solution}
     Niech $P(x, y) = (x + y)^2, Q(x, y) = -(x - y)^2$. Możemy oczywiście skorzystać bezpośrednio z twierdzenia \ref{t:line integral}:
     \[ I = \int\limits_C (x + y)^2 \d x - (x - y)^2 \d y = \int\limits_0^\pi (x + \sin x)^2 - (x - \sin x)^2(\cos x) \d x, \]
-    jednak nie będzie to najprostrze rachunkowo. Zamiast tego, możemy wziąć odcinek $L : y = 0, x \in [0, \pi]$ i stwierdzić, że
+    jednak nie będzie to najprostsze rachunkowo. Zamiast tego, możemy wziąć odcinek $L : y = 0, x \in [0, \pi]$ i stwierdzić, że
     \[ I = \oint\limits_{C \cup (-L)} P(x, y) \d x + Q(x, y) \d y - \int\limits_{-L} P(x, y) \d x + Q(x, y) \d y. \]
     \begin{center}
         \begin{tikzpicture}[scale=1.4,
@@ -144,7 +144,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \begin{remark}
     Zazwyczaj całek krzywoliniowych skierowanych nie liczy się najprzyjemniej (Czytelnik raczy sprawdzić chociażby ostatnie dwa przykłady), dlatego wolimy przejść na całkę podwójną, stosując twierdzenie Greena (\ref{t:Green}). Jednak zdarzają się również sytuacje, w których to przejście z całki podwójnej na krzywoliniową jest dobrym rozwiązaniem.
 
-    Weźmy konkretny problem: chcemy znaleźć pole pod łukiem cyklody
+    Weźmy konkretny problem: chcemy znaleźć pole pod łukiem cykloidy
     \[ x(t) = t - \sin t, \quad y(t) = 1 - \cos t. \]
     Możemy oczywiście skorzystać ze wzoru na pole pod wykresem funkcji zadanej parametrycznie, ale zakładamy, że go nie znamy. Weźmy pole wektorowe $\vec{F} : \vec{F}(x, y) = (-y, 0)$. Łatwo sprawdzić, że $\frac{\p Q}{\p x} - \frac{\p P}{\p y} = 0 + 1 = 1$. Możemy więc użyć twierdzenie Greena w przeciwną stronę niż zazwyczaj:
     \[ \iint\limits_D 1 \d x \d y = -\oint\limits_{\p D} -y \d x = -\int\limits_0^{2\pi} -(1 - \cos t)(1 - \cos t) \d t = \int\limits_0^{2\pi} (1 - \cos t)^2 \d t = 3\pi a^3.\]
@@ -159,7 +159,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \begin{definition}
     Pole potencjalne $\vec{F} = (P, Q)$ w obszarze $D$ to takie pole wektorowe, że istnieje funkcja różniczkowalna $u : D \to \RR$, że
     \[ \d u = P(x, y) \d x + Q(x, y) \d y, \]
-    czyli $P, Q$ są jej pochodnymi cząstowymi. Funkcję $u$ nazywamy potencjałem pola potencjalnego $\vec{F}$.
+    czyli $P, Q$ są jej pochodnymi cząstkowymi. Funkcję $u$ nazywamy potencjałem pola potencjalnego $\vec{F}$.
 \end{definition}
 
 \begin{theorem}[warunek konieczny i wystarczający na potencjalność pola]
@@ -175,7 +175,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 Możemy sformułować również ogólniejsze twierdzenie:
 \begin{theorem}[o niezależności całki krzywoliniowej od kształtu krzywej w polu potencjalnym]
     \label{t:independence of path in a conservative vector field}
-    Całka krzywoliniowa skierowana w polu potencjalnym nie zależy od kształu krzywej regularnej $K \subset D$, a jedynie od jej początku $A$ i końca $B$. Ponadto zachodzi równość
+    Całka krzywoliniowa skierowana w polu potencjalnym nie zależy od kształtu krzywej regularnej $K \subset D$, a jedynie od jej początku $A$ i końca $B$. Ponadto zachodzi równość
     \[ \int\limits_{A}^B P(x, y) \d x + Q(x, y) \d y = u(B) - u(A), \]
     gdzie $u$ jest potencjałem pola potencjalnego w $D$.
 \end{theorem}
