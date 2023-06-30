@@ -18,7 +18,7 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
 \begin{proof}
     Weźmy permutację
     \[ (\sigma_1, \sigma_2, \ldots, \sigma_i, \ldots, \sigma_j, \ldots, \sigma-{n-1}, \sigma_n). \]
-    Zamieniając $\sigma_i$ oraz $\sigma_j$ nie zmieni się liczba inwersji zawierająch elementy $\sigma_k, k \in [1,i)\cup(j,n]$. Nie zmieni się również liczba inwersji zawierających elementy $\sigma_k, k \in (i,j)$ takie, że $\sigma_k$ jest większe lub mniejsze jednocześnie od $\sigma_i$ i $\sigma_j$.
+    Zamieniając $\sigma_i$ oraz $\sigma_j$ nie zmieni się liczba inwersji zawierających elementy $\sigma_k, k \in [1,i)\cup(j,n]$. Nie zmieni się również liczba inwersji zawierających elementy $\sigma_k, k \in (i,j)$ takie, że $\sigma_k$ jest większe lub mniejsze jednocześnie od $\sigma_i$ i $\sigma_j$.
 
     Dla pozostałych elementów $\sigma_k, k \in (i, j)$ jeśli istnieje inwersja $(\sigma_i, \sigma_k)$ to istnieje również $(\sigma_k, \sigma_j)$, a jeśli istnieje inwersja $(\sigma_j, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_i)$. Tak więc jedyną inwersją, która zmienia parzystość $[\sigma]$ jest inwersja $(\sigma_i, \sigma_j)$ --- która istnieje przed transpozycją, albo po niej.
 \end{proof}
@@ -108,7 +108,7 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
     Minor stopnia $k$ macierzy $A_{m\times n}$ to wyznacznik podmacierzy kwadratowej $k\times k$ powstałej przez wykreślenie $n-k$ kolumn oraz $m-k$ wierszy.
 \end{definition}
 
-Jeśli $A_{n\times n}$ jest macierzą kadratową, to wyznacznik macierzy powstałej przez wykreślenie $i$-tego wiersza i $j$-tej kolumny nazywamy \vocab{minorem odpowiadającym} elementowi $a_{ij}$ macierzy $A$ i oznaczamy $M_{ij}$.
+Jeśli $A_{n\times n}$ jest macierzą kwadratową, to wyznacznik macierzy powstałej przez wykreślenie $i$-tego wiersza i $j$-tej kolumny nazywamy \vocab{minorem odpowiadającym} elementowi $a_{ij}$ macierzy $A$ i oznaczamy $M_{ij}$.
 
 \begin{definition}
     Dopełnienie algebraiczne elementu $a_{ij}$ macierzy kwadratowej $A = [a_{ij}]_{m\times n}$ to skalar

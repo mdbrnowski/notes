@@ -5,7 +5,7 @@ W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będzie
     \label{d:Euclidean metric}
     Metryka euklidesowa w $\RR^n$ to funkcja $d : \RR^n \times \RR^n \to \RR$, która dla punktów $P = (x_1, x_2, \ldots, x_n), Q = (y_1, y_2, \ldots, y_n)$ jest zdefiniowana jako
     \[ d(P, Q) = \sqrt{\sum_{i = 1}^n (y_i - x_i)^2}. \]
-    Wartość tej funkji dla punktów $X, Y$ to \vocab{odległość euklidesowa} tych punktów.
+    Wartość tej funkcji dla punktów $X, Y$ to \vocab{odległość euklidesowa} tych punktów.
 \end{definition}
 
 \begin{definition}
@@ -190,14 +190,14 @@ Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpi
         \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3 \\
         \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
     \end{vmatrix}. \]
-    Jest to prostrzy sposób na liczenie objętości równoległościanu.
+    Jest to prostszy sposób na liczenie objętości równoległościanu.
 \end{fact}
 \begin{proof}
     Łatwo zauważyć zależność między rozwinięciem Laplace'a (\ref{t:Laplace}) oraz wzorem~\ref{eq:easy cross product}.
 \end{proof}
 
 \subsubsection{Równanie płaszczyzny w przestrzeni}
-Płaszczyznę jednoznacznie wyznaczają trzy niewspółliniowe punkty (lub wyznaczone przez nie dwa wektory). Płaszczyznę jednoznacznie wyznaczyć może również jeden niezerowy wektor, zwany \vocab{wektorem normalnym}; jest on prostopadły do wyznaczanej płaszczyny.
+Płaszczyznę jednoznacznie wyznaczają trzy niewspółliniowe punkty (lub wyznaczone przez nie dwa wektory). Płaszczyznę jednoznacznie wyznaczyć może również jeden niezerowy wektor, zwany \vocab{wektorem normalnym}; jest on prostopadły do wyznaczanej płaszczyzny.
 
 \paragraph{Równanie parametryczne płaszczyzny} Jeśli $P_0 = (x_0, y_0, z_0) \in \pi$ oraz $\mathbf{u} = [\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3]$, $\mathbf{v} = [\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3] \in E_3$ są liniowo niezależne i równoległe do płaszczyzny $\pi$, to
 \begin{equation} \pi : \begin{cases}
@@ -260,7 +260,7 @@ Jeśli $\pi_1$ nie jest równoległa z $\pi_2$, to równanie krawędziowe proste
 \subsection{Odległości}
 Zdefiniowaliśmy już odległość między dwoma punktami w definicji \ref{d:Euclidean metric}. Bez formalnego wyprowadzenia będziemy używać pojęcia odległości również w kontekście odległości między punktem a płaszczyzną, punktem a prostą, prostą a płaszczyzną czy między płaszczyznami lub prostymi. Taka odległość będzie najmniejszą odległością między pewnym punktem jednej figury oraz pewnym punktem drugiej figury.
 \[ d(\Phi, \Psi) = \min_{A \in \Phi, B \in \Psi} d(A, B) \]
-Z nierówności trójkąta (\ref{c:triangle inequality}) wynika, ze wektor między tymi dwoma punktami będzie prospodały do obu danych figur.
+Z nierówności trójkąta (\ref{c:triangle inequality}) wynika, ze wektor między tymi dwoma punktami będzie prostopadły do obu danych figur.
 
 \begin{theorem}[Odległość punktu od płaszczyzny]
     \label{t:distance between point and plane}
@@ -309,7 +309,7 @@ Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzi�
             \tkzLabelPoints[below left](L)
         \end{tikzpicture}
     \end{center}
-    Ze standardwego wzoru na pole równoległoboku jest ono również równe
+    Ze standardowego wzoru na pole równoległoboku jest ono również równe
     \[ \Vert \mathbf{v} \Vert \cdot d(Q, l), \]
     z czego wynika teza.
 \end{proof}
