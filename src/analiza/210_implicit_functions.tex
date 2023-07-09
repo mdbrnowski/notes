@@ -8,5 +8,30 @@
     Jeśli funkcja $F : \RR^2 \supset D \to \RR$ jest różniczkowalna w sposób ciągły w otoczeniu punktu $(x_0, y_0)$ i $F(x_0, y_0) = 0$ oraz $\frac{\p F}{\p y}(x_0, y_0) \neq 0$, to istnieje jednoznacznie określona funkcja uwikłana $y = y(x)$. Ponadto
     \[ y'(x_0) = -\frac{\frac{\p F}{\p x}(x_0, y_0)}{\frac{\p F}{\p y}(x_0, y_0)} \]
     oraz, jeśli $y'(x_0) = 0$,
-    \[ y''(x_0) = -\frac{\frac{\p{}^2 F}{\p x^2}(x_0, y_0)}{\frac{\p{}^2 F}{\p y^2}(x_0, y_0)}. \]
+    \[ y''(x_0) = -\frac{\frac{\p{}^2 F}{\p x^2}(x_0, y_0)}{\frac{\p F}{\p y}(x_0, y_0)}. \]
 \end{theorem}
+
+\begin{example}
+    Zbadaj ekstrema funkcji uwikłanej równaniem
+    \[ F(x, y) = x^4 - 2x^2y - x^2 + y^2 + y = 0. \]
+\end{example}
+\begin{solution}
+    Policzmy najpierw pochodne cząstkowe:
+    \begin{align*}
+        \frac{\p F(x, y)}{\p x} &= 4x^3 - 4xy - 2x = 2x(2x^2 - 2y - 1) \\
+        \frac{\p F(x, y)}{\p y} &= -2x^2 + 2y + 1
+    \end{align*}
+    Z twierdzenia o funkcji uwikłanej mamy
+    \[ 2x(2x^2 - 2y - 1) = 0 \land -2x^2 + 2y + 1 \neq 0 \]
+    \[ \therefore x = 0, \]
+    więc
+    \[ F(0, y) = y^2 + y = 0 \]
+    \[ \therefore y \in \{-1, 0\}. \]
+    Mamy zatem dwa punkty stacjonarne, w których może istnieć ekstremum: $(0, -1)$ i $(0, 0)$. Aby je zbadać, sprawdzamy znak drugiej pochodnej.
+    \[ y''(x) = -\frac{\frac{\p{}^2 F}{\p x^2}(x_0, y_0)}{\frac{\p F}{\p y}(x_0, y_0)} = -\frac{12x^2 - 4y - 2}{-2x^2 + 2y + 1}. \]
+    Dla punktu $(0, -1)$ mamy
+    \[ y''(0) = -\frac{4 - 2}{-2 + 1} = 2 > 0, \]
+    a dla punktu $(0, 1)$
+    \[ y'(0) = -\frac{-2}{1} = 2 > 0, \]
+    więc w obu punktach istnieją minima lokalne.
+\end{solution}
