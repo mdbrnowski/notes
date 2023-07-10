@@ -1,0 +1,34 @@
+Zakładamy, że $\rho$ jest funkcją gęstości $D \to \RR_+$ lub $V \to \RR_+$, gdzie $D$ jest obszarem regularnym w $\RR^2$, a $V$ w $\RR^3$.
+
+\subsection*{Całki podwójne}
+
+\paragraph*{Masa obszaru $D$}
+\[ M = \iint\limits_D \rho(x, y) \d x \d y \]
+
+\paragraph*{Moment statyczny obszaru $D$ względem osi $OX$}
+\[ M_{OX} = \iint\limits_D y\rho(x, y) \d x \d y \]
+
+\paragraph*{Moment statyczny obszaru $D$ względem osi $OY$}
+\[ M_{OY} = \iint\limits_D x\rho(x, y) \d x \d y \]
+
+\paragraph*{Środek ciężkości obszaru $D$}
+\[ x_0 = \frac{M_{OY}}{M}, \qquad y_0 = \frac{M_{OX}}{M} \]
+
+\paragraph*{Moment bezwładności obszaru $D$ względem środka układu współrzędnych}
+\[ M_B = \iint\limits_D (x^2 + y^2) \rho(x, y) \d x \d y \]
+
+\subsection*{Całki potrójne}
+
+\paragraph*{Masa bryły $V$}
+\[ M = \iiint\limits_V \rho(x, y, z) \d x \d y \d z \]
+
+\paragraph*{Momenty statyczne bryły $V$ względem płaszczyzn}
+\[ M_{OXY} = \iiint\limits_V z\rho(x, y, z) \d x \d y \d z \]
+\[ M_{OXZ} = \iiint\limits_V y\rho(x, y, z) \d x \d y \d z \]
+\[ M_{OYZ} = \iiint\limits_V x\rho(x, y, z) \d x \d y \d z \]
+
+\paragraph*{Środek ciężkości bryły $V$}
+\[ x_0 = \frac{M_{OYZ}}{M}, \qquad y_0 = \frac{M_{OXZ}}{M}, \qquad z_0 = \frac{M_{OXY}}{M} \]
+
+\paragraph*{Moment bezwładności bryły $V$ względem osi $OZ$}
+\[ M_B = \iiint\limits_V (x^2 + y^2) \rho(x, y, z) \d x \d y \d y \]
