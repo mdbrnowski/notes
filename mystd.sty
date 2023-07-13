@@ -3,6 +3,15 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{fontspec}
+\setmonofont{JetBrainsMono}[
+    Path=./../fonts/,
+    Scale=0.85,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+]
 
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage[svgnames,dvipsnames]{xcolor}
@@ -28,17 +37,6 @@
 \usepackage{tikz}
 \usepackage{tkz-euclide}
 \usetikzlibrary{shapes.geometric,calc,positioning,fit,decorations.markings}
-
-\usepackage{fontspec}
-\setmonofont{JetBrainsMono}[
-    Path=./../fonts/,
-    Scale=0.85,
-    Extension = .ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-]
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
