@@ -156,13 +156,14 @@ Postać $z = |z|e^{i\varphi}$ liczby zespolonej będziemy nazywać \vocab{postac
     $$ e^{i\varphi} = \cos\varphi + i\sin\varphi. $$
 \end{theorem}
 \begin{proof}
-    Weźmy $z = \cos\varphi + i\sin\varphi$. Różniczkując po zmiennej $\varphi$ otrzymujemy
-    $$ \frac{\d z}{\d \varphi} = -\sin\varphi + i\cos\varphi = iz $$
-    $$ \therefore \frac{\d z}{z} = i\d\varphi. $$
-    Po obustronnym całkowaniu mamy
-    $$ \int\frac{\d z}{z} = \int i\d\varphi $$
-    $$ \ln{z} = i\varphi + C $$
-    $$ e^{\ln{z}} = e^{i\varphi + C} $$
-    $$ z = e^{i\varphi + C}. $$
-    Podstawiając $\varphi = 0$ otrzymujemy $1 = e^C$, skąd mamy $C = 0$, co kończy dowód.
+    Standardowo dowodzi się wzoru Eulera za pomocą szeregów Taylora. Pokażemy inny, mniej oczywisty, ale bardziej elementarny dowód.
+
+    Niech $f(\varphi) = e^{-i\varphi}\left(\cos\varphi + i\sin\varphi\right)$. Zróżniczkujmy:
+    \begin{align*}
+        f'(\varphi) &= -ie^{-i\varphi}\left(\cos\varphi + i\sin\varphi\right) + e^{-i\varphi}\left(-\sin\varphi + i\cos\varphi\right) = \\
+        &= e^{-i\varphi}\left(-i\cos\varphi + i\cos\varphi + \sin\varphi - \sin\varphi\right) = 0.
+    \end{align*}
+    Z tego wynika, że funkcja $f$ jest stała, więc
+    \[ f(\varphi) \equiv f(0) = 1, \]
+    \[ \therefore e^{i\varphi} = \cos\varphi + i\sin\varphi. \]
 \end{proof}

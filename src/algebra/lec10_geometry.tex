@@ -70,6 +70,7 @@ Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów,
 \end{proof}
 
 \begin{definition}
+    \label{d:angle between vectors}
     Kąt między niezerowymi wektorami $\mathbf{u}, \mathbf{v} \in E_n$ to taka liczba $\sphericalangle(\mathbf{u}, \mathbf{v}) = \varphi \in [0, \pi]$, że
     \[ \cos\varphi = \frac{\mathbf{u} \circ \mathbf{v}}{\Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert}. \]
 \end{definition}
@@ -161,7 +162,7 @@ Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times 
 
 \begin{theorem}
     \label{t:area of parallelogram}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$ liczba $\Vert\mathbf{u}\times\mathbf{v}\Vert$ jest polem równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$.
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$ liczba $\Vert\mathbf{u}\times\mathbf{v}\Vert$ jest (skierowanym) polem równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$.
 \end{theorem}
 \begin{proof}
     Z definicji iloczynu wektorowego (\ref{d:cross product}) mamy
@@ -171,13 +172,38 @@ Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times 
 
 Prosty wniosek z tego twierdzenia jest taki, że pole trójkąta rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$ jest równe $\frac{1}{2}\Vert\mathbf{u}\times\mathbf{v}\Vert$.
 
+Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
+
 \begin{theorem}
     \label{t:volume of parallelepiped}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$ jest objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $\left((\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}\right)$ jest (skierowaną) objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
 \end{theorem}
-Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
 \begin{proof}
-    TODO
+    Z definicji kąta między wektorami (\ref{d:angle between vectors}) mamy
+    \[ (\mathbf{u}\times\mathbf{v}) \circ \mathbf{w} = \Vert\mathbf{u}\times\mathbf{v}\Vert \cdot \Vert\mathbf{w}\Vert \cdot \cos\phi, \]
+    gdzie $\Vert\mathbf{u}\times\mathbf{v}\Vert$ to pole równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$, jak na rysunku poniżej.
+
+    \begin{center}
+        \begin{tikzpicture}[vect/.style={->,>=latex',thick,MainColor1}]
+            \def\a{3}
+            \def\bx{1.7} \def\by{.8}
+            \def\cx{.9} \def\cy{2.5}
+            \tkzDefPoints{0/0/O, \a/0/A, \bx/\by/B, \cx/\cy/C, \cx+\a/\cy/D,
+                          \bx/\by/B, \a+\bx/\by/A', \cx+\bx/\cy+\by/C', \cx+\a+\bx/\cy+\by/D',
+                          0/\cy/V}
+            \tkzDrawPolygon(D,A,A',D',C',C)
+            \tkzDrawSegments(D,D')
+            \tkzDrawSegments[thin](O,V)
+            \tkzDrawSegments[dashed](B,C' B,A')
+            \tkzDrawSegments[vect](O,A O,C)
+            \tkzDrawSegments[dashed,vect](O,B)
+            \tkzMarkAngle[size=1.4](C,O,V)
+            \tkzLabelAngle[font=\scriptsize](C,O,V){$\phi$}
+            \tkzLabelSegment[font=\scriptsize, below](O,A){$\mathbf{u}$}
+            \tkzLabelSegment[font=\scriptsize, below, pos=.7](O,B){$\mathbf{v}$}
+            \tkzLabelSegment[font=\scriptsize, right](O,C){$\mathbf{w}$}
+        \end{tikzpicture}
+    \end{center}
 \end{proof}
 
 Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ jest równa $\frac{1}{6}|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$.
