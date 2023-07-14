@@ -1,4 +1,4 @@
-W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o jednostkowej długości):
+W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego}\footnote{to znaczy zgodnego z regułą prawej ręki --- wnętrze obracającej się dłoni zakreśla łuk od osi $OX$ do $OY$, przy czym kciuk ma zwrot zgodny z osią $OZ$} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o jednostkowej długości):
 \[ \mathbf{\hat{i}} = (1, 0, 0), \quad \mathbf{\hat{j}} = (0, 1, 0), \quad \mathbf{\hat{k}} = (0, 0, 1). \]
 
 \begin{definition}
@@ -96,8 +96,10 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
         \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
     \end{vmatrix} > 0. \]
 \end{fact}
-\begin{proof}
-    TODO
+\begin{proof}[Uzasadnienie]
+    Jest to intuicyjnie prawdziwe --- jeśli zamienimy wiersze ze sobą, to układ wektorów stanie się lewoskrętny i jednocześnie (z własności wyznaczników \ref{t:determinant properties}) wyznacznik macierzy będzie przeciwny. Podobnie, jeśli zmienimy zwrot danego wektora, to układ stanie się lewoskrętny, a wyznacznik macierzy będzie przeciwny.
+
+    Dociekliwy Czytelnik może zaznajomić się z dowodem zawartym w artykule ,,\textit{\href{https://sites.math.washington.edu/~marshall/math_136/right-hand-rule.pdf}{A Simple Proof of the Right-Hand Rule}}'' autorstwa Fuchang Gao.
 \end{proof}
 
 \begin{definition}
@@ -113,7 +115,6 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
             \end{itemize}
     \end{enumerate}
 \end{definition}
-
 
 \begin{theorem}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$
