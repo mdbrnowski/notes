@@ -44,24 +44,24 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
         \item jeśli istnieje zerowy wiersz (lub kolumna) to $\det A = 0$,
         \item jeśli pomnożymy jeden wiersz (lub kolumnę) przez skalar $\alpha$, to wyznacznik również będzie $\alpha$ razy większy,
         \item $\det \alpha A = (\det A) ^ \alpha$,
-        \item jeśli $A = [k_1, \ldots, k_j' + k_j'', \ldots, k_n]$, gdzie $k_i$ są kolumnami lub wierszami, to
+        \item \label{t:p:determinant of a matrix with sum} jeśli $A = [k_1, \ldots, k_j' + k_j'', \ldots, k_n]$, gdzie $k_i$ są wierszami (lub kolumnami), to
               \[ \det A = \det [k_1, \ldots, k_j', \ldots, k_n] + \det [k_1, \ldots, k_j'', \ldots, k_n], \]
         \item przestawienie dwóch wierszy macierzy zmienia znak wyznacznika na przeciwny,
-        \item jeśli macierz ma dwa jednakowe wiersze (lub kolumny) to $\det A = 0$,
+        \item \label{t:p:determinant of a matrix with same rows} jeśli macierz ma dwa jednakowe wiersze (lub kolumny) to $\det A = 0$,
         \item wyznacznik nie zmieni się, jeśli do wiersza (albo kolumny) dodamy kombinację liniową pozostałych wierszy (kolumn).
     \end{enumerate}
 \end{theorem}
-\begin{proof}
+\begin{proof} ~
     \begin{enumerate}
-        \item wszystkich par elementów w permutacji $\sigma \in S_n$ jest $n(n-1)$. Jeśli $(\sigma_i, \sigma_j)$ jest inwersją w $\sigma$, to w $\sigma^{-1}$ nią nie jest, a skoro $2\mid n(n-1)$, to $\eps(\sigma) = \eps(\sigma^{-1})$.
-        \item dla permutacji identycznościowej dany w definicji iloczyn jest równy $1$, dla każdej innej permutacji jest równy $0$.
-        \item w każdym z sumowanych iloczynów występuje $0$ jako czynnik.
-        \item w każdym z sumowanych iloczynów występuje jeden dodatkowy skalar $\alpha$.
-        \item wniosek z poprzedniego.
-        \item dowód podobny do poprzednich dwóch.
-        \item wynika z faktu \ref{f:sign of transposition}.
-        \item wniosek z poprzedniego.
-        \item TODO
+        \item Wszystkich par elementów w permutacji $\sigma \in S_n$ jest $n(n-1)$. Jeśli $(\sigma_i, \sigma_j)$ jest inwersją w $\sigma$, to w $\sigma^{-1}$ nią nie jest, a skoro $2\mid n(n-1)$, to $\eps(\sigma) = \eps(\sigma^{-1})$. Pozostałe czynniki sumowanych iloczynów zostaną takie same (jedynie w innej kolejności).
+        \item Dla permutacji identycznościowej dany w definicji iloczyn jest równy $1$, dla każdej innej permutacji jest równy $0$.
+        \item W każdym z sumowanych iloczynów występuje $0$ jako czynnik.
+        \item W każdym z sumowanych iloczynów występuje jeden dodatkowy skalar $\alpha$.
+        \item Wniosek z poprzedniego.
+        \item Dowód podobny do poprzednich dwóch.
+        \item Wynika z faktu \ref{f:sign of transposition}.
+        \item Wniosek z poprzedniego, ponieważ $d = -d \implies d = 0$.
+        \item Stwierdzenie jest prawdziwe, jeśli wyznacznik nie zmieni się, gdy do jednego wiersza (lub kolumny) dodamy inny (uzasadnienie przez indukcję). Ten fakt można udowodnić, łącząc punkty \ref{t:p:determinant of a matrix with sum} i \ref{t:p:determinant of a matrix with same rows} (jeden z wyznaczników będzie zerowy).
     \end{enumerate}
 \end{proof}
 
