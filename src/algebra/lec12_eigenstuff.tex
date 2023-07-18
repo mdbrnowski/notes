@@ -119,23 +119,36 @@
     Na mocy lematu \ref{l:eigenvectors are linearly independent}, wektory odpowiadające różnym wartościom własnym są liniowo niezależne, więc stanowią bazę, ergo endomorfizm $f$ jest diagonalizowalny. Warto zauważyć, że jeśli endomorfizm nie ma $n$ różnych wartości własnych, to nie znaczy, że nie jest diagonalizowalny.
 \end{proof}
 
-\vocab{Krotność algebraiczna} wartości własnej $\lambda$ to jej krotność jako pierwiastka wielomianu charakterystycznego, a jej \vocab{krotność geometryczna} to wymiar przestrzeni własnej $V_\lambda$.
+\vocab{Krotność algebraiczna} $k_a$ wartości własnej $\lambda$ to jej krotność jako pierwiastka wielomianu charakterystycznego, a jej \vocab{krotność geometryczna} $k_g$ to wymiar przestrzeni własnej $V_\lambda$, czyli $k_g = \dim V_\lambda$.
 
 \begin{lemma}
-    Jeżeli $\lambda_0$ jest wartością własną endomorfizmu $f$ o krotności $k_0$, to
-    \[ 1 \leq \dim V_{\lambda_0} \leq k_0, \]
+    Jeżeli $\lambda$ jest wartością własną endomorfizmu $f$ o krotności algebraicznej $k_a$ i geometrycznej $k_g$, to
+    \[ 1 \leq k_g \leq k_a, \]
     czyli krotność algebraiczna jest większa lub równa geometrycznej.
 \end{lemma}
 \begin{proof}
-    TODO
+    Pierwsza nierówność wynika wprost z definicji obu krotności.
+
+    Niech $A \in \sM_{n\times n}$ będzie macierzą endomorfizmu $f$, który ma pewną wartość własną $\lambda_0$ o krotności geometrycznej $k_g$. Z twierdzenia \ref{t:det(A-lambda I)=0} mamy, że
+    \[ k_g = \dim \Ker(A - \lambda_0 I) = \nullity(A - \lambda_0 I), \]
+    a z twierdzenia o rzędzie (\ref{t:rank-nullity}) wynika, że $\rank (A - \lambda_0 I) = n - k_g$. To z kolei znaczy, że możemy wykonać taki ciąg operacji elementarnych, że uzyskamy macierz schodkową $B \sim (A - \lambda_0 I)$, której ostatnie $k_g$ wiersze są zerowe.
+
+    Weźmy pewną zmienną $t$ i wykonajmy identyczny ciąg operacji elementarnych jak poprzednio, otrzymując macierz $C \sim (A - t I)$. Oczywiście, dla $t = \lambda_0$ ostatnie $k_g$ wierszy macierzy $C$ się zeruje, więc $\det C$ jest podzielny przez $(t - \lambda_0)^{k_g}$, ergo $\det (A - \lambda_0 I$) również (różnią ewentualnie o stałą), stąd $k_g \leq k_a$.
 \end{proof}
+
+\begin{remark*}[mnemotechnika]
+    Krotność algebraiczna (ang. \textit{algebraic multiplicity}) i krotność geometryczna (ang. \textit{geometric multiplicity}) to w skrócie odpowiednio AM i GM. Podobnie średnia arytmetyczna (ang. \textit{arithmetic mean}) i średnia geometryczna (ang. \textit{geometric mean}) to w skrócie odpowiednio AM i GM. W obu przypadkach zachodzi zależność
+    \[ \text{AM} \geq \text{GM}. \]
+    Jeśli nierówność między średnimi nie jest dla Czytelnika oczywista, warto zobaczyć artykuł na \href{https://en.wikipedia.org/wiki/AM-GM_Inequality}{wikipedii}.
+\end{remark*}
 
 \begin{theorem}
     \label{t:endomorphism is diagonalizable iff polynomial...}
     Endomorfizm $f : V \to V$ jest diagonalizowalny wtedy i tylko wtedy, gdy wielomian charakterystyczny jest rozkładalny do postaci
-    \[ \Delta(\lambda) = (\lambda_1 - \lambda)^{k_1}\cdots(\lambda_p - \lambda)^{k_p} \]
+    \[ \Delta(\lambda) = (\lambda_1 - \lambda)^{k_{a1}}\cdots(\lambda_p - \lambda)^{k_{ap}} \]
     oraz dla każdego $i$ zachodzi
-    \[ \dim V_{\lambda_i} = k_i. \]
+    \[ k_{gi} = k_{ai}, \]
+    czyli gdy krotności geometryczne i algebraiczne poszczególnych wartości własnych są sobie równe.
 \end{theorem}
 
 \begin{remark}
@@ -155,7 +168,7 @@
         3 & 2 & 3 \\
         -3 & 0 & -1
     \end{bmatrix}. \]
-    Aby wyznaczyć własności własne skorzystamy z faktu \ref{f:roots of the characteristic polynomial are eigenvalues}.
+    Aby wyznaczyć wartości własne skorzystamy z faktu \ref{f:roots of the characteristic polynomial are eigenvalues}.
     \begin{align*} \Delta(\lambda) &=
         \begin{vmatrix}
             -1 - \lambda & 0 & -3 \\

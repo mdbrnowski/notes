@@ -69,9 +69,9 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
     \begin{align*}
         \mathbf{w} = f(\mathbf{v}) &= f(t_1\mathbf{v}_1 + \ldots + t_k\mathbf{v}_k + t_{k+1}\mathbf{u}_{k+1} + \ldots + t_n\mathbf{u}_n) \\
             &= f(t_1\mathbf{v}_1) + \ldots + f(t_k\mathbf{v}_k) + f(t_{k+1}\mathbf{u}_{k+1}) + \ldots + f(t_n\mathbf{u}_n) \\
-            &= t_1f(\mathbf{v}_1) + \ldots + t_kf(\mathbf{v}_k) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n) \\
-            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n) \\
-            &= t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n),
+            &= t_1f(\mathbf{v}_1) + \ldots + t_kf(\mathbf{v}_k) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n) \\
+            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n) \\
+            &= t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n),
     \end{align*}
     więc
     \[ \Im f = \Lin\{f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)\}. \]
@@ -84,7 +84,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
     Z tego wynika, że
     \[ (s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in \Ker f, \]
     więc $(s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in V$ możemy zapisać jako kombinację liniową wektorów $\mathbf{v}_1, \ldots, \mathbf{v}_k$. Zakładając, że ciąg $(s_i)$ jest niezerowy, mamy dwa sposoby zapisu jednego wektora z $V$, co stoi w sprzeczności z twierdzeniem \ref{t:explicit coefficients}. Z tego wynika, że $\forall i : s_i = 0$, więc wektory $f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)$ są liniowo niezależne, ergo
-    \[ \dim \Im f = n - k \]
+    \[ \dim \Im f = n - k, \]
     \[ \rank f = \dim V - \nullity f. \]
 \end{proof}
 
@@ -179,7 +179,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
             \label{eq:matrix form of linear map - linear combination}
     \end{align}
 
-    Mnożąc macierze jak w udowadnianej tezie otrzymalibyśmy
+    Mnożąc macierze jak w udowadnianej tezie, otrzymalibyśmy
     \[ y = \begin{bNiceMatrix}
         a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n \\
         a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \\
