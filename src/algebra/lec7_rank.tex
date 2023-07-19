@@ -1,18 +1,24 @@
-\begin{theorem}
-    \label{t:rank}
-    Maksymalna liczba liniowo niezależnych kolumn (wektorów z $\KK^m$) dowolnej macierzy $A \in M_{m\times n}(\KK)$ jest równa maksymalnej liczbie liniowo niezależnych wierszy (wektorów z $\KK^n$).
-\end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
-
 \begin{definition}
     \label{d:rank}
-    Rząd macierzy to maksymalna liczba liniowo niezależnych kolumn (lub wierszy). Rząd macierzy $A$ oznaczamy przez $\rank (A)$.
+    Rząd macierzy to maksymalna liczba liniowo niezależnych wektorów kolumnowych tej macierzy. Rząd macierzy $A$ oznaczamy przez $\rank (A)$.
 \end{definition}
 
-Z twierdzenia \ref{t:rank} i definicji \ref{d:rank} wynika, że
-\[ \rank(A) = \rank(A^T). \]
+\begin{theorem}
+    Dla każdej macierzy $A \in \sM_{m\times n}$ zachodzi
+    \[ \rank(A) = \rank(A^T). \]
+\end{theorem}
+\begin{proof}
+    Niech $r = \rank A$. Weźmy macierz $L \in \sM_{m\times r}$, która zawiera $r$ liniowo niezależnych wektorów kolumnowych macierzy $A$. Każda kolumna macierzy $A$ jest oczywiście kombinacją liniową kolumn macierzy $L$, czyli $A = LZ$ dla pewnej macierzy współczynników $Z \in \sM_{r\times n}$.
+
+    Z faktu \ref{f:AB^T = B^T A^T} mamy $A^T = Z^TL^T$, więc $\rank (A^T)$ jest ograniczony z góry przez $\rank(Z^T)$, który jest ograniczony z góry przez $r$ (liczbę kolumn macierzy $Z^T$), więc
+    \[ \rank(A^T) \leq \rank(A). \]
+    Powtarzamy argument dla macierzy $A^T$ i, wykorzystując fakt $(A^T)^T = A$, otrzymujemy
+    \[ \rank(A) \leq \rank(A^T), \]
+    więc
+    \[ \rank(A) = \rank(A^T). \]
+\end{proof}
+
+Możemy teraz zmodyfikować definicję rzędu (\ref{d:rank}): jest to maksymalna liczba liniowo niezależnych wektorów kolumnowych lub wektorów wierszowych. Oczywiście zachodzi nierówność $\rank (A_{m\times n}) \leq n, m$.
 
 \begin{definition}
     Macierz schodkowa to macierz, której pierwsze niezerowe elementy (schodki) kolejnych niezerowych wierszy znajdują się w coraz dalszych kolumnach, a wiersze zerowe umieszczone są najniżej.
@@ -79,7 +85,7 @@ Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą met
     Rząd macierzy $A$ jest równy największemu ze stopni niezerowych minorów tej macierzy.
 \end{theorem}
 \begin{proof}
-    TODO
+    Jeśli pewna podmacierz kwadratowa $k \times k$ jest nieosobliwa (czyli minor jest niezerowy), to jej kolumny są liniowo niezależne, czyli $\rank A \geq k$. Natomiast jeśli każda podmacierz wymiaru $(k + 1) \times (k + 1)$ jest osobliwa (czyli minory są zerowe), to żaden podzbiór $k + 1$ wektorów kolumnowych nie jest liniowo niezależny, więc $\rank A < k + 1$. Z tego wynika, że $\rank A = k$.
 \end{proof}
 
 \begin{example}
@@ -102,7 +108,7 @@ Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą met
         3 & 4 & 1 \\
         0 & 1 & -2
     \end{vmatrix} = (-8) + 0 + 12 - 0 - 1 - (-18) = 21 \neq 0. \]
-    Ten minor jest niezerowy i jednocześnie ma największy stopień (bo wykreśliliśmy tylko jeden wiersz), więc na mocy twierdzenia \ref{t:rank = max order of nonzero minor} $\rank A = 3$.
+    Ten minor jest niezerowy i jednocześnie ma największy stopień (bo nie wykreśliliśmy żadnej kolumny), więc na mocy twierdzenia \ref{t:rank = max order of nonzero minor} $\rank A = 3$.
 
     Dla pewności można pokazać również inną metodę --- eliminację Gaussa:
     \[ \begin{bmatrix}
