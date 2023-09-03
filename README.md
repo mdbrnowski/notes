@@ -57,7 +57,7 @@ In `mystd.sty` I have also defined:
   * `fact` (Fact, Fakt)
   * `problem` (Problem, Problem)
   * `question` (Question, Pytanie)
-* Math operators (`\cis`, `\lcm`, `\Arg`, ...)
+* Math operators (`\cis`, `\lcm`, ...)
 * Commands (`\iff`, `\implies`, `\vocab`, ...)
 * Symbols (`\sA` for `\mathcal A` and `\scA` for `\mathscr A`)
 * And more (it's best to see it for yourself in the source file)
