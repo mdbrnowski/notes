@@ -50,7 +50,7 @@ $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}.
     $$ \forall x, y \in X : [x] \neq [y] \iff [x] \cap [y] = \emptyset . $$
 \end{theorem}
 \begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
-    Załóżmy przez sprzeczność, że $[x] \cap [y] \neq \emptyset$, a więc $\exists z \in X : x \sR z \wedge y \sR z$. Teraz weźmy dowolny element $a \in [x]$. Mamy więc $x \sR a$. Korzystając z symetryczności i przechodniości relacji $\sR$ mamy
+    Załóżmy przez sprzeczność, że $[x] \cap [y] \neq \emptyset$, a więc $\exists z \in X : x \sR z \wedge y \sR z$. Teraz weźmy dowolny element $a \in [x]$. Mamy więc $x \sR a$. Korzystając z symetryczności i przechodniości relacji $\sR$, mamy
     $$ a \sR x \wedge x \sR z \wedge z \sR y, $$
     $$ \therefore y \sR a. $$
     Z tego wynika, że $[x] \subset [y]$. Analogicznie (przyjmując na początku $a \in [y]$) dostaniemy, że $[y] \subset [x]$, wiec $[x] = [y]$, co jest sprzeczne z założeniem.

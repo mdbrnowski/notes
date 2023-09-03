@@ -146,10 +146,10 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 
     Weźmy konkretny problem: chcemy znaleźć pole pod łukiem cykloidy
     \[ x(t) = t - \sin t, \quad y(t) = 1 - \cos t. \]
-    Możemy oczywiście skorzystać ze wzoru na pole pod wykresem funkcji zadanej parametrycznie, ale zakładamy, że go nie znamy. Weźmy pole wektorowe $\vec{F} : \vec{F}(x, y) = (-y, 0)$. Łatwo sprawdzić, że $\frac{\p Q}{\p x} - \frac{\p P}{\p y} = 0 + 1 = 1$. Możemy więc użyć twierdzenie Greena w przeciwną stronę niż zazwyczaj:
+    Możemy oczywiście skorzystać ze wzoru na pole pod wykresem funkcji zadanej parametrycznie, ale zakładamy, że go nie znamy. Weźmy pole wektorowe $\vec{F} : \vec{F}(x, y) = (-y, 0)$. Łatwo sprawdzić, że $\frac{\p Q}{\p x} - \frac{\p P}{\p y} = 0 + 1 = 1$. Możemy więc użyć twierdzenia Greena w przeciwną stronę niż zazwyczaj:
     \[ \iint\limits_D 1 \d x \d y = -\oint\limits_{\p D} -y \d x = -\int\limits_0^{2\pi} -(1 - \cos t)(1 - \cos t) \d t = \int\limits_0^{2\pi} (1 - \cos t)^2 \d t = 3\pi a^3.\]
 
-    Aby policzyć pole figury często możemy skorzystać z pól wektorowych $(0, x)$, $(-y, 0)$, $\left(\frac{-y}{2}, \frac{x}{2}\right)$. Rotacja (czyli różnica, którą liczyliśmy) każdego z nich jest równa $1$, więc idealnie nadają się do tego celu. Używając tego ostatniego pola wektorowego łatwo pokazać, że
+    Aby policzyć pole figury, często możemy skorzystać z pól wektorowych $(0, x)$, $(-y, 0)$, $\left(\frac{-y}{2}, \frac{x}{2}\right)$. Rotacja (czyli różnica, którą liczyliśmy) każdego z nich jest równa $1$, więc idealnie nadają się do tego celu. Używając tego ostatniego pola wektorowego, łatwo pokazać, że
     \begin{equation}
         \text{pole } R = \frac{1}{2}\oint\limits_{\p R} -y \d x + x \d y,
     \end{equation}
