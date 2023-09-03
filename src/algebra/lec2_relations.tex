@@ -21,7 +21,7 @@ $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}.
 
 \begin{definition}[rodzaje relacji]
     Relacja $\sR = (X, \gr\sR, X)$ jest:
-    \begin{itemize}[--]
+    \begin{itemize}
         \item \vocab{zwrotna} $\iff \forall x\in X : x \sR x$,
         \item \vocab{symetryczna} $\iff \forall x, y \in X : x \sR y \implies y \sR x$,
         \item \vocab{antysymetryczna} $\iff \forall x, y \in X : x \sR y \wedge y \sR x \implies x = y$,
@@ -74,13 +74,10 @@ Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Wtedy \vocab{el
 $$ \forall x \in X : x \preceq \ol{M}, $$
 a \vocab{element maksymalny} $M_{\max} \in X$ to taki element, że
 $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
-
-\begin{remark}
-    Analogicznie można zdefiniować \vocab{element najmniejszy} $\ol{m}$:
-    $$ \forall x \in X : \ol{m} \preceq x $$
-    oraz \vocab{element minimalny} $m_{\min}$:
-    $$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
-\end{remark}
+Analogicznie definiujemy \vocab{element najmniejszy} $\ol{m} \in X$:
+$$ \forall x \in X : \ol{m} \preceq x $$
+oraz \vocab{element minimalny} $m_{\min} \in X$:
+$$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
 
 \begin{theorem}
     \label{t:uniq_greatest}
@@ -101,6 +98,8 @@ $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
     Skoro $M$ jest elementem największym, to poprzednik implikacji w definicji elementu maksymalnego będzie prawdziwy tylko dla $x = M$, więc sama implikacja zawsze będzie prawdziwa.
 \end{proof}
 
+Oczywiście dwa powyższe twierdzenia są prawdziwe również odpowiednio dla elementów najmniejszych/minimalnych.
+
 \begin{fact}
     \label{f:greatest=maximal}
     W zbiorach z porządkiem totalnym pojęcia elementu największego i maksymalnego oraz najmniejszego i minimalnego są tożsame ze sobą. Wynika to ze spójności porządków totalnych.
@@ -108,13 +107,12 @@ $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
 
 Niech $(X, \preceq)$ będzie zbiorem uporządkowanym, a zbiór $A \subset X$ jego podzbiorem. Element $M \in X$ jest \vocab{majorantą} (ograniczeniem górnym) zbioru $A$ jeśli
 $$ \forall x \in A : x \preceq M. $$
-\vocab{Kresem górnym} (supremum) zbioru $A$ (w zbiorze $X$) jest element najmniejszy zbioru majorant. Oznaczamy go symbolem $$\sup A.$$
-
-\begin{remark}
-    Analogicznie można zdefiniować \vocab{minorantę} (ograniczenie dolne) $m \in X$ zbioru $A \subset X$:
-    $$ \forall x \in A : m \preceq x $$
-    oraz \vocab{kres dolny} (infimum) tego zbioru (jest nim element największy zbioru minorant), który oznaczamy symbolem $$\inf A.$$
-\end{remark}
+\vocab{Kresem górnym} (supremum) zbioru $A$ (w zbiorze $X$) jest element najmniejszy zbioru majorant. Oznaczamy go symbolem
+$$\sup A.$$
+Analogicznie definiujemy \vocab{minorantę} (ograniczenie dolne) $m \in X$ zbioru $A \subset X$:
+$$ \forall x \in A : m \preceq x $$
+oraz \vocab{kres dolny} (infimum) tego zbioru (jest nim element największy zbioru minorant), który oznaczamy symbolem
+$$\inf A.$$
 
 \begin{theorem}
     \label{t:greatest=sup}
@@ -133,6 +131,8 @@ $$ \forall x \in A : x \preceq M. $$
 \begin{proof}
     Ponieważ dowolny zbiór (na mocy twierdzenia \ref{t:uniq_greatest}) ma co najwyżej jedno supremum, to gdyby zbiór $X$ miał element największy, to na mocy twierdzenia \ref{t:greatest=sup} byłoby ono również supremum, które należy do zbioru $X$.
 \end{proof}
+
+Oczywiście dwa poprzednia twierdzenia są również prawdziwe odpowiednio dla elementów najmniejszych/infimów.
 
 \begin{example}
     Weźmy zbiór liniowo uporządkowany $(\RR, \leq)$ oraz jego podzbiór $A = [0, 1) \subset \RR$. Zbiór majorant zbioru $A$ to przedział $[1, \infty)$, a jego najmniejszy element (a zarazem supremum zbioru $A$) to liczba $1$. Mamy więc
