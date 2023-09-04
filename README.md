@@ -8,13 +8,13 @@
 
 ### Computer Science at AGH University
 
-* **analiza.tex** ([pdf](https://mdbrnowski.github.io/notes/pdf/analiza.pdf)) – *Analiza II*
-* **algebra.tex** ([pdf](https://mdbrnowski.github.io/notes/pdf/algebra.pdf)) – *Algebra*
+* **analiza.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/analiza.pdf)] – *Analiza II*
+* **algebra.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/algebra.pdf)] – *Algebra*
 
 ### Miscellaneous
 
-* **filtr.tex** ([pdf](https://mdbrnowski.github.io/notes/pdf/filtr.pdf)) – *Funkcje tworzące i filtracja pierwiastkami jedności*
-* **fft.tex** ([pdf](https://mdbrnowski.github.io/notes/pdf/fft.pdf)) - *Szybka transformacja Fouriera (FFT)*
+* **filtr.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/filtr.pdf)] – *Funkcje tworzące i filtracja pierwiastkami jedności*
+* **fft.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/fft.pdf)] - *Szybka transformacja Fouriera (FFT)*
 
 <br>
 
@@ -41,7 +41,7 @@ To the package `mystd.sty` one can pass a few arguments:
 * `thm`/`nothm` – colors and frames for theorems and similar environments
 * `colorsec`/`nocolorsec` – prettier sections numeration
 * `pretty` – passes `thm` and `colorsec`
-* `polish` – polish version (keywords and other)
+* `polish` – Polish version (keywords and other)
 
 In `mystd.sty` I have also defined:
 
@@ -57,11 +57,11 @@ In `mystd.sty` I have also defined:
   * `fact` (Fact, Fakt)
   * `problem` (Problem, Problem)
   * `question` (Question, Pytanie)
-* Math operators (`\cis`, `\lcm`, `\Arg`, ...)
+* Math operators (`\cis`, `\lcm`, ...)
 * Commands (`\iff`, `\implies`, `\vocab`, ...)
 * Symbols (`\sA` for `\mathcal A` and `\scA` for `\mathscr A`)
 * And more (it's best to see it for yourself in the source file)
 
 ## A few words about the software environment
 
-To use this repository on your computer you need to have [Task](https://taskfile.dev/) and [tectonic](https://github.com/tectonic-typesetting/tectonic) installed. In my opinion, it is the best choice when it comes to both small and large LaTeX projects.
+To use this repository on your computer you need to have [Task](https://taskfile.dev/) and [tectonic](https://github.com/tectonic-typesetting/tectonic) installed. In my opinion, it is the best choice when it comes to both small and large LaTeX projects. Besides that, I recommend using [textidote](https://sylvainhalle.github.io/textidote/), which allows you to check your work for grammar and spelling.

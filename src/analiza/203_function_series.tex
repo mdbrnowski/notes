@@ -34,7 +34,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
     \[ \sum_{n=1}^\infty x^n(1-x) = \sum_{n=1}^\infty 1^n \cdot 0 = 0, \]
     więc szereg jest zbieżny punktowo. Funkcja
     \[ S(x) = \begin{cases}x, & \text{dla } x \in [0, 1) \\ 0, & \text{dla } x = 1 \end{cases}, \]
-    do której dany szereg zbiega nie jest ciągła, a funkcje $f_n(x) = x^n(1-x)$ są ciągłe, więc, na mocy twierdzenia \ref{t:continuous series}, szereg nie zbiega jednostajnie.
+    do której dany szereg zbiega, nie jest ciągła, a funkcje $f_n(x) = x^n(1-x)$ są ciągłe, więc, na mocy twierdzenia \ref{t:continuous series}, szereg nie zbiega jednostajnie.
 \end{solution}
 
 \begin{example}
@@ -53,7 +53,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
     \[ \sum_{n=1}^\infty \frac{x^2}{e^{nx}}. \]
 \end{example}
 \begin{solution}
-    Możemy od razu stwierdzić, że dla $x = 0$ otrzymamy szereg ciąg zer, który oczywiście jest (jednostajnie) zbieżny do zera. Możemy potraktować $x$ jako parametr, wtedy zamiast szeregu funkcyjnego będziemy mieć szereg liczbowy, którego zbieżność możemy pokazać z kryterium d'Alemberta:
+    Możemy od razu stwierdzić, że dla $x = 0$ otrzymamy szereg ciąg zer, który oczywiście jest (jednostajnie) zbieżny do zera. Możemy potraktować $x$ jako parametr, wtedy, zamiast szeregu funkcyjnego, będziemy mieć szereg liczbowy, którego zbieżność możemy pokazać z kryterium d'Alemberta:
     \[ g = \lim_{n\to\infty} \frac{x^2}{e^{x(n+1)}}\frac{e^{xn}}{x^2} = \lim_{n\to\infty}\frac{1}{e^x} = \frac{1}{e^x}. \]
     Szereg jest więc zbieżny dla każdego $x > 0$ i rozbieżny dla każdego $x < 0$. Ostatecznie, obszar zbieżności punktowej danego szeregu funkcyjnego to $[0,\infty)$.
 
@@ -61,7 +61,7 @@ Zachodzi twierdzenie o ciągłości, analogiczne do twierdzenia \ref{t:continuou
 
     Znajdźmy najpierw supremum ciągu $a_n = \frac{x^2}{e^{nx}}$. Możemy znaleźć miejsca zerowe pochodnej:
     \[ \ddx \frac{x^2}{e^{nx}} = \frac{2x(e^{nx}) - x^2(ne^{nx})}{e^{2nx}} = \frac{x(2 - xn)}{e^{nx}} = 0 \iff x \in \left\{0, \frac{2}{n}\right\}. \]
-    Szkicując wykres pochodnej przekonamy się, że funkcja $a_n(x)$ osiąga maksimum w $x = \frac{2}{n}$, więc
+    Szkicując wykres pochodnej, przekonamy się, że funkcja $a_n(x)$ osiąga maksimum w $x = \frac{2}{n}$, więc
     \[ a_n(x) \leq a_n\left(\tfrac{2}{n}\right) = \frac{\left(\frac{2}{n}\right)^2}{e^2} = \frac{4}{e^2n^2}. \]
     Szereg $\sum_{n=1}^\infty \frac{4}{e^2n^2}$ jest zbieżny (ponieważ jest harmoniczny rzędu $2$), więc możemy użyć kryterium Weierstrassa udowadniając, że dany szereg funkcyjny jest jednostajnie zbieżny.
 \end{solution}
@@ -119,7 +119,7 @@ nazwiemy \vocab{kołem zbieżności}. Dla wszystkich elementów z tego zbioru da
 Można podać dwa słabsze twierdzenia, które jednak często łatwiej jest stosować:
 \[ r = \frac{1}{\lim\limits_{n\to\infty} \left|\frac{a_{n+1}}{a_n}\right|} \hspace{1em}\Longrightarrow\hspace{1em} r = \frac{1}{\lim\limits_{n\to\infty}\sqrt[n]{|a_n|}} \hspace{1em}\Longrightarrow\hspace{1em} (\ref{t:Cauchy-Hadamard}). \]
 
-Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} na przedziale $(a, b)$ jeśli jest jednostajnie zbieżny na każdym przedziale $[c, d] \in (a, b)$.
+Mówimy, że ciąg (szereg) funkcyjny jest \vocab{niemal jednostajnie zbieżny} na przedziale $(a, b)$, jeśli jest jednostajnie zbieżny na każdym przedziale $[c, d] \in (a, b)$.
 
 \begin{fact}
     Jeśli szereg potęgowy jest zbieżny w $(c-r, c+r)$, to jest bezwzględnie zbieżny w $(c-r, c+r)$ oraz niemal jednostajnie zbieżny w $(c-r, c+r)$.

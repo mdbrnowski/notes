@@ -138,7 +138,7 @@ Mówimy również, że wektory są liniowo zależne, jeśli nie są liniowo niez
 \begin{proof}
     Jeśli istnieje taki ciąg $\alpha_1, \alpha_2, \ldots, \alpha_n$, że $\{\alpha_1, \ldots, \alpha_n\} \neq \{0\}$ oraz
     \[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_nv_n = \ol{0}, \]
-    to bez starty ogólności możemy przyjąć, że $\alpha_n \neq 0$. Równoważnie przekształcamy równość do postaci
+    to bez straty ogólności możemy przyjąć, że $\alpha_n \neq 0$. Równoważnie przekształcamy równość do postaci
     \[ \alpha_1v_1 + \alpha_2v_2 + \ldots + \alpha_{n-1}v_{n-1} = -\alpha_nv_n \]
     \[ \frac{-\alpha_1}{\alpha_n}v_1 + \frac{-\alpha_2}{\alpha_n}v_2 + \ldots + \frac{-\alpha_{n-1}}{\alpha_n}v_{n-1} = v_n, \]
     więc otrzymujemy równoważność między założeniem i stwierdzeniem, że $v_n$ jest kombinacją liniową wektorów $\alpha_1, \ldots, \alpha_{n-1}$.
@@ -155,7 +155,7 @@ Mówimy również, że wektory są liniowo zależne, jeśli nie są liniowo niez
         u = \beta_1v_1 + \beta_2v_2 + \ldots + \beta_nv_n
     \end{align*}
     Mamy
-    \[ u - u = \ol{0} = (\alpha_1 - \beta_1)v_1 + (\alpha_2 - \beta_2)v_2 + \ldots + (\alpha_n - \beta_n)v_n \]
+    \[ u - u = \ol{0} = (\alpha_1 - \beta_1)v_1 + (\alpha_2 - \beta_2)v_2 + \ldots + (\alpha_n - \beta_n)v_n, \]
     co, skoro $v_1, v_2, \ldots, v_n$ są liniowo niezależne, dowodzi, że dla każdego $i$ zachodzi $\alpha_i - \beta_i = 0$, więc ciągi $(\alpha_n)$ i $(\beta_n)$ są równe.
 \end{proof}
 
@@ -220,7 +220,7 @@ skalary $\alpha_i$ nazwiemy \vocab{współrzędnymi} wektora $v$ w bazie $B$ i z
 \end{theorem}
 Implikacja w lewą stronę jest trywialna, pokażemy implikację w prawo.
 \begin{proof}
-    Jeśli weźmiemy pewną bazę $B$ przestrzeni $U$ i zachodzi warunek $\dim U = \dim V$, to, zgodnie z tym co powiedzieliśmy wcześniej, jest ona również bazą przestrzeni $V$, ponieważ $U \subset V$, z czego wynika teza.
+    Jeśli weźmiemy pewną bazę $B$ przestrzeni $U$ i zachodzi warunek $\dim U = \dim V$, to zgodnie z tym, co powiedzieliśmy wcześniej, jest ona również bazą przestrzeni $V$, ponieważ $U \subset V$, z czego wynika teza.
 \end{proof}
 
 \begin{example}
@@ -273,7 +273,7 @@ Implikacja w lewą stronę jest trywialna, pokażemy implikację w prawo.
     \[ V = V_1 \oplus V_2 \implies \dim V = \dim V_1 + \dim V_2. \]
 \end{theorem}
 \begin{proof}
-    Możemy wziąć bazę $B$ przestrzeni $V$ oraz bazy $B_1, B_2$ odpowiednio podprzestrzeni $V_1, V_2$ takie, że $B_1, B_2 \subset B$. Oczywistym jest, że
+    Możemy wziąć bazę $B$ przestrzeni $V$ oraz bazy $B_1, B_2$ odpowiednio podprzestrzeni $V_1, V_2$ takie, że $B_1, B_2 \subset B$. Oczywiste jest, że
     \[ |B_1 \cup B_2| = |B_1| + |B_2| - |B_1 \cap B_2|, \]
     więc z definicji sumy podprzestrzeni (\ref{d:sum of spaces}) i twierdzenia \ref{t:equinumerous bases} wynika teza.
 \end{proof}
