@@ -22,13 +22,14 @@
 \definecolor{AccColor4}{HTML}{148670}     %#148670
 
 \colorlet{ColAccGood}{AccColor4}          %#148670
-\definecolor{ColAccBad}{HTML}{D14B20}   %#D14B20
+\definecolor{ColAccBad}{HTML}{D14B20}     %#D14B20
 
 \colorlet{MainColor}{AccColor1}           %#C41E3A
-\definecolor{LinkColor1}{HTML}{2653C3}  %#2653C3
-\definecolor{LinkColor2}{HTML}{0C3291}  %#0C3291
-\definecolor{BoxColor1}{HTML}{092877}   %#092877
-\definecolor{BoxColor2}{HTML}{B24A00}   %#B24A00
+\definecolor{LinkColor1}{HTML}{329B71}    %#329B71
+\colorlet{LinkColor2}{AccColor2}          %#233F8D
+
+\definecolor{BoxColor1}{HTML}{081D56}     %#081D56
+\definecolor{BoxColor2}{HTML}{A8760F}     %#A8760F
 
 \usepackage[colorlinks=true]{hyperref}
 \hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
@@ -102,12 +103,6 @@
   \par\nointerlineskip \vspace{\baselineskip}
 }
 
-\ifstdpolish
-    \newenvironment{solution}{\begin{proof}[Rozwiązanie]}{\end{proof}}
-\else
-    \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
-\fi
-
 \newcommand{\NN}{\mathbb N}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\QQ}{\mathbb Q}
@@ -155,16 +150,22 @@
   \renewcommand{\partname}{}
 }
 
+\ifstdpolish
+    \newenvironment{solution}{\begin{proof}[Rozwiązanie]\small}{\end{proof}}
+\else
+    \newenvironment{solution}{\begin{proof}[Solution]\small}{\end{proof}}
+\fi
+
 \ifstdthm
     \usepackage[framemethod=TikZ]{mdframed}
     \mdfdefinestyle{mdbluebox}{%
-        linewidth=0.5pt,
         skipabove=12pt,
-        innerbottommargin=9pt,
         skipbelow=2pt,
-        nobreak=true,
+        linewidth=0.5pt,
+        innerbottommargin=9pt,
         linecolor=BoxColor1,
         backgroundcolor=BoxColor1!5,
+        nobreak=true
     }
     \declaretheoremstyle[
         headfont=\sffamily\bfseries\color{BoxColor1},
@@ -173,23 +174,22 @@
         postheadspace={0pt}
     ]{thmbluebox}
     \mdfdefinestyle{mdredbox}{%
-        linewidth=0.5pt,
-        skipabove=12pt,
-        frametitleaboveskip=5pt,
-        frametitlebelowskip=0pt,
-        skipbelow=2pt,
-        frametitlefont=\bfseries,
-        innertopmargin=4pt,
-        innerbottommargin=8pt,
-        nobreak=true,
+        skipabove=8pt,
+        linewidth=2pt,
+        rightline=false,
+        leftline=true,
+        topline=false,
+        bottomline=false,
         linecolor=BoxColor2,
         backgroundcolor=BoxColor2!5,
+        nobreak=true
     }
     \declaretheoremstyle[
         headfont=\bfseries\color{BoxColor2},
+        bodyfont=\normalfont\small,
         mdframed={style=mdredbox},
         headpunct={\\[3pt]},
-        postheadspace={0pt},
+        postheadspace={0pt}
     ]{thmredbox}
     \mdfdefinestyle{mdblackbox}{%
         skipabove=8pt,
@@ -204,9 +204,9 @@
     \declaretheoremstyle[
         headfont=\bfseries,
         bodyfont=\normalfont\small,
+        mdframed={style=mdblackbox},
         spaceabove=0pt,
-        spacebelow=0pt,
-        mdframed={style=mdblackbox}
+        spacebelow=0pt
     ]{thmblackbox}
 \else
     \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmbluebox}
