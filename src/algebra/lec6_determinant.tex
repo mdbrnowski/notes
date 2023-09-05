@@ -95,9 +95,9 @@ Regułę Sarrusa bardzo łatwo zapamiętać: wystarczy przepisać na koniec maci
     a_{11} & a_{12} \\
     a_{21} & a_{22}
     \CodeAfter
-        \tikz \draw [very thick, ForestGreen, opacity=0.4]
+        \tikz \draw [very thick, ColAccGood, opacity=0.4]
         (1-1.north west) -- (2-2.south east);
-        \tikz \draw [very thick, Red, opacity=0.3]
+        \tikz \draw [very thick, ColAccBad, opacity=0.4]
         (1-2.north east) -- (2-1.south west);
 \end{bNiceArray}
 \qquad
@@ -106,11 +106,11 @@ Regułę Sarrusa bardzo łatwo zapamiętać: wystarczy przepisać na koniec maci
     a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\
     a_{31} & a_{32} & a_{33} & a_{31} & a_{32}
     \CodeAfter
-        \tikz \draw [very thick, ForestGreen, opacity=0.4]
+        \tikz \draw [very thick, ColAccGood, opacity=0.4]
         (1-1.north west) -- (3-3.south east)
         (1-2.north west) -- (3-4.south east)
         (1-3.north west) -- (3-5.south east);
-        \tikz \draw [very thick, Red, opacity=0.3]
+        \tikz \draw [very thick, ColAccBad, opacity=0.4]
         (1-3.north east) -- (3-1.south west)
         (1-4.north east) -- (3-2.south west)
         (1-5.north east) -- (3-3.south west);

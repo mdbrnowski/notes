@@ -185,7 +185,7 @@ Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{ilocz
     gdzie $\Vert\mathbf{u}\times\mathbf{v}\Vert$ to pole równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$, jak na rysunku poniżej.
 
     \begin{center}
-        \begin{tikzpicture}[vect/.style={->,>=latex',thick,MainColor1}]
+        \begin{tikzpicture}[vect/.style={->,>=latex',thick,AccColor1}]
             \def\a{3}
             \def\bx{1.7} \def\by{.8}
             \def\cx{.9} \def\cy{2.5}
@@ -325,11 +325,11 @@ Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzi�
             \tkzDefPoints{2/5/Q,-1/3/L,1/2/L'}
             \tkzDefPointBy[projection = onto L--L'](Q) \tkzGetPoint{H}
             \tkzDefPointBy[translation = from L to L'](Q) \tkzGetPoint{Q'}
-            \tkzFillPolygon[color=MainColor1!10](L,L',Q',Q)
+            \tkzFillPolygon[color=AccColor1, opacity=0.2](L,L',Q',Q)
             \tkzDrawLine[add= .5 and .5](L,L')
             \tkzDrawSegment[dashed](Q,H)
-            \tkzDrawSegments[MainColor1, vector style](L,Q L,L')
-            \tkzDrawSegments[dotted, MainColor1](L',Q' Q,Q')
+            \tkzDrawSegments[AccColor1, vector style](L,Q L,L')
+            \tkzDrawSegments[dotted, AccColor1](L',Q' Q,Q')
             \tkzDrawPoints(Q, L)
             \tkzLabelSegment[swap](L,L'){$\mathbf{v}$}
             \tkzLabelPoints[above right](Q)

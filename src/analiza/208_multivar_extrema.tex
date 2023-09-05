@@ -123,8 +123,8 @@ Analogicznie definiujemy minimum lokalne.
         \begin{axis}[my axis style, view = {-20}{30}]
             \addplot3[
                 domain = -0.5:1.4, domain y = -0.5:1.4,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{x^3 + y^3 - 3*x*y};
         \end{axis}
     \end{tikzpicture}

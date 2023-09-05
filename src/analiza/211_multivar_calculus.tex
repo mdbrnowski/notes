@@ -62,12 +62,12 @@ Analogicznie możemy zdefiniować obszar normalny względem osi $OY$.
             \tkzDefPoint(-1,1){A}
             \tkzDefPoint(2,4){B}
 
-            \draw[fill=MainColor1, opacity=.25] (-1,1) parabola bend (0,0) (2,4) -- cycle;
+            \draw[fill=AccColor1, opacity=.3] (-1,1) parabola bend (0,0) (2,4) -- cycle;
             \node[black] at (0.2,0.5) {\scriptsize $R_1$};
             \node[black] at (0.8,1.8) {\scriptsize $R_2$};
 
-            \draw[BoxColor1,thick,domain=-1.1:2.1] plot (\x,{pow(\x, 2)});
-            \draw[BoxColor2,thick,domain=-1.2:2.2] plot (\x,{\x+2});
+            \draw[AccColor1,thick,domain=-1.1:2.1] plot (\x,{pow(\x, 2)});
+            \draw[AccColor1,thick,domain=-1.2:2.2] plot (\x,{\x+2});
             \draw[black,thick,domain=-1:1] plot (\x, 1);
 
             \tkzDrawPoints(A,B)

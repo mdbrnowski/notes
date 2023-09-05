@@ -43,16 +43,16 @@ Aby sprawdzić zbieżność szeregów, stosuje się kilka kryteriów zbieżnośc
 \begin{theorem}[kryterium porównawcze]
     Jeśli dla każdego $n$ większego od pewnego $n_0$ zachodzi
     \[ a_n \leq b_n \]
-    oraz $a_n, b_n > 0$, to ze zbieżności szeregu $\sum_{n=1}^\infty b_n$ wynika zbieżność $\sum_{n=1}^\infty a_n$, a z rozbieżności szeregu $\sum_{n=1}^\infty a_n$ wynika rozbieżność $\sum_{n=1}^\infty b_n$.
+    oraz $a_n, b_n > 0$, to ze zbieżności szeregu $\sum_{n=1}^\infty b_n$ wynika zbieżność $\sum_{n=1}^\infty a_n$, a~z~rozbieżności szeregu $\sum_{n=1}^\infty a_n$ wynika rozbieżność $\sum_{n=1}^\infty b_n$.
 \end{theorem}
 
 \begin{remark*}
     \begin{multicols}{2}
     Wraz z powyższym twierdzeniem warto stosować nierówności, które zachodzą w przedziale $[0,1]$:
     \begin{itemize}
-        \item $\frac{x}{2} \leq {\color{MainColor1} \sin{x}} \leq x$
-        \item $\frac{x}{2} \leq {\color{BoxColor2} \ln(x + 1)} \leq x$
-        \item $x \leq {\color{LinkColor2} \tan{x}} \leq 2x$
+        \item $\frac{x}{2} \leq {\color{AccColor1} \sin{x}} \leq x$
+        \item $\frac{x}{2} \leq {\color{AccColor2} \ln(x + 1)} \leq x$
+        \item $x \leq {\color{AccColor3} \tan{x}} \leq 2x$
         \item $1 - x \leq \cos{x}$
     \end{itemize}
     \hspace{2em}
@@ -65,9 +65,9 @@ Aby sprawdzić zbieżność szeregów, stosuje się kilka kryteriów zbieżnośc
             \addplot[samples=10,smooth,ultra thin] {x/2};
             \addplot[samples=10,smooth,ultra thin] {x};
             \addplot[samples=10,smooth,ultra thin] {2*x};
-            \addplot[samples=100,smooth,very thick,MainColor1] {sin(deg(x))};
-            \addplot[samples=100,smooth,very thick,LinkColor2] {tan(deg(x))};
-            \addplot[samples=100,smooth,very thick,BoxColor2] {ln(x + 1)};
+            \addplot[samples=100,smooth,very thick,AccColor3] {tan(deg(x))};
+            \addplot[samples=100,smooth,very thick,AccColor2] {ln(x + 1)};
+            \addplot[samples=100,smooth,very thick,AccColor1] {sin(deg(x))};
         \end{axis}
     \end{tikzpicture}
     \end{multicols}

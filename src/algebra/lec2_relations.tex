@@ -142,13 +142,14 @@ Oczywiście dwa poprzednia twierdzenia są również prawdziwe odpowiednio dla e
 
 \begin{example}
     Weźmy zbiór częściowo uporządkowany $(\CC, \preceq)$, gdzie zdefiniujemy
-    $$ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y}. $$
-    Oczywiście niektóre elementy nie będą w tym porządku porównywalne, na przykład $1$ oraz $i$.
-
-    Weźmy również podzbiór $A \subset \CC$ taki, że
+    $$ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y} $$
+    oraz podzbiór $A \subset \CC$ taki, że
     $$ A = \{z : |z| \leq 1\}. $$
 
-    Na rysunku zaznaczono \textcolor{MainColor1}{zbiór $A$}, \textcolor{LinkColor1}{zbiór majorant $M$ zbioru $A$}, \textcolor{BoxColor1}{supremum zbioru~$A$} oraz \textcolor{MainColor1}{zbiór elementów maksymalnych} (jako ćwierćokrąg). Na mocy wniosku \ref{c:if_sup_out_then_no_greatest} element największy nie istnieje.
+    Znajdź zbiór majorant i elementów maksymalnych. Stwierdź, czy istnieje supremum i element największy.
+\end{example}
+\begin{solution}
+    Na rysunku zaznaczono zbiór $A$ (\textcolor{AccColor1}{$\blacksquare$}), zbiór majorant $M$ zbioru $A$ (\textcolor{AccColor2}{$\blacksquare$}), supremum zbioru~$A$ (\textcolor{AccColor3}{$\blacksquare$}) oraz zbiór elementów maksymalnych (\textcolor{AccColor4}{$\blacksquare$}). Na mocy wniosku \ref{c:if_sup_out_then_no_greatest} element największy nie istnieje.
 
     \begin{center}
         \begin{tikzpicture}
@@ -158,13 +159,13 @@ Oczywiście dwa poprzednia twierdzenia są również prawdziwe odpowiednio dla e
             \tkzGrid
             \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
             \tkzClip
-            \tkzDrawCircle[color=MainColor1, line width=2pt, fill=MainColor1!50, opacity=.5](O,A)
-            \tkzDrawPolygon[color=LinkColor1, line width=2pt, fill=LinkColor1!50, opacity=.5](M_1,M_2,M_3,M_4)
-            \tkzDrawPoint[color=BoxColor1, size=4pt](M_1)
-            \tkzDrawArc[color=MainColor1, line width=3pt, opacity=.5](O,A)(B)
+            \tkzDrawCircle[line width=0pt, fill=AccColor1, opacity=.3](O,A)
+            \tkzDrawPolygon[line width=0pt, fill=AccColor2, opacity=.3](M_1,M_2,M_3,M_4)
+            \tkzDrawPoint[color=black, fill=AccColor3, size=4pt](M_1)
+            \tkzDrawArc[color=AccColor4, line width=2pt](O,A)(B)
         \end{tikzpicture}
     \end{center}
-\end{example}
+\end{solution}
 
 \begin{definition}
     Łańcuch to taki podzbiór $C \subset X$, że $(X, \preceq)$ jest zbiorem z porządkiem częściowym, a $(C, \preceq)$ jest zbiorem z porządkiem liniowym.
