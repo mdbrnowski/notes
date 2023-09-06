@@ -15,7 +15,7 @@
     czyli zbiór wektorów własnych z wektorem zerowym.
 \end{definition}
 \begin{proof}[Uzasadnienie]
-    Fakt, że zbiór $V_\lambda$ tworzy podprzestrzeń liniową przestrzeni $V$, wynika z addytywności i jednorodności endomorfizmów.
+    Fakt, że zbiór $V_\lambda$ tworzy podprzestrzeń liniową przestrzeni $V$, wynika z~addytywności i jednorodności endomorfizmów.
 \end{proof}
 
 \begin{theorem}
@@ -162,7 +162,9 @@
     jest diagonalizowalny. Jeśli tak, wyznacz bazę $B$ taką, że $D = M_f(B)$ jest diagonalna, podaj $D$ oraz macierz $P$ taką, że $M_f(B_k) = PDP^{-1}$.
 \end{example}
 \begin{solution}
-    Najpierw wyznaczymy macierz $M_f(B_k)$. Mamy $f(1, 0, 0) = [-1, 3, -3]_{B_k}$, $f(0, 1, 0) = [0, 2, 0]_{B_k}$ oraz $f(0, 0, 1) = [-3, 3, -1]_{B_k}$, tak więc
+    Najpierw wyznaczymy macierz $M_f(B_k)$. Mamy
+    \[ f(1, 0, 0) = [-1, 3, -3]_{B_k}, \quad f(0, 1, 0) = [0, 2, 0]_{B_k}, \quad f(0, 0, 1) = [-3, 3, -1]_{B_k}, \]
+    tak więc
     \[ M_f(B_k) = \begin{bmatrix}
         -1 & 0 & -3 \\
         3 & 2 & 3 \\
@@ -228,7 +230,7 @@
     \end{bmatrix}. \]
 \end{solution}
 
-Możemy również wykorzystać własności macierzy diagonalnych bez potrzeby odwoływania się do endomorfizmów. Na podstawie definicji \ref{d:matrix equivalence} i \ref{d:matrix similarity} będziemy mówili, że macierz jest diagonalizowalna, jeśli jest podobna do pewnej macierzy diagonalnej; że ma wartości własne oraz wektory własne (gdy spełnia równania z twierdzenia \ref{t:det(A-lambda I)=0}) i tym podobne. Wszystkie wyprowadzone dla endomorfizmów twierdzenia będą również prawdziwe dla macierzy.
+Możemy również wykorzystać własności macierzy diagonalnych bez potrzeby odwoływania się do endomorfizmów. Na podstawie definicji \ref{d:matrix equivalence} i \ref{d:matrix similarity} będziemy mówili, że macierz jest diagonalizowalna, jeśli jest podobna do pewnej macierzy diagonalnej; że ma wartości własne oraz wektory własne (gdy spełnia równania z twierdzenia \ref{t:det(A-lambda I)=0}) i~tym podobne. Wszystkie wyprowadzone dla endomorfizmów twierdzenia będą również prawdziwe dla macierzy.
 
 \begin{example}
     Niech $A = \begin{bmatrix}

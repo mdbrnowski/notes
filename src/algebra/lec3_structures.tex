@@ -7,7 +7,7 @@ Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to, zamiast $h
 
 \begin{definition}[rodzaje działań]
     W zbiorze z działaniem $(A, \circ)$ działanie $\circ$ jest:
-    \begin{itemize}[--]
+    \begin{itemize}
         \item \vocab{łączne} $\iff \forall x, y, z \in A : (x \circ y) \circ z = x \circ (y \circ z)$,
         \item \vocab{przemienne} $\iff \forall x, y, \in A : x \circ y = y \circ x$.
     \end{itemize}
@@ -61,7 +61,7 @@ $$ x \circ x' = e = x' \circ x. $$
     Przykłady grup:
     \begin{enumerate}
         \item $(\ZZ, +)$ -- grupa abelowa,
-        \item $(\ZZ_n, +_n)$ -- grupa abelowa\footnote{gdzie $\ZZ_n$ oznacza zbiór $\{0, 1, \ldots, n-1\}$, a $+_n$ operację dodawania modulo $n$},
+        \item $(\ZZ_n, +_n)$ -- grupa abelowa\footnote{Symbol $\ZZ_n$ oznacza zbiór $\{0, 1, \ldots, n-1\}$, a $+_n$ operację dodawania modulo $n$.},
         \item $(\QQ_+, \cdot)$ -- grupa abelowa,
         \item grupą nieabelową jest grupa obrotów danego obiektu o $90\dg$ względem dowolnej z trzech osi.
     \end{enumerate}
@@ -101,10 +101,10 @@ $$ x \circ x' = e = x' \circ x. $$
 \end{definition}
 
 \begin{definition}
-    Pierścień przemienny to pierścień $(P, \circ, *)$, w którym $*$ jest działaniem przemiennym\footnote{wtedy też rozdzielność prawo- i lewostronna stają się tożsame}.
+    Pierścień przemienny to pierścień $(P, \circ, *)$, w którym $*$ jest działaniem przemiennym\footnote{Wtedy też rozdzielność prawo- i lewostronna stają się tożsame.}.
 \end{definition}
 
-Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy przez $+$. Element neutralny tego działania nazywamy zerem ($\mathbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
+Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy symbolem $+$. Element neutralny tego działania nazywamy zerem ($\mathbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
 
 Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy przez $\cdot$. Jeśli w $P$ dodatkowo istnieje element neutralny tego działania, to ten element nazywamy jedynką ($\mathbf{1}$), a pierścień nazywamy \vocab{pierścieniem z jedynką}. Element symetryczny do elementu $x$ nazywamy elementem odwrotnym i oznaczamy $x^{-1}$.
 
@@ -131,7 +131,7 @@ Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy prze
     Ciało to pierścień z jedynką, w którym dla każdego elementu $x \neq \mathbf{0}$ istnieje element odwrotny $x^{-1}$.
 \end{definition}
 
-Ciałem przemiennym będzie ciało, w którym działanie $\cdot$ jest przemienne. Niektórzy autorzy utożsamiają pojęcie ciała z ciałem przemiennym.
+\vocab{Ciałem przemiennym} będzie takie ciało, w którym działanie multiplikatywne $\cdot$ jest przemienne\footnote{Większość autorów już w definicji ciała wymaga przemienności (wtedy ciało nazywamy pierścieniem z~dzieleniem). Przyjęło się tak zwłaszcza w literaturze angielskiej (ciało przemienne to \textit{field}, a ciało to \textit{division ring} lub \textit{skew field}) i niemieckiej (odpowiednio \textit{Körper} i \textit{Schiefkörper}). Odwrotnie --- czyli zgodnie z naszą konwencją --- jest w literaturze francuskiej (odpowiednio \textit{corps commutatif} i \textit{corps}) oraz rosyjskiej (\cyrillic{\textit{поле}} [pole] i \cyrillic{\textit{тело}} [tieło]).}.
 
 Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), jeżeli:
 \begin{enumerate}[noitemsep,nolistsep]
@@ -177,9 +177,9 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), je�
     Przykłady pierścieni i ciał:
     \begin{itemize}
         \item $(\ZZ, +, \cdot)$ -- pierścień całkowity, który nie jest ciałem (nie ma dzielników zera, ale często elementy odwrotne nie zawierają się w zbiorze $\ZZ$),
-        \item $(\QQ, +, \cdot)$ -- ciało liczb wymiernych,
-        \item $(\RR, +, \cdot)$ -- ciało liczb rzeczywistych,
-        \item $(\CC, +, \cdot)$ -- ciało liczb zespolonych,
+        \item $(\QQ, +, \cdot)$ -- ciało przemienne liczb wymiernych,
+        \item $(\RR, +, \cdot)$ -- ciało przemienne liczb rzeczywistych,
+        \item $(\CC, +, \cdot)$ -- ciało przemienne liczb zespolonych,
         \item $(\ZZ_n, +_n, \cdot_n)$ -- pierścień przemienny z jedynką.
     \end{itemize}
 \end{example}
