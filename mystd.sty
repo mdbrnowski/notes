@@ -1,12 +1,18 @@
 \ProvidesPackage{mystd}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
 \usepackage{fontspec}
+\newfontfamily{\cyrillic}[
+    UprightFont=*rm,
+    BoldFont=*bx,
+    ItalicFont=*ti,
+    BoldItalicFont=*bi,
+    Extension=.otf,
+    Ligatures=TeX
+]{cmun}
 \setmonofont{JetBrainsMono}[
     Path=./fonts/,
     Scale=0.85,
-    Extension = .ttf,
+    Extension=.ttf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
     ItalicFont=*-Italic,
