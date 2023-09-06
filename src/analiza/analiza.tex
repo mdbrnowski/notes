@@ -2,9 +2,21 @@
 \usepackage[pretty,polish]{mystd}
 \title{Analiza II}
 \author{Michał Dobranowski}
-\date{semestr letni 2023\\ v0.20}
+\date{semestr letni 2023\\ v1.0}
 
 \newcommand{\graphref}[1]{\begin{flushright}\vspace{-.5em} \tiny \texttt{#1} \kern-1em\vspace{-.5em}\end{flushright}}
+
+% 3d plots setup
+\pgfplotsset{
+    my axis style/.style={
+        grid,
+        tick label style={font=\scriptsize},
+        colormap={CM}{color=(AccColor2) color=(black!20) color=(AccColor1)},
+        xlabel={$x$},
+        ylabel={$y$},
+        zlabel={$f(x, y)$}
+    }
+}
 
 \begin{document}
     \maketitle
@@ -42,17 +54,6 @@
         \subsection{Szeregi Fouriera}
         \input{205_Fourier_series.tex}
 
-    \pgfplotsset{
-        my axis style/.style={
-            grid,
-            tick label style={font=\scriptsize},
-            colormap={CM}{rgb255=(50,50,255) color=(black) rgb255=(210,100,200)},
-            xlabel={$x$},
-            ylabel={$y$},
-            zlabel={$f(x, y)$}
-        }
-    }
-
     \section{Rachunek różniczkowy funkcji wielu zmiennych}
     \input{206_multivar_lim.tex}
         \subsection{Pochodne funkcji wielu zmiennych}
@@ -73,8 +74,6 @@
 
 
     \appendix
-    % \section{Dodatek}
-    % \input{appendix.tex}
 
     \section{Układy współrzędnych} \label{s:coordinate systems}
     \input{A01_coordinate_systems.tex}

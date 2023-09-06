@@ -28,8 +28,8 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym ko
         \begin{axis}[my axis style, view = {20}{30}]
             \addplot3[
                 domain = -2:2, domain y = -2:2,
-                samples = 19, samples y = 19,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{x^2/(x^2 + y^2)};
         \end{axis}
     \end{tikzpicture}
@@ -53,8 +53,8 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym ko
         \begin{axis}[my axis style, view = {20}{30}]
             \addplot3[
                 domain = -2:2, domain y = -2:2,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{sin(deg(x^2 + y^2))/(x^2 + y^2)};
         \end{axis}
     \end{tikzpicture}
@@ -80,8 +80,8 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym ko
         \begin{axis}[my axis style, view = {-15}{30}]
             \addplot3[
                 domain = -2:2, domain y = -2:2,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{(x * y^2)/(x^2 + y^2)};
         \end{axis}
     \end{tikzpicture}
@@ -116,13 +116,13 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym ko
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[my axis style, view = {-10}{40}]
             \addplot3[
-                red, samples=10,
+                thick, AccColor4, samples=10,
                 domain=-1:1,
             ]({x},{x/3},{x*(x/3)^2/(x^2 + (x/3)^4)});
             \addplot3[
                 domain = -1:1, domain y = -1:1,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{x*y^2/(x^2 + y^4)};
         \end{axis}
     \end{tikzpicture}
@@ -130,11 +130,11 @@ W tej sekcji będziemy skupiać się na funkcjach typu $\RR^k \to \RR$. W tym ko
         \begin{axis}[my axis style, view = {0}{0}]
             \addplot3[
                 domain = -1:1, domain y = -1:1,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{x*y^2/(x^2 + y^4)};
             \addplot3[
-                red, samples=10,
+                thick, AccColor4, samples=10,
                 domain=-1:1,
             ]({x},{x/3},{x*(x/3)^2/(x^2 + (x/3)^4)});
         \end{axis}
@@ -159,7 +159,7 @@ Granicę funkcji $f(x, y)$ w formie $\lim_{(x, y) \to (x_0, y_0)} f(x, y)$ nazyw
 \end{remark*}
 
 \begin{fact}
-    Jeśli funkcja (wielu zmiennych) $f$ jest ciągła w $x_0$, a funkcja $g$ jest ciągła w $f(x_0)$, to funkcja $g\circ f$ jest ciągła w $x_0$.
+    Jeśli funkcja (wielu zmiennych) $f$ jest ciągła w $x_0$, a funkcja $g$ jest ciągła w~$f(x_0)$, to funkcja $g\circ f$ jest ciągła w $x_0$.
 \end{fact}
 
 \begin{fact}

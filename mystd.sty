@@ -1,12 +1,18 @@
 \ProvidesPackage{mystd}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
 \usepackage{fontspec}
+\newfontfamily{\cyrillic}[
+    UprightFont=*rm,
+    BoldFont=*bx,
+    ItalicFont=*ti,
+    BoldItalicFont=*bi,
+    Extension=.otf,
+    Ligatures=TeX
+]{cmun}
 \setmonofont{JetBrainsMono}[
     Path=./fonts/,
     Scale=0.85,
-    Extension = .ttf,
+    Extension=.ttf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
     ItalicFont=*-Italic,
@@ -16,13 +22,20 @@
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage[svgnames,dvipsnames]{xcolor}
 
-\definecolor{MainColor1}{HTML}{BF0040}  %#BF0040
+\definecolor{AccColor1}{HTML}{C41E3A}     %#C41E3A
+\definecolor{AccColor2}{HTML}{233F8D}     %#233F8D
+\definecolor{AccColor3}{HTML}{D19820}     %#D19820
+\definecolor{AccColor4}{HTML}{148670}     %#148670
 
-\definecolor{LinkColor1}{HTML}{2653C3}  %#2653C3
-\definecolor{LinkColor2}{HTML}{0C3291}  %#0C3291
+\colorlet{ColAccGood}{AccColor4}          %#148670
+\definecolor{ColAccBad}{HTML}{D14B20}     %#D14B20
 
-\definecolor{BoxColor1}{HTML}{092877}   %#092877
-\definecolor{BoxColor2}{HTML}{B24A00}   %#B24A00
+\colorlet{MainColor}{AccColor1}           %#C41E3A
+\definecolor{LinkColor1}{HTML}{329B71}    %#329B71
+\colorlet{LinkColor2}{AccColor2}          %#233F8D
+
+\definecolor{BoxColor1}{HTML}{081D56}     %#081D56
+\definecolor{BoxColor2}{HTML}{A8760F}     %#A8760F
 
 \usepackage[colorlinks=true]{hyperref}
 \hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
@@ -31,13 +44,18 @@
 \usepackage{relsize}
 \usepackage{yhmath}  % for wideparen
 \usepackage{esint}  % better integrals
-\usepackage{nicematrix}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
 \usepackage{tkz-euclide}
-\usetikzlibrary{shapes.geometric,calc,positioning,fit,decorations.markings}
-
+\usetikzlibrary{math,shapes.geometric,calc,positioning,fit,decorations.markings}
+\tikzset{>=latex}
+\usepackage{nicematrix}
+\NiceMatrixOptions{
+    custom-line={letter=I, tikz=densely dashed, total-width=\pgflinewidth},
+    custom-line={letter=S, tikz=solid, total-width=\pgflinewidth}
+}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
@@ -85,17 +103,11 @@
 \renewcommand{\iff}{\Leftrightarrow}
 \renewcommand{\implies}{\Rightarrow}
 
-\newcommand{\vocab}[1]{\textbf{\color{MainColor1} #1}}
+\newcommand{\vocab}[1]{\emph{\color{MainColor} #1}}
 \newcommand{\hrulebar}{
   \par\hspace{\fill}\rule{0.95\linewidth}{.7pt}\hspace{\fill}
   \par\nointerlineskip \vspace{\baselineskip}
 }
-
-\ifstdpolish
-    \newenvironment{solution}{\begin{proof}[Rozwiązanie]}{\end{proof}}
-\else
-    \newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
-\fi
 
 \newcommand{\NN}{\mathbb N}
 \newcommand{\ZZ}{\mathbb Z}
@@ -144,16 +156,22 @@
   \renewcommand{\partname}{}
 }
 
+\ifstdpolish
+    \newenvironment{solution}{\begin{proof}[Rozwiązanie]\small}{\end{proof}}
+\else
+    \newenvironment{solution}{\begin{proof}[Solution]\small}{\end{proof}}
+\fi
+
 \ifstdthm
     \usepackage[framemethod=TikZ]{mdframed}
     \mdfdefinestyle{mdbluebox}{%
-        linewidth=0.5pt,
         skipabove=12pt,
-        innerbottommargin=9pt,
         skipbelow=2pt,
-        nobreak=true,
+        linewidth=0.5pt,
+        innerbottommargin=9pt,
         linecolor=BoxColor1,
         backgroundcolor=BoxColor1!5,
+        nobreak=true
     }
     \declaretheoremstyle[
         headfont=\sffamily\bfseries\color{BoxColor1},
@@ -162,23 +180,22 @@
         postheadspace={0pt}
     ]{thmbluebox}
     \mdfdefinestyle{mdredbox}{%
-        linewidth=0.5pt,
-        skipabove=12pt,
-        frametitleaboveskip=5pt,
-        frametitlebelowskip=0pt,
-        skipbelow=2pt,
-        frametitlefont=\bfseries,
-        innertopmargin=4pt,
-        innerbottommargin=8pt,
-        nobreak=true,
+        skipabove=8pt,
+        linewidth=2pt,
+        rightline=false,
+        leftline=true,
+        topline=false,
+        bottomline=false,
         linecolor=BoxColor2,
         backgroundcolor=BoxColor2!5,
+        nobreak=true
     }
     \declaretheoremstyle[
         headfont=\bfseries\color{BoxColor2},
+        bodyfont=\normalfont\small,
         mdframed={style=mdredbox},
         headpunct={\\[3pt]},
-        postheadspace={0pt},
+        postheadspace={0pt}
     ]{thmredbox}
     \mdfdefinestyle{mdblackbox}{%
         skipabove=8pt,
@@ -193,9 +210,9 @@
     \declaretheoremstyle[
         headfont=\bfseries,
         bodyfont=\normalfont\small,
+        mdframed={style=mdblackbox},
         spaceabove=0pt,
-        spacebelow=0pt,
-        mdframed={style=mdblackbox}
+        spacebelow=0pt
     ]{thmblackbox}
 \else
     \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmbluebox}
@@ -256,20 +273,20 @@
 \ifstdcolorsec
     \@ifundefined{chapter}{}{
         \addtokomafont{partprefix}{\rmfamily}
-        \renewcommand*{\partformat}{\color{MainColor1}
+        \renewcommand*{\partformat}{\color{MainColor}
             \scalebox{2.5}{\thepart}\enlargethispage{2em}}
         \addtokomafont{chapterprefix}{\raggedleft}
         \RedeclareSectionCommand[beforeskip=0.5em]{chapter}
         \renewcommand*{\chapterformat}{\mbox{%
             \scalebox{1.5}{\chapappifchapterprefix{\nobreakspace}}%
-            \scalebox{2.718}{\color{MainColor1}\thechapter}\enskip}}
+            \scalebox{2.718}{\color{MainColor}\thechapter}\enskip}}
     }
     \renewcommand*{\sectionformat}%
-        {\color{MainColor1}\S\thesection\enskip}
+        {\color{MainColor}\S\thesection\enskip}
     \renewcommand*{\subsectionformat}%
-        {\color{MainColor1}\S\thesubsection\enskip}
+        {\color{MainColor}\S\thesubsection\enskip}
     \renewcommand*{\subsubsectionformat}%
-        {\color{MainColor1}\S\thesubsubsection\enskip}
+        {\color{MainColor}\S\thesubsubsection\enskip}
     \KOMAoptions{numbers=noenddot}
 \fi
 
@@ -295,16 +312,15 @@
     frame=none
 }
 \usepackage[shortlabels]{enumitem}
-\usepackage{textcomp}
 \usepackage{multirow}
 \usepackage{multicol}
-% Tiny optimizations:
 \usepackage{mathtools}
 \usepackage{microtype}
 
 \addtokomafont{subtitle}{\Large}
-\setkomafont{author}{\Large\scshape}
-\setkomafont{date}{\Large\normalsize}
+\setkomafont{author}{\Large\slshape}
+\setkomafont{date}{\small}
+\setkomafont{caption}{\small}
 \providecommand{\thetitle}{\@title}
 \providecommand{\theauthor}{\@author}
 \providecommand{\thedate}{\@date}
@@ -313,8 +329,8 @@
 \addtolength{\textheight}{3.14cm}
 \setlength{\footskip}{0.5in}
 \setlength{\headsep}{10pt}
-\ihead{\footnotesize\textbf{\theauthor}}
 \automark{section}
+\ihead{\footnotesize\textsl{\textbf{\theauthor}}}
 \chead{}
 \ohead{\footnotesize\textbf{\thetitle}}
 \cfoot{\pagemark}

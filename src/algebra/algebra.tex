@@ -2,13 +2,22 @@
 \usepackage[pretty,polish]{mystd}
 \title{Algebra}
 \author{Michał Dobranowski}
-\date{semestr zimowy 2022 \\ v0.21}
+\date{semestr zimowy 2022 \\ v1.0}
 
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Lin}{Lin}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\nullity}{null}
 \newcommand{\gr}{\ensuremath{\operatorname{gr}\!}}
+
+% highlight for matrix
+\tikzset{highlight/.style={rectangle,
+    fill=AccColor1,
+    opacity=0.25,
+    rounded corners=0.5mm,
+    inner sep=1.7pt,
+    fit=#1}
+}
 
 \begin{document}
     \maketitle
@@ -29,17 +38,6 @@
 
         \subsection{Przestrzenie wektorowe}
         \input{lec4_vector_spaces.tex}
-
-    % highlight for matrix
-    \tikzset{highlight/.style={rectangle,
-        fill=MainColor1!15,
-        rounded corners = 0.6 mm,
-        inner sep=1pt,
-        fit=#1}}
-    \NiceMatrixOptions{
-        custom-line = {letter = I, tikz = densely dashed, total-width = \pgflinewidth},
-        custom-line = {letter = S, tikz = solid, total-width = \pgflinewidth}
-    }
 
     \section{Macierze}
     \input{lec5_matrices.tex}
