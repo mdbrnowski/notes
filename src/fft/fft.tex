@@ -2,7 +2,7 @@
 \usepackage[pretty,polish]{mystd}
 \title{Szybka transformacja Fouriera (FFT)}
 \author{Michał Dobranowski}
-\date{wrzesień 2022 \\ v1.1}
+\date{wrzesień 2022 \\ v1.2}
 
 \begin{document}
     \maketitle
@@ -12,11 +12,11 @@
     \eject
 
 \section{Reprezentacja i mnożenie wielomianów}
-    \begin{definition}[Mnożenie wielomianów]
+    \begin{definition}[mnożenie wielomianów]
         Iloczynem wielomianów $A(x)$ oraz $B(x)$ jest wielomian $C(x)$ taki, że dla każdego $x$ zachodzi $C(x) = A(x)\cdot B(x)$.
     \end{definition}
 
-    Splot (ang.\ \textit{convolution}) ciągów współczynników dwóch wielomianów jest ciągiem współczynników ich iloczynu, więc czesto zamiast iloczynu wielomianów będziemy używali pojęcia ,,splot wielomianów'' i oznaczali
+    \vocab{Splot} (ang.\ \textit{convolution}) ciągów współczynników dwóch wielomianów jest ciągiem współczynników ich iloczynu, więc czesto zamiast iloczynu wielomianów będziemy używali pojęcia ,,splot wielomianów'' i oznaczali
     \[ C = A * B. \]
 
     Weźmy wielomiany $A(x) = a_0 + a_1x + \ldots + a_nx^n$ oraz $B(x) = b_0 + b_1x + \ldots + b_nx^n$.
@@ -24,12 +24,12 @@
         Możemy obliczyć współczynniki wielomianu $C = A * B$ jako
         $$ c_j = \sum_{k = 0}^j a_kb_{j-k}. $$
     \end{fact}
-    Na podstawie tego wzoru możemy z łatwością skonstruować algorytm mnożenia dwóch wielomianów, który będzie działać w czasie $\Theta(n^2)$. Niestety, taka złożoność nas nie zadowala; będziemy szukać algorytmu podkwadratowego.
+    Na podstawie tego wzoru możemy z łatwością skonstruować algorytm mnożenia dwóch wielomianów, który będzie działać w czasie $\Theta(n^2)$. Niestety, taka złożoność nas nie zadowala; będziemy szukać algorytmu podkwadratowego $o(n^2)$.
 
-    Zauważmy, że zwykle reprezentujemy wielomian jako wektor współczynników -- taką reprezentację nazwiemy \vocab{współczynnikową}. Wielomian $n$-tego stopnia $f$ można jednak reprezentować również za pomocą zbioru $n + 1$ parami różnych punktów $(x, f(x))$ -- tę reprezentację nazwiemy z kolei \vocab{punktową}. Mając dwa wielomiany $n$-tego stopnia w postaci punktowej, możemy po prostu pomnożyć odpowiednie wartości i otrzymać ich iloczyn (również w postaci punktowej) w czasie $\Theta(n)$.
+    Zauważmy, że zwykle reprezentujemy wielomian jako wektor współczynników --- taką reprezentację nazwiemy \vocab{współczynnikową}. Wielomian $n$-tego stopnia $f$ można jednak reprezentować również za pomocą zbioru $n + 1$ parami różnych punktów $(x, f(x))$ --- tę reprezentację nazwiemy z kolei \vocab{punktową}. Mając dwa wielomiany $n$-tego stopnia w postaci punktowej, możemy po prostu pomnożyć odpowiednie wartości i otrzymać ich iloczyn (również w postaci punktowej) w czasie $\Theta(n)$.
 
-    Proces zamiany postaci współczynnikowej na punktową nazywa się \vocab{ewaluacją}, a~proces odwrotny -- \vocab{interpolacją}. Zanim przejdziemy dalej, powinniśmy jednak wykazać, że wielomian w postaci punktowej jest jednoznacznie opisany.
-    \begin{theorem}[Jednoznaczność wielomianu interpolacyjnego]
+    Proces zamiany postaci współczynnikowej na punktową nazywa się \vocab{ewaluacją}, a~proces odwrotny \vocab{interpolacją}. Zanim przejdziemy dalej, powinniśmy jednak wykazać, że wielomian w postaci punktowej jest jednoznacznie opisany.
+    \begin{theorem}[jednoznaczność wielomianu interpolacyjnego]
         \label{t:polynomial_interpolation}
         Dla zbioru $n + 1$ różnych punktów $\{(x_1, y_1), (x_2, y_2), \ldots, (x_{n+1}, y_{n+1})\}$ istnieje dokładnie jeden wielomian $A(x)$ co najwyżej $n$-tego stopnia, który dla każdego $k$ spełnia $A(x_k) = y_k$.
     \end{theorem}
@@ -46,7 +46,7 @@
         pozwala jednoznacznie wyznaczyć współczynniki wielomianu.
     \end{proof}
 
-    Chociaż powyższy dowód jest zupełnie w porządku, możemy zauważyć, że do postaci punktowej przechodzimy z postaci wielomianowej, więc w każdym przypadku wiemy, że dany wielomian istnieje. W takim razie potrzebujemy wykazać jedynie, że taki wielomian jest jednoznacznie określony, na co można przedstawić bardzo ładny dowód nie wprost.
+    Możemy zauważyć, że do postaci punktowej przechodzimy z postaci wielomianowej, więc w każdym przypadku wiemy, że dany wielomian istnieje. Dla potrzeb tego artykułu wystarczy więc jedynie pokazać, że taki wielomian jest jednoznacznie określony, na co można przedstawić dowód nie wprost, który nie używa pojęć algebry liniowej.
 
     \begin{proof}
         Załóżmy przeciwnie, że istnieją dwa wielomiany co najwyżej $n$-tego stopnia, $f(x)$ oraz $g(x)$, spełniające dany układ równań. W takim razie wielomian $h(x) = f(x) - g(x)$ jest stopnia $\deg(h) \leq n$. Ten wielomian ma również $n + 1$ miejsc zerowych, co prowadzi do sprzeczności z zasadniczym twierdzeniem algebry.
@@ -64,7 +64,7 @@
     $$ A(x) = a_0 + x(a_1 + x(a_2 + \ldots + x(a_{n-1} + xa_n)\ldots))$$
 
     \subsubsection*{Interpolacja}
-    Podobnie sytuacja wygląda z interpolacją -- korzystając z eliminacji Gaussa, otrzymamy algorytm o złożoności $\Theta(n^3)$, co, korzystając ze wzoru Lagrange'a\footnote{który jest poza zakresem tego artykułu, ale można o nim przeczytać w \url{https://en.wikipedia.org/wiki/Lagrange_polynomial}}, możemy ulepszyć jedynie do $\Theta(n^2)$.
+    Podobnie sytuacja wygląda z interpolacją; korzystając z eliminacji Gaussa, otrzymamy algorytm o złożoności $\Theta(n^3)$, co, korzystając ze wzoru Lagrange'a\footnote{który jest poza zakresem tego artykułu, ale można o nim przeczytać w \url{https://en.wikipedia.org/wiki/Lagrange_polynomial}}, możemy ulepszyć jedynie do $\Theta(n^2)$.
 
 \section{Dziel i zwyciężaj}
     Niezniechęceni niepowodzeniami z poprzednich akapitów spróbujemy wykorzystać technikę z powyższego tytułu. Problem ewaluacji oraz interpolacji wielomianu
@@ -124,7 +124,7 @@
     \lstinputlisting[language=C++]{fft.hpp}
 
     \subsection{Transformacja odwrotna}
-    Aby osiągnąć liniowo-logarytmiczną złożoność obliczeniową dla problemu mnożenia wielomianów, potrzebujemy już jedynie szybkiego sposobu na interpolację wielomianu w~pierwiastkach jedności.
+    Aby osiągnąć liniowo-logarytmiczną złożoność obliczeniową dla problemu mnożenia wielomianów, potrzebujemy już jedynie szybkiego sposobu na interpolację wielomianu dla pierwiastków jedności.
 
     Wróćmy do wspomnianego w dowodzie twierdzenia \ref{t:polynomial_interpolation} układu równań. Mamy
     \begin{equation*}
@@ -227,7 +227,7 @@
     \end{problem}
 
 \section{Optymalizacje FFT}
-    Mamy już opisany i zaimplementowany algorytm FFT -- każdy matematyk powinien się poczuć usatysfakcjonowany. Jednak kiedy piszemy go w praktyce, na przykład na konkursach algorytmicznych, może okazać się trochę za wolny (to znaczy mieć za dużą stałą). W tej sekcji opiszemy kilka usprawnień, które pochodzą głównie z \cite{ref:Smykalov}.
+    Mamy już opisany i zaimplementowany algorytm FFT --- każdy matematyk powinien się poczuć usatysfakcjonowany. Jednak kiedy piszemy go w praktyce, na przykład na konkursach algorytmicznych, może okazać się trochę za wolny (to znaczy mieć za dużą stałą). W tej sekcji opiszemy kilka usprawnień, które pochodzą głównie z \cite{ref:Smykalov}.
 
     \subsection{Implementacja iteracyjna}
     Jak wiadomo, zwykle implementacje iteracyjne górują nad rekurencyjnymi pod względem czasu działania, dlatego spróbujmy przekształcić algorytm FFT na algorytm iteracyjny.
@@ -252,7 +252,7 @@
         \url{https://www.deltami.edu.pl/2022a/08/2022-08-delta-art-07-kujawa.pdf}
     \bibitem{ref:cp-algo} \textbf{cp-algorithms}.
         \url{https://cp-algorithms.com/algebra/fft.html}
-    \bibitem{ref:Smykalov} \textbf{FFT: optimizations}, Vladimir Smykalov.
+    \bibitem{ref:Smykalov} \textbf{fft: optimizations}, Vladimir Smykalov, UPS Toulouse.
         \url{https://neerc.ifmo.ru/trains/toulouse/2017/fft2.pdf}
 \end{thebibliography}
 
