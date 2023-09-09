@@ -2,7 +2,7 @@
     Relacja to trójka $\sR = (X, \gr\sR, Y)$, gdzie $X$ i $Y$ są zbiorami, a $\gr \sR \subset X \times Y$.
 \end{definition}
 
-Zbiór $X$ nazywamy \vocab{naddziedziną}, $Y$ \vocab{zapasem}, $\gr \sR$ to \vocab{wykres} relacji. Piszemy, że $x \sR y$, jesli $(x, y) \in \gr\sR$. \vocab{Dziedzina} relacji $\sR$ to zbiór
+Zbiór $X$ nazywamy \vocab{naddziedziną}, $Y$ \vocab{zapasem}, $\gr \sR$ to \vocab{wykres} relacji. Piszemy, że $x \sR y$, jeśli $(x, y) \in \gr\sR$. \vocab{Dziedzina} relacji $\sR$ to zbiór
 $$ D_\sR = \{x \in X : \exists y \in Y : x \sR y\}, $$
 a jej \vocab{przeciwdziedzina} to zbiór
 $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}. $$
@@ -21,7 +21,7 @@ $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}.
 
 \begin{definition}[rodzaje relacji]
     Relacja $\sR = (X, \gr\sR, X)$ jest:
-    \begin{itemize}[--]
+    \begin{itemize}
         \item \vocab{zwrotna} $\iff \forall x\in X : x \sR x$,
         \item \vocab{symetryczna} $\iff \forall x, y \in X : x \sR y \implies y \sR x$,
         \item \vocab{antysymetryczna} $\iff \forall x, y \in X : x \sR y \wedge y \sR x \implies x = y$,
@@ -50,7 +50,7 @@ $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}.
     $$ \forall x, y \in X : [x] \neq [y] \iff [x] \cap [y] = \emptyset . $$
 \end{theorem}
 \begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
-    Załóżmy przez sprzeczność, że $[x] \cap [y] \neq \emptyset$, a więc $\exists z \in X : x \sR z \wedge y \sR z$. Teraz weźmy dowolny element $a \in [x]$. Mamy więc $x \sR a$. Korzystając z symetryczności i przechodniości relacji $\sR$ mamy
+    Załóżmy przez sprzeczność, że $[x] \cap [y] \neq \emptyset$, a więc $\exists z \in X : x \sR z \wedge y \sR z$. Teraz weźmy dowolny element $a \in [x]$. Mamy więc $x \sR a$. Korzystając z symetryczności i przechodniości relacji $\sR$, mamy
     $$ a \sR x \wedge x \sR z \wedge z \sR y, $$
     $$ \therefore y \sR a. $$
     Z tego wynika, że $[x] \subset [y]$. Analogicznie (przyjmując na początku $a \in [y]$) dostaniemy, że $[y] \subset [x]$, wiec $[x] = [y]$, co jest sprzeczne z założeniem.
@@ -74,13 +74,10 @@ Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Wtedy \vocab{el
 $$ \forall x \in X : x \preceq \ol{M}, $$
 a \vocab{element maksymalny} $M_{\max} \in X$ to taki element, że
 $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
-
-\begin{remark}
-    Analogicznie można zdefiniować \vocab{element najmniejszy} $\ol{m}$:
-    $$ \forall x \in X : \ol{m} \preceq x $$
-    oraz \vocab{element minimalny} $m_{\min}$:
-    $$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
-\end{remark}
+Analogicznie definiujemy \vocab{element najmniejszy} $\ol{m} \in X$:
+$$ \forall x \in X : \ol{m} \preceq x $$
+oraz \vocab{element minimalny} $m_{\min} \in X$:
+$$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
 
 \begin{theorem}
     \label{t:uniq_greatest}
@@ -101,6 +98,8 @@ $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
     Skoro $M$ jest elementem największym, to poprzednik implikacji w definicji elementu maksymalnego będzie prawdziwy tylko dla $x = M$, więc sama implikacja zawsze będzie prawdziwa.
 \end{proof}
 
+Oczywiście dwa powyższe twierdzenia są prawdziwe również odpowiednio dla elementów najmniejszych/minimalnych.
+
 \begin{fact}
     \label{f:greatest=maximal}
     W zbiorach z porządkiem totalnym pojęcia elementu największego i maksymalnego oraz najmniejszego i minimalnego są tożsame ze sobą. Wynika to ze spójności porządków totalnych.
@@ -108,13 +107,12 @@ $$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
 
 Niech $(X, \preceq)$ będzie zbiorem uporządkowanym, a zbiór $A \subset X$ jego podzbiorem. Element $M \in X$ jest \vocab{majorantą} (ograniczeniem górnym) zbioru $A$ jeśli
 $$ \forall x \in A : x \preceq M. $$
-\vocab{Kresem górnym} (supremum) zbioru $A$ (w zbiorze $X$) jest element najmniejszy zbioru majorant. Oznaczamy go symbolem $$\sup A.$$
-
-\begin{remark}
-    Analogicznie można zdefiniować \vocab{minorantę} (ograniczenie dolne) $m \in X$ zbioru $A \subset X$:
-    $$ \forall x \in A : m \preceq x $$
-    oraz \vocab{kres dolny} (infimum) tego zbioru (jest nim element największy zbioru minorant), który oznaczamy symbolem $$\inf A.$$
-\end{remark}
+\vocab{Kresem górnym} (supremum) zbioru $A$ (w zbiorze $X$) jest element najmniejszy zbioru majorant. Oznaczamy go symbolem
+$$\sup A.$$
+Analogicznie definiujemy \vocab{minorantę} (ograniczenie dolne) $m \in X$ zbioru $A \subset X$:
+$$ \forall x \in A : m \preceq x $$
+oraz \vocab{kres dolny} (infimum) tego zbioru (jest nim element największy zbioru minorant), który oznaczamy symbolem
+$$\inf A.$$
 
 \begin{theorem}
     \label{t:greatest=sup}
@@ -131,8 +129,10 @@ $$ \forall x \in A : x \preceq M. $$
     Jeśli zbiór częściowo uporządkowany $X$ ma supremum, które nie należy do tego zbioru, to zbiór $X$ nie ma elementu największego.
 \end{corollary}
 \begin{proof}
-    Ponieważ dowolny zbiór (na mocy twierdzenia \ref{t:uniq_greatest}) ma co najwyżej jedno supremum, to gdyby zbiór $X$ miał element najwiekszy, to na mocy twierdzenia \ref{t:greatest=sup} byłoby ono również supremum, które należy do zbioru $X$.
+    Ponieważ dowolny zbiór (na mocy twierdzenia \ref{t:uniq_greatest}) ma co najwyżej jedno supremum, to gdyby zbiór $X$ miał element największy, to na mocy twierdzenia \ref{t:greatest=sup} byłoby ono również supremum, które należy do zbioru $X$.
 \end{proof}
+
+Oczywiście dwa poprzednia twierdzenia są również prawdziwe odpowiednio dla elementów najmniejszych/infimów.
 
 \begin{example}
     Weźmy zbiór liniowo uporządkowany $(\RR, \leq)$ oraz jego podzbiór $A = [0, 1) \subset \RR$. Zbiór majorant zbioru $A$ to przedział $[1, \infty)$, a jego najmniejszy element (a zarazem supremum zbioru $A$) to liczba $1$. Mamy więc
@@ -142,13 +142,14 @@ $$ \forall x \in A : x \preceq M. $$
 
 \begin{example}
     Weźmy zbiór częściowo uporządkowany $(\CC, \preceq)$, gdzie zdefiniujemy
-    $$ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y}. $$
-    Oczywiście niektóre elementy nie będą w tym porządku porównywalne, na przykład $1$ oraz $i$.
-
-    Weźmy również podzbiór $A \subset \CC$ taki, że
+    $$ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y} $$
+    oraz podzbiór $A \subset \CC$ taki, że
     $$ A = \{z : |z| \leq 1\}. $$
 
-    Na rysunku zaznaczono \textcolor{MainColor1}{zbiór $A$}, \textcolor{LinkColor1}{zbiór majorant $M$ zbioru $A$}, \textcolor{BoxColor1}{supremum zbioru~$A$} oraz \textcolor{MainColor1}{zbiór elementów maksymalnych} (jako ćwierćokrąg). Na mocy wniosku \ref{c:if_sup_out_then_no_greatest} element największy nie istnieje.
+    Znajdź zbiór majorant i elementów maksymalnych. Stwierdź, czy istnieje supremum i element największy.
+\end{example}
+\begin{solution}
+    Na rysunku zaznaczono zbiór $A$ (\textcolor{AccColor1}{$\blacksquare$}), zbiór majorant $M$ zbioru $A$ (\textcolor{AccColor2}{$\blacksquare$}), supremum zbioru~$A$ (\textcolor{AccColor3}{$\blacksquare$}) oraz zbiór elementów maksymalnych (\textcolor{AccColor4}{$\blacksquare$}). Na mocy wniosku \ref{c:if_sup_out_then_no_greatest} element największy nie istnieje.
 
     \begin{center}
         \begin{tikzpicture}
@@ -158,16 +159,16 @@ $$ \forall x \in A : x \preceq M. $$
             \tkzGrid
             \tkzDrawX[label=$\Re$,thick] \tkzDrawY[label=$\Im$,thick]
             \tkzClip
-            \tkzDrawCircle[color=MainColor1, line width=2pt, fill=MainColor1!50, opacity=.5](O,A)
-            \tkzDrawPolygon[color=LinkColor1, line width=2pt, fill=LinkColor1!50, opacity=.5](M_1,M_2,M_3,M_4)
-            \tkzDrawPoint[color=BoxColor1, size=4pt](M_1)
-            \tkzDrawArc[color=MainColor1, line width=3pt, opacity=.5](O,A)(B)
+            \tkzDrawCircle[line width=0pt, fill=AccColor1, opacity=.3](O,A)
+            \tkzDrawPolygon[line width=0pt, fill=AccColor2, opacity=.3](M_1,M_2,M_3,M_4)
+            \tkzDrawPoint[color=black, fill=AccColor3, size=4pt](M_1)
+            \tkzDrawArc[color=AccColor4, line width=2pt](O,A)(B)
         \end{tikzpicture}
     \end{center}
-\end{example}
+\end{solution}
 
 \begin{definition}
-    Łańcuch to taki podziór $C \subset X$, że $(X, \preceq)$ jest zbiorem z porządkiem częściowym, a $(C, \preceq)$ jest zbiorem z porządkiem liniowym.
+    Łańcuch to taki podzbiór $C \subset X$, że $(X, \preceq)$ jest zbiorem z porządkiem częściowym, a $(C, \preceq)$ jest zbiorem z porządkiem liniowym.
 \end{definition}
 
 \begin{definition}

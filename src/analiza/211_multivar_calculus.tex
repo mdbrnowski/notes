@@ -1,4 +1,75 @@
-Całki wielokrotne definiujemy podobnie jak całki funkcji jednej zmiennej --- dzielimy dziedzinę na $n$ małych prostokątów (lub sześcianów, hipersześcianów) i sprawdzamy, czy istnieje granica przy $n \to \infty$ sumy iloczynów ich pól (objętości) i wartości funkcji w pewnych ich punktach.
+Całki wielokrotne definiujemy podobnie jak całki funkcji jednej zmiennej --- dzielimy dziedzinę na $n$ małych prostokątów (lub sześcianów przy trzech zmiennych) i sprawdzamy, czy istnieje granica przy $n \to \infty$ sumy iloczynów ich pól (objętości) i wartości funkcji w pewnych ich punktach.
+
+\begin{figure}[H]
+    \centering
+    \tdplotsetmaincoords{70}{120}
+    \begin{tikzpicture}[tdplot_main_coords,scale=1.5]
+        \tikzmath{function f(\x,\y) {return 2.5+0.25*sin((0.5*\x + \y) r);};}
+        \pgfmathsetmacro{\step}{pi/30.0}
+        \pgfmathsetmacro{\xf}{1.0*pi}
+        \pgfmathsetmacro{\yf}{1.0*pi}
+        \pgfmathsetmacro{\h}{2.5}
+        \pgfmathsetmacro{\a}{0.75}
+        \pgfmathsetmacro{\b}{\a+1.5}
+        \pgfmathsetmacro{\c}{1.0}
+        \pgfmathsetmacro{\d}{\c+1.5}
+        \pgfmathsetmacro{\px}{(0.45*\a+0.55*\b)}
+        \pgfmathsetmacro{\py}{0.5*(\c+\d)}
+        \pgfmathsetmacro{\dx}{0.1}
+        \pgfmathsetmacro{\dy}{0.1}
+
+        \pgfmathsetmacro{\zA}{f(\a,\c)}
+        \pgfmathsetmacro{\zB}{f(\b,\c)}
+        \pgfmathsetmacro{\zC}{f(\b,\d)}
+        \pgfmathsetmacro{\zD}{f(\a,\d)}
+        \pgfmathsetmacro{\zdA}{f(\px,\py)}
+        \pgfmathsetmacro{\zdB}{f(\px+\dx,\py)}
+        \pgfmathsetmacro{\zdC}{f(\px+\dx,\py+\dy)}
+        \pgfmathsetmacro{\zdD}{f(\px,\py+\dy)}
+
+        \draw[thick,->] (0,0,0) -- (\xf+0.25,0,0) node[anchor=north east]{$x$};
+        \draw[thick,->] (0,0,0) -- (0,\yf+0.25,0) node[anchor=north west]{$y$};
+        \draw[thick,->] (0,0,0) -- (0,0,\h+0.5) node[anchor=south]{$f(x, y)$};
+        % The region in the xy-plane
+        \draw[dashed] (\a,0,0) node[above left]{\scriptsize $a_1$} -- (\a,\d,0);
+        \draw[dashed] (\b,0,0) node[above left]{\scriptsize $b_1$} -- (\b,\d,0);
+        \draw[dashed] (0,\c,0) node[above right]{\scriptsize $a_2$} -- (\b,\c,0);
+        \draw[dashed] (0,\d,0) node[above right]{\scriptsize $b_2$} -- (\b,\d,0);
+        % The solid (boundary)
+        \draw[dashed] (\a,\c,0) -- (\a,\c,\zA);
+        \draw[dashed] (\b,\c,0) -- (\b,\c,\zB);
+        \draw[dashed] (\a,\d,0) -- (\a,\d,\zD);
+        \draw[dashed] (\b,\d,0) -- (\b,\d,\zC);
+        % Face parallel to the yz plane
+        \fill[AccColor1,opacity=0.75,draw=white]
+            (\px+\dx,\py,0) -- (\px+\dx,\py,\zdB) -- (\px+\dx,\py+\dy,\zdC)
+            -- (\px+\dx,\py+\dy,0) -- (\px+\dx,\py,0);
+        % Face parallel to the xz plane
+        \fill[AccColor1,opacity=0.75,draw=white]
+            (\px,\py+\dy,0) -- (\px,\py+\dy,\zdD) -- (\px+\dx,\py+\dy,\zdC)
+            -- (\px+\dx,\py+\dy,0) -- (\px+\dx,\py+\dy,0);
+        \draw[thin] (\px+\dx,\py,0) -- (\px+\dx,\py,\zdB);
+        \draw[thin] (\px,\py+\dy,0) -- (\px,\py+\dy,\zdD);
+        \draw[thin] (\px+\dx,\py+\dy,0) -- (\px+\dx,\py+\dy,\zdC);
+        \draw[thin] (\px+\dx,\py,0) -- (\px+\dx,\py+\dy,0);
+        \draw[thin] (\px,\py+\dy,0) -- (\px+\dx,\py+\dy,0);
+        \draw[fill=AccColor1,opacity=0.75,draw=black] (\px,\py,\zdA) -- (\px+\dx,\py,\zdB)
+                -- (\px+\dx,\py+\dy,\zdC) -- (\px,\py+\dy,\zdD) -- (\px,\py,\zdA);
+        % Graph of $z = f(x,y)$ (first quadrant)
+        \foreach \x in {0,\step,...,\xf}{
+            \draw[AccColor2,opacity=0.5] plot[domain=0:\yf,smooth,variable=\t] ({\x},{\t},{f(\x,\t)});
+        }
+        \foreach \y in {0,\step,...,\yf}{
+            \draw[AccColor2,opacity=0.5] plot[domain=0:\yf,smooth,variable=\t] ({\t},{\y},{f(\t,\y)});
+        }
+        % Curves upon the graph of $z = f(x,y)$ that delimit the region of integration
+        \foreach \x in {\a,\b}
+            \draw[AccColor2,thick,opacity=0.85] plot[domain=\c:\d,smooth,variable=\t] ({\x},{\t},{f(\x,\t)});
+        \foreach \y in {\c,\d}
+            \draw[AccColor2,thick,opacity=0.85] plot[domain=\a:\b,smooth,variable=\t] ({\t},{\y},{f(\t,\y)});
+    \end{tikzpicture}
+    \caption{Całkowanie funkcji dwóch zmiennych po prostokącie $[a_1, b_1] \times [a_2, b_2]$.}
+\end{figure}
 
 \subsection{Całka podwójna}
 W tej sekcji zajmiemy się całkami funkcji dwóch zmiennych $f : P \to \RR$, gdzie $P \supset \RR^2$.
@@ -12,7 +83,7 @@ W tej sekcji zajmiemy się całkami funkcji dwóch zmiennych $f : P \to \RR$, gd
     \[ \iint\limits_P f(x, y) \d x \d y = \int\limits_{a_1}^{b_1}\left(\int\limits_{a_2}^{b_2} f(x, y) \d y\right)\d x = \int\limits_{a_2}^{b_2}\left(\int\limits_{a_1}^{b_1} f(x, y) \d x\right)\d y. \]
 \end{theorem}
 
-Całkę iterowaną często oznaczamy przenosząc symbol $\d x$ na początek, na przykład:
+Całkę iterowaną często oznaczamy, przenosząc symbol $\d x$ na początek, na przykład:
 \[ \int\limits_{a_1}^{b_1} \left(\int\limits_{a_2}^{b_2} \left(\int\limits_{a_3}^{b_3} f(x, y, z) \d z\right)\d y\right)\d x = \int\limits_{a_1}^{b_1} \d x\int\limits_{a_2}^{b_2} \d y \int\limits_{a_3}^{b_3} f(x, y, z) \d z \]
 
 \begin{definition}
@@ -62,12 +133,12 @@ Analogicznie możemy zdefiniować obszar normalny względem osi $OY$.
             \tkzDefPoint(-1,1){A}
             \tkzDefPoint(2,4){B}
 
-            \draw[fill=MainColor1, opacity=.25] (-1,1) parabola bend (0,0) (2,4) -- cycle;
+            \draw[fill=AccColor1, opacity=.3] (-1,1) parabola bend (0,0) (2,4) -- cycle;
             \node[black] at (0.2,0.5) {\scriptsize $R_1$};
             \node[black] at (0.8,1.8) {\scriptsize $R_2$};
 
-            \draw[BoxColor1,thick,domain=-1.1:2.1] plot (\x,{pow(\x, 2)});
-            \draw[BoxColor2,thick,domain=-1.2:2.2] plot (\x,{\x+2});
+            \draw[AccColor1,thick,domain=-1.1:2.1] plot (\x,{pow(\x, 2)});
+            \draw[AccColor1,thick,domain=-1.2:2.2] plot (\x,{\x+2});
             \draw[black,thick,domain=-1:1] plot (\x, 1);
 
             \tkzDrawPoints(A,B)
@@ -85,7 +156,7 @@ Analogicznie możemy zdefiniować obszar normalny względem osi $OY$.
     \label{t:change variables in double integral}
     Dana jest funkcja $f : D \to \RR$, która jest ciągła na obszarze regularnym $D$ oraz przekształcenie $\varPhi : D' \to D$, gdzie
     \[ \varPhi : (x, y) \mapsto (x(u, v), (y(u, v))). \]
-    Jeśli $\varPhi$ przekształca wnętrze obszaru regularnego $D'$ na wnętrze obszaru regularnego $D$ wznajemnie jednoznacznie (jest bijekcją), pochodne cząstkowe przekształcenia $\varPhi$ są ciągłe na pewnym zbiorze otwartym zawierającym obszar $D'$ oraz jakobian przekształcenia $J_\varPhi(u, v)$ jest niezerowy wewnątrz $D'$, to
+    Jeśli $\varPhi$ przekształca wnętrze obszaru regularnego $D'$ na wnętrze obszaru regularnego $D$ wzajemnie jednoznacznie (jest bijekcją), pochodne cząstkowe przekształcenia $\varPhi$ są ciągłe na pewnym zbiorze otwartym zawierającym obszar $D'$ oraz jakobian przekształcenia $J_\varPhi(u, v)$ jest niezerowy wewnątrz $D'$, to
     \[ \iint\limits_D f(x, y) \d x \d y = \iint\limits_{D'} f(x(u, v), y(u, v)) \cdot |J(u, v)| \d u \d v. \]
 \end{theorem}
 

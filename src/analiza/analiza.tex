@@ -1,24 +1,32 @@
 \documentclass[11pt]{scrartcl}
 \usepackage[pretty,polish]{mystd}
-\title{Analiza}
+\title{Analiza II}
 \author{Michał Dobranowski}
-\date{semestr letni 2023\\ v0.13}
+\date{semestr letni 2023\\ v1.0}
 
 \newcommand{\graphref}[1]{\begin{flushright}\vspace{-.5em} \tiny \texttt{#1} \kern-1em\vspace{-.5em}\end{flushright}}
+
+% 3d plots setup
+\pgfplotsset{
+    my axis style/.style={
+        grid,
+        tick label style={font=\scriptsize},
+        colormap={CM}{color=(AccColor2) color=(black!20) color=(AccColor1)},
+        xlabel={$x$},
+        ylabel={$y$},
+        zlabel={$f(x, y)$}
+    }
+}
 
 \begin{document}
     \maketitle
     \begin{abstract}
-        Poniższy skrypt zawiera materiał obejmujący wykłady z Analizy matematycznej I oraz II prowadzone na pierwszym roku Informatyki na AGH, lecz jest mocno rozbudowany przez przykłady i twierdzenia pochodzące z przeróżnych źródeł, które (zwykle dla rozwinięcia intuicji lub ułatwienia rozwiązań pewnych zadań) postanowiłem opisać.
-
-        PS: Analiza I nie jest skończona. Całkiem możliwe, że nigdy nie będzie.
+        \noindent Poniższy skrypt zawiera materiał obejmujący wykłady z Analizy matematycznej~II prowadzonej na pierwszym roku Informatyki na AGH, lecz jest mocno rozbudowany przez przykłady i twierdzenia pochodzące z przeróżnych źródeł, które (zwykle dla rozwinięcia intuicji lub ułatwienia rozwiązań pewnych zadań) postanowiłem opisać.
     \end{abstract}
     \tableofcontents
     \eject
 
     % \part{Analiza I}
-
-    % Z powodu braku czasu (ale również chęci) do opisywania materiału, który -- chociaż pojawił się na wykładach -- jest, skromnym zdaniem autora, raczej szkolny, Czytelnik powinien upewnić się, że jest zaznajomiony z następującymi pojęciami: funkcja, dziedzina, przeciwdziedzina, dziedzina naturalna, injekcja, surjekcja, bijekcja, funkcja monotoniczna, (nie)rosnąca, (nie)malejąca, złożenie funkcji, funkcja odwrotna, wielomianowa, wymierna, potęgowa, wykładnicza, logarytmiczna, trygonometryczna, cyklometryczna, ciąg, podciąg.
 
     % \section{Granice ciągów}
     % \input{101_limits_of_sequences.tex}
@@ -29,7 +37,9 @@
     % \section{Pochodne}
     % \input{103_derivatives.tex}
 
-    \part{Analiza II}
+    % \part{Analiza II}
+
+    Do repozytorium dołączony jest plik \texttt{graphs.py}, który umożliwia wizualizację niektórych funkcji dwóch zmiennych. Jeśli w prawym dolnym rogu przykładu (jak np. \ref{ex:x^3 + y^3 - 3xy}) znajduje się trójznakowy kod, to znaczy, że jest zaimplementowana wizualizacja tego przykładu. Aby ją uruchomić, wystarczy użyć \texttt{python3 graphs.py [kod]}.
 
     \section{Szeregi liczbowe}
     \input{201_series.tex}
@@ -43,17 +53,6 @@
         \input{204_Taylor_series.tex}
         \subsection{Szeregi Fouriera}
         \input{205_Fourier_series.tex}
-
-    \pgfplotsset{
-        my axis style/.style={
-            grid,
-            tick label style={font=\scriptsize},
-            colormap={CM}{rgb255=(50,50,255) color=(black) rgb255=(210,100,200)},
-            xlabel={$x$},
-            ylabel={$y$},
-            zlabel={$f(x, y)$}
-        }
-    }
 
     \section{Rachunek różniczkowy funkcji wielu zmiennych}
     \input{206_multivar_lim.tex}
@@ -75,9 +74,10 @@
 
 
     \appendix
-    % \section{Dodatek}
-    % \input{appendix.tex}
 
     \section{Układy współrzędnych} \label{s:coordinate systems}
     \input{A01_coordinate_systems.tex}
+
+    \section{Wzory fizyczne} \label{s:physics formulas}
+    \input{A02_physics_formulas.tex}
 \end{document}

@@ -1,21 +1,27 @@
-\begin{theorem}
-    \label{t:rank}
-    Maksymalna liczba liniowo niezależnych kolumn (wektorów z $\KK^m$) dowolnej macierzy $A \in M_{m\times n}(\KK)$ jest równa maksymalnej liczbie liniowo niezależnych wierszy (wektorów z $\KK^n$).
-\end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
-
 \begin{definition}
     \label{d:rank}
-    Rząd macierzy to maksymalna liczba liniowo niezależnych kolumn (lub wierszy). Rząd macierzy $A$ oznaczamy przez $\rank (A)$.
+    Rząd macierzy to maksymalna liczba liniowo niezależnych wektorów kolumnowych tej macierzy. Rząd macierzy $A$ oznaczamy przez $\rank (A)$.
 \end{definition}
 
-Z twierdzenia \ref{t:rank} i definicji \ref{d:rank} wynika, że
-\[ \rank(A) = \rank(A^T). \]
+\begin{theorem}
+    Dla każdej macierzy $A \in \sM_{m\times n}$ zachodzi
+    \[ \rank(A) = \rank(A^T). \]
+\end{theorem}
+\begin{proof}
+    Niech $r = \rank A$. Weźmy macierz $L \in \sM_{m\times r}$, która zawiera $r$ liniowo niezależnych wektorów kolumnowych macierzy $A$. Każda kolumna macierzy $A$ jest oczywiście kombinacją liniową kolumn macierzy $L$, czyli $A = LZ$ dla pewnej macierzy współczynników $Z \in \sM_{r\times n}$.
+
+    Z faktu \ref{f:AB^T = B^T A^T} mamy $A^T = Z^TL^T$, więc $\rank (A^T)$ jest ograniczony z góry przez $\rank(Z^T)$, który jest ograniczony z góry przez $r$ (liczbę kolumn macierzy $Z^T$), więc
+    \[ \rank(A^T) \leq \rank(A). \]
+    Powtarzamy argument dla macierzy $A^T$ i, wykorzystując fakt $(A^T)^T = A$, otrzymujemy
+    \[ \rank(A) \leq \rank(A^T), \]
+    więc
+    \[ \rank(A) = \rank(A^T). \]
+\end{proof}
+
+Możemy teraz zmodyfikować definicję rzędu (\ref{d:rank}): jest to maksymalna liczba liniowo niezależnych wektorów kolumnowych lub wektorów wierszowych. Oczywiście zachodzi nierówność $\rank (A_{m\times n}) \leq n, m$.
 
 \begin{definition}
-    Macierz schodkowa to macierz, której pierwsze niezerowe elementy (schodki) kolejnych niezerowych wierszy znajdują się w coraz dalszych kolumnach, a wiersze zerowe umieszczone są najniżej.
+    Macierz schodkowa to macierz, której pierwsze niezerowe elementy (schodki) kolejnych niezerowych wierszy znajdują się w coraz dalszych kolumnach, a~wiersze zerowe umieszczone są najniżej.
 \end{definition}
 
 \begin{fact}
@@ -39,7 +45,7 @@ Z twierdzenia \ref{t:rank} i definicji \ref{d:rank} wynika, że
     Wynika z twierdzenia \ref{t:linear independence}.
 \end{proof}
 
-Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą metody \vocab{eliminacji Gaussa}, która polega na stosowaniu operacji elementarnych na wierszach, ,,pozbywając się'' niezerowych elementów z dolnego trójkąta. W ten sposób można odczytać jej rząd oraz, za pomocą wniosku \ref{c:determinant in triangular matrix}, obliczyć jej wyznacznik (jeśli jest kwadratowa)\footnote{warto jednak zwrócić uwagę, że przy obliczaniu wyznacznika lepiej nie mnożyć wierszy i nie zamieniać ich miejscami, bo te operacje wpływają na wyznacznik}. 
+Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą metody \vocab{eliminacji Gaussa}, która polega na stosowaniu operacji elementarnych na wierszach, ,,pozbywając się'' niezerowych elementów z dolnego trójkąta. W ten sposób można odczytać jej rząd oraz, z pomocą wniosku \ref{c:determinant in triangular matrix}, obliczyć jej wyznacznik (jeśli jest kwadratowa)\footnote{Warto jednak zwrócić uwagę, że przy obliczaniu wyznacznika lepiej nie mnożyć wierszy i nie zamieniać ich miejscami, bo te operacje wpływają na wyznacznik.}.
 
 \begin{example}
     Obliczyć wyznacznik macierzy
@@ -54,19 +60,24 @@ Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą met
         1 & 3 & 1 \\
         1 & 1 & -1 \\
         3 & 11 & 6
-    \end{vmatrix} = \begin{vNiceMatrix}[create-medium-nodes]
+    \end{vmatrix} \overset{\substack{r_2 - r_1 \\ r_3 - 3r_1}}{=} \begin{vNiceMatrix}[create-medium-nodes]
         \CodeBefore[create-cell-nodes]
             \begin{tikzpicture}[name suffix = -medium]
-                \node [highlight = (2-1) (2-3)] {} ;
-                \node [highlight = (3-1) (3-3)] {} ;
+                \node [highlight = (1-1) (1-3)] {} ;
+                \node [highlight = (2-2) (2-3)] {} ;
+                \node [highlight = (3-2) (3-3)] {} ;
             \end{tikzpicture}
         \Body
         1 & 3 & 1 \\
         0 & -2 & -2 \\
         0 & 2 & 3
-    \end{vNiceMatrix} = \begin{vNiceMatrix}[create-medium-nodes]
+    \end{vNiceMatrix} \overset{r_3 + r_2}{=} \begin{vNiceMatrix}[create-medium-nodes]
         \CodeBefore[create-cell-nodes]
-            \tikz[name suffix = -medium] \node [highlight = (3-1) (3-3)] {} ;
+            \begin{tikzpicture}[name suffix = -medium]
+                \node [highlight = (1-1) (1-3)] {} ;
+                \node [highlight = (2-2) (2-3)] {} ;
+                \node [highlight = (3-3) (3-3)] {} ;
+            \end{tikzpicture}
         \Body
         1 & 3 & 1 \\
         0 & -2 & -2 \\
@@ -79,7 +90,7 @@ Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą met
     Rząd macierzy $A$ jest równy największemu ze stopni niezerowych minorów tej macierzy.
 \end{theorem}
 \begin{proof}
-    TODO
+    Jeśli pewna podmacierz kwadratowa $k \times k$ jest nieosobliwa (czyli minor jest niezerowy), to jej kolumny są liniowo niezależne, czyli $\rank A \geq k$. Natomiast jeśli każda podmacierz wymiaru $(k + 1) \times (k + 1)$ jest osobliwa (czyli minory są zerowe), to żaden podzbiór $k + 1$ wektorów kolumnowych nie jest liniowo niezależny, więc $\rank A < k + 1$. Z tego wynika, że $\rank A = k$.
 \end{proof}
 
 \begin{example}
@@ -102,7 +113,7 @@ Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą met
         3 & 4 & 1 \\
         0 & 1 & -2
     \end{vmatrix} = (-8) + 0 + 12 - 0 - 1 - (-18) = 21 \neq 0. \]
-    Ten minor jest niezerowy i jednocześnie ma największy stopień (bo wykreśliliśmy tylko jeden wiersz), więc na mocy twierdzenia \ref{t:rank = max order of nonzero minor} $\rank A = 3$.
+    Ten minor jest niezerowy i jednocześnie ma największy stopień (bo nie wykreśliliśmy żadnej kolumny), więc na mocy twierdzenia \ref{t:rank = max order of nonzero minor} $\rank A = 3$.
 
     Dla pewności można pokazać również inną metodę --- eliminację Gaussa:
     \[ \begin{bmatrix}
@@ -126,10 +137,17 @@ Każdą macierz można łatwo doprowadzić do postaci schodkowej, za pomocą met
         0 & 0 & 1 \\
         0 & 0 & 0 \\
     \end{bmatrix} \]
-    \[ \therefore \rank A = \rank \left[\begin{smallmatrix}
+    \[ \therefore \rank A = \rank \begin{bNiceMatrix}[create-medium-nodes]
+        \CodeBefore[create-cell-nodes]
+            \begin{tikzpicture}[name suffix = -medium]
+                \node [highlight = (1-1) (1-3)] {} ;
+                \node [highlight = (2-2) (2-3)] {} ;
+                \node [highlight = (3-3) (3-3)] {} ;
+            \end{tikzpicture}
+        \Body
         1 & 3 & 4 \\
         0 & -1 & 3 \\
         0 & 0 & 1 \\
         0 & 0 & 0 \\
-    \end{smallmatrix}\right] = 3. \]
+    \end{bNiceMatrix} = 3. \]
 \end{solution}

@@ -3,11 +3,11 @@ $$ h : A \times A \to A. $$
 \vocab{Działaniem zewnętrznym} w zbiorze $A$ jest odwzorowanie
 $$ h : F \times A \to A. $$
 
-Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to zamiast $h(a, b)$ będziemy pisać $a \circ b$.
+Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to, zamiast $h(a, b)$ będziemy pisać $a \circ b$.
 
 \begin{definition}[rodzaje działań]
     W zbiorze z działaniem $(A, \circ)$ działanie $\circ$ jest:
-    \begin{itemize}[--]
+    \begin{itemize}
         \item \vocab{łączne} $\iff \forall x, y, z \in A : (x \circ y) \circ z = x \circ (y \circ z)$,
         \item \vocab{przemienne} $\iff \forall x, y, \in A : x \circ y = y \circ x$.
     \end{itemize}
@@ -61,7 +61,7 @@ $$ x \circ x' = e = x' \circ x. $$
     Przykłady grup:
     \begin{enumerate}
         \item $(\ZZ, +)$ -- grupa abelowa,
-        \item $(\ZZ_n, +_n)$ -- grupa abelowa\footnote{gdzie $\ZZ_n$ oznacza zbiór $\{0, 1, \ldots, n-1\}$, a $+_n$ operację dodawania modulo $n$},
+        \item $(\ZZ_n, +_n)$ -- grupa abelowa\footnote{Symbol $\ZZ_n$ oznacza zbiór $\{0, 1, \ldots, n-1\}$, a $+_n$ operację dodawania modulo $n$.},
         \item $(\QQ_+, \cdot)$ -- grupa abelowa,
         \item grupą nieabelową jest grupa obrotów danego obiektu o $90\dg$ względem dowolnej z trzech osi.
     \end{enumerate}
@@ -71,7 +71,7 @@ $$ x \circ x' = e = x' \circ x. $$
     \label{t:prime_n->group}
     $(\ZZ_n \setminus \{0\}, \cdot_n)$ jest grupą wtedy i tylko wtedy, gdy $n \geq 2$ jest liczbą pierwszą.
 \end{theorem}
-Łatwo sprawdzić, że mnożenie modulo $n$ w zbiorze $\ZZ_n \setminus \{0\}$ jest wewnętrze i łączne. Ma również element neutralny $1$. Będziemy więc dowodzić jedynie istnienia elementu symetrycznego dla każdego elementu.
+Łatwo sprawdzić, że mnożenie modulo $n$ w zbiorze $\ZZ_n \setminus \{0\}$ jest wewnętrzne i łączne. Ma również element neutralny $1$. Będziemy więc dowodzić jedynie istnienia elementu symetrycznego dla każdego elementu.
 \begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
     Załóżmy przeciwnie, że istnieje $k \in \ZZ_n \setminus \{0, 1\}$ takie, że $k \mid n$. Skoro $(\ZZ_n \setminus \{0\}, \cdot_n)$ jest grupą, to $k$ ma element symetryczny $k^{-1}$. Zachodzi więc
     $$ kk^{-1} \equiv 1 \pmod{n}, $$
@@ -101,10 +101,10 @@ $$ x \circ x' = e = x' \circ x. $$
 \end{definition}
 
 \begin{definition}
-    Pierścień przemienny to pierścień $(P, \circ, *)$, w którym $*$ jest działaniem przemiennym\footnote{wtedy też rozdzielność prawo- i lewostronna stają się tożsame}.
+    Pierścień przemienny to pierścień $(P, \circ, *)$, w którym $*$ jest działaniem przemiennym\footnote{Wtedy też rozdzielność prawo- i lewostronna stają się tożsame.}.
 \end{definition}
 
-Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy przez $+$. Element neutralny tego działania nazywamy zerem ($\mathbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
+Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy symbolem $+$. Element neutralny tego działania nazywamy zerem ($\mathbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
 
 Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy przez $\cdot$. Jeśli w $P$ dodatkowo istnieje element neutralny tego działania, to ten element nazywamy jedynką ($\mathbf{1}$), a pierścień nazywamy \vocab{pierścieniem z jedynką}. Element symetryczny do elementu $x$ nazywamy elementem odwrotnym i oznaczamy $x^{-1}$.
 
@@ -131,9 +131,9 @@ Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy prze
     Ciało to pierścień z jedynką, w którym dla każdego elementu $x \neq \mathbf{0}$ istnieje element odwrotny $x^{-1}$.
 \end{definition}
 
-Ciałem przemiennym będzie ciało, w którym działanie $\cdot$ jest przemienne. Niektórzy autorzy utożsamiają pojęcie ciała z ciałem przemiennym.
+\vocab{Ciałem przemiennym} będzie takie ciało, w którym działanie multiplikatywne $\cdot$ jest przemienne\footnote{Większość autorów już w definicji ciała wymaga przemienności (wtedy ciało nazywamy pierścieniem z~dzieleniem). Przyjęło się tak zwłaszcza w literaturze angielskiej (ciało przemienne to \textit{field}, a ciało to \textit{division ring} lub \textit{skew field}) i niemieckiej (odpowiednio \textit{Körper} i \textit{Schiefkörper}). Odwrotnie --- czyli zgodnie z naszą konwencją --- jest w literaturze francuskiej (odpowiednio \textit{corps commutatif} i \textit{corps}) oraz rosyjskiej (\cyrillic{\textit{поле}} [pole] i \cyrillic{\textit{тело}} [tieło]).}.
 
-Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym) jeżeli:
+Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), jeżeli:
 \begin{enumerate}[noitemsep,nolistsep]
     \item $(K, +)$ jest grupą abelową,
     \item $(K \setminus \{\mathbf{0}\}, \cdot)$ jest grupą (przemienną),
@@ -170,16 +170,16 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym) jeż
     Każdy skończony pierścień całkowity jest ciałem przemiennym.
 \end{theorem}
 \begin{proof}
-    Załóżmy przeciwnie, że istnieje element pierścienia $a \neq \mathbf{0}$, który nie ma elementu odwrotnego. Rozważmy iloczyny $aa_1, aa_2, aa_3, \ldots$ elementu $a$ ze wszystkimi innymi elementami pierścienia (w tym z $\mathbf{1}$). Z założenia nie ma wsród nich jedynki, więc, skoro $\cdot$ jest działaniem wewnętrznym, to z zasady szufladkowej istnieją takie $a_k \neq a_l$, że $aa_k = aa_l$. To stwierdzenie jest jednak sprzecznością na mocy lematu \ref{l:cancellation_property}, ponieważ rozważamy pierścienie całkowite, w których nie ma dzielników zera.
+    Załóżmy przeciwnie, że istnieje element pierścienia $a \neq \mathbf{0}$, który nie ma elementu odwrotnego. Rozważmy iloczyny $aa_1, aa_2, aa_3, \ldots$ elementu $a$ ze wszystkimi innymi elementami pierścienia (w tym z $\mathbf{1}$). Z założenia nie ma wśród nich jedynki, więc, skoro $\cdot$ jest działaniem wewnętrznym, to z zasady szufladkowej istnieją takie $a_k \neq a_l$, że $aa_k = aa_l$. To stwierdzenie jest jednak sprzecznością na mocy lematu \ref{l:cancellation_property}, ponieważ rozważamy pierścienie całkowite, w których nie ma dzielników zera.
 \end{proof}
 
 \begin{example}
     Przykłady pierścieni i ciał:
     \begin{itemize}
         \item $(\ZZ, +, \cdot)$ -- pierścień całkowity, który nie jest ciałem (nie ma dzielników zera, ale często elementy odwrotne nie zawierają się w zbiorze $\ZZ$),
-        \item $(\QQ, +, \cdot)$ -- ciało liczb wymiernych,
-        \item $(\RR, +, \cdot)$ -- ciało liczb rzeczywistych,
-        \item $(\CC, +, \cdot)$ -- ciało liczb zespolonych,
+        \item $(\QQ, +, \cdot)$ -- ciało przemienne liczb wymiernych,
+        \item $(\RR, +, \cdot)$ -- ciało przemienne liczb rzeczywistych,
+        \item $(\CC, +, \cdot)$ -- ciało przemienne liczb zespolonych,
         \item $(\ZZ_n, +_n, \cdot_n)$ -- pierścień przemienny z jedynką.
     \end{itemize}
 \end{example}
@@ -223,6 +223,6 @@ Analogicznie definiujemy morfizmy między pierścieniami i ciałami (wtedy równ
     \end{itemize}
 \end{example}
 
-Na podobnej zasadzie jak w przykładzie drugim, można pokazać izomorfizm grupy $(\ZZ_n, +_n)$ z grupą pierwiastów $n$-tego stopnia z jedności względem mnożenia $(\mu_n(\CC), \cdot)$. Biorąc funkcję $h(x) = \cos(\frac{2\pi}{n}x) + i\sin(\frac{2\pi}{n}x)$, mamy
+Na podobnej zasadzie jak w przykładzie drugim, można pokazać izomorfizm grupy $(\ZZ_n, +_n)$ z grupą pierwiastków $n$-tego stopnia z jedności względem mnożenia $(\mu_n(\CC), \cdot)$. Biorąc funkcję $h(x) = \cos(\frac{2\pi}{n}x) + i\sin(\frac{2\pi}{n}x)$, mamy
 \begin{align*} h(x + y) &= \cos(\tfrac{2\pi}{n}(x + y)) + i\sin(\tfrac{2\pi}{n}(x + y)) \\
     &= \left(\cos(\tfrac{2\pi}{n}x) + i\sin(\tfrac{2\pi}{n}x)\right) \cdot \left(\cos(\tfrac{2\pi}{n}y) + i\sin(\tfrac{2\pi}{n}y)\right) = h(x) \cdot h(y)\end{align*}

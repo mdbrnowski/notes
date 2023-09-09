@@ -5,8 +5,8 @@
 
 \begin{definition}
     Znak permutacji $\sigma$ to
-    \[ \eps(\sigma) = (-1)^{[\sigma]}, \]
-    gdzie $[\sigma]$ to liczba inwersji w permutacji $\sigma$.
+    \[ \eps(\sigma) = (-1)^{(\text{liczba inwersji w } \sigma)}. \]
+    Funkcję $\eps$ nazywamy symbolem Leviego-Civity.
 \end{definition}
 
 Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśli  $\eps(\sigma) = -1$, to jest \vocab{nieparzysta}.
@@ -16,14 +16,15 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
     Każda transpozycja (zamiana miejscami) dwóch różnych elementów permutacji zmienia jej znak.
 \end{fact}
 \begin{proof}
-    Weźmy permutację
-    \[ (\sigma_1, \sigma_2, \ldots, \sigma_i, \ldots, \sigma_j, \ldots, \sigma-{n-1}, \sigma_n). \]
-    Zamieniając $\sigma_i$ oraz $\sigma_j$ nie zmieni się liczba inwersji zawierająch elementy $\sigma_k, k \in [1,i)\cup(j,n]$. Nie zmieni się również liczba inwersji zawierających elementy $\sigma_k, k \in (i,j)$ takie, że $\sigma_k$ jest większe lub mniejsze jednocześnie od $\sigma_i$ i $\sigma_j$.
+    Weźmy permutację wraz z poniższymi oznaczeniami:
+    \[ \sigma = (\underbrace{\sigma_1, \sigma_2, \ldots, \sigma_{i-1}}_A, \sigma_i, \underbrace{\sigma_{i+1}, \ldots, \sigma_{j-1}}_B, \sigma_j, \underbrace{\sigma_{j+1}, \ldots, \sigma_{n-1}, \sigma_n}_A). \]
+    Zamieniając $\sigma_i$ oraz $\sigma_j$, nie zmienia się liczba inwersji zawierających dowolny element $\sigma_k \in A$. Nie zmieni się również liczba inwersji zawierających dowolny element $\sigma_k \in B$, który jest większy lub mniejszy jednocześnie od $\sigma_i$ i $\sigma_j$.
 
-    Dla pozostałych elementów $\sigma_k, k \in (i, j)$ jeśli istnieje inwersja $(\sigma_i, \sigma_k)$ to istnieje również $(\sigma_k, \sigma_j)$, a jeśli istnieje inwersja $(\sigma_j, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_i)$. Tak więc jedyną inwersją, która zmienia parzystość $[\sigma]$ jest inwersja $(\sigma_i, \sigma_j)$ --- która istnieje przed transpozycją, albo po niej.
+    Dla pozostałych elementów $\sigma_k \in B$, jeśli istnieje inwersja $(\sigma_i, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_j)$, a jeśli istnieje inwersja $(\sigma_j, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_i)$. Tak więc jedyną inwersją, która zmienia parzystość ogólnej liczby inwersji --- i tym samym $\eps(\sigma)$ --- jest inwersja $(\sigma_i, \sigma_j)$, która istnieje przed transpozycją, albo po niej.
 \end{proof}
 
 \begin{definition}
+    \label{d:determinant}
     Wyznacznik macierzy kwadratowej $A$ to taki element ciała, że
     \[ \det A = \sum_{\sigma\in S_n} \eps(\sigma)a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}. \]
     Oznaczamy $\det
@@ -37,31 +38,31 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
 
 \begin{theorem}[własności wyznaczników]
     \label{t:determinant properties}
-    Dla macierzy kwadratowej $A = [a_{ij}] \in M_{n\times n}(\KK)$ zachodzi:
+    Dla macierzy kwadratowej $A = [a_{ij}] \in \sM_{n\times n}(\KK)$ zachodzi:
     \begin{enumerate}
         \item $\det A = \det A^T$,
         \item $\det I_n = 1$,
         \item jeśli istnieje zerowy wiersz (lub kolumna) to $\det A = 0$,
         \item jeśli pomnożymy jeden wiersz (lub kolumnę) przez skalar $\alpha$, to wyznacznik również będzie $\alpha$ razy większy,
         \item $\det \alpha A = (\det A) ^ \alpha$,
-        \item jeśli $A = [k_1, \ldots, k_j' + k_j'', \ldots, k_n]$, gdzie $k_i$ są kolumnami lub wierszami, to
+        \item \label{t:p:determinant of a matrix with sum} jeśli $A = [k_1, \ldots, k_j' + k_j'', \ldots, k_n]$, gdzie $k_i$ są wierszami (lub kolumnami), to
               \[ \det A = \det [k_1, \ldots, k_j', \ldots, k_n] + \det [k_1, \ldots, k_j'', \ldots, k_n], \]
         \item przestawienie dwóch wierszy macierzy zmienia znak wyznacznika na przeciwny,
-        \item jeśli macierz ma dwa jednakowe wiersze (lub kolumny) to $\det A = 0$,
+        \item \label{t:p:determinant of a matrix with same rows} jeśli macierz ma dwa jednakowe wiersze (lub kolumny) to $\det A = 0$,
         \item wyznacznik nie zmieni się, jeśli do wiersza (albo kolumny) dodamy kombinację liniową pozostałych wierszy (kolumn).
     \end{enumerate}
 \end{theorem}
-\begin{proof}
+\begin{proof} ~
     \begin{enumerate}
-        \item wszystkich par elementów w permutacji $\sigma \in S_n$ jest $n(n-1)$. Jeśli $(\sigma_i, \sigma_j)$ jest inwersją w $\sigma$, to w $\sigma^{-1}$ nią nie jest, a skoro $2\mid n(n-1)$, to $\eps(\sigma) = \eps(\sigma^{-1})$.
-        \item dla permutacji identycznościowej dany w definicji iloczyn jest równy $1$, dla każdej innej permutacji jest równy $0$.
-        \item w każdym z sumowanych iloczynów występuje $0$ jako czynnik.
-        \item w każdym z sumowanych iloczynów występuje jeden dodatkowy skalar $\alpha$.
-        \item wniosek z poprzedniego.
-        \item dowód podobny do poprzednich dwóch.
-        \item wynika z faktu \ref{f:sign of transposition}.
-        \item wniosek z poprzedniego.
-        \item TODO
+        \item Wszystkich par elementów w permutacji $\sigma \in S_n$ jest $n(n-1)$. Jeśli $(\sigma_i, \sigma_j)$ jest inwersją w $\sigma$, to w $\sigma^{-1}$ nią nie jest, a skoro $2\mid n(n-1)$, to $\eps(\sigma) = \eps(\sigma^{-1})$. Pozostałe czynniki sumowanych iloczynów zostaną takie same (jedynie w innej kolejności).
+        \item Dla permutacji identycznościowej dany w definicji iloczyn jest równy $1$, dla każdej innej permutacji jest równy $0$.
+        \item W każdym z sumowanych iloczynów występuje $0$ jako czynnik.
+        \item W każdym z sumowanych iloczynów występuje jeden dodatkowy skalar $\alpha$.
+        \item Wniosek z poprzedniego.
+        \item Dowód podobny do poprzednich dwóch.
+        \item Wynika z faktu \ref{f:sign of transposition}.
+        \item Wniosek z poprzedniego, ponieważ $d = -d \implies d = 0$.
+        \item Stwierdzenie jest prawdziwe, jeśli wyznacznik nie zmieni się, gdy do jednego wiersza (lub kolumny) dodamy inny (uzasadnienie przez indukcję). Ten fakt można udowodnić, łącząc punkty \ref{t:p:determinant of a matrix with sum} i \ref{t:p:determinant of a matrix with same rows} (jeden z wyznaczników będzie zerowy).
     \end{enumerate}
 \end{proof}
 
@@ -89,39 +90,75 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
     Prosty, z definicji.
 \end{proof}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.35\textwidth]{Sarrus_rule.pdf}
-    \caption{Reguła Sarrusa, źródło: Wikipedia.}
-\end{figure}
+Regułę Sarrusa bardzo łatwo zapamiętać: wystarczy przepisać na koniec macierzy dwie pierwsze kolumny i liczyć podobnie jak macierz $2 \times 2$.
+\[ \begin{bNiceArray}{cc}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+    \CodeAfter
+        \tikz \draw [very thick, ColAccGood, opacity=0.4]
+        (1-1.north west) -- (2-2.south east);
+        \tikz \draw [very thick, ColAccBad, opacity=0.4]
+        (1-2.north east) -- (2-1.south west);
+\end{bNiceArray}
+\qquad
+\begin{bNiceArray}{ccc|cc}
+    a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\
+    a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\
+    a_{31} & a_{32} & a_{33} & a_{31} & a_{32}
+    \CodeAfter
+        \tikz \draw [very thick, ColAccGood, opacity=0.4]
+        (1-1.north west) -- (3-3.south east)
+        (1-2.north west) -- (3-4.south east)
+        (1-3.north west) -- (3-5.south east);
+        \tikz \draw [very thick, ColAccBad, opacity=0.4]
+        (1-3.north east) -- (3-1.south west)
+        (1-4.north east) -- (3-2.south west)
+        (1-5.north east) -- (3-3.south west);
+\end{bNiceArray} \]
 
 \begin{theorem}[Cauchy'ego]
     \label{t:det is multiplicative}
-    Dla dowolnych macierzy $A, B \in M_{n\times n}(\KK)$ zachodzi
+    Dla dowolnych macierzy $A, B \in \sM_{n\times n}(\KK)$ zachodzi
     \[ \det(A\cdot B) = \det A \cdot \det B. \]
 \end{theorem}
-\begin{proof}
-    TODO
-\end{proof}
 
 \begin{definition}
     Minor stopnia $k$ macierzy $A_{m\times n}$ to wyznacznik podmacierzy kwadratowej $k\times k$ powstałej przez wykreślenie $n-k$ kolumn oraz $m-k$ wierszy.
 \end{definition}
 
-Jeśli $A_{n\times n}$ jest macierzą kadratową, to wyznacznik macierzy powstałej przez wykreślenie $i$-tego wiersza i $j$-tej kolumny nazywamy \vocab{minorem odpowiadającym} elementowi $a_{ij}$ macierzy $A$ i oznaczamy $M_{ij}$.
+Jeśli $A_{n\times n}$ jest macierzą kwadratową, to wyznacznik macierzy powstałej przez wykreślenie $i$-tego wiersza i $j$-tej kolumny nazywamy \vocab{minorem odpowiadającym} elementowi $a_{ij}$ macierzy $A$ i oznaczamy $M_{ij}$.
 
 \begin{definition}
     Dopełnienie algebraiczne elementu $a_{ij}$ macierzy kwadratowej $A = [a_{ij}]_{m\times n}$ to skalar
     \[ A_{ij} = (-1)^{i+j}M_{ij}. \]
 \end{definition}
 
-\begin{theorem}[Laplace'a]
+\begin{theorem}[rozwinięcie Laplace'a]
     \label{t:Laplace}
-    Niech $A = [a_{ij}]_{n\times n}$ będzie macierzą kwadratową. Wtedy dla każdego $i \in \{1,2\ldots,n\}$ 
-    \[ \det A = \sum_{j=1}^n a_{ij}A_{ij}. \]
+    Niech $A = [a_{ij}]_{n\times n}$ będzie macierzą kwadratową. Wtedy dla każdego ustalonego $i \in \{1,2\ldots,n\}$
+    \[ \det A = \sum_{j=1}^n a_{ij}A_{ij} \]
+    i dla każdego ustalonego $j \in \{1,2\ldots,n\}$
+    \[ \det A = \sum_{i=1}^n a_{ij}A_{ij}. \]
 \end{theorem}
+\begin{proof}
+    Dla wygody w oznaczeniach udowodnimy rozwinięcie wzdłuż pierwszego wiersza, $i = 1$. Weźmy taką permutację $\tau^j$, że permutuje ona zbiór $\{1, \ldots, n\} \setminus \{j\}$. Oznaczmy
+    \[ \sigma^* = (j, \tau^j_1, \tau^j_2, \ldots, \tau^j_{j-1}, \tau^j_{j+1}, \ldots, \tau^j_{n}). \]
+    Zauważmy, że $\eps(\sigma^*) = (-1)^{j-1} \eps(\tau^j)$. Teraz wystarczy ustalić $j$; z definicji wyznacznika (\ref{d:determinant}) mamy
+    \begin{align*}
+        \det A &= \sum_{\sigma\in S_n} \left(\eps(\sigma) \prod_{i=1}^n a_{i\sigma(i)}\right) = \sum_{\sigma\in S_n} \left(a_{1\sigma(1)} \cdot \eps(\sigma) \prod_{i=2}^n a_{i\sigma(i)}\right) = \\
+        &= \sum_{j=1}^n \left(a_{1j} \sum_{\sigma^*} \left(\eps(\sigma^*) \prod_{i=2}^n a_{i\sigma^*(i)}\right)\right) = \\
+        &= \sum_{j=1}^n \left(a_{1j} \sum_{\tau^j} \left((-1)^{j-1}\eps(\tau^j) \prod_{\substack{i=1\\i\neq j}}^n a_{i\tau^j(i)}\right)\right) = \\
+        &= \sum_{j=1}^n \left(a_{1j} \left((-1)^{j-1} M_{1j}\right)\right) = \\
+        &= \sum_{j=1}^n a_{1j} A_{1j}.
+    \end{align*}
+
+    Wiemy, że $\det A = \det A^T$ (z \ref{t:determinant properties}), więc możemy rozwijać również wzdłuż kolumn.
+\end{proof}
 
 \begin{corollary}
     \label{c:determinant in triangular matrix}
     Wyznacznik macierzy trójkątnej jest równy iloczynowi elementów na jej przekątnej.
 \end{corollary}
+\begin{proof}
+    Wystarczy rozwijać wyznacznik wzdłuż pierwszej kolumny.
+\end{proof}

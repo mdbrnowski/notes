@@ -57,7 +57,7 @@ Prosty wniosek z tego twierdzenia jest taki, że jeśli znajdziemy dwa podciągi
 
 \begin{theorem}[o ciągu ograniczonym i ciągu zbieżnym do zera]
     \label{t:sequence bounded and convergent to 0}
-    Jeśli ciag $(a_n)$ jest ograniczony oraz $\lim b_n = 0$, to
+    Jeśli ciąg $(a_n)$ jest ograniczony oraz $\lim b_n = 0$, to
     \[ \lim_{n \to \infty} (a_n \cdot b_n) = 0 \]
 \end{theorem}
 \begin{proof}
@@ -100,13 +100,13 @@ Prosty wniosek z tego twierdzenia jest taki, że jeśli znajdziemy dwa podciągi
     \[ g - \eps < a_n \leq b_n \leq c_n < g + \eps \]
     \[ g - \eps < b_n < g + \eps \]
     \[ |b_n - g| < \eps \]
-    dla wszystkcih $n > \max(N, N_1, N_2)$.
+    dla wszystkich $n > \max(N, N_1, N_2)$.
 \end{proof}
 
 \begin{fact}
     Ciąg geometryczny jest zbieżny do $0$, jeśli jego iloraz jest mniejszy od $1$. Jeśli jest większy od $1$, to ciąg jest rozbieżny.
 \end{fact}
-Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia o ciagu monotonicznym i ograniczonym (\ref{t:sequence monotonic and bounded}), a sama jego treść na tyle oczywista i powszechna, że nie będziemy się nie niego powoływać bezpośrednio.
+Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia o ciągu monotonicznym i ograniczonym (\ref{t:sequence monotonic and bounded}), a sama jego treść na tyle oczywista i powszechna, że nie będziemy się nie niego powoływać bezpośrednio.
 
 \begin{theorem}
     \label{t:(a)^(1/n)->1}
@@ -115,7 +115,7 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
     dla każdego $a > 0$.
 \end{theorem}
 \begin{proof}
-    Dla $a = 1$ równość jest trywialna. Jeśli założymy, że $a > 1$, to mamy $\sqrt[n]{a} = 1 + x_n$, gdzie $x_n > 0$. Korzystając z nierówności Bernoulliego (\ref{t:Bernoulli's inequality}) mamy
+    Dla $a = 1$ równość jest trywialna. Jeśli założymy, że $a > 1$, to mamy $\sqrt[n]{a} = 1 + x_n$, gdzie $x_n > 0$. Korzystając z nierówności Bernoulliego (\ref{t:Bernoulli's inequality}), mamy
     \[ a = (1 + x_n)^n \geq 1 + nx_n \]
     \[ \therefore 0 < x_n \leq \frac{a - 1}{n} \]
     z czego wynika, że $\lim x_n = 0$, a więc $\lim a_n = 1$.
@@ -191,7 +191,7 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
     \label{l:lim e^k}
     Zachodzi równość
     \[ \lim_{n\to\infty}\left(1 + \frac{k}{n}\right)^n = e^k, \]
-    a w szególności (dla $k = -1$)
+    a w szczególności (dla $k = -1$)
     \[ \lim_{n\to\infty}\left(1 - \frac{1}{n}\right)^n = \frac{1}{e}. \]
 \end{lemma}
 \begin{proof}
@@ -222,7 +222,7 @@ Dowód powyższego faktu jest bardzo łatwo pokazać z definicji lub twierdzenia
     Obliczyć granicę górną i dolną ciągu $a_n = n^{\sin\frac{n\pi}{2}}$.
 \end{example}
 \begin{solution}
-    Wyróżniamy trzy podciągi ciagu $(a_n)$, które łącznie zawierają wszystkie wyrazy tego ciągu:
+    Wyróżniamy trzy podciągi ciągu $(a_n)$, które łącznie zawierają wszystkie wyrazy tego ciągu:
     \begin{itemize}
         \item $n$ przystaje do $1 \pmod{4}$, mamy $b_k = (4k + 1)^1$,
         \item $n$ jest parzyste, mamy $c_k = (2k)^0$,

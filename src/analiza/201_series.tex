@@ -38,21 +38,21 @@ Okazuje się, że zachodzi również dużo mocniejsze twierdzenie:
 
 Jeśli szereg $\sum_{n=1}^\infty |a_n|$ jest zbieżny, to mówimy, że szereg $\sum_{n=1}^\infty a_n$ jest \vocab{bezwzględnie zbieżny}, w przeciwnym przypadku jest \vocab{warunkowo zbieżny}. Bezwzględna zbieżność szeregu pociąga za sobą jego zbieżność.
 
-Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności.
+Aby sprawdzić zbieżność szeregów, stosuje się kilka kryteriów zbieżności.
 
 \begin{theorem}[kryterium porównawcze]
-    Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ zachodzi
+    Jeśli dla każdego $n$ większego od pewnego $n_0$ zachodzi
     \[ a_n \leq b_n \]
-    oraz $a_n, b_n > 0$, to ze zbieżności szeregu $\sum_{n=1}^\infty b_n$ wynika zbieżność $\sum_{n=1}^\infty a_n$, a z rozbieżności szeregu $\sum_{n=1}^\infty a_n$ wynika rozbieżność $\sum_{n=1}^\infty b_n$.
+    oraz $a_n, b_n > 0$, to ze zbieżności szeregu $\sum_{n=1}^\infty b_n$ wynika zbieżność $\sum_{n=1}^\infty a_n$, a~z~rozbieżności szeregu $\sum_{n=1}^\infty a_n$ wynika rozbieżność $\sum_{n=1}^\infty b_n$.
 \end{theorem}
 
 \begin{remark*}
     \begin{multicols}{2}
     Wraz z powyższym twierdzeniem warto stosować nierówności, które zachodzą w przedziale $[0,1]$:
     \begin{itemize}
-        \item $\frac{x}{2} \leq {\color{MainColor1} \sin{x}} \leq x$
-        \item $\frac{x}{2} \leq {\color{BoxColor2} \ln(x + 1)} \leq x$
-        \item $x \leq {\color{LinkColor2} \tan{x}} \leq 2x$
+        \item $\frac{x}{2} \leq {\color{AccColor1} \sin{x}} \leq x$
+        \item $\frac{x}{2} \leq {\color{AccColor2} \ln(x + 1)} \leq x$
+        \item $x \leq {\color{AccColor3} \tan{x}} \leq 2x$
         \item $1 - x \leq \cos{x}$
     \end{itemize}
     \hspace{2em}
@@ -65,9 +65,9 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
             \addplot[samples=10,smooth,ultra thin] {x/2};
             \addplot[samples=10,smooth,ultra thin] {x};
             \addplot[samples=10,smooth,ultra thin] {2*x};
-            \addplot[samples=100,smooth,very thick,MainColor1] {sin(deg(x))};
-            \addplot[samples=100,smooth,very thick,LinkColor2] {tan(deg(x))};
-            \addplot[samples=100,smooth,very thick,BoxColor2] {ln(x + 1)};
+            \addplot[samples=100,smooth,very thick,AccColor3] {tan(deg(x))};
+            \addplot[samples=100,smooth,very thick,AccColor2] {ln(x + 1)};
+            \addplot[samples=100,smooth,very thick,AccColor1] {sin(deg(x))};
         \end{axis}
     \end{tikzpicture}
     \end{multicols}
@@ -85,7 +85,7 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
 \end{solution}
 
 \begin{theorem}[kryterium ilorazowe]
-    Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregów $\sum_{n=1}^\infty a_n$ i $\sum_{n=1}^\infty b_n$ są dodatnie oraz
+    Jeśli dla każdego $n$ większego od pewnego $n_0$ wyrazy szeregów $\sum_{n=1}^\infty a_n$ i $\sum_{n=1}^\infty b_n$ są dodatnie oraz
     \[ \lim_{n\to\infty} \frac{a_n}{b_n} = g \in (0, \infty), \]
     to dane szeregi są jednocześnie zbieżne lub jednocześnie rozbieżne.
 \end{theorem}
@@ -111,13 +111,13 @@ Aby sprawdzić zbieżność szeregów stosuje się kilka kryteriów zbieżności
     \[ \sum_{n=1}^\infty \frac{3^n \cdot n}{4^n}. \]
 \end{example}
 \begin{solution}
-    Korzystając z kryterium Cauchy'ego mamy
+    Korzystając z kryterium Cauchy'ego, mamy
     \[ \lim_{n\to\infty} \sqrt[n]{\frac{3^n \cdot n}{4^n}} = \lim_{n\to\infty} \frac{3}{4} \cdot \sqrt[n]{n} = \frac{3}{4} < 1, \]
     więc dany szereg jest zbieżny.
 \end{solution}
 
 \begin{theorem}[kryterium całkowe]
-    Jeśli dla każdego $n$ wiekszego od pewnego $n_0$ wyrazy szeregu $\sum_{n=1}^\infty a_n$ są dodatnie oraz istnieje taka malejąca (na przedziale $[n_0, \infty)$) funkcja $f$, że $a_n = f(n)$ dla każdego $n$, to szereg
+    Jeśli dla każdego $n$ większego od pewnego $n_0$ wyrazy szeregu $\sum_{n=1}^\infty a_n$ są dodatnie oraz istnieje taka malejąca (na przedziale $[n_0, \infty)$) funkcja $f$, że $a_n = f(n)$ dla każdego $n$, to szereg
     \[ \sum_{n=1}^\infty a_n \]
     jest zbieżny wtedy i tylko wtedy, gdy całka niewłaściwa
     \[ \int_1^\infty f(x) \d x \]
@@ -135,7 +135,7 @@ Szereg opisywany przez kryterium Leibniza nazywamy szeregiem \vocab{naprzemienny
     \[ \sum_{n=1}^\infty (-1)^n \frac{1}{n\ln{n}}. \]
 \end{example}
 \begin{solution}
-    Korzystając z kryterium Leibniza bardzo łatwo pokazać, że dany szereg jest zbieżny. Ciąg $a_n = \frac{1}{n\ln{n}}$ ma oczywiście wyrazy dodatnie i jest zbieżny do zera. Ponadto jest malejący, bo zarówno $n$, jak i $\ln{n}$ rosną.
+    Korzystając z kryterium Leibniza, bardzo łatwo pokazać, że dany szereg jest zbieżny. Ciąg $a_n = \frac{1}{n\ln{n}}$ ma oczywiście wyrazy dodatnie i jest zbieżny do zera. Ponadto jest malejący, bo zarówno $n$, jak i $\ln{n}$ rosną.
 
     Aby określić, czy dany szereg jest bezwzględnie zbieżny skorzystamy z kryterium całkowego.
     \[ \int \frac{1}{x\ln{x}} \d x = \left|\begin{alignedat}{2}&u = \ln{x} \\ &\!\d u = \frac{1}{x} \d x\end{alignedat}\right| = \int \frac{1}{u} \d u = \ln{u} + C = \ln(\ln(x)) + C. \]

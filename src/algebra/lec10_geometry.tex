@@ -1,11 +1,11 @@
-W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o jednostkowej długości):
+W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego}\footnote{To znaczy zgodnego z regułą prawej ręki --- wnętrze obracającej się dłoni zakreśla łuk od osi $OX$ do $OY$, przy czym kciuk ma zwrot zgodny z osią $OZ$.} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o~jednostkowej długości):
 \[ \mathbf{\hat{i}} = (1, 0, 0), \quad \mathbf{\hat{j}} = (0, 1, 0), \quad \mathbf{\hat{k}} = (0, 0, 1). \]
 
 \begin{definition}
     \label{d:Euclidean metric}
     Metryka euklidesowa w $\RR^n$ to funkcja $d : \RR^n \times \RR^n \to \RR$, która dla punktów $P = (x_1, x_2, \ldots, x_n), Q = (y_1, y_2, \ldots, y_n)$ jest zdefiniowana jako
     \[ d(P, Q) = \sqrt{\sum_{i = 1}^n (y_i - x_i)^2}. \]
-    Wartość tej funkji dla punktów $X, Y$ to \vocab{odległość euklidesowa} tych punktów.
+    Wartość tej funkcji dla punktów $X, Y$ to \vocab{odległość euklidesowa} tych punktów.
 \end{definition}
 
 \begin{definition}
@@ -25,7 +25,7 @@ więc
 \end{definition}
 
 \begin{fact}
-    Jeśli $U^T$ jest jednokolumnową macierzą powstałą z wektora $u$, a $V$ to jednowierszową macierz powstała w wektora $v$, to
+    Jeśli $U^T$ jest jednokolumnową macierzą powstałą z wektora $u$, a $V$ to jednowierszową macierz powstała z wektora $v$, to
     \[ u \circ v = U^T \cdot V. \]
 \end{fact}
 
@@ -53,7 +53,7 @@ Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów,
     Równość zachodzi tylko w przypadku, gdy $\alpha = 0$, czyli gdy $\mathbf{u}, \mathbf{v}$ są liniowo zależne.
 \end{proof}
 
-\begin{corollary}[Nierówność trójkąta]
+\begin{corollary}[nierówność trójkąta]
     \label{c:triangle inequality}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$ zachodzi nierówność
     \[ \Vert \mathbf{u} + \mathbf{v} \Vert  \leq \Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert, \]
@@ -70,6 +70,7 @@ Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów,
 \end{proof}
 
 \begin{definition}
+    \label{d:angle between vectors}
     Kąt między niezerowymi wektorami $\mathbf{u}, \mathbf{v} \in E_n$ to taka liczba $\sphericalangle(\mathbf{u}, \mathbf{v}) = \varphi \in [0, \pi]$, że
     \[ \cos\varphi = \frac{\mathbf{u} \circ \mathbf{v}}{\Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert}. \]
 \end{definition}
@@ -95,13 +96,15 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
         \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
     \end{vmatrix} > 0. \]
 \end{fact}
-\begin{proof}
-    TODO
+\begin{proof}[Uzasadnienie]
+    Jest to intuicyjnie prawdziwe --- jeśli zamienimy wiersze ze sobą, to układ wektorów stanie się lewoskrętny i jednocześnie (z własności wyznaczników \ref{t:determinant properties}) wyznacznik macierzy będzie przeciwny. Podobnie, jeśli zmienimy zwrot danego wektora, to układ stanie się lewoskrętny, a wyznacznik macierzy będzie przeciwny.
+
+    Dociekliwy Czytelnik może zaznajomić się z dowodem zawartym w artykule ,,\textit{\href{https://sites.math.washington.edu/~marshall/math_136/right-hand-rule.pdf}{A Simple Proof of the Right-Hand Rule}}'' autorstwa Fuchang Gao.
 \end{proof}
 
 \begin{definition}
     \label{d:cross product}
-    Iloczyn wektorowy to to takie działanie $\times : (\overrightarrow{E_3})^2 \to \overrightarrow{E_3}$, że:
+    Iloczyn wektorowy to takie działanie $\times : (\overrightarrow{E_3})^2 \to \overrightarrow{E_3}$, że:
     \begin{enumerate}
         \item jeśli $\mathbf{u} \parallel \mathbf{v}$, to $\mathbf{u} \times \mathbf{v} = \ol{0}$,
         \item w przeciwnym wypadku $\mathbf{u} \times \mathbf{v} = \mathbf{w}$, gdzie
@@ -112,7 +115,6 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
             \end{itemize}
     \end{enumerate}
 \end{definition}
-
 
 \begin{theorem}
     Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$
@@ -161,7 +163,7 @@ Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times 
 
 \begin{theorem}
     \label{t:area of parallelogram}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$ liczba $\Vert\mathbf{u}\times\mathbf{v}\Vert$ jest polem równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$.
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$ liczba $\Vert\mathbf{u}\times\mathbf{v}\Vert$ jest (skierowanym) polem równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$.
 \end{theorem}
 \begin{proof}
     Z definicji iloczynu wektorowego (\ref{d:cross product}) mamy
@@ -171,13 +173,38 @@ Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times 
 
 Prosty wniosek z tego twierdzenia jest taki, że pole trójkąta rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$ jest równe $\frac{1}{2}\Vert\mathbf{u}\times\mathbf{v}\Vert$.
 
+Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
+
 \begin{theorem}
     \label{t:volume of parallelepiped}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$ jest objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
+    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $\left((\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}\right)$ jest (skierowaną) objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
 \end{theorem}
-Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
 \begin{proof}
-    TODO
+    Z definicji kąta między wektorami (\ref{d:angle between vectors}) mamy
+    \[ (\mathbf{u}\times\mathbf{v}) \circ \mathbf{w} = \Vert\mathbf{u}\times\mathbf{v}\Vert \cdot \Vert\mathbf{w}\Vert \cdot \cos\phi, \]
+    gdzie $\Vert\mathbf{u}\times\mathbf{v}\Vert$ to pole równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$, jak na rysunku poniżej.
+
+    \begin{center}
+        \begin{tikzpicture}[vect/.style={->,>=latex',thick,AccColor1}]
+            \def\a{3}
+            \def\bx{1.7} \def\by{.8}
+            \def\cx{.9} \def\cy{2.5}
+            \tkzDefPoints{0/0/O, \a/0/A, \bx/\by/B, \cx/\cy/C, \cx+\a/\cy/D,
+                          \bx/\by/B, \a+\bx/\by/A', \cx+\bx/\cy+\by/C', \cx+\a+\bx/\cy+\by/D',
+                          0/\cy/V}
+            \tkzDrawPolygon(D,A,A',D',C',C)
+            \tkzDrawSegments(D,D')
+            \tkzDrawSegments[thin](O,V)
+            \tkzDrawSegments[dashed](B,C' B,A')
+            \tkzDrawSegments[vect](O,A O,C)
+            \tkzDrawSegments[dashed,vect](O,B)
+            \tkzMarkAngle[size=1.4](C,O,V)
+            \tkzLabelAngle[font=\scriptsize](C,O,V){$\phi$}
+            \tkzLabelSegment[font=\scriptsize, below](O,A){$\mathbf{u}$}
+            \tkzLabelSegment[font=\scriptsize, below, pos=.7](O,B){$\mathbf{v}$}
+            \tkzLabelSegment[font=\scriptsize, right](O,C){$\mathbf{w}$}
+        \end{tikzpicture}
+    \end{center}
 \end{proof}
 
 Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ jest równa $\frac{1}{6}|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$.
@@ -190,14 +217,14 @@ Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpi
         \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3 \\
         \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
     \end{vmatrix}. \]
-    Jest to prostrzy sposób na liczenie objętości równoległościanu.
+    Jest to prostszy sposób na liczenie objętości równoległościanu.
 \end{fact}
 \begin{proof}
     Łatwo zauważyć zależność między rozwinięciem Laplace'a (\ref{t:Laplace}) oraz wzorem~\ref{eq:easy cross product}.
 \end{proof}
 
 \subsubsection{Równanie płaszczyzny w przestrzeni}
-Płaszczyznę jednoznacznie wyznaczają trzy niewspółliniowe punkty (lub wyznaczone przez nie dwa wektory). Płaszczyznę jednoznacznie wyznaczyć może również jeden niezerowy wektor, zwany \vocab{wektorem normalnym}; jest on prostopadły do wyznaczanej płaszczyny.
+Płaszczyznę jednoznacznie wyznaczają trzy niewspółliniowe punkty (lub wyznaczone przez nie dwa wektory). Płaszczyznę jednoznacznie wyznaczyć może również jeden niezerowy wektor, zwany \vocab{wektorem normalnym}; jest on prostopadły do wyznaczanej płaszczyzny.
 
 \paragraph{Równanie parametryczne płaszczyzny} Jeśli $P_0 = (x_0, y_0, z_0) \in \pi$ oraz $\mathbf{u} = [\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3]$, $\mathbf{v} = [\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3] \in E_3$ są liniowo niezależne i równoległe do płaszczyzny $\pi$, to
 \begin{equation} \pi : \begin{cases}
@@ -260,9 +287,9 @@ Jeśli $\pi_1$ nie jest równoległa z $\pi_2$, to równanie krawędziowe proste
 \subsection{Odległości}
 Zdefiniowaliśmy już odległość między dwoma punktami w definicji \ref{d:Euclidean metric}. Bez formalnego wyprowadzenia będziemy używać pojęcia odległości również w kontekście odległości między punktem a płaszczyzną, punktem a prostą, prostą a płaszczyzną czy między płaszczyznami lub prostymi. Taka odległość będzie najmniejszą odległością między pewnym punktem jednej figury oraz pewnym punktem drugiej figury.
 \[ d(\Phi, \Psi) = \min_{A \in \Phi, B \in \Psi} d(A, B) \]
-Z nierówności trójkąta (\ref{c:triangle inequality}) wynika, ze wektor między tymi dwoma punktami będzie prospodały do obu danych figur.
+Z twierdzenia Pitagorasa wynika, że wektor między tymi dwoma punktami będzie prostopadły do powierzchni obu danych figur.
 
-\begin{theorem}[Odległość punktu od płaszczyzny]
+\begin{theorem}[odległość punktu od płaszczyzny]
     \label{t:distance between point and plane}
     Odległość punktu $Q = (x_1, y_1, z_1)$ od płaszczyzny $\pi : Ax + Bx + Cx + D = 0$ jest równa
     \[ d(Q, \pi) = \frac{|Ax_1 + By_1 + Cz_1 + D|}{\sqrt{A^2 + B^2 + C^2}}. \]
@@ -285,7 +312,7 @@ Z nierówności trójkąta (\ref{c:triangle inequality}) wynika, ze wektor międ
 
 Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzić, czy są one równoległe (to znaczy, czy ich wektory normalne są równoległe). Jeśli nie, to odległość jest oczywiście zerowa; w przeciwnym wypadku wystarczy wziąć dowolny punkt z jednej płaszczyzny i znaleźć odległość między tym punktem a drugą płaszczyzną.
 
-\begin{theorem}[Odległość punktu od prostej]
+\begin{theorem}[odległość punktu od prostej]
     Odległość punktu $Q$ od prostej $l$ jest równa
     \[ d(Q, l) = \frac{\Vert \mathbf{v} \times \overrightarrow{LQ}\Vert}{\Vert\mathbf{v}\Vert}, \]
     gdzie $\mathbf{v}$ jest wektorem kierunkowym prostej $l$, a $L \in l$.
@@ -298,25 +325,25 @@ Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzi�
             \tkzDefPoints{2/5/Q,-1/3/L,1/2/L'}
             \tkzDefPointBy[projection = onto L--L'](Q) \tkzGetPoint{H}
             \tkzDefPointBy[translation = from L to L'](Q) \tkzGetPoint{Q'}
-            \tkzFillPolygon[color=MainColor1!10](L,L',Q',Q)
+            \tkzFillPolygon[color=AccColor1, opacity=0.2](L,L',Q',Q)
             \tkzDrawLine[add= .5 and .5](L,L')
             \tkzDrawSegment[dashed](Q,H)
-            \tkzDrawSegments[MainColor1, vector style](L,Q L,L')
-            \tkzDrawSegments[dotted, MainColor1](L',Q' Q,Q')
+            \tkzDrawSegments[AccColor1, vector style](L,Q L,L')
+            \tkzDrawSegments[dotted, AccColor1](L',Q' Q,Q')
             \tkzDrawPoints(Q, L)
             \tkzLabelSegment[swap](L,L'){$\mathbf{v}$}
             \tkzLabelPoints[above right](Q)
             \tkzLabelPoints[below left](L)
         \end{tikzpicture}
     \end{center}
-    Ze standardwego wzoru na pole równoległoboku jest ono również równe
+    Ze standardowego wzoru na pole równoległoboku jest ono również równe
     \[ \Vert \mathbf{v} \Vert \cdot d(Q, l), \]
     z czego wynika teza.
 \end{proof}
 
 Jeśli dwie proste są równoległe, to odległość między nimi można obliczyć przez wzięcie dowolnego punktu z jednej prostej i obliczenie jego odległości od drugiej prostej. Jeśli proste się przecinają, to odległość między nimi jest zerowa. Sytuacja się komplikuje, jeśli dane dwie proste nie są równoległe lub przecinające się (to znaczy są \vocab{skośne}).
 
-\begin{theorem}[Odległość prostych skośnych]
+\begin{theorem}[odległość prostych skośnych]
     \label{t:distance between lines}
     Niech $l_1, l_2$ są prostymi skośnymi. Odległość między nimi jest równa
     \[ d(l_1, l_2) = \frac{|(\mathbf{v} \times \mathbf{u}) \circ \overrightarrow{L_1L_2}|}{\Vert\mathbf{v}\times\mathbf{u}\Vert}, \]
@@ -331,7 +358,7 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
 \end{proof}
 
 \subsection{Przykłady}
-\begin{example}[Współliniowość punktów]
+\begin{example}[współliniowość punktów]
     Sprawdź, czy punkty $A = (1, 0, 2), B = (3, 1, -1), C = (-1, -1, 5)$ są współliniowe.
 \end{example}
 \begin{solution}
@@ -340,11 +367,11 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
     z czego wynika, że punkty $A, B, C$ są współliniowe.
 \end{solution}
 
-\begin{example}[Współpłaszczyznowość punktów]
+\begin{example}[współpłaszczyznowość punktów]
     Sprawdź, czy punkty $A = (0, 2, 2), B = (2, 1, 0), C = (3, -1, 2), D = (1, -2, 3)$ są współpłaszczyznowe.
 \end{example}
 \begin{solution}
-    Punkty $A, B, C, D$ są współpłaszczyznowe wtedy i tylko wtedy, gdy wektory $\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD}$ rozpinają równoległościan o zerowej objętości. Na podstawie twierdzenia \ref{t:volume of parallelepiped} i faktu \ref{f:triple product} wystarczy obliczyć
+    Punkty $A, B, C, D$ są współpłaszczyznowe wtedy i tylko wtedy, gdy wektory $\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD}$ rozpinają równoległościan o zerowej objętości. Na podstawie twierdzenia \ref{t:volume of parallelepiped} i~faktu \ref{f:triple product} wystarczy obliczyć
     \[ \begin{vmatrix}
         \overrightarrow{AB} \\
         \overrightarrow{AC} \\
@@ -357,7 +384,7 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
     z czego wynika, że punkty $A, B, C, D$ nie są współpłaszczyznowe.
 \end{solution}
 
-\begin{example}[Wzajemne położenie prostych, odległość]
+\begin{example}[wzajemne położenie prostych, odległość]
     Zbadaj wzajemne położenie prostych
     \[ l_1 : \begin{cases}
         x = 1 - 3t \\
@@ -383,7 +410,7 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
     Z tego wynika również, że proste są skośne; nie są przecinające się, bo $d(l_1, l_2) \neq 0$.
 \end{solution}
 
-\begin{example}[Wzajemne położenie prostych, wspólna płaszczyzna]
+\begin{example}[wzajemne położenie prostych, wspólna płaszczyzna]
     Zbadaj wzajemne położenie prostych
     \[ l_1 : \begin{cases}
         x = t \\
@@ -427,4 +454,4 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
     Podobnie, jeśli chcemy znaleźć rzut prostokątny punktu $P$ na płaszczyznę $\pi$, to należy znaleźć prostą $l$ taką, że $l \perp \pi$ oraz $P \in l$ (jak poprzednio, wektor kierunkowy szukanej prostej będzie wektorem normalnym płaszczyzny $\pi$).
 \end{remark*}
 
-Zastosowanie powyższej uwagi niech będzie ćwiczeniem dla Czytelnika\footnote{który z pewnością zauważył już, że wykorzystaliśmy ją w dowodzie twierdzenia \ref{t:distance between point and plane}}.
+Zastosowanie powyższej uwagi niech będzie ćwiczeniem dla Czytelnika\footnote{Który to Czytelnik z pewnością zauważył już, że wykorzystaliśmy ją w dowodzie twierdzenia \ref{t:distance between point and plane}.}.

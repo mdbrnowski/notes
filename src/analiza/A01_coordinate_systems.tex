@@ -1,8 +1,8 @@
 \subsection*{Współrzędne biegunowe}
-\begin{equation} \begin{cases}
+\begin{equation*} \begin{cases}
     x = r \cos\varphi \\
     y = r \sin\varphi
-\end{cases} \end{equation}
+\end{cases} \end{equation*}
 Jakobian przejścia to
 \[ \det \frac{\p (x, y)}{\p (r, \varphi)} = \begin{vmatrix}
     \frac{\p x}{\p r} & \frac{\p x}{\p \varphi} \\
@@ -13,11 +13,34 @@ Jakobian przejścia to
 \end{vmatrix} = r\cos^2\varphi + r\sin^2\varphi = r. \]
 
 \subsection*{Współrzędne walcowe}
-\begin{equation} \begin{cases}
-    x = r \cos\varphi \\
-    y = r \sin\varphi \\
-    z = z
-\end{cases} \end{equation}
+
+\begin{figure}[H]
+    \begin{minipage}{.3\textwidth}
+        \begin{equation*} \begin{cases}
+            x = r \cos\varphi \\
+            y = r \sin\varphi \\
+            z = z
+        \end{cases} \end{equation*}
+    \end{minipage}
+    \begin{minipage}{.69\textwidth}
+        \centering
+        \tdplotsetmaincoords{60}{110}
+        \begin{tikzpicture}[scale=3, tdplot_main_coords]
+            \coordinate (O) at (0,0,0);
+            \draw[->, thick] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+            \draw[->, thick] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+            \draw[->, thick] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+            \tdplotsetcoord{P}{1}{30}{60}
+            \draw[color=AccColor1] plot [mark=*, mark size=0.3] (P) node[right, color=black]{\scriptsize$(r, \varphi, z)$};
+            \draw[dashed] (O) -- (P);
+            \draw[->, thick, color=black] (O) -- (Pxy) node [below right] {$r$};
+            \draw[dashed, color=black] (P) -- (Pxy);
+            \tdplotdrawarc{(O)}{0.2}{0}{60}{anchor=north}{$\varphi$}
+            \draw[dashed, color=black] (P) -- (Pz) node [below left] {$z$};
+        \end{tikzpicture}
+    \end{minipage}
+\end{figure}
+
 Jakobian przejścia to
 \[ \det \frac{\p (x, y, z)}{\p (r, \varphi, z)} = \begin{vmatrix}
     \frac{\p x}{\p r} & \frac{\p x}{\p \varphi} & \frac{\p x}{\p z} \\
@@ -30,11 +53,35 @@ Jakobian przejścia to
 \end{vmatrix} = r\cos^2\varphi + r\sin^2\varphi = r. \]
 
 \subsection*{Współrzędne sferyczne}
-\begin{equation} \begin{cases}
-    x = r \cos\psi \cos\varphi \\
-    y = r \cos\psi \sin\varphi \\
-    z = r \sin\psi
-\end{cases} \end{equation}
+
+\begin{figure}[H]
+    \begin{minipage}{.3\textwidth}
+        \begin{equation*} \begin{cases}
+            x = r \cos\psi \cos\varphi \\
+            y = r \cos\psi \sin\varphi \\
+            z = r \sin\psi
+        \end{cases} \end{equation*}
+    \end{minipage}
+    \begin{minipage}{.69\textwidth}
+        \centering
+        \tdplotsetmaincoords{60}{110}
+        \begin{tikzpicture}[scale=3, tdplot_main_coords]
+            \coordinate (O) at (0,0,0);
+            \draw[->, thick] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+            \draw[->, thick] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+            \draw[->, thick] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+            \tdplotsetcoord{P}{1}{30}{60}
+            \draw[color=AccColor1] plot [mark=*, mark size=0.3] (P) node[right, color=black]{\scriptsize$(r,\psi,\varphi)$};
+            \draw[->, thick] (O) -- (P) node [midway, below right] {$r$};
+            \draw[dashed, color=black] (O) -- (Pxy);
+            \draw[dashed, color=black] (P) -- (Pxy);
+            \tdplotdrawarc{(O)}{0.2}{0}{60}{anchor=north}{$\varphi$}
+            \tdplotsetthetaplanecoords{60}
+            \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.4}{0}{30}{anchor=south}{$\psi$}
+        \end{tikzpicture}
+    \end{minipage}
+\end{figure}
+
 Jakobian przejścia to
 \begin{align*}
     \det \frac{\p (x, y, z)}{\p (r, \psi, \varphi)} &= \begin{vmatrix}

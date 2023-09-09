@@ -1,7 +1,7 @@
 \subsubsection{Całka krzywoliniowa nieskierowana}
 \begin{definition}
     Łuk gładki to taka krzywa
-    \[ K = \{(x(t), y(t)) : t \in [a, b]\}, \]
+    \[ K = \{(x(t), y(t)) : t \in [\alpha, \beta]\}, \]
     że funkcje $x(t), y(t)$ są różniczkowalne w sposób ciągły oraz dla każdego $t \in [\alpha, \beta]$ zachodzi
     \[ (x'(t))^2 + (y'(t))^2 > 0. \]
 \end{definition}
@@ -26,9 +26,10 @@ Jeśli krzywa $L$ jest łukiem gładkim, to możemy zdefiniować \vocab{pole wek
 \[ \vec{F}(x, y) = (P(x, y), Q(x, y)). \]
 Wtedy \vocab{całkę krzywoliniową skierowaną} oznaczamy
 \[ \int\limits_L \vec{F} \circ \d{\vec{r}} = \int\limits_L P(x, y) \d x + Q(x, y) \d y. \]
-Zachodzi również
+Zachodzi również (dosyć łatwa do uzasadnienia) równość:
 
 \begin{theorem}
+    \label{t:line integral}
     Jeśli $\vec{F} = (P, Q)$ jest polem wektorowym, w którym funkcje $P, Q$  są ciągłe, a $L$ jest łukiem gładkim, to
     \[ \int\limits_L P(x, y) \d x + Q(x, y) \d y = \int\limits_\alpha^\beta \left(P(x(t), y(t))\cdot x'(t) + Q(x(t), y(t))\cdot y'(t)\right) \d t. \]
 \end{theorem}
@@ -38,6 +39,7 @@ Znów, analogiczne wzory istnieją dla całek krzywoliniowych skierowanych dla f
 Mówimy, że zadana parametrycznie krzywa regularna $K$ ma \vocab{orientację przeciwną} do krzywej $-K$, jeśli obrazy ich parametryzacji są równe (to znaczy, że krzywe nieskierowane są identyczne), ale zmieniając parametr $t$ w dwóch danych równaniach ,,poruszamy się'' w przeciwne strony.
 
 \begin{fact}
+    \label{f:opposite orientation of a curve}
     Zachodzi równość
     \[ \int\limits_{-K} P \d x + Q \d y = -\int\limits_K P \d x + Q \d y. \]
 \end{fact}
@@ -50,7 +52,7 @@ Mówimy, że zadana parametrycznie krzywa regularna $K$ ma \vocab{orientację pr
     Obszar jednospójny $D$ to taki obszar, że wnętrze każdej krzywej Jordana zawartej w $D$ zawiera się w $D$.
 \end{definition}
 
-Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, że jest on zorientowany dodatnio, jeśli poruszając się po tym brzegu zgodnie z wybraną orientacją obszar $D$ znajduje się po lewej stronie.
+Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, że jest on \vocab{zorientowany dodatnio}, jeśli poruszając się po tym brzegu zgodnie z wybraną orientacją (to znaczy przy rosnącym parametrze $t$) obszar $D$ znajduje się po lewej stronie.
 
 \begin{theorem}[Greena]
     \label{t:Green}
@@ -77,7 +79,8 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
             \tkzDrawX
             \tkzDrawY
             \tkzDefPoints{0/0/A, 2/2/B, 2/4/C}
-            \tkzDrawPolygon[color=MainColor1,thick](A,B,C)
+            \tkzDrawPolygon[color=AccColor1, thick](A,B,C)
+            \tkzFillPolygon[color=AccColor1, opacity=0.3](A,B,C)
             \tkzDrawPoints(A,B,C)
         \end{tikzpicture}
     \end{center}
@@ -87,7 +90,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \begin{example}
     Oblicz
     \[ \oint\limits_C 3x^2y^2 \d x + 2x^2(1 + xy) \d y, \]
-    gdzie $C$ jest dodatno zorientowanym okręgiem o średnicy $a$ i środku w punkcie $(\frac{a}{2}, 0)$.
+    gdzie $C$ jest dodatnio zorientowanym okręgiem o średnicy $a$ i środku w punkcie $(\frac{a}{2}, 0)$.
 \end{example}
 \begin{solution}
     Na mocy twierdzenie Greena (\ref{t:Green}) mamy
@@ -108,13 +111,46 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
     \end{align*}
 \end{solution}
 
-\begin{remark}
-    Zazwyczaj całek krzywoliniowych skierowanych nie liczy się najprzyjemniej (Czytelnik raczy sprawdzić chociażby ostatni przykład), dlatego wolimy przejść na całkę podwójną, stosując twierdzenie Greena (\ref{t:Green}). Jednak zdarzają się również sytuacje, w których to przejście z całki podwójnej na krzywoliniową jest dobrym rozwiązaniem.
+\begin{example}
+    Oblicz
+    \[ \int\limits_C (x + y)^2 \d x - (x - y)^2 \d y, \]
+    gdzie $C$ to zorientowany ujemnie łuk sinusoidy $y = \sin x, x \in [0, \pi]$.
+\end{example}
+\begin{solution}
+    Niech $P(x, y) = (x + y)^2, Q(x, y) = -(x - y)^2$. Możemy oczywiście skorzystać bezpośrednio z twierdzenia \ref{t:line integral}:
+    \[ I = \int\limits_C (x + y)^2 \d x - (x - y)^2 \d y = \int\limits_0^\pi (x + \sin x)^2 - (x - \sin x)^2(\cos x) \d x, \]
+    jednak nie będzie to najprostsze rachunkowo. Zamiast tego, możemy wziąć odcinek $L : y = 0, x \in [0, \pi]$ i stwierdzić, że
+    \[ I = \oint\limits_{C \cup (-L)} P(x, y) \d x + Q(x, y) \d y - \int\limits_{-L} P(x, y) \d x + Q(x, y) \d y. \]
+    \begin{center}
+        \begin{tikzpicture}[scale=1.4,
+            line/.style={postaction={decorate}, decoration={markings, mark=at position #1 with {\arrow{latex}}}},
+            lineinv/.style={postaction={decorate}, decoration={markings, mark=at position #1 with {\arrow{latex reversed}}}}
+            ]
+            \tkzInit[xmin=-.3,ymin=-0.3,xmax={pi+.3},ymax=1.3]
+            \tkzGrid \tkzDrawX \tkzDrawY
+            \fill[AccColor1, opacity=0.2] (0,0) -- plot[domain=0:pi] (\x, {sin(deg(\x))}) -- (pi, 0) -- cycle;
+            \draw[AccColor1, thick, line=0.5, domain=0:{pi}] plot (\x, {sin(deg(\x))});
+            \draw[AccColor1, thick, lineinv=0.5, domain=0:{pi}] plot (\x, 0);
+        \end{tikzpicture}
+    \end{center}
+    Stosując twierdzenie Greena (\ref{t:Green}) i fakt \ref{f:opposite orientation of a curve} mamy
+    \begin{align*}
+        I &= -\int\limits_0^\pi \d x \int\limits_0^{\sin x} \left(\frac{\p Q}{\p x}(x, y) - \frac{\p P}{\p x}(x, y)\right) \d y + \int\limits_L P(x, y) \d x + Q(x, y) \d y = \\
+        &= -\int\limits_0^\pi \d x \int\limits_0^{\sin x} -(2x - 2y) - (2x + 2y) \d y + \int\limits_0^\pi x^2 \cdot 1 + (-x^2) \cdot 0 \d x = \\
+        &= \int\limits_0^\pi \d x \int\limits_0^{\sin x} 4x \d y + \int\limits_0^\pi x^2 \d x = \int\limits_0^\pi 4x\sin x \d x + \frac{\pi^3}{3} = \\
+        &= 4\left(\Big[-x\cos x\Big]_0^\pi + \int_0^\pi \cos x \d x\right) + \frac{\pi^3}{3} = 4\pi + \frac{\pi^3}{3}.
+    \end{align*}
+\end{solution}
 
-    Weźmy konkretny problem: chcemy znaleźć pole pod łukiem cyklody $x(t) = t - \sin t, y(t) = 1 - \cos t$. Możemy oczywiście skorzystać ze wzoru na pole pod wykresem funkcji zadanej parametrycznie, ale zakładamy, że go nie znamy. Weźmy pole wektorowe $\vec{F} : \vec{F}(x, y) = (-y, 0)$. Łatwo sprawdzić, że $\frac{\p Q}{\p x} - \frac{\p P}{\p y} = 0 + 1 = 1$. Możemy więc użyć twierdzenie Greena w przeciwną stronę niż zazwyczaj:
+\begin{remark}
+    Zazwyczaj całek krzywoliniowych skierowanych nie liczy się najprzyjemniej (Czytelnik raczy sprawdzić chociażby ostatnie dwa przykłady), dlatego wolimy przejść na całkę podwójną, stosując twierdzenie Greena (\ref{t:Green}). Jednak zdarzają się również sytuacje, w których to przejście z całki podwójnej na krzywoliniową jest dobrym rozwiązaniem.
+
+    Weźmy konkretny problem: chcemy znaleźć pole pod łukiem cykloidy
+    \[ x(t) = t - \sin t, \quad y(t) = 1 - \cos t. \]
+    Możemy oczywiście skorzystać ze wzoru na pole pod wykresem funkcji zadanej parametrycznie, ale zakładamy, że go nie znamy. Weźmy pole wektorowe $\vec{F} : \vec{F}(x, y) = (-y, 0)$. Łatwo sprawdzić, że $\frac{\p Q}{\p x} - \frac{\p P}{\p y} = 0 + 1 = 1$. Możemy więc użyć twierdzenia Greena w przeciwną stronę niż zazwyczaj:
     \[ \iint\limits_D 1 \d x \d y = -\oint\limits_{\p D} -y \d x = -\int\limits_0^{2\pi} -(1 - \cos t)(1 - \cos t) \d t = \int\limits_0^{2\pi} (1 - \cos t)^2 \d t = 3\pi a^3.\]
 
-    Aby policzyć pole figury często możemy skorzystać z pól wektorowych $(0, x)$, $(-y, 0)$, $\left(\frac{-y}{2}, \frac{x}{2}\right)$. Wirowość (czyli różnica, którą liczyliśmy) każdego z nich jest równa $1$, więc idealnie nadają się do tego celu. Używając tego ostatniego pola wektorowego łatwo pokazać, że
+    Aby policzyć pole figury, często możemy skorzystać z pól wektorowych $(0, x)$, $(-y, 0)$, $\left(\frac{-y}{2}, \frac{x}{2}\right)$. Rotacja (czyli różnica, którą liczyliśmy) każdego z nich jest równa $1$, więc idealnie nadają się do tego celu. Używając tego ostatniego pola wektorowego, łatwo pokazać, że
     \begin{equation}
         \text{pole } R = \frac{1}{2}\oint\limits_{\p R} -y \d x + x \d y,
     \end{equation}
@@ -124,7 +160,7 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \begin{definition}
     Pole potencjalne $\vec{F} = (P, Q)$ w obszarze $D$ to takie pole wektorowe, że istnieje funkcja różniczkowalna $u : D \to \RR$, że
     \[ \d u = P(x, y) \d x + Q(x, y) \d y, \]
-    czyli $P, Q$ są jej pochodnymi cząstowymi. Funkcję $u$ nazywamy potencjałem pola potencjalnego $\vec{F}$.
+    czyli $P, Q$ są jej pochodnymi cząstkowymi. Funkcję $u$ nazywamy potencjałem pola potencjalnego $\vec{F}$.
 \end{definition}
 
 \begin{theorem}[warunek konieczny i wystarczający na potencjalność pola]
@@ -138,9 +174,10 @@ Brzeg ograniczonego obszaru jednospójnego $D$ oznaczamy przez $\p D$. Mówimy, 
 \end{corollary}
 
 Możemy sformułować również ogólniejsze twierdzenie:
-\begin{theorem}[o niezależności całki krzywoliniowej od kształcu krzywej w polu potencjalnym]
-    Całka krzywoliniowa skierowana w polu potencjalnym nie zależy od kształu krzywej regularnej $K \subset D$, a jedynie od jej początku $A$ i końca $B$. Ponadto zachodzi równość
-    \[ \int\limits_{AB} P(x, y) \d x + Q(x, y) \d y = u(B) - u(A), \]
+\begin{theorem}[o niezależności całki krzywoliniowej od kształtu krzywej w polu potencjalnym]
+    \label{t:independence of path in a conservative vector field}
+    Całka krzywoliniowa skierowana w polu potencjalnym nie zależy od kształtu krzywej regularnej $K \subset D$, a jedynie od jej początku $A$ i końca $B$. Ponadto zachodzi równość
+    \[ \int\limits_{A}^B P(x, y) \d x + Q(x, y) \d y = u(B) - u(A), \]
     gdzie $u$ jest potencjałem pola potencjalnego w $D$.
 \end{theorem}
 
@@ -148,11 +185,39 @@ Możemy sformułować również ogólniejsze twierdzenie:
     Oblicz całkę krzywoliniową skierowaną pola wektorowego $\vec{F} = \left(\frac{y}{x^2 + y^2}, \frac{-x}{x^2 + y^2}\right)$ po okręgu $x^2 + y^2 = 1$ skierowanym dodatnio.
 \end{example}
 \begin{solution}
-    Niech $P(x, y) = \frac{y}{x^2 + y^2}$, $Q(x, y) = \frac{-x}{x^2 + y^2}$. Funkcje te są różniczkowalne w sposób ciągły na pewnym zbiorze $D$, jednak $(0, 0) \notin D$, więc nie jest to obszar jednospójny. Nie możemy więc użyć warunku wystarczającego na potencjalność pola (\ref{t:necessary and sufficient condition for field potentiality}) i tym samym powiedzieć, że całka wynosi zero.
+    Niech $P(x, y) = \frac{y}{x^2 + y^2}$, $Q(x, y) = \frac{-x}{x^2 + y^2}$. Funkcje te są różniczkowalne w sposób ciągły na pewnym zbiorze $D$, jednak $(0, 0) \notin D$, więc nie jest to obszar jednospójny. Nie możemy więc użyć warunku wystarczającego na potencjalność pola (\ref{t:necessary and sufficient condition for field potentiality}) i~tym samym powiedzieć, że całka wynosi zero.
 
     Zamiast tego wykorzystamy przejście na współrzędne biegunowe:
     \begin{align*}
         &\oint\limits_K P(x, y) \d x + Q(x, y) \d y = \int\limits_0^{2\pi}\left( \frac{\sin t}{1} (-\sin t \d t) + \frac{-\cos t}{1} (\cos t \d t)\right) = \\
         &= \int\limits_0^{2\pi}\left(-\sin^2 t + -\cos^2 t \right) \d t = \int\limits_0^{2\pi} -1 \d t = -2 \pi.
     \end{align*}
+\end{solution}
+
+\begin{example}
+    Oblicz
+    \[ \int\limits_\sC 2x^3y^4 + x \d x + 2x^4y^3 + y \d y, \]
+    gdzie $\sC$ jest fragmentem paraboli $y(x) = x^2 + 3x - 4, x \in [-3, 2]$.
+\end{example}
+\begin{solution}
+    Niech $\vec{F} = (P, Q)$, gdzie $P(x, y) = 2x^3y^4 + x, Q(x, y) = 2x^4y^3 + y$, będzie polem wektorowym. Możemy sprawdzić, że pochodne cząstkowe $P, Q$ istnieją i są ciągłe na $\RR^2$ oraz
+    \begin{align*}
+        \frac{\p Q}{\p x}(x, y) &= 8x^3y^3 \\
+        \frac{\p P}{\p y}(x, y) &= 8x^3y^3
+    \end{align*}
+    są równe, więc pole $\vec{F}$ jest potencjalne. Na mocy twierdzenia \ref{t:independence of path in a conservative vector field}
+    \[ \int\limits_\sC P(x, y) \d x + Q(x, y) \d y = \int\limits_{AB} P(x, y) \d x + Q(x, y) \d y, \]
+    gdzie $A$ i $B$ to początek i koniec krzywej $\sC$,
+    \[ A = (-3, -4), \qquad B = (2, 6). \]
+    Moglibyśmy teraz policzyć całkę po odcinku, ale zamiast tego możemy znaleźć potencjał $u$ pola $\vec{F}$:
+    \[ u = \int P(x, y) \d x = \int Q(x, y) \d y. \]
+    Skupmy się na funkcji $Q$:
+    \[ u = \int Q(x, y) \d y = \int 2x^4y^3 + y \d y = \frac{1}{2}x^4y^4 + \frac{1}{2}y^2 + C(x). \]
+    Musimy teraz jeszcze znaleźć stałą (w stosunku do $y$) $C(x)$. Aby to zrobić, możemy policzyć całkę $\int P(x, t) \d x$, ale w ogólności łatwiejszą operacją będzie różniczkowanie:
+    \[ \frac{\p u}{\p x}(x, y) = P(x, y) \]
+    \[ \implies C'(x) = x  \implies C(x) = \frac{1}{2}x^2 + c. \]
+    Mamy
+    \[ u(x, y) = \frac{1}{2}\left(x^4y^4 + y^2 + x^2\right) + c, \]
+    więc
+    \[ \int\limits_{AB} 2x^3y^4 + x \d x + 2x^4y^3 + y \d y = u(B) - u(A) = 15. \]
 \end{solution}

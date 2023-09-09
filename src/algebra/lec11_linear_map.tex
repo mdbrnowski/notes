@@ -2,7 +2,7 @@
     \label{d:linear map}
     Odwzorowanie
     \[ f : V \to W, \]
-    gdzie $V, W$ są przestrzeniami liniowymi nad tym samym ciałem $\KK$ jest \vocab{liniowe}, jeśli
+    gdzie $V, W$ są przestrzeniami liniowymi nad tym samym ciałem $\KK$, jest \vocab{liniowe}, jeśli
     \[ \dforall{u, v \in V} f(u + v) = f(u) + f(v) \]
     oraz
     \[ \dforall{v \in V, \alpha \in \KK} f(\alpha v) = \alpha f(v), \]
@@ -20,7 +20,7 @@ Podobnie jak w przypadku homomorfizmu grup (definicja \ref{d:homomorphism}), ele
     Odwzorowanie liniowe $f$ jest jednoznacznie określone przez wartości $f$ na wektorach bazowych dziedziny.
 \end{corollary}
 \begin{proof}
-    Wzór \ref{eq:equivalent liner map condition} można rozszerzyć do większej liczby składników używając $(\alpha, \beta, \gamma, \ldots)$ oraz $(u, v, w, \ldots)$. Taka postać również będzie równoważna definicji \ref{d:linear map}. Możemy policzyć wartość $f$ dla każdego wektora, znając jego współrzędne w pewnej bazie $B$ oraz wartości $f$ dla wszystkich wektorów z tej bazy.
+    Wzór \ref{eq:equivalent liner map condition} można rozszerzyć do większej liczby składników, używając $(\alpha, \beta, \gamma, \ldots)$ oraz $(u, v, w, \ldots)$. Taka postać również będzie równoważna definicji \ref{d:linear map}. Możemy policzyć wartość $f$ dla każdego wektora, znając jego współrzędne w pewnej bazie $B$ oraz wartości $f$ dla wszystkich wektorów z tej bazy.
 \end{proof}
 
 \begin{definition}
@@ -39,7 +39,7 @@ Podobnie jak w przypadku homomorfizmu grup (definicja \ref{d:homomorphism}), ele
     Dla każdego odwzorowania liniowego $f : V \to W$, jądro $f$ jest podprzestrzenią $V$, a obraz $f$ jest podprzestrzenią $W$.
 \end{fact}
 
-Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy $\nullity f$, a wymiar jego obrazu nazywamy \vocab{rzędem} i oznaczamy $\rank f$.
+Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy $\nullity f$, a~wymiar jego obrazu nazywamy \vocab{rzędem} i oznaczamy $\rank f$.
 
 \begin{example}
     Weźmy odwzorowanie $f : \RR^3 \to \RR^2$ takie, że
@@ -69,9 +69,9 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
     \begin{align*}
         \mathbf{w} = f(\mathbf{v}) &= f(t_1\mathbf{v}_1 + \ldots + t_k\mathbf{v}_k + t_{k+1}\mathbf{u}_{k+1} + \ldots + t_n\mathbf{u}_n) \\
             &= f(t_1\mathbf{v}_1) + \ldots + f(t_k\mathbf{v}_k) + f(t_{k+1}\mathbf{u}_{k+1}) + \ldots + f(t_n\mathbf{u}_n) \\
-            &= t_1f(\mathbf{v}_1) + \ldots + t_kf(\mathbf{v}_k) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n) \\
-            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n) \\
-            &= t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + ft_n(\mathbf{u}_n),
+            &= t_1f(\mathbf{v}_1) + \ldots + t_kf(\mathbf{v}_k) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n) \\
+            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n) \\
+            &= t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n),
     \end{align*}
     więc
     \[ \Im f = \Lin\{f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)\}. \]
@@ -84,7 +84,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
     Z tego wynika, że
     \[ (s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in \Ker f, \]
     więc $(s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in V$ możemy zapisać jako kombinację liniową wektorów $\mathbf{v}_1, \ldots, \mathbf{v}_k$. Zakładając, że ciąg $(s_i)$ jest niezerowy, mamy dwa sposoby zapisu jednego wektora z $V$, co stoi w sprzeczności z twierdzeniem \ref{t:explicit coefficients}. Z tego wynika, że $\forall i : s_i = 0$, więc wektory $f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)$ są liniowo niezależne, ergo
-    \[ \dim \Im f = n - k \]
+    \[ \dim \Im f = n - k, \]
     \[ \rank f = \dim V - \nullity f. \]
 \end{proof}
 
@@ -179,7 +179,7 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
             \label{eq:matrix form of linear map - linear combination}
     \end{align}
 
-    Mnożąc macierze jak w udowadnianej tezie otrzymalibyśmy
+    Mnożąc macierze jak w udowadnianej tezie, otrzymalibyśmy
     \[ y = \begin{bNiceMatrix}
         a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n \\
         a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \\
@@ -268,7 +268,7 @@ Jeśli odwzorowanie $f$ jest endomorfizmem, to macierz tego odwzorowania w bazie
 \begin{solution}
     Z twierdzenia \ref{t:changing transformation matrix when changing bases} mamy
     \[ M_f(B_1, B_2) = P_{B_2 \to B_2'} \cdot M_f(B_1', B_2') \cdot P_{B_1' \to B_1}. \]
-    Macierz przejścia $B_2 \to B_2'$ jest bardzo łatwo wyznaczyć, ponieważ $B_2$ to baza kanoniczna. W przypadku macierzy przejścia $B_1' \to B_1$ najłatwiej będzie wyznaczyć jej odwrotność, ponieważ $B_1$ jest bazą kanoniczną. Mamy więc
+    Macierz przejścia $B_2 \to B_2'$ jest bardzo łatwo wyznaczyć, ponieważ $B_2$ to baza kanoniczna. W~przypadku macierzy przejścia $B_1' \to B_1$ najłatwiej będzie wyznaczyć jej odwrotność, ponieważ $B_1$ jest bazą kanoniczną. Mamy więc
     \[ M_f(B_1, B_2) = \begin{bmatrix}
         1 & -1 \\
         1 & 1

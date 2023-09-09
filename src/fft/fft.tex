@@ -6,7 +6,7 @@
 
 \begin{document}
     \maketitle
-    \section*{Wymagania wstępne}
+    \subsection*{Wymagania wstępne}
     Czytelnik powinien znać podstawowe algorytmy i techniki algorytmiczne oraz swobodnie używać notacji określających asymptotyczne tempo wzrostu. Ponadto powinien mieć podstawową wiedzę na temat wielomianów, liczb zespolonych (w tym znać wzór Eulera) oraz macierzy.
     \tableofcontents
     \eject
@@ -26,7 +26,7 @@
     \end{fact}
     Na podstawie tego wzoru możemy z łatwością skonstruować algorytm mnożenia dwóch wielomianów, który będzie działać w czasie $\Theta(n^2)$. Niestety, taka złożoność nas nie zadowala; będziemy szukać algorytmu podkwadratowego.
 
-    Zauważmy, że zwykle reprezentujemy wielomian jako wektor współczynników -- taką reprezentację nazwiemy \vocab{współczynnikową}. Wielomian $n$-tego stopnia $f$ można jednak reprezentować również za pomocą zbioru $n + 1$ parami różnych punktów $(x, f(x))$ -- tę reprezentację nazwiemy z kolei \vocab{punktową}. Mając dwa wielomiany $n$-tego stopnia w postaci punktowej możemy po prostu pomnożyć odpowiednie wartości i otrzymać ich iloczyn (również w postaci punktowej) w czasie $\Theta(n)$.
+    Zauważmy, że zwykle reprezentujemy wielomian jako wektor współczynników -- taką reprezentację nazwiemy \vocab{współczynnikową}. Wielomian $n$-tego stopnia $f$ można jednak reprezentować również za pomocą zbioru $n + 1$ parami różnych punktów $(x, f(x))$ -- tę reprezentację nazwiemy z kolei \vocab{punktową}. Mając dwa wielomiany $n$-tego stopnia w postaci punktowej, możemy po prostu pomnożyć odpowiednie wartości i otrzymać ich iloczyn (również w postaci punktowej) w czasie $\Theta(n)$.
 
     Proces zamiany postaci współczynnikowej na punktową nazywa się \vocab{ewaluacją}, a~proces odwrotny -- \vocab{interpolacją}. Zanim przejdziemy dalej, powinniśmy jednak wykazać, że wielomian w postaci punktowej jest jednoznacznie opisany.
     \begin{theorem}[Jednoznaczność wielomianu interpolacyjnego]
@@ -53,7 +53,7 @@
     \end{proof}
 
     \begin{remark}
-        Przy dodawaniu lub mnożeniu wielomianów w postaci punktowej, punkty, w których znamy wartości dwóch danych wielomianów powinny być oczywiście takie same dla obydwu z nich. Ponadto, o ile przy dodawaniu wystarczyłoby $n + 1$ punktów, o tyle przy mnożeniu nie wystarczy. Wielomian wynikowy będzie stopnia $2n$, więc potrzebujemy $2n + 1$ punktów również dla wielomianów wejściowych.
+        Przy dodawaniu lub mnożeniu wielomianów w postaci punktowej, punkty, w których znamy wartości dwóch danych wielomianów, powinny być oczywiście takie same dla obydwu z nich. Ponadto, o ile przy dodawaniu wystarczyłoby $n + 1$ punktów, o tyle przy mnożeniu nie wystarczy. Wielomian wynikowy będzie stopnia $2n$, więc potrzebujemy $2n + 1$ punktów również dla wielomianów wejściowych.
     \end{remark}
 
     \subsection{Zmiana reprezentacji}
@@ -64,7 +64,7 @@
     $$ A(x) = a_0 + x(a_1 + x(a_2 + \ldots + x(a_{n-1} + xa_n)\ldots))$$
 
     \subsubsection*{Interpolacja}
-    Podobnie sytuacja wygląda z interpolacją -- korzystając z eliminacji Gaussa otrzymamy algorytm o złożoności $\Theta(n^3)$, co, korzystając ze wzoru Lagrange'a\footnote{który jest poza zakresem tego artykułu, ale można o nim przeczytać w \url{https://en.wikipedia.org/wiki/Lagrange_polynomial}}, możemy ulepszyć jedynie do $\Theta(n^2)$.
+    Podobnie sytuacja wygląda z interpolacją -- korzystając z eliminacji Gaussa, otrzymamy algorytm o złożoności $\Theta(n^3)$, co, korzystając ze wzoru Lagrange'a\footnote{który jest poza zakresem tego artykułu, ale można o nim przeczytać w \url{https://en.wikipedia.org/wiki/Lagrange_polynomial}}, możemy ulepszyć jedynie do $\Theta(n^2)$.
 
 \section{Dziel i zwyciężaj}
     Niezniechęceni niepowodzeniami z poprzednich akapitów spróbujemy wykorzystać technikę z powyższego tytułu. Problem ewaluacji oraz interpolacji wielomianu
@@ -108,7 +108,7 @@
         $$ \left(\omega_n^k\right)^2 = \cis\left(\frac{2\pi}{n}2k\right) = \cis\left(\frac{2\pi}{n/2}k\right) = \omega_{n/2}^k. $$
     \end{proof}
 
-    Ponadto można dowieść, że każdy pierwiastek jedności $\frac{n}{2}$ stopnia uzyskamy podnosząc dokładnie dwa różne pierwiastki jedności stopnia $n$. Jeśli $n$ jest liczbą parzystą, to $\omega_n^{n/2} = -1$, więc
+    Ponadto można dowieść, że każdy pierwiastek jedności $\frac{n}{2}$ stopnia uzyskamy, podnosząc dokładnie dwa różne pierwiastki jedności stopnia $n$. Jeśli $n$ jest liczbą parzystą, to $\omega_n^{n/2} = -1$, więc
     $$ \omega_n^{k+n/2} = -\omega_n^k, $$
     $$ \therefore (\omega_n^{k+n/2})^2 = (\omega_n^k)^2. $$
 

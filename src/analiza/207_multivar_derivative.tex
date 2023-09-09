@@ -5,7 +5,7 @@
 
 Oprócz notacji Eulera ($D_v f$) stosuje się również notację Leibniza ($D_v f(x) = \frac{\p f(x)}{\p{\vec{v}}})$ oraz  Lagrange'a ($f'_{\vec{v}}$).
 
-Pochodna \vocab{w kierunku} wektora $\vec{v}$ jest pochodną wzdłuż wektora $\frac{\vec{v}}{\Vert\vec{v}\Vert}$. Te pojęcia są oczywiście równoważne, jeśli $\vec{v}$ jest wersorem. Najczęściej używamy jednak \vocab{pochodnych cząstkowych} to znaczy pochodnych wzdłuż wersorów osiowych, oznaczając
+Pochodna \vocab{w kierunku} wektora $\vec{v}$ jest pochodną wzdłuż wektora $\frac{\vec{v}}{\Vert\vec{v}\Vert}$. Te pojęcia są oczywiście równoważne, jeśli $\vec{v}$ jest wersorem. Najczęściej używamy jednak \vocab{pochodnych cząstkowych}, to znaczy pochodnych wzdłuż wersorów osiowych, oznaczając
 \[ \frac{\p f}{\p x}(x, y) = \frac{\p f}{\p [1, 0]}(x, y) \hspace{1em}\text{ oraz }\hspace{1em} \frac{\p f}{\p y}(x, y) = \frac{\p f}{\p [0, 1]}(x, y). \]
 
 \begin{definition}[różniczka]
@@ -40,7 +40,7 @@ Pochodna \vocab{w kierunku} wektora $\vec{v}$ jest pochodną wzdłuż wektora $\
      nazywamy \vocab{macierzą Jacobiego} funkcji $f$ w punkcie $p$. Jeśli macierz ta jest kwadratowa, to jej wyznacznik nazywamy jakobianem funkcji $f$ w punkcie $p$ i oznaczamy $J(p)$.
 \end{definition}
 
-Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macierz $\d f(p)$ i wektor $h$, więc
+Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macierz $\d f(p)$ i~wektor $h$, więc
 \[ \d f(p)(h) = \begin{bNiceMatrix}
     \frac{\p f_1}{\p x_1}(p) & \frac{\p f_1}{\p x_2}(p) & \Cdots & \frac{\p f_1}{\p x_k}(p) \\
     \frac{\p f_2}{\p x_1}(p) & \frac{\p f_2}{\p x_2}(p) & \Cdots & \frac{\p f_2}{\p x_k}(p) \\
@@ -96,7 +96,7 @@ Chcąc obliczyć różniczkę $\d f(p)$ w punkcie $h$ wystarczy pomnożyć macie
     \[ f(x, y) = \begin{cases}(x^2 + y^2)\sin\left(\frac{1}{\sqrt{x^2 + x^2}}\right), & \text{dla } (x, y) \neq (0, 0) \\ 0, & \text{w przeciwnym wypadku}\end{cases}. \]
 \end{remark}
 
-W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretwać geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest równiczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
+W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że istnieje styczna do wykresu funkcji w tym punkcie. W podobny sposób możemy zinterpretować geometrycznie różniczkowalność funkcji $\RR^2 \to \RR$: funkcja jest różniczkowalna w punkcie, gdy w tym punkcie istnieje płaszczyzna styczna do wykresu funkcji. Taka płaszczyzna będzie mieć równanie
 \begin{equation}
     z = f(x_0, y_0) + \frac{\p f}{\p x}(x_0, y_0) \cdot (x - x_0) + \frac{\p f}{\p y}(x_0, y_0) \cdot (y -y_0).
 \end{equation}
@@ -107,7 +107,7 @@ W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że ist
     w punkcie $p = (1, 0)$.
 \end{example}
 \begin{solution}
-    Najpierw znajdźmy pochodne cząstowe:
+    Najpierw znajdźmy pochodne cząstkowe:
     \begin{align*}
         \frac{\p f}{\p x}f(x, y) = e^{x^2 - y} \cdot 2x = 2xe^{x^2 - y} \\
         \frac{\p f}{\p y}f(x, y) = e^{x^2 - y} \cdot (-1) = -e^{x^2 - y}.
@@ -121,30 +121,32 @@ W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że ist
     \centering
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[my axis style, view = {-15}{30}]
-            \addplot3[surf, opacity=0.1, colormap={CM}{rgb255=(255,0,0) rgb255=(255,0,0)},
+            \addplot3[colormap={CM}{color=(AccColor3) color=(AccColor3)},
                 domain = -1.5:1.5, domain y = -1.5:1.5,
-                samples = 10, samples y = 10
+                samples = 10, samples y = 10,
+                surf, opacity=0.3
             ]{e*(2*x - y - 1)};
             \addplot3[
                 domain = -1.5:1.5, domain y = -1.5:1.5,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{exp(x^2 - y)};
-            \node[draw=none, shape=circle, fill, opacity=0.7, red, inner sep=1.5pt] (d1) at (1,0,e){};
+            \node[draw=none, shape=circle, fill, opacity=0.8, AccColor1, inner sep=1.5pt] (d1) at (1,0,e){};
         \end{axis}
     \end{tikzpicture}
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[my axis style, view = {10}{10}]
-            \addplot3[surf, opacity=0.1, colormap={CM}{rgb255=(255,0,0) rgb255=(255,0,0)},
+            \addplot3[colormap={CM}{color=(AccColor3) color=(AccColor3)},
                 domain = -1.5:1.5, domain y = -1.5:1.5,
-                samples = 10, samples y = 10
+                samples = 10, samples y = 10,
+                surf, opacity=0.3, 
             ]{e*(2*x - y - 1)};
             \addplot3[
                 domain = -1.5:1.5, domain y = -1.5:1.5,
-                samples = 24, samples y = 24,
-                mesh
+                samples = 30, samples y = 30,
+                surf, opacity=.4
             ]{exp(x^2 - y)};
-            \node[draw=none, shape=circle, fill, opacity=0.7, red, inner sep=1.5pt] (d1) at (1,0,e){};
+            \node[draw=none, shape=circle, fill, opacity=0.8, AccColor1, inner sep=1.5pt] (d1) at (1,0,e){};
         \end{axis}
     \end{tikzpicture}
     \caption{Wykres funkcji $f(x, y) = e^{x^2 - y}$ z płaszczyzną styczną w $(1, 0)$.}
