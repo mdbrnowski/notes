@@ -1,24 +1,5 @@
 \ProvidesPackage{mystd}
 
-\usepackage{fontspec}
-\newfontfamily{\cyrillic}[
-    UprightFont=*rm,
-    BoldFont=*bx,
-    ItalicFont=*ti,
-    BoldItalicFont=*bi,
-    Extension=.otf,
-    Ligatures=TeX
-]{cmun}
-\setmonofont{JetBrainsMono}[
-    Path=./fonts/,
-    Scale=0.85,
-    Extension=.ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-]
-
 \usepackage{amsmath,amssymb,amsthm,amsfonts}
 \usepackage[svgnames,dvipsnames]{xcolor}
 
@@ -46,6 +27,8 @@
 \usepackage{esint}  % better integrals
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
 \usepackage{tkz-euclide}
@@ -56,6 +39,7 @@
     custom-line={letter=I, tikz=densely dashed, total-width=\pgflinewidth},
     custom-line={letter=S, tikz=solid, total-width=\pgflinewidth}
 }
+\usepackage{booktabs}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
@@ -63,6 +47,8 @@
 \newif\ifstdthm\stdthmfalse
 \newif\ifstdcolorsec\stdcolorsecfalse
 \newif\ifstdpolish\stdpolishfalse
+\newif\ifstdmonofont\stdmonofontfalse
+\newif\ifstdanswers\stdanswersfalse
 
 \DeclareOption{pretty}{\stdthmtrue\stdcolorsectrue}
 
@@ -71,6 +57,8 @@
 \DeclareOption{colorsec}{\stdcolorsectrue}
 \DeclareOption{nocolorsec}{\stdcolorsecfalse}
 \DeclareOption{polish}{\stdpolishtrue}
+\DeclareOption{monofont}{\stdmonofonttrue}
+\DeclareOption{answers}{\stdanswerstrue}
 
 \ProcessOptions\relax
 
@@ -78,6 +66,26 @@
     \usepackage[polish]{babel}
 \fi
 
+\usepackage{fontspec}
+\newfontfamily{\cyrillic}[
+    UprightFont=*rm,
+    BoldFont=*bx,
+    ItalicFont=*ti,
+    BoldItalicFont=*bi,
+    Extension=.otf,
+    Ligatures=TeX
+]{cmun}
+\ifstdmonofont
+    \setmonofont{JetBrainsMono}[
+        Path=./fonts/,
+        Scale=0.85,
+        Extension=.ttf,
+        UprightFont=*-Regular,
+        BoldFont=*-Bold,
+        ItalicFont=*-Italic,
+        BoldItalicFont=*-BoldItalic
+    ]
+\fi
 
 %  ----------  SHORT AND USEFUL STUFF  ----------  %
 
@@ -130,6 +138,7 @@
 \newcommand{\sH}{\mathcal H}
 \newcommand{\sL}{\mathcal L}
 \newcommand{\sM}{\mathcal M}
+\newcommand{\sO}{\mathcal O}
 \newcommand{\sR}{\mathcal R}
 \newcommand{\sS}{\mathcal S}
 
@@ -309,13 +318,15 @@
     stringstyle=\color{orange},
     breaklines=true,
     breakatwhitespace=true,
-    frame=none
+    frame=none,
+    texcl=true    % for unicode and math in the comments
 }
 \usepackage[shortlabels]{enumitem}
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{mathtools}
 \usepackage{microtype}
+\usepackage[color=ColAccBad!70]{todonotes}
 
 \addtokomafont{subtitle}{\Large}
 \setkomafont{author}{\Large\slshape}
@@ -335,13 +346,15 @@
 \ohead{\footnotesize\textbf{\thetitle}}
 \cfoot{\pagemark}
 
-\usepackage{answers}
-\renewcommand{\solutionextension}{out}
+\ifstdanswers
+    \usepackage{answers}
+    \renewcommand{\solutionextension}{out}
 
-\Newassociation{hint}{hintitem}{hints}
-\Opensolutionfile{hints}
-\newcommand{\makehints}{\Closesolutionfile{hints}\input{hints.out}}
+    \Newassociation{hint}{hintitem}{hints}
+    \Opensolutionfile{hints}
+    \newcommand{\makehints}{\Closesolutionfile{hints}\input{hints.out}}
 
-\Newassociation{answer}{hintitem}{answers}
-\Opensolutionfile{answers}
-\newcommand{\makeanswers}{\Closesolutionfile{answers}\input{answers.out}}
+    \Newassociation{answer}{hintitem}{answers}
+    \Opensolutionfile{answers}
+    \newcommand{\makeanswers}{\Closesolutionfile{answers}\input{answers.out}}
+\fi

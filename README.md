@@ -42,6 +42,8 @@ To the package `mystd.sty` one can pass a few arguments:
 * `colorsec`/`nocolorsec` – prettier sections numeration
 * `pretty` – passes `thm` and `colorsec`
 * `polish` – Polish version (keywords and other)
+* `monofont` – use JetBrainsMono font
+* `answers` – use answer and hit environments
 
 In `mystd.sty` I have also defined:
 
