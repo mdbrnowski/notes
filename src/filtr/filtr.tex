@@ -2,7 +2,7 @@
 \usepackage[pretty,polish,answers]{mystd}
 \title{Funkcje tworzące i filtracja pierwiastkami jedności}
 \author{Michał Dobranowski}
-\date{czerwiec 2022 \\ v1.3}
+\date{czerwiec 2022 \\ v1.4}
 
 \begin{document}
     \maketitle
@@ -67,13 +67,13 @@
     \subsection{Zadania}
     \begin{problem}[Berkeley Math Tournament 2015, Analysis 8]
         Niech $\omega$ będzie pierwotnym pierwiastkiem jedności $7$ stopnia. Oblicz
-        $$ \prod_{k = 0}^6(1 + \omega^k + \omega^{2k}). $$
+        $$ \prod_{k = 0}^6(1 + \omega^k - \omega^{2k}). $$
         \begin{hint}
             Rozłóż trójmian na iloczyn dwumianów.
         \end{hint}
         \begin{answer}
             Najpierw rozłóżmy i oznaczmy szukany iloczyn
-            $$ P = \prod_{k = 0}^6(1 + \omega^k + \omega^{2k}) = -\prod_{k = 0}^6(\phi - \omega)(\tau - \omega), $$
+            $$ P = \prod_{k = 0}^6(1 + \omega^k - \omega^{2k}) = -\prod_{k = 0}^6(\phi - \omega)(\tau - \omega), $$
             gdzie $\phi, \tau$ to rozwiązania równania $x^2 - x - 1 = 0$.
 
             Z lematu \ref{l:roots_group} oraz rozumowania podobnego do dowodu lematu \ref{l:roots_plus_one_prod} wiemy, że
