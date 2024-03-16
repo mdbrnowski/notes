@@ -79,10 +79,10 @@ Można udowodnić, że funkcja $d_c$ jest metryką (zwaną metryką Czebyszewa).
     \[ \lim_{n\to\infty} \frac{x^n}{1 + x^n} = 1 \equiv f, \]
     więc ciąg jest zbieżny punktowo do funkcji ciągłej, możemy zatem sprawdzić, czy zbiega do niej jednostajnie.
     \[ \lim_{n\to\infty}\sup_{x\in X} \left|\frac{x^n}{1 + x^n} - 1\right| = \lim_{n\to\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right)\]
-    Obliczmy supremum danej funkcji.
-    \[ \ddx \left(1 - \frac{x^n}{1 + x^n}\right) = \frac{nx^{n-1}(1 + x^n) - x^n(nx^{n-1})}{\left(1 + x^n\right)^2} = \frac{nx^{n-1}}{\left(1 + x^n\right)^2} \]
-    Pochodna zawsze jest dodatnia, więc supremum będzie przy $x \to \infty$. Mamy
-    \[ \lim_{n\to\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\to\infty}\lim_{x\to\infty} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\to\infty} \left(1 - 1\right) = 0, \]
+    Obliczmy supremum danej funkcji. Pochodna
+    \[ \ddx \left(1 - \frac{x^n}{1 + x^n}\right) = -\frac{nx^{n-1}(1 + x^n) - x^n(nx^{n-1})}{\left(1 + x^n\right)^2} = -\frac{nx^{n-1}}{\left(1 + x^n\right)^2} \]
+    jest ujemna na całym przedziale $[2, \infty)$, więc supremum będzie przy $x = 2$. Mamy
+    \[ \lim_{n\to\infty}\sup_{x\in X} \left(1 - \frac{x^n}{1 + x^n}\right) = \lim_{n\to\infty}\left(1 - \frac{2^n}{1 + 2^n}\right) = \left(1 - 1\right) = 0, \]
     więc dany ciąg jest zbieżny jednostajnie.
 \end{solution}
 
