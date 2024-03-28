@@ -29,6 +29,34 @@ Zbieżność w sensie metryki $d$ to \vocab{zbieżność przeciętna z kwadratem
     \[ c_n = \frac{f \circ \varphi_n}{\Vert \varphi_n \Vert^2}. \]
 \end{theorem}
 
+\begin{proof}
+    Załóżmy, że:
+    \begin{align*}
+        f(x)
+        &= \sum_{n=0}^\infty c_n\varphi_n
+        \intertext{
+            Wybierzmy dowolne $m \in \mathbb{N}$.
+        }
+        f(x) \cdot \varphi_m (x)
+        &= \sum_{n=0}^\infty c_n \varphi_n(x) \cdot \varphi_m(x) \\
+        \int_a^b f(x) \varphi_m(x) dx
+        &= \sum_{n=0}^\infty c_n \int_a^b \varphi_n(x) \varphi_m(x) dx \\
+        \intertext{
+            Ponieważ $(\varphi_n)_{n \in \mathbb{N}}$ jest ciągiem ortogonalnym
+            (czyli dla $n \neq m$, $\int_a^b \varphi_n(x) \varphi_m(x) = 0$),
+            suma sprowadza się do:
+        }
+        \int_a^b f(x) \varphi_m(x) dx
+        &= \sum_{n=0}^\infty c_n \int_a^b \varphi_n(x) \varphi_m(x) dx \\
+        &= c_m \int_a^b \varphi_m(x) \varphi_m(x) dx \\
+        f \circ \varphi_m
+        &= c_m \cdot (\varphi_m \circ \varphi_m)
+        = c_m \cdot \Vert \varphi_m \Vert^2 \\
+        \frac{f \circ \varphi_m}{\Vert \varphi_m \Vert^2}
+        &= c_m
+    \end{align*}
+\end{proof}
+
 Szereg ortogonalny, w którym współczynniki mają powyższą formę, nazywamy \vocab{szeregiem Fouriera} funkcji $f$. Oznaczamy
 \[ f \sim \sum_{n=0}^\infty c_n\varphi_n. \]
 Jeśli powyższy szereg ortogonalny jest zbieżny do $f$ na całym przedziale $[a, b]$, to mówimy, że ta funkcja jest \vocab{rozwijalna} w szereg Fouriera.
