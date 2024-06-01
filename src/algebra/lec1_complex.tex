@@ -3,9 +3,9 @@
 \end{definition}
 
 Liczby zespolone można reprezentować w kilku postaciach, jedna z nich to \vocab{postać algebraiczna}. Używając jej, liczba $z = (x, y)$ jest zapisywana jako
-$$ z = x + iy, $$
+\[ z = x + iy, \]
 gdzie $i$ nazywamy \vocab{jednostką urojoną}, która spełnia
-$$ i^2 = -1. $$
+\[ i^2 = -1. \]
 
 Niech $z_1 = x_1 + iy_1$ oraz $z_2 = x_2 + iy_2$. Określamy:
 \begin{itemize}
@@ -27,13 +27,13 @@ Niech $z_1 = x_1 + iy_1$ oraz $z_2 = x_2 + iy_2$. Określamy:
 \end{definition}
 
 Zachodzi pewna własność, wynikająca ze wzoru skróconego mnożenia:
-$$ z\ol{z} = (x + iy)(x - iy) = x^2 - i^2y^2 = x^2 + y^2 $$
+\[ z\ol{z} = (x + iy)(x - iy) = x^2 - i^2y^2 = x^2 + y^2 \]
 \begin{equation}
     z\ol{z} = |z|^2
 \end{equation}
 
 Powyższa liczba jest liczbą rzeczywistą, więc znaleźliśmy prosty sposób na dzielenie liczb zespolonych przez siebie, mnożąc licznik i mianownik przez sprzężenie mianownika. Na przykład:
-$$ \frac{1 + 2i}{-1 - i} = \frac{(1 + 2i)(-1 + i)}{(-1 - i)(-1 + i)} = \frac{-3 -i}{2} = \frac{-3}{2} - \frac{i}{2}. $$
+\[ \frac{1 + 2i}{-1 - i} = \frac{(1 + 2i)(-1 + i)}{(-1 - i)(-1 + i)} = \frac{-3 -i}{2} = \frac{-3}{2} - \frac{i}{2}. \]
 
 \begin{lemma}
     Oprócz $z\ol{z} = |z|^2$, zachodzą również równości:
@@ -69,7 +69,7 @@ Liczby zespolone można interpretować jako punkty na \vocab{płaszczyźnie zesp
 \end{proof}
 
 Możemy wyprowadzić \vocab{postać trygonometryczną} liczby zespolonej, która będzie operować na długości wektora wodzącego oraz kącie skierowanym. Mamy więc
-$$ z = |z|(\cos\varphi + i\sin\varphi) $$
+\[ z = |z|(\cos\varphi + i\sin\varphi) \]
 gdzie $\varphi$ to miara kąta skierowanego między wektorem wodzącym liczby zespolonej $z$ a~osią liczb rzeczywistych. Ten kąt nazywany jest \vocab{argumentem} i oznaczany przez $\Arg(z)$. Argument nie jest określony jednoznacznie -- dowolne dwa argumenty jednej liczby różnią się o wielokrotność $2\pi$. Jeśli argument jest w przedziale $[0, 2\pi)$, to mówimy, że jest to \vocab{argument główny} liczby $z$ i oznaczamy $\arg(z)$.
 
 Za pomocą podstawowej trygonometrii możemy łatwo zamieniać postać algebraiczną i trygonometryczną między sobą.
@@ -124,11 +124,11 @@ Stosując wzór \ref{eq:complex_prod} $n$ razy otrzymujemy dowód następująceg
 \begin{theorem}[wzór de Moivre'a]
     \label{t:demoivre}
     Dla $z = |z|(\cos\varphi + i\sin\varphi)$ oraz $n \in \ZZ$ zachodzi równość
-    $$ z^n = |z|^n(\cos n\varphi + i\sin n\varphi) $$
+    \[ z^n = |z|^n(\cos n\varphi + i\sin n\varphi) \]
 \end{theorem}
 
 Wzór de Moivre'a zapewnia prosty sposób na potęgowanie liczb zespolonych. Dlatego, mając za zadanie obliczyć
-$$ (-2\sqrt{3} - 2i)^{16} $$
+\[ (-2\sqrt{3} - 2i)^{16} \]
 najłatwiej będzie zmienić postać liczby do postaci trygonometrycznej, a następnie skorzystać ze wzoru de Moivre'a.
 
 \begin{definition}[pierwiastek liczby zespolonej]
@@ -153,7 +153,7 @@ Postać $z = |z|e^{i\varphi}$ liczby zespolonej będziemy nazywać \vocab{postac
 
 \begin{theorem}[wzór Eulera]
     Dla każdego $\varphi \in \RR$ zachodzi
-    $$ e^{i\varphi} = \cos\varphi + i\sin\varphi. $$
+    \[ e^{i\varphi} = \cos\varphi + i\sin\varphi. \]
 \end{theorem}
 \begin{proof}
     Standardowo dowodzi się wzoru Eulera za pomocą szeregów Taylora. Pokażemy inny, mniej oczywisty, ale bardziej elementarny dowód.

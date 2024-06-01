@@ -1,7 +1,7 @@
 \vocab{Działaniem} (wewnętrznym) w zbiorze $A$ nazwiemy każde odwzorowanie $h$ takie, że
-$$ h : A \times A \to A. $$
+\[ h : A \times A \to A. \]
 \vocab{Działaniem zewnętrznym} w zbiorze $A$ jest odwzorowanie
-$$ h : F \times A \to A. $$
+\[ h : F \times A \to A. \]
 
 Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to, zamiast $h(a, b)$ będziemy pisać $a \circ b$.
 
@@ -14,7 +14,7 @@ Jeśli zamiast $h$ weźmiemy jakiś symbol, na przykład $\circ$, to, zamiast $h
 \end{definition}
 
 Jeśli dla pewnego elementu $e \in A$ zachodzi
-$$ \forall x \in A : x \circ e = e \circ x = x, $$
+\[ \forall x \in A : x \circ e = e \circ x = x, \]
 to $e$ jest \vocab{elementem neutralnym}.
 
 \begin{fact}
@@ -22,23 +22,23 @@ to $e$ jest \vocab{elementem neutralnym}.
 \end{fact}
 \begin{proof}
     Jeśli mielibyśmy dwa elementy neutralne $e_1, e_2$ to mamy
-    $$ e_1 \circ e_2 = e_1 = e_2. $$
+    \[ e_1 \circ e_2 = e_1 = e_2. \]
 \end{proof}
 
 Jeżeli istnieje element neutralny $e \in A$ działania $\circ$, to \vocab{elementem symetrycznym} do $x \in A$ jest taki element $x' \in A$, że
-$$ x \circ x' = e = x' \circ x. $$
+\[ x \circ x' = e = x' \circ x. \]
 
 \begin{lemma}
     Jeśli działanie $\circ$ jest łączne w zbiorze $A$ i istnieje element neutralny $e \in A$, to jeśli dany element $x \in A$ ma element symetryczny, to jest on jedyny oraz zachodzi $(x')' = x$.
 \end{lemma}
 \begin{proof}
     Jeśli mielibyśmy dwa elementy symetryczne $x'_1, x'_2$, to mamy
-    $$ x'_1 = x'_1 \circ e = x'_1 \circ (x \circ x'_2) = (x'_1 \circ x) \circ x'_2 = e \circ x'_2 = x'_2. $$
+    \[ x'_1 = x'_1 \circ e = x'_1 \circ (x \circ x'_2) = (x'_1 \circ x) \circ x'_2 = e \circ x'_2 = x'_2. \]
 
     Ponadto z definicji elementu symetrycznego mamy
-    $$ x' \circ x = e $$
+    \[ x' \circ x = e \]
     oraz
-    $$ x' \circ (x')' = e, $$
+    \[ x' \circ (x')' = e, \]
     a więc $x$ jest elementem symetrycznym $x'$, ergo $(x')' = x$.
 \end{proof}
 
@@ -74,16 +74,16 @@ $$ x \circ x' = e = x' \circ x. $$
 Łatwo sprawdzić, że mnożenie modulo $n$ w zbiorze $\ZZ_n \setminus \{0\}$ jest wewnętrzne i łączne. Ma również element neutralny $1$. Będziemy więc dowodzić jedynie istnienia elementu symetrycznego dla każdego elementu.
 \begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
     Załóżmy przeciwnie, że istnieje $k \in \ZZ_n \setminus \{0, 1\}$ takie, że $k \mid n$. Skoro $(\ZZ_n \setminus \{0\}, \cdot_n)$ jest grupą, to $k$ ma element symetryczny $k^{-1}$. Zachodzi więc
-    $$ kk^{-1} \equiv 1 \pmod{n}, $$
+    \[ kk^{-1} \equiv 1 \pmod{n}, \]
     czyli inaczej
-    $$ \exists m \in \ZZ : kk^{-1} - 1 = mn. $$
+    \[ \exists m \in \ZZ : kk^{-1} - 1 = mn. \]
     Co jednak prowadzi do sprzeczności, ponieważ
-    $$ kk^{-1} - 1 \not\equiv mn \pmod{k} $$
-    $$ - 1 \not\equiv 0 \pmod{k}. $$
+    \[ kk^{-1} - 1 \not\equiv mn \pmod{k} \]
+    \[ - 1 \not\equiv 0 \pmod{k}. \]
 \end{proof}
 \begin{proof}[Dowód dostateczności]
     Skoro $n$ jest liczbą pierwszą, to z małego twierdzenia Fermata mamy
-    $$ a^{n-1} \equiv 1 \pmod{n} $$
+    \[ a^{n-1} \equiv 1 \pmod{n} \]
     dla każdego $a \in \ZZ_n \setminus \{0\}$.
     Z tego wynika, że dla dowolnego elementu $a$ jego elementem symetrycznym będzie $a^{n-2}$.
 \end{proof}
@@ -119,11 +119,11 @@ Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy prze
 \begin{lemma}
     \label{l:cancellation_property}
     W pierścieniach całkowitych zachodzi \vocab{własność skracania}, to znaczy, że dla elementów pierścienia $a, b, c$ przy $c \neq \mathbf{0}$ zachodzi
-    $$ ac = bc \implies a = b. $$
+    \[ ac = bc \implies a = b. \]
 \end{lemma}
 \begin{proof}
     Jeśli $ac = bc$, to $ac - bc = \mathbf{0}$. Z rozdzielności dostajemy
-    $$ (a - b)c = \mathbf{0}. $$
+    \[ (a - b)c = \mathbf{0}. \]
     W pierścieniu całkowitym nie ma jednak dzielników zera, więc $a - b = \mathbf{0}$, co dowodzi tezy.
 \end{proof}
 
@@ -192,7 +192,7 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), je�
 \begin{definition}
     \label{d:homomorphism}
     Homomorfizmem grupy $(A_1, +)$ w grupę $(A_2, \oplus)$ jest takie odwzorowanie $h : A_1 \to A_2$, że
-    $$ \forall x, y \in A_1 : h(x + y) = h(x) \oplus h(y). $$
+    \[ \forall x, y \in A_1 : h(x + y) = h(x) \oplus h(y). \]
 \end{definition}
 
 \begin{fact}
@@ -218,7 +218,7 @@ Analogicznie definiujemy morfizmy między pierścieniami i ciałami (wtedy równ
     \begin{itemize}
         \item $h(x) = x^2$ jest homomorfizmem grupy $(\RR \setminus \{0\}, \cdot)$ w $(\RR_+, \cdot)$,
         \item $h(x) = e^x$ jest izomorfizmem grupy $(\RR, +)$ w $(\RR_+, \cdot)$, ponieważ
-        $$ h(x + y) = e^{x + y} = e^x \cdot e^y = h(x) \cdot g(y), $$
+        \[ h(x + y) = e^{x + y} = e^x \cdot e^y = h(x) \cdot g(y), \]
         \item $h(z) = \ol{z}$ jest automorfizmem grupy $(\CC, +).$
     \end{itemize}
 \end{example}

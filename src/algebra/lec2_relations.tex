@@ -3,20 +3,20 @@
 \end{definition}
 
 Zbiór $X$ nazywamy \vocab{naddziedziną}, $Y$ \vocab{zapasem}, $\gr \sR$ to \vocab{wykres} relacji. Piszemy, że $x \sR y$, jeśli $(x, y) \in \gr\sR$. \vocab{Dziedzina} relacji $\sR$ to zbiór
-$$ D_\sR = \{x \in X : \exists y \in Y : x \sR y\}, $$
+\[ D_\sR = \{x \in X : \exists y \in Y : x \sR y\}, \]
 a jej \vocab{przeciwdziedzina} to zbiór
-$$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}. $$
+\[ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}. \]
 
 \begin{definition}
     Relacja odwrotna do relacji $\sR = (X, \gr\sR, Y)$ to taka relacja $\sR^{-1} = (Y, \gr\sR^{-1}, X)$, że
-    $$ \gr \sR^{-1} = \{(y, x) \in Y \times X : (x, y) \in \gr\sR\}. $$
+    \[ \gr \sR^{-1} = \{(y, x) \in Y \times X : (x, y) \in \gr\sR\}. \]
 \end{definition}
 
 \begin{definition}
     Złożenie relacji $\sR = (X, \gr\sR, Y)$ z relacją $\sS = (Y, \gr\sS, Z)$ to relacja
-    $$ \sS \circ \sR = (X, \gr(\sS \circ \sR), Z), $$
+    \[ \sS \circ \sR = (X, \gr(\sS \circ \sR), Z), \]
     gdzie
-    $$ \gr(\sS \circ \sR) = \{(x, z) \in X \times Z : \exists y \in Y : x \sR y \wedge y \sS z\}. $$
+    \[ \gr(\sS \circ \sR) = \{(x, z) \in X \times Z : \exists y \in Y : x \sR y \wedge y \sS z\}. \]
 \end{definition}
 
 \begin{definition}[rodzaje relacji]
@@ -37,22 +37,22 @@ $$ \rotatebox[origin=c]{180}{$D$}_\sR = \{y \in Y : \exists x \in X : x \sR y\}.
 
 \begin{definition}
     Jeżeli $(X, \sR)$ zbiorem z relacją równoważności, to dla każdego $x \in X$ klasą abstrakcji (klasą równoważności) tego elementu nazywamy zbiór
-    $$ [x] = \{y \in X : x \sR y\}. $$
+    \[ [x] = \{y \in X : x \sR y\}. \]
 \end{definition}
 
 \begin{definition}
     Zbiór ilorazowy relacji $\sR$ to zbiór klas abstrakcji tej relacji; przyjmujemy oznaczenie
-    $$ X/\sR = \{[x] : x \in X\}. $$
+    \[ X/\sR = \{[x] : x \in X\}. \]
 \end{definition}
 
 \begin{theorem}
     Niech $(X, \sR)$ będzie zbiorem z relacją równoważności. Wtedy
-    $$ \forall x, y \in X : [x] \neq [y] \iff [x] \cap [y] = \emptyset . $$
+    \[ \forall x, y \in X : [x] \neq [y] \iff [x] \cap [y] = \emptyset . \]
 \end{theorem}
 \begin{proof}[Dowód wystarczalności]\renewcommand{\qedsymbol}{}
     Załóżmy przez sprzeczność, że $[x] \cap [y] \neq \emptyset$, a więc $\exists z \in X : x \sR z \wedge y \sR z$. Teraz weźmy dowolny element $a \in [x]$. Mamy więc $x \sR a$. Korzystając z symetryczności i przechodniości relacji $\sR$, mamy
-    $$ a \sR x \wedge x \sR z \wedge z \sR y, $$
-    $$ \therefore y \sR a. $$
+    \[ a \sR x \wedge x \sR z \wedge z \sR y, \]
+    \[ \therefore y \sR a. \]
     Z tego wynika, że $[x] \subset [y]$. Analogicznie (przyjmując na początku $a \in [y]$) dostaniemy, że $[y] \subset [x]$, wiec $[x] = [y]$, co jest sprzeczne z założeniem.
 \end{proof}
 \begin{proof}[Dowód konieczności]
@@ -71,13 +71,13 @@ Z powyższego twierdzenie wynika, że relacja równoważności w danym zbiorze $
 \end{definition}
 
 Niech $(X, \preceq)$ będzie zbiorem z porządkiem częściowym. Wtedy \vocab{element największy} $\ol{M} \in X$ zbioru $X$ to taki element, że
-$$ \forall x \in X : x \preceq \ol{M}, $$
+\[ \forall x \in X : x \preceq \ol{M}, \]
 a \vocab{element maksymalny} $M_{\max} \in X$ to taki element, że
-$$ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). $$
+\[ \forall x \in X : (M_{\max} \preceq x) \implies (M_{\max} = x). \]
 Analogicznie definiujemy \vocab{element najmniejszy} $\ol{m} \in X$:
-$$ \forall x \in X : \ol{m} \preceq x $$
+\[ \forall x \in X : \ol{m} \preceq x \]
 oraz \vocab{element minimalny} $m_{\min} \in X$:
-$$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
+\[ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) \]
 
 \begin{theorem}
     \label{t:uniq_greatest}
@@ -85,9 +85,9 @@ $$ \forall x \in X : x \preceq m_{\min} \implies (x = m_{\min}) $$
 \end{theorem}
 \begin{proof}
     Załóżmy przeciwnie, że istnieją dwa elementy największe $M_1, M_2$. Z definicji zachodzi
-    $$ M_1 \preceq M_2 $$
+    \[ M_1 \preceq M_2 \]
     oraz
-    $$ M_2 \preceq M_1, $$
+    \[ M_2 \preceq M_1, \]
     co jest sprzeczne z antysymetrycznością porządków.
 \end{proof}
 
@@ -106,11 +106,11 @@ Oczywiście dwa powyższe twierdzenia są prawdziwe również odpowiednio dla el
 \end{fact}
 
 Niech $(X, \preceq)$ będzie zbiorem uporządkowanym, a zbiór $A \subset X$ jego podzbiorem. Element $M \in X$ jest \vocab{majorantą} (ograniczeniem górnym) zbioru $A$ jeśli
-$$ \forall x \in A : x \preceq M. $$
+\[ \forall x \in A : x \preceq M. \]
 \vocab{Kresem górnym} (supremum) zbioru $A$ (w zbiorze $X$) jest element najmniejszy zbioru majorant. Oznaczamy go symbolem
 $$\sup A.$$
 Analogicznie definiujemy \vocab{minorantę} (ograniczenie dolne) $m \in X$ zbioru $A \subset X$:
-$$ \forall x \in A : m \preceq x $$
+\[ \forall x \in A : m \preceq x \]
 oraz \vocab{kres dolny} (infimum) tego zbioru (jest nim element największy zbioru minorant), który oznaczamy symbolem
 $$\inf A.$$
 
@@ -120,7 +120,7 @@ $$\inf A.$$
 \end{theorem}
 \begin{proof}
     Z definicji majoranty wynika, że element największy zbioru $A$ jest również jego majorantą. Każda majoranta $M \in X$ zbioru $A$ oczywiście jest ,,większa'' niż dowolny element zbioru $A$ (w tym również jego element największy $\ol{M}$), to znaczy
-    $$ \forall M : \ol{M} \preceq M, $$
+    \[ \forall M : \ol{M} \preceq M, \]
     z czego wynika, że $\ol{M}$ jest elementem najmniejszym zbioru majorant zbioru $A$, a więc supremum tego zbioru.
 \end{proof}
 
@@ -136,15 +136,15 @@ Oczywiście dwa poprzednia twierdzenia są również prawdziwe odpowiednio dla e
 
 \begin{example}
     Weźmy zbiór liniowo uporządkowany $(\RR, \leq)$ oraz jego podzbiór $A = [0, 1) \subset \RR$. Zbiór majorant zbioru $A$ to przedział $[1, \infty)$, a jego najmniejszy element (a zarazem supremum zbioru $A$) to liczba $1$. Mamy więc
-    $$ \sup A = 1. $$
+    \[ \sup A = 1. \]
     Liczba $1$ nie należy jednak do zbioru $A$, więc, na mocy wniosku \ref{c:if_sup_out_then_no_greatest}, element największy (a z faktu \ref{f:greatest=maximal} również maksymalny) nie istnieje.
 \end{example}
 
 \begin{example}
     Weźmy zbiór częściowo uporządkowany $(\CC, \preceq)$, gdzie zdefiniujemy
-    $$ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y} $$
+    \[ x \preceq y \iff \Re{x} \leq \Re{y} \wedge \Im{x} \leq \Im{y} \]
     oraz podzbiór $A \subset \CC$ taki, że
-    $$ A = \{z : |z| \leq 1\}. $$
+    \[ A = \{z : |z| \leq 1\}. \]
 
     Znajdź zbiór majorant i elementów maksymalnych. Stwierdź, czy istnieje supremum i element największy.
 \end{example}
