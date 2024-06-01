@@ -32,7 +32,7 @@ This repository contains `mystd.sty` – my template for creating notes in LaTeX
 \begin{document}
     \maketitle
     \tableofcontents
-    \eject
+    \newpage
 \end{document}
 ```
 
