@@ -1,5 +1,7 @@
 # notes
 
+[![Star on GitHub](https://img.shields.io/github/stars/mdbrnowski/notes.svg?style=social)](https://github.com/mdbrnowski/notes/)
+
 > Too many authors to cite?
 >
 > No problem et al.
