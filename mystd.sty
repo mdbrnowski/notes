@@ -1,6 +1,6 @@
 \ProvidesPackage{mystd}
 
-\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathtools,amssymb,amsthm,amsfonts}
 \usepackage[svgnames,dvipsnames]{xcolor}
 
 \definecolor{AccColor1}{HTML}{C41E3A}     %#C41E3A
@@ -62,19 +62,16 @@
 
 \ProcessOptions\relax
 
-\ifstdpolish
-    \usepackage[polish]{babel}
-\fi
 
 \usepackage{fontspec}
-\newfontfamily{\cyrillic}[
-    UprightFont=*rm,
-    BoldFont=*bx,
-    ItalicFont=*ti,
-    BoldItalicFont=*bi,
+\defaultfontfeatures[CMU Serif]{
+    UprightFont=cmunrm,
+    BoldFont=cmunbx,
+    ItalicFont=cmunti,
+    BoldItalicFont=cmunbi,
     Extension=.otf,
     Ligatures=TeX
-]{cmun}
+}
 \ifstdmonofont
     \setmonofont{JetBrainsMono}[
         Path=./fonts/,
@@ -86,6 +83,13 @@
         BoldItalicFont=*-BoldItalic
     ]
 \fi
+
+\ifstdpolish
+    \usepackage[polish]{babel}
+\else
+    \usepackage[american]{babel}
+\fi
+\babelfont[russian]{rm}{CMU Serif}
 
 %  ----------  SHORT AND USEFUL STUFF  ----------  %
 
@@ -324,7 +328,6 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{multirow}
 \usepackage{multicol}
-\usepackage{mathtools}
 \usepackage{microtype}
 \usepackage[color=ColAccBad!70]{todonotes}
 
