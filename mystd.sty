@@ -86,6 +86,9 @@
 
 \ifstdpolish
     \usepackage[polish]{babel}
+    % you can still use \le and \ge for the standard versions
+    \renewcommand{\leq}{\leqslant}
+    \renewcommand{\geq}{\geqslant}
 \else
     \usepackage[american]{babel}
 \fi
