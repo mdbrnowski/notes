@@ -1,0 +1,34 @@
+% arara: lualatex: { synctex: yes }
+% arara: lualatex: { synctex: yes } if found('log', 'undefined references') || found('log', 'Rerun to get cross-references right')
+\documentclass{scrartcl}
+\usepackage[pretty,polish]{mystd}
+\title{Teoria obliczeń i złożoności obliczeniowej}
+\author{Michał Dobranowski}
+\date{semestr zimowy 2024 \\ v0.2}
+\publishers{\github}
+
+\newcommand{\blank}{\square}
+\newcommand{\REclass}{\textsf{RE}}
+\newcommand{\Rclass}{\textsf{R}}
+\newcommand{\coREclass}{\textsf{co-RE}}
+\newcommand{\TIME}{\textsf{TIME}}
+\newcommand{\SPACE}{\textsf{SPACE}}
+\newcommand{\Pclass}{\textsf{P}}
+\newcommand{\PSPACEclass}{\textsf{PSPACE}}
+\newcommand{\EXPclass}{\textsf{EXP}}
+\newcommand{\EXPSPACEclass}{\textsf{EXPSPACE}}
+\newcommand{\NPclass}{\textsf{NP}}
+\newcommand{\encode}[1]{\left\langle #1 \right\rangle}
+
+\usepackage{algpseudocodex}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \newpage
+
+    \input{part_1.tex}
+    \input{part_2.tex}
+
+
+\end{document}
