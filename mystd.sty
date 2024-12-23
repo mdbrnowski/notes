@@ -1,6 +1,7 @@
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mystd}
 
-\usepackage{mathtools,amssymb,amsthm,amsfonts}
+\usepackage{mathtools,amssymb,amsthm}
 \usepackage[svgnames,dvipsnames]{xcolor}
 
 \definecolor{AccColor1}{HTML}{C41E3A}     %#C41E3A
@@ -20,7 +21,6 @@
 
 \usepackage[colorlinks=true]{hyperref}
 \hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
-\usepackage[nameinlink]{cleveref}
 \usepackage{thmtools}
 \usepackage{relsize}
 \usepackage{yhmath}  % for wideparen
@@ -62,34 +62,23 @@
 
 \ProcessOptions\relax
 
-
-\usepackage{fontspec}
-\defaultfontfeatures[CMU Serif]{
-    UprightFont=cmunrm,
-    BoldFont=cmunbx,
-    ItalicFont=cmunti,
-    BoldItalicFont=cmunbi,
-    Extension=.otf,
-    Ligatures=TeX
-}
+\usepackage{fontsetup}  % loads fontspec and New Computer Modern
+\usepackage[scale=0.9]{raleway}  % loads Raleway sans serif font
 \ifstdmonofont
-    \setmonofont{JetBrainsMono}[
-        Path=./fonts/,
-        Scale=0.85,
-        Extension=.ttf,
-        UprightFont=*-Regular,
-        BoldFont=*-Bold,
-        ItalicFont=*-Italic,
-        BoldItalicFont=*-BoldItalic
-    ]
+    \setmonofont{JetBrainsMono}[Scale=0.85]
 \fi
 
 \ifstdpolish
     \usepackage[polish]{babel}
+    \babelprovide[transforms=oneletter.nobreak]{polish}
+    \AtBeginDocument{
+        % you can still use \le and \ge for the standard versions
+        \renewcommand{\leq}{\leqslant}
+        \renewcommand{\geq}{\geqslant}
+    }
 \else
     \usepackage[american]{babel}
 \fi
-\babelfont[russian]{rm}{CMU Serif}
 
 %  ----------  SHORT AND USEFUL STUFF  ----------  %
 
@@ -112,8 +101,6 @@
 \newcommand{\dforall}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\forall}}}_{#1}\ }
 \newcommand{\dexists}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\exists}}}_{#1}\ }
 \newcommand{\dexistsone}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\exists!}}}_{#1}\ }
-\renewcommand{\iff}{\Leftrightarrow}
-\renewcommand{\implies}{\Rightarrow}
 
 \newcommand{\vocab}[1]{\emph{\color{MainColor} #1}}
 \newcommand{\hrulebar}{
@@ -121,53 +108,53 @@
   \par\nointerlineskip \vspace{\baselineskip}
 }
 
-\newcommand{\NN}{\mathbb N}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\QQ}{\mathbb Q}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\KK}{\mathbb K}
+\newcommand{\NN}{{\symbb N}}
+\newcommand{\ZZ}{{\symbb Z}}
+\newcommand{\QQ}{{\symbb Q}}
+\newcommand{\RR}{{\symbb R}}
+\newcommand{\CC}{{\symbb C}}
+\newcommand{\KK}{{\symbb K}}
 
 \newcommand{\liff}{\leftrightarrow}
 \newcommand{\opname}{\operatorname}
 \newcommand{\surjto}{\twoheadrightarrow}
 \newcommand{\injto}{\hookrightarrow}
 
-\newcommand{\sA}{\mathcal A}
-\newcommand{\sB}{\mathcal B}
-\newcommand{\sC}{\mathcal C}
-\newcommand{\sD}{\mathcal D}
-\newcommand{\sF}{\mathcal F}
-\newcommand{\sG}{\mathcal G}
-\newcommand{\sH}{\mathcal H}
-\newcommand{\sL}{\mathcal L}
-\newcommand{\sM}{\mathcal M}
-\newcommand{\sO}{\mathcal O}
-\newcommand{\sR}{\mathcal R}
-\newcommand{\sS}{\mathcal S}
+\newcommand{\sA}{{\symcal A}}
+\newcommand{\sB}{{\symcal B}}
+\newcommand{\sC}{{\symcal C}}
+\newcommand{\sD}{{\symcal D}}
+\newcommand{\sF}{{\symcal F}}
+\newcommand{\sG}{{\symcal G}}
+\newcommand{\sH}{{\symcal H}}
+\newcommand{\sL}{{\symcal L}}
+\newcommand{\sM}{{\symcal M}}
+\newcommand{\sO}{{\symcal O}}
+\newcommand{\sR}{{\symcal R}}
+\newcommand{\sS}{{\symcal S}}
 
-\newcommand{\scA}{\mathscr A}
-\newcommand{\scB}{\mathscr B}
-\newcommand{\scC}{\mathscr C}
-\newcommand{\scD}{\mathscr D}
-\newcommand{\scE}{\mathscr E}
-\newcommand{\scF}{\mathscr F}
-\newcommand{\scG}{\mathscr G}
-\newcommand{\scH}{\mathscr H}
+\newcommand{\scA}{{\symscr A}}
+\newcommand{\scB}{{\symscr B}}
+\newcommand{\scC}{{\symscr C}}
+\newcommand{\scD}{{\symscr D}}
+\newcommand{\scE}{{\symscr E}}
+\newcommand{\scF}{{\symscr F}}
+\newcommand{\scG}{{\symscr G}}
+\newcommand{\scH}{{\symscr H}}
 
-\newcommand{\km}{\mathfrak m}
-\newcommand{\kp}{\mathfrak p}
-\newcommand{\kq}{\mathfrak q}
+\newcommand{\km}{{\symscr m}}
+\newcommand{\kp}{{\symscr p}}
+\newcommand{\kq}{{\symscr q}}
 
-\renewcommand{\Re}{\operatorname{Re}}
-\renewcommand{\Im}{\operatorname{Im}}
-
+\AtBeginDocument{
+    \renewcommand{\Re}{\operatorname{Re}}
+    \renewcommand{\Im}{\operatorname{Im}}
+}
 
 \usepackage{fontawesome}
 \newcommand{\github}{%
    \href{https://github.com/mdbrnowski/notes}{\faGithubAlt}%
 }
-
 
 %  ----------------------------------------------  %
 
@@ -340,7 +327,7 @@
 \usepackage[color=ColAccBad!70]{todonotes}
 
 \addtokomafont{subtitle}{\Large}
-\setkomafont{author}{\Large\slshape}
+\setkomafont{author}{\Large}
 \setkomafont{date}{\small}
 \setkomafont{caption}{\small}
 \providecommand{\thetitle}{\@title}
@@ -352,7 +339,7 @@
 \setlength{\footskip}{0.5in}
 \setlength{\headsep}{10pt}
 \automark{section}
-\ihead{\footnotesize\textsl{\textbf{\theauthor}}}
+\ihead{\footnotesize\theauthor}
 \chead{}
 \ohead{\footnotesize\textbf{\thetitle}}
 \cfoot{\pagemark}

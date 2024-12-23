@@ -1,8 +1,8 @@
 \begin{definition}
-    Niech $f : V \to V$ będzie endomorfizmem. Skalar $\lambda \in \KK$ jest \vocab{wartością własną} tego endomorfizmu, jeśli istnieje niezerowy wektor $\mathbf{v}$ taki, że
-    \[ f(\mathbf{v}) = \lambda\mathbf{v}. \]
+    Niech $f : V \to V$ będzie endomorfizmem. Skalar $\lambda \in \KK$ jest \vocab{wartością własną} tego endomorfizmu, jeśli istnieje niezerowy wektor $\symbf{v}$ taki, że
+    \[ f(\symbf{v}) = \lambda\symbf{v}. \]
 
-    Każdy niezerowy wektor $\mathbf{v}$, który spełnia powyższą równość, jest \vocab{wektorem własnym} odpowiadającym wartości własnej $\lambda$.
+    Każdy niezerowy wektor $\symbf{v}$, który spełnia powyższą równość, jest \vocab{wektorem własnym} odpowiadającym wartości własnej $\lambda$.
 \end{definition}
 
 \begin{definition}
@@ -11,7 +11,7 @@
 
 \begin{definition}
     Podprzestrzeń własną $V_\lambda$ endomorfizmu $f : V \to V$ tworzy zbiór
-    \[ V_\lambda = \{\mathbf{v} \in V : f(\mathbf{v}) = \lambda\mathbf{v}\}, \]
+    \[ V_\lambda = \{\symbf{v} \in V : f(\symbf{v}) = \lambda\symbf{v}\}, \]
     czyli zbiór wektorów własnych z wektorem zerowym.
 \end{definition}
 \begin{proof}[Uzasadnienie]
@@ -23,23 +23,23 @@
 \end{theorem}
 \begin{proof}
     Załóżmy przeciwnie, że są dwie wartości własne $\lambda_1, \lambda_2$ dla których
-    \[ f(\mathbf{v}) = \lambda_1\mathbf{v} = \lambda_2\mathbf{v}. \]
+    \[ f(\symbf{v}) = \lambda_1\symbf{v} = \lambda_2\symbf{v}. \]
     Wtedy
-    \[ \ol{0} = f(\mathbf{v}) - f(\mathbf{v}) = \lambda_1\mathbf{v} - \lambda_2\mathbf{v} = \mathbf{v}(\lambda_1 - \lambda_2). \]
-    Skoro $\mathbf{v} \neq \ol{0}$, to $\lambda_1 = \lambda_2$.
+    \[ \ol{0} = f(\symbf{v}) - f(\symbf{v}) = \lambda_1\symbf{v} - \lambda_2\symbf{v} = \symbf{v}(\lambda_1 - \lambda_2). \]
+    Skoro $\symbf{v} \neq \ol{0}$, to $\lambda_1 = \lambda_2$.
 \end{proof}
 
 \begin{theorem}
     \label{t:det(A-lambda I)=0}
     Niech $f : V \to V$ będzie endomorfizmem oraz $A = M_f(B)$ dla bazy $B = (e_1, \ldots, e_n)$. Wtedy $\lambda \in \KK$ jest wartością własną wtedy i tylko wtedy, gdy
     \[ \det(A - \lambda I) = 0, \]
-    a niezerowy wektor $\mathbf{v} \in V$ jest wektorem własnym odpowiadającym $\lambda$ wtedy i tylko wtedy, gdy
+    a niezerowy wektor $\symbf{v} \in V$ jest wektorem własnym odpowiadającym $\lambda$ wtedy i tylko wtedy, gdy
     \[ (A - \lambda I)X = \ol{0}, \]
-    gdzie $X$ jest macierzą kolumnową współrzędnych wektora $\mathbf{v}$ w bazie $B$.
+    gdzie $X$ jest macierzą kolumnową współrzędnych wektora $\symbf{v}$ w bazie $B$.
 \end{theorem}
 \begin{proof}
     Mamy
-    \[ f(\mathbf{v}) = \lambda\mathbf{v} \iff AX = \lambda X, \]
+    \[ f(\symbf{v}) = \lambda\symbf{v} \iff AX = \lambda X, \]
     co możemy przekształcić do
     \begin{align*}
         AX - \lambda X &= \ol{0} \\
@@ -69,22 +69,22 @@
 \begin{proof}
     Przeprowadzimy dowód indukcyjny. Jeden niezerowy wektor jest oczywiście liniowo niezależny, więc załóżmy, że zbiór $n-1$ wektorów własnych odpowiadających różnym wartościom własnym jest liniowo niezależny i pokażmy ten fakt również dla $n$ wektorów.
 
-    Oznaczmy wektory własne $\mathbf{v}_1, \ldots, \mathbf{v}_n$. Niech odpowiadają one różnym wartościom własnym $\lambda_1, \ldots, \lambda_n$. Weźmy takie skalary $\alpha_1, \ldots, \alpha_n$, że
+    Oznaczmy wektory własne $\symbf{v}_1, \ldots, \symbf{v}_n$. Niech odpowiadają one różnym wartościom własnym $\lambda_1, \ldots, \lambda_n$. Weźmy takie skalary $\alpha_1, \ldots, \alpha_n$, że
     \begin{align}
-        \alpha_1\mathbf{v}_1 + \ldots + \alpha_n\mathbf{v}_n &= \ol{0},
+        \alpha_1\symbf{v}_1 + \ldots + \alpha_n\symbf{v}_n &= \ol{0},
             \label{eq:sum alpha_1 v_1 alpha_n v_n} \\
-        f(\alpha_1\mathbf{v}_1 + \ldots + \alpha_n\mathbf{v}_n) &= \ol{0}, \nonumber \\
-        \alpha_1\lambda_1\mathbf{v}_1 + \ldots + \alpha_n\lambda_n\mathbf{v}_n &= \ol{0}.
+        f(\alpha_1\symbf{v}_1 + \ldots + \alpha_n\symbf{v}_n) &= \ol{0}, \nonumber \\
+        \alpha_1\lambda_1\symbf{v}_1 + \ldots + \alpha_n\lambda_n\symbf{v}_n &= \ol{0}.
             \label{eq:sum alpha_1 lambda_1 v_1 alpha_n lambda_n v_n}
     \end{align}
     Mnożąc równanie \ref{eq:sum alpha_1 v_1 alpha_n v_n} obustronnie przez $\lambda_n$ i odejmując od \ref{eq:sum alpha_1 lambda_1 v_1 alpha_n lambda_n v_n} otrzymamy
-    \[ \alpha_1\mathbf{v}_1(\lambda_1 - \lambda_n) + \ldots + \alpha_{n-1}\mathbf{v}_1(\lambda_{n-1} - \lambda_n) = \ol{0}. \]
-    Wektory $\mathbf{v}_1, \ldots, \mathbf{v}_{n-1}$ są, na mocy założenia indukcyjnego, liniowo niezależne, więc dla każdego $1 \leq i \leq n-1$ zachodzi
+    \[ \alpha_1\symbf{v}_1(\lambda_1 - \lambda_n) + \ldots + \alpha_{n-1}\symbf{v}_1(\lambda_{n-1} - \lambda_n) = \ol{0}. \]
+    Wektory $\symbf{v}_1, \ldots, \symbf{v}_{n-1}$ są, na mocy założenia indukcyjnego, liniowo niezależne, więc dla każdego $1 \leq i \leq n-1$ zachodzi
     \[ \alpha_i(\lambda_i - \lambda_n) = 0, \]
     a więc, skoro rozważamy różne wartości własne,
     \[ \alpha_i = 0. \]
     Podstawiając to do równości \ref{eq:sum alpha_1 v_1 alpha_n v_n} otrzymujemy
-    \[ \alpha_n\mathbf{v}_n = \ol{0}. \]
+    \[ \alpha_n\symbf{v}_n = \ol{0}. \]
     Wektory własne są niezerowe, więc $\alpha_n = 0$, co, na mocy zasady indukcji matematycznej, dowodzi tezy.
 \end{proof}
 

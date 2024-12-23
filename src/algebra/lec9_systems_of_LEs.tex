@@ -58,12 +58,12 @@ jest \vocab{macierzą uzupełnioną} tego układu. Wtedy układ \ref{eq:linear s
 \begin{proof}
     Pierwsze stwierdzenie jest prawdziwe, ponieważ jeśli $\det A \neq 0$, to kolumny tworzą bazę pewnej przestrzeni liniowej, do której należy kolumna $B$, więc na mocy twierdzenia \ref{t:explicit coefficients} jest ona jednoznacznie wyznaczona przez kombinację liniową kolumn z~$A$~(a współczynniki tej kombinacji liniowej są właśnie kolumną niewiadomych $X$).
 
-    Oznaczając $j$-tą kolumną $A$ jako $\mathbf{a_j}$ oraz $B = \mathbf{b}$, na mocy poprzedniego akapitu równanie
-    \[ x_1\mathbf{a_1} + x_2\mathbf{a_2} + \ldots + x_n\mathbf{a_n} = \mathbf{b} \]
-    spełnia dokładnie jeden wektor $\mathbf{x}$. Zatem
-    \[ D_{x_j} = \det(\mathbf{a_1}, \ldots, \mathbf{b}, \ldots, \mathbf{a_n}) = \det(\mathbf{a_1}, \ldots, \sum_{i=1}^n x_i\mathbf{a_i}, \ldots, \mathbf{a_n}). \]
+    Oznaczając $j$-tą kolumną $A$ jako $\symbf{a_j}$ oraz $B = \symbf{b}$, na mocy poprzedniego akapitu równanie
+    \[ x_1\symbf{a_1} + x_2\symbf{a_2} + \ldots + x_n\symbf{a_n} = \symbf{b} \]
+    spełnia dokładnie jeden wektor $\symbf{x}$. Zatem
+    \[ D_{x_j} = \det(\symbf{a_1}, \ldots, \symbf{b}, \ldots, \symbf{a_n}) = \det(\symbf{a_1}, \ldots, \sum_{i=1}^n x_i\symbf{a_i}, \ldots, \symbf{a_n}). \]
     Z własności wyznaczników (\ref{t:determinant properties}) wynika, że wyznacznika nie zmieni odjęcie od pewnej kolumny innej kolumny przemnożonej przez skalar (nawet zerowy), więc
-    \[ D_{x_j} = \det(\mathbf{a_1}, \ldots, x_j\mathbf{a_j}, \ldots, \mathbf{a_n}) = x_j\det(\mathbf{a_1}, \ldots, \mathbf{a_j}, \ldots, \mathbf{a_n}) = x_j \det A, \]
+    \[ D_{x_j} = \det(\symbf{a_1}, \ldots, x_j\symbf{a_j}, \ldots, \symbf{a_n}) = x_j\det(\symbf{a_1}, \ldots, \symbf{a_j}, \ldots, \symbf{a_n}) = x_j \det A, \]
     \[ \therefore x_j = \frac{D_{x_j}}{\det A}. \]
 \end{proof}
 
@@ -73,8 +73,8 @@ jest \vocab{macierzą uzupełnioną} tego układu. Wtedy układ \ref{eq:linear s
     \[ \rank(A) = \rank(\begin{bNiceArray}{cSc}A & B\end{bNiceArray}). \]
 \end{theorem}
 \begin{proof}
-    Oznaczając $j$-tą kolumną $A$ jako $\mathbf{a_j}$ oraz $B = \mathbf{b}$, mamy
-    \[ x_1\mathbf{a_1} + x_2\mathbf{a_2} + \ldots + x_n\mathbf{a_n} = \mathbf{b}, \]
+    Oznaczając $j$-tą kolumną $A$ jako $\symbf{a_j}$ oraz $B = \symbf{b}$, mamy
+    \[ x_1\symbf{a_1} + x_2\symbf{a_2} + \ldots + x_n\symbf{a_n} = \symbf{b}, \]
     a więc $X$ istnieje wtedy i tylko wtedy, gdy kolumna $B$ jest kombinacją liniową kolumn z~$A$~(a więc nie jest liniowo niezależna, ergo $\rank(A) = \rank(\begin{bNiceArray}{cSc}A & B\end{bNiceArray})$).
 \end{proof}
 
