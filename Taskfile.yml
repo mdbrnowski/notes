@@ -7,25 +7,29 @@ tasks:
       - src/filtr/*
       - mystd.sty
     cmds:
-      - tectonic "./src/filtr/filtr.tex" -Z search-path="." --outdir "pdf" --synctex
+      - cd src/filtr && arara filtr.tex
+      - cd pdf && rm -f *.aux *.log *.out *.synctex.gz *.toc *.fls *.fdb_latexmk
   fft:
     desc: Compile fft.tex to pdf
     sources:
       - src/fft/*
       - mystd.sty
     cmds:
-      - tectonic "./src/fft/fft.tex" -Z search-path="." --outdir "pdf" --synctex
+      - cd src/fft && arara fft.tex
+      - cd pdf && rm -f *.aux *.log *.out *.synctex.gz *.toc *.fls *.fdb_latexmk
   algebra:
     desc: Compile algebra.tex to pdf
     sources:
       - src/algebra/*
       - mystd.sty
     cmds:
-      - tectonic "./src/algebra/algebra.tex" -Z search-path="." --outdir "pdf" --synctex
+      - cd src/algebra && arara algebra.tex
+      - cd pdf && rm -f *.aux *.log *.out *.synctex.gz *.toc *.fls *.fdb_latexmk
   analiza:
     desc: Compile analiza.tex to pdf
     sources:
       - src/analiza/*
       - mystd.sty
     cmds:
-      - tectonic "./src/analiza/analiza.tex" -Z search-path="." --outdir "pdf" --synctex
+      - cd src/analiza && arara analiza.tex
+      - cd pdf && rm -f *.aux *.log *.out *.synctex.gz *.toc *.fls *.fdb_latexmk
