@@ -1,5 +1,5 @@
 W tej sekcji skupimy się na przestrzeni $\RR^3(\RR)$, w której wektory będziemy interpretować często jako punkty lub wektory zaczepione w środku układu współrzędnych. Przez $\RR^n$ oznaczymy zbiór punktów, a przez $\overrightarrow{\RR^n}$ zbiór wektorów. W przestrzeni $\RR^3$ osie \vocab{prawoskrętnego}\footnote{To znaczy zgodnego z regułą prawej ręki --- wnętrze obracającej się dłoni zakreśla łuk od osi $OX$ do $OY$, przy czym kciuk ma zwrot zgodny z osią $OZ$.} układu współrzędnych $(x, y, z)$ będą rozpięte przez \vocab{wersory} (wektory o~jednostkowej długości):
-\[ \mathbf{\hat{i}} = (1, 0, 0), \quad \mathbf{\hat{j}} = (0, 1, 0), \quad \mathbf{\hat{k}} = (0, 0, 1). \]
+\[ \symbf{\hat{i}} = (1, 0, 0), \quad \symbf{\hat{j}} = (0, 1, 0), \quad \symbf{\hat{k}} = (0, 0, 1). \]
 
 \begin{definition}
     \label{d:Euclidean metric}
@@ -37,63 +37,63 @@ więc
 Jeśli dla przestrzeni wektorowej $\RR^n$ określimy iloczyn skalarny wektorów, to taka przestrzeń jest \vocab{przestrzenią euklidesową}, którą oznaczamy przez $E_n$. Warto zauważyć, że taki iloczyn skalarny jest łączny, przemienny, zgodny z mnożeniem przez skalar oraz rozdzielny względem dodawania.
 
 \begin{theorem}[Cauchy'ego-Schwarza]
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$ zachodzi nierówność
-    \[ |\mathbf{u} \circ \mathbf{v}| \leq \Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert, \]
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v} \in E_n$ zachodzi nierówność
+    \[ |\symbf{u} \circ \symbf{v}| \leq \Vert \symbf{u} \Vert \cdot \Vert \symbf{v} \Vert, \]
     przy czym równość zachodzi wtedy i tylko wtedy, gdy wektory są liniowo zależne.
 \end{theorem}
 \begin{proof}
-    Twierdzenie jest trywialne, jeśli któryś z wektorów jest zerowy, dlatego przyjmijmy $\mathbf{u}, \mathbf{v} \neq \ol{0}$. Dla dowolnego $\alpha \in \RR$ mamy
-    \[ 0 \leq \Vert\mathbf{u} - \alpha\mathbf{v}\Vert^2 = (\mathbf{u} - \alpha\mathbf{v}) \circ (\mathbf{u} - \alpha\mathbf{v}) = \mathbf{u} \circ \mathbf{u} - 2\alpha(\mathbf{u} \circ \mathbf{v}) + \alpha^2(\mathbf{v} \circ \mathbf{v}). \]
-    Podstawiając $\alpha = (\mathbf{u} \circ \mathbf{v})(\mathbf{v} \circ \mathbf{v})^{-1}$ otrzymamy
-    \[ 0 \leq (\mathbf{u} \circ \mathbf{u}) - (\mathbf{v} \circ \mathbf{v})^{-1}(\mathbf{u} \circ \mathbf{v})^2 \]
-    \[ (\mathbf{v} \circ \mathbf{v})^{-1}(\mathbf{u} \circ \mathbf{v})^2 \leq (\mathbf{u} \circ \mathbf{u}) \]
-    \[ (\mathbf{u} \circ \mathbf{v})^2 \leq (\mathbf{u} \circ \mathbf{u})(\mathbf{v} \circ \mathbf{v}) \]
-    \[ (\mathbf{u} \circ \mathbf{v})^2 \leq \Vert \mathbf{u} \Vert^2 \cdot \Vert \mathbf{v} \Vert^2 \]
-    \[ |\mathbf{u} \circ \mathbf{v}| \leq \Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert. \]
-    Równość zachodzi tylko w przypadku, gdy $\alpha = 0$, czyli gdy $\mathbf{u}, \mathbf{v}$ są liniowo zależne.
+    Twierdzenie jest trywialne, jeśli któryś z wektorów jest zerowy, dlatego przyjmijmy $\symbf{u}, \symbf{v} \neq \ol{0}$. Dla dowolnego $\alpha \in \RR$ mamy
+    \[ 0 \leq \Vert\symbf{u} - \alpha\symbf{v}\Vert^2 = (\symbf{u} - \alpha\symbf{v}) \circ (\symbf{u} - \alpha\symbf{v}) = \symbf{u} \circ \symbf{u} - 2\alpha(\symbf{u} \circ \symbf{v}) + \alpha^2(\symbf{v} \circ \symbf{v}). \]
+    Podstawiając $\alpha = (\symbf{u} \circ \symbf{v})(\symbf{v} \circ \symbf{v})^{-1}$ otrzymamy
+    \[ 0 \leq (\symbf{u} \circ \symbf{u}) - (\symbf{v} \circ \symbf{v})^{-1}(\symbf{u} \circ \symbf{v})^2 \]
+    \[ (\symbf{v} \circ \symbf{v})^{-1}(\symbf{u} \circ \symbf{v})^2 \leq (\symbf{u} \circ \symbf{u}) \]
+    \[ (\symbf{u} \circ \symbf{v})^2 \leq (\symbf{u} \circ \symbf{u})(\symbf{v} \circ \symbf{v}) \]
+    \[ (\symbf{u} \circ \symbf{v})^2 \leq \Vert \symbf{u} \Vert^2 \cdot \Vert \symbf{v} \Vert^2 \]
+    \[ |\symbf{u} \circ \symbf{v}| \leq \Vert \symbf{u} \Vert \cdot \Vert \symbf{v} \Vert. \]
+    Równość zachodzi tylko w przypadku, gdy $\alpha = 0$, czyli gdy $\symbf{u}, \symbf{v}$ są liniowo zależne.
 \end{proof}
 
 \begin{corollary}[nierówność trójkąta]
     \label{c:triangle inequality}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$ zachodzi nierówność
-    \[ \Vert \mathbf{u} + \mathbf{v} \Vert  \leq \Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert, \]
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v} \in E_n$ zachodzi nierówność
+    \[ \Vert \symbf{u} + \symbf{v} \Vert  \leq \Vert \symbf{u} \Vert + \Vert \symbf{v} \Vert, \]
 \end{corollary}
 \begin{proof}
     Z nierówności Cauchy'ego-Schwarza wynika, że
     \begin{align*}
-        \mathbf{u} \circ \mathbf{v} &\leq \sqrt{\mathbf{u} \circ \mathbf{u}} \cdot \sqrt{\mathbf{v} \circ \mathbf{v}} \\
-        \mathbf{u} \circ \mathbf{u} + 2 \cdot \mathbf{u} \circ \mathbf{v} + \mathbf{v} \circ \mathbf{v} &\leq \mathbf{u} \circ \mathbf{u} + 2 \cdot \sqrt{\mathbf{u} \circ \mathbf{u}} \cdot \sqrt{\mathbf{v} \circ \mathbf{v}} + \mathbf{v} \circ \mathbf{v} \\
-        (\mathbf{u} + \mathbf{v}) \circ (\mathbf{u} + \mathbf{v}) &\leq (\sqrt{\mathbf{u} \circ \mathbf{u}} + \sqrt{\mathbf{v} \circ \mathbf{v}})^2 \\
-        \Vert \mathbf{u} + \mathbf{v} \Vert^2  &\leq (\Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert)^2 \\
-        \Vert \mathbf{u} + \mathbf{v} \Vert  &\leq \Vert \mathbf{u} \Vert + \Vert \mathbf{v} \Vert.
+        \symbf{u} \circ \symbf{v} &\leq \sqrt{\symbf{u} \circ \symbf{u}} \cdot \sqrt{\symbf{v} \circ \symbf{v}} \\
+        \symbf{u} \circ \symbf{u} + 2 \cdot \symbf{u} \circ \symbf{v} + \symbf{v} \circ \symbf{v} &\leq \symbf{u} \circ \symbf{u} + 2 \cdot \sqrt{\symbf{u} \circ \symbf{u}} \cdot \sqrt{\symbf{v} \circ \symbf{v}} + \symbf{v} \circ \symbf{v} \\
+        (\symbf{u} + \symbf{v}) \circ (\symbf{u} + \symbf{v}) &\leq (\sqrt{\symbf{u} \circ \symbf{u}} + \sqrt{\symbf{v} \circ \symbf{v}})^2 \\
+        \Vert \symbf{u} + \symbf{v} \Vert^2  &\leq (\Vert \symbf{u} \Vert + \Vert \symbf{v} \Vert)^2 \\
+        \Vert \symbf{u} + \symbf{v} \Vert  &\leq \Vert \symbf{u} \Vert + \Vert \symbf{v} \Vert.
     \end{align*}
 \end{proof}
 
 \begin{definition}
     \label{d:angle between vectors}
-    Kąt między niezerowymi wektorami $\mathbf{u}, \mathbf{v} \in E_n$ to taka liczba $\sphericalangle(\mathbf{u}, \mathbf{v}) = \varphi \in [0, \pi]$, że
-    \[ \cos\varphi = \frac{\mathbf{u} \circ \mathbf{v}}{\Vert \mathbf{u} \Vert \cdot \Vert \mathbf{v} \Vert}. \]
+    Kąt między niezerowymi wektorami $\symbf{u}, \symbf{v} \in E_n$ to taka liczba $\sphericalangle(\symbf{u}, \symbf{v}) = \varphi \in [0, \pi]$, że
+    \[ \cos\varphi = \frac{\symbf{u} \circ \symbf{v}}{\Vert \symbf{u} \Vert \cdot \Vert \symbf{v} \Vert}. \]
 \end{definition}
 
-Jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = \frac{\pi}{2}$, to wektory są \vocab{prostopadłe} $\mathbf{u} \perp \mathbf{v}$, a jeśli $\sphericalangle(\mathbf{u}, \mathbf{v}) = 0$ lub $\pi$, to są \vocab{równoległe} $\mathbf{u} \parallel \mathbf{v}$. Przyjmujemy, że wektor zerowy jest prostopadły i równoległy do wszystkich innych wektorów.
+Jeśli $\sphericalangle(\symbf{u}, \symbf{v}) = \frac{\pi}{2}$, to wektory są \vocab{prostopadłe} $\symbf{u} \perp \symbf{v}$, a jeśli $\sphericalangle(\symbf{u}, \symbf{v}) = 0$ lub $\pi$, to są \vocab{równoległe} $\symbf{u} \parallel \symbf{v}$. Przyjmujemy, że wektor zerowy jest prostopadły i równoległy do wszystkich innych wektorów.
 
 \begin{fact}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_n$
-    \[ \mathbf{u} \perp \mathbf{v} \quad \iff \quad \mathbf{u} \circ \mathbf{v} = 0 \]
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v} \in E_n$
+    \[ \symbf{u} \perp \symbf{v} \quad \iff \quad \symbf{u} \circ \symbf{v} = 0 \]
 \end{fact}
 \begin{proof}
     Wynika z definicji.
 \end{proof}
 
-Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $\mathbf{u}, \mathbf{v}$ są liniowo zależne.
+Oczywiście $\symbf{u} \parallel \symbf{v}$ wtedy i tylko wtedy, gdy wektory $\symbf{u}, \symbf{v}$ są liniowo zależne.
 
 \subsection{Przestrzeń trójwymiarowa}
 \begin{fact}
-    Trójka liniowo niezależnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ tworzy układ prawoskrętny, jeśli
+    Trójka liniowo niezależnych wektorów $\symbf{u}, \symbf{v}, \symbf{w} \in E_3$ tworzy układ prawoskrętny, jeśli
     \[ \begin{vmatrix}
-        \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
-        \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3 \\
-        \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
+        \symbf{u}_1 & \symbf{u}_2 & \symbf{u}_3 \\
+        \symbf{v}_1 & \symbf{v}_2 & \symbf{v}_3 \\
+        \symbf{w}_1 & \symbf{w}_2 & \symbf{w}_3
     \end{vmatrix} > 0. \]
 \end{fact}
 \begin{proof}[Uzasadnienie]
@@ -106,27 +106,27 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
     \label{d:cross product}
     Iloczyn wektorowy to takie działanie $\times : (\overrightarrow{E_3})^2 \to \overrightarrow{E_3}$, że:
     \begin{enumerate}
-        \item jeśli $\mathbf{u} \parallel \mathbf{v}$, to $\mathbf{u} \times \mathbf{v} = \ol{0}$,
-        \item w przeciwnym wypadku $\mathbf{u} \times \mathbf{v} = \mathbf{w}$, gdzie
+        \item jeśli $\symbf{u} \parallel \symbf{v}$, to $\symbf{u} \times \symbf{v} = \ol{0}$,
+        \item w przeciwnym wypadku $\symbf{u} \times \symbf{v} = \symbf{w}$, gdzie
             \begin{itemize}
-                \item $\Vert\mathbf{w}\Vert = \Vert\mathbf{u}\Vert \cdot \Vert\mathbf{v}\Vert\cdot\sin\sphericalangle(\mathbf{u}, \mathbf{v})$,
-                \item $\mathbf{w} \perp \mathbf{u}$ oraz $\mathbf{w} \perp \mathbf{v}$,
-                \item wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ tworzą układ prawoskrętny.
+                \item $\Vert\symbf{w}\Vert = \Vert\symbf{u}\Vert \cdot \Vert\symbf{v}\Vert\cdot\sin\sphericalangle(\symbf{u}, \symbf{v})$,
+                \item $\symbf{w} \perp \symbf{u}$ oraz $\symbf{w} \perp \symbf{v}$,
+                \item wektory $\symbf{u}, \symbf{v}, \symbf{w}$ tworzą układ prawoskrętny.
             \end{itemize}
     \end{enumerate}
 \end{definition}
 
 \begin{theorem}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$
-    \[ \mathbf{u} \times \mathbf{v} = \left[\begin{vmatrix}
-        \mathbf{u}_2 & \mathbf{u}_3 \\
-        \mathbf{v}_2 & \mathbf{v}_3
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v} \in E_3$
+    \[ \symbf{u} \times \symbf{v} = \left[\begin{vmatrix}
+        \symbf{u}_2 & \symbf{u}_3 \\
+        \symbf{v}_2 & \symbf{v}_3
     \end{vmatrix}, \begin{vmatrix}
-        \mathbf{u}_3 & \mathbf{u}_1 \\
-        \mathbf{v}_3 & \mathbf{v}_1
+        \symbf{u}_3 & \symbf{u}_1 \\
+        \symbf{v}_3 & \symbf{v}_1
     \end{vmatrix}, \begin{vmatrix}
-        \mathbf{u}_1 & \mathbf{u}_2 \\
-        \mathbf{v}_1 & \mathbf{v}_2
+        \symbf{u}_1 & \symbf{u}_2 \\
+        \symbf{v}_1 & \symbf{v}_2
     \end{vmatrix}\right]\]
 \end{theorem}
 \begin{proof}
@@ -135,27 +135,27 @@ Oczywiście $\mathbf{u} \parallel \mathbf{v}$ wtedy i tylko wtedy, gdy wektory $
 
 W praktyce łatwiej stosować (zapamiętać) ,,wzór''
 \begin{equation} \label{eq:easy cross product}
-    \mathbf{u} \times \mathbf{v} = \begin{vmatrix}
-        \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
-        \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
-        \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3
-    \end{vmatrix} = \mathbf{\hat{i}}\begin{vmatrix}
-        \mathbf{u}_2 & \mathbf{u}_3 \\
-        \mathbf{v}_2 & \mathbf{v}_3
-    \end{vmatrix} + \mathbf{\hat{j}}\begin{vmatrix}
-        \mathbf{u}_3 & \mathbf{u}_1 \\
-        \mathbf{v}_3 & \mathbf{v}_1
-    \end{vmatrix} + \mathbf{\hat{k}}\begin{vmatrix}
-        \mathbf{u}_1 & \mathbf{u}_2 \\
-        \mathbf{v}_1 & \mathbf{v}_2
+    \symbf{u} \times \symbf{v} = \begin{vmatrix}
+        \symbf{\hat{i}} & \symbf{\hat{j}} & \symbf{\hat{k}} \\
+        \symbf{u}_1 & \symbf{u}_2 & \symbf{u}_3 \\
+        \symbf{v}_1 & \symbf{v}_2 & \symbf{v}_3
+    \end{vmatrix} = \symbf{\hat{i}}\begin{vmatrix}
+        \symbf{u}_2 & \symbf{u}_3 \\
+        \symbf{v}_2 & \symbf{v}_3
+    \end{vmatrix} + \symbf{\hat{j}}\begin{vmatrix}
+        \symbf{u}_3 & \symbf{u}_1 \\
+        \symbf{v}_3 & \symbf{v}_1
+    \end{vmatrix} + \symbf{\hat{k}}\begin{vmatrix}
+        \symbf{u}_1 & \symbf{u}_2 \\
+        \symbf{v}_1 & \symbf{v}_2
     \end{vmatrix}
 \end{equation}
 
-Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times \mathbf{v} = -\mathbf{v} \times \mathbf{u})$, zgodny z mnożeniem przez skalar oraz rozdzielny względem dodawania.
+Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\symbf{u} \times \symbf{v} = -\symbf{v} \times \symbf{u})$, zgodny z mnożeniem przez skalar oraz rozdzielny względem dodawania.
 
 \begin{fact}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$
-    \[ \mathbf{u} \parallel \mathbf{v} \quad \iff \quad \mathbf{u} \times \mathbf{v} = \ol{0} \]
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v} \in E_3$
+    \[ \symbf{u} \parallel \symbf{v} \quad \iff \quad \symbf{u} \times \symbf{v} = \ol{0} \]
 \end{fact}
 \begin{proof}
     Wynika z definicji.
@@ -163,26 +163,26 @@ Warto zauważyć, że iloczyn wektorowy jest antyprzemienny ($\mathbf{u} \times 
 
 \begin{theorem}
     \label{t:area of parallelogram}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v} \in E_3$ liczba $\Vert\mathbf{u}\times\mathbf{v}\Vert$ jest (skierowanym) polem równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$.
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v} \in E_3$ liczba $\Vert\symbf{u}\times\symbf{v}\Vert$ jest (skierowanym) polem równoległoboku rozpiętego przez wektory $\symbf{u}, \symbf{v}$.
 \end{theorem}
 \begin{proof}
     Z definicji iloczynu wektorowego (\ref{d:cross product}) mamy
-    \[ \Vert\mathbf{u}\times\mathbf{v}\Vert = \Vert\mathbf{u}\Vert\cdot\Vert\mathbf{v}\Vert\cdot\sin\sphericalangle(\mathbf{u}, \mathbf{v}), \]
+    \[ \Vert\symbf{u}\times\symbf{v}\Vert = \Vert\symbf{u}\Vert\cdot\Vert\symbf{v}\Vert\cdot\sin\sphericalangle(\symbf{u}, \symbf{v}), \]
     czyli iloczyn długości obu boków oraz sinusa kąta między nimi, który istotnie jest równy polu równoległoboku.
 \end{proof}
 
-Prosty wniosek z tego twierdzenia jest taki, że pole trójkąta rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$ jest równe $\frac{1}{2}\Vert\mathbf{u}\times\mathbf{v}\Vert$.
+Prosty wniosek z tego twierdzenia jest taki, że pole trójkąta rozpiętego przez wektory $\symbf{u}, \symbf{v}$ jest równe $\frac{1}{2}\Vert\symbf{u}\times\symbf{v}\Vert$.
 
-Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
+Działanie $(\symbf{u}\times\symbf{v}) \circ \symbf{w}$ nazywamy \vocab{iloczynem mieszanym}.
 
 \begin{theorem}
     \label{t:volume of parallelepiped}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$ liczba $\left((\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}\right)$ jest (skierowaną) objętością równoległościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$.
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v}, \symbf{w} \in E_3$ liczba $\left((\symbf{u}\times\symbf{v}) \circ \symbf{w}\right)$ jest (skierowaną) objętością równoległościanu rozpiętego przez wektory $\symbf{u}, \symbf{v}, \symbf{w}$.
 \end{theorem}
 \begin{proof}
     Z definicji kąta między wektorami (\ref{d:angle between vectors}) mamy
-    \[ (\mathbf{u}\times\mathbf{v}) \circ \mathbf{w} = \Vert\mathbf{u}\times\mathbf{v}\Vert \cdot \Vert\mathbf{w}\Vert \cdot \cos\phi, \]
-    gdzie $\Vert\mathbf{u}\times\mathbf{v}\Vert$ to pole równoległoboku rozpiętego przez wektory $\mathbf{u}, \mathbf{v}$, jak na rysunku poniżej.
+    \[ (\symbf{u}\times\symbf{v}) \circ \symbf{w} = \Vert\symbf{u}\times\symbf{v}\Vert \cdot \Vert\symbf{w}\Vert \cdot \cos\phi, \]
+    gdzie $\Vert\symbf{u}\times\symbf{v}\Vert$ to pole równoległoboku rozpiętego przez wektory $\symbf{u}, \symbf{v}$, jak na rysunku poniżej.
 
     \begin{center}
         \begin{tikzpicture}[vect/.style={->,>=latex',thick,AccColor1}]
@@ -200,22 +200,22 @@ Działanie $(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}$ nazywamy \vocab{ilocz
             \tkzDrawSegments[dashed,vect](O,B)
             \tkzMarkAngle[size=1.4](C,O,V)
             \tkzLabelAngle[font=\scriptsize](C,O,V){$\phi$}
-            \tkzLabelSegment[font=\scriptsize, below](O,A){$\mathbf{u}$}
-            \tkzLabelSegment[font=\scriptsize, below, pos=.7](O,B){$\mathbf{v}$}
-            \tkzLabelSegment[font=\scriptsize, right](O,C){$\mathbf{w}$}
+            \tkzLabelSegment[font=\scriptsize, below](O,A){$\symbf{u}$}
+            \tkzLabelSegment[font=\scriptsize, below, pos=.7](O,B){$\symbf{v}$}
+            \tkzLabelSegment[font=\scriptsize, right](O,C){$\symbf{w}$}
         \end{tikzpicture}
     \end{center}
 \end{proof}
 
-Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\mathbf{u}, \mathbf{v}, \mathbf{w}$ jest równa $\frac{1}{6}|(\mathbf{u}\times\mathbf{v}) \circ \mathbf{w}|$.
+Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpiętego przez wektory $\symbf{u}, \symbf{v}, \symbf{w}$ jest równa $\frac{1}{6}|(\symbf{u}\times\symbf{v}) \circ \symbf{w}|$.
 
 \begin{fact}
     \label{f:triple product}
-    Dla dowolnych wektorów $\mathbf{u}, \mathbf{v}, \mathbf{w} \in E_3$
-    \[ (\mathbf{u}\times\mathbf{v}) \circ \mathbf{w} = \begin{vmatrix}
-        \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 \\
-        \mathbf{v}_1 & \mathbf{v}_2 & \mathbf{v}_3 \\
-        \mathbf{w}_1 & \mathbf{w}_2 & \mathbf{w}_3
+    Dla dowolnych wektorów $\symbf{u}, \symbf{v}, \symbf{w} \in E_3$
+    \[ (\symbf{u}\times\symbf{v}) \circ \symbf{w} = \begin{vmatrix}
+        \symbf{u}_1 & \symbf{u}_2 & \symbf{u}_3 \\
+        \symbf{v}_1 & \symbf{v}_2 & \symbf{v}_3 \\
+        \symbf{w}_1 & \symbf{w}_2 & \symbf{w}_3
     \end{vmatrix}. \]
     Jest to prostszy sposób na liczenie objętości równoległościanu.
 \end{fact}
@@ -226,11 +226,11 @@ Prosty wniosek z tego twierdzenia jest taki, że objętość czworościanu rozpi
 \subsubsection{Równanie płaszczyzny w przestrzeni}
 Płaszczyznę jednoznacznie wyznaczają trzy niewspółliniowe punkty (lub wyznaczone przez nie dwa wektory). Płaszczyznę jednoznacznie wyznaczyć może również jeden niezerowy wektor, zwany \vocab{wektorem normalnym}; jest on prostopadły do wyznaczanej płaszczyzny.
 
-\paragraph{Równanie parametryczne płaszczyzny} Jeśli $P_0 = (x_0, y_0, z_0) \in \pi$ oraz $\mathbf{u} = [\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3]$, $\mathbf{v} = [\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3] \in E_3$ są liniowo niezależne i równoległe do płaszczyzny $\pi$, to
+\paragraph{Równanie parametryczne płaszczyzny} Jeśli $P_0 = (x_0, y_0, z_0) \in \pi$ oraz $\symbf{u} = [\symbf{u}_1, \symbf{u}_2, \symbf{u}_3]$, $\symbf{v} = [\symbf{v}_1, \symbf{v}_2, \symbf{v}_3] \in E_3$ są liniowo niezależne i równoległe do płaszczyzny $\pi$, to
 \begin{equation} \pi : \begin{cases}
-    x = x_0 + s\mathbf{u}_1 + t\mathbf{v}_1 \\
-    y = y_0 + s\mathbf{u}_2 + t\mathbf{v}_2 \\
-    z = z_0 + s\mathbf{u}_3 + t\mathbf{v}_3
+    x = x_0 + s\symbf{u}_1 + t\symbf{v}_1 \\
+    y = y_0 + s\symbf{u}_2 + t\symbf{v}_2 \\
+    z = z_0 + s\symbf{u}_3 + t\symbf{v}_3
 \end{cases} \qquad s, t \in \RR \end{equation}
 jest równaniem parametrycznym płaszczyzny. Wtedy każdy punkt płaszczyzny jest po prostu punktem $P_0$, który został przesunięty o pewien wektor równoległy do płaszczyzny.
 
@@ -256,15 +256,15 @@ jest równaniem odcinkowym płaszczyzny. Taka płaszczyzna przecina się z osiam
 \subsubsection{Równanie prostej w przestrzeni}
 Prostą jednoznacznie wyznaczają dwa punkty (lub jeden wyznaczony przez nie wektor). Prosta jest również jednoznacznie wyznaczona przez przecięcie dwóch nierównoległych płaszczyzn.
 
-\paragraph{Równanie parametryczne prostej} Jeśli $P_0 = (x_0, y_0, z_0) \in l$ oraz $\mathbf{v} = [\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3] \in E_3$ jest niezerowym wektorem równoległym do prostej $l$, to
+\paragraph{Równanie parametryczne prostej} Jeśli $P_0 = (x_0, y_0, z_0) \in l$ oraz $\symbf{v} = [\symbf{v}_1, \symbf{v}_2, \symbf{v}_3] \in E_3$ jest niezerowym wektorem równoległym do prostej $l$, to
 \begin{equation} l : \begin{cases}
-    x = x_0 + t\mathbf{v}_1 \\
-    y = y_0 + t\mathbf{v}_2 \\
-    z = z_0 + t\mathbf{v}_3
+    x = x_0 + t\symbf{v}_1 \\
+    y = y_0 + t\symbf{v}_2 \\
+    z = z_0 + t\symbf{v}_3
 \end{cases} \qquad t \in \RR \end{equation}
-jest równaniem parametrycznym prostej. Wektor $\mathbf{v}$ nazywamy wektorem \vocab{kierunkowym} (lub tworzącym, rozpinającym) prostej $l$.
+jest równaniem parametrycznym prostej. Wektor $\symbf{v}$ nazywamy wektorem \vocab{kierunkowym} (lub tworzącym, rozpinającym) prostej $l$.
 
-\paragraph{Równanie kierunkowe prostej} Jeśli $P_0 = (x_0, y_0, z_0) \in l$ oraz $\mathbf{v} = [a, b, c] \in E_3$ jest równoległy do prostej $l$ i $a, b, c \in \RR$ są niezerowe, to
+\paragraph{Równanie kierunkowe prostej} Jeśli $P_0 = (x_0, y_0, z_0) \in l$ oraz $\symbf{v} = [a, b, c] \in E_3$ jest równoległy do prostej $l$ i $a, b, c \in \RR$ są niezerowe, to
 \begin{equation}
     l : \frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}
 \end{equation}
@@ -281,7 +281,7 @@ Jeśli $\pi_1$ nie jest równoległa z $\pi_2$, to równanie krawędziowe proste
 \end{equation}
 
 \begin{remark*}
-    Jeśli chcemy łatwo przejść z równania krawędziowego do parametrycznego, to wystarczy zauważyć, że $n_1 = [A_1, B_1, C_1], n_2 = [A_2, B_2, C_2]$ są wektorami normalnymi płaszczyzn. Chcemy znaleźć więc wektor (kierunkowy), który leży na obu tych płaszczyznach, a więc jest prostopadły do obu wektorów normalnych. Tę własność ma wektor $\mathbf{v} = n_1 \times n_2$.
+    Jeśli chcemy łatwo przejść z równania krawędziowego do parametrycznego, to wystarczy zauważyć, że $n_1 = [A_1, B_1, C_1], n_2 = [A_2, B_2, C_2]$ są wektorami normalnymi płaszczyzn. Chcemy znaleźć więc wektor (kierunkowy), który leży na obu tych płaszczyznach, a więc jest prostopadły do obu wektorów normalnych. Tę własność ma wektor $\symbf{v} = n_1 \times n_2$.
 \end{remark*}
 
 \subsection{Odległości}
@@ -314,12 +314,12 @@ Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzi�
 
 \begin{theorem}[odległość punktu od prostej]
     Odległość punktu $Q$ od prostej $l$ jest równa
-    \[ d(Q, l) = \frac{\Vert \mathbf{v} \times \overrightarrow{LQ}\Vert}{\Vert\mathbf{v}\Vert}, \]
-    gdzie $\mathbf{v}$ jest wektorem kierunkowym prostej $l$, a $L \in l$.
+    \[ d(Q, l) = \frac{\Vert \symbf{v} \times \overrightarrow{LQ}\Vert}{\Vert\symbf{v}\Vert}, \]
+    gdzie $\symbf{v}$ jest wektorem kierunkowym prostej $l$, a $L \in l$.
 \end{theorem}
 \begin{proof}
-    Mamy $l : (x, y, z) = L + t\mathbf{v}$. Na podstawie twierdzenia \ref{t:area of parallelogram}, pole równoległoboku rozpiętego przez wektory $\mathbf{v}, \overrightarrow{LQ}$ jest równe
-    \[ \Vert \mathbf{v} \times \overrightarrow{LQ} \Vert. \]
+    Mamy $l : (x, y, z) = L + t\symbf{v}$. Na podstawie twierdzenia \ref{t:area of parallelogram}, pole równoległoboku rozpiętego przez wektory $\symbf{v}, \overrightarrow{LQ}$ jest równe
+    \[ \Vert \symbf{v} \times \overrightarrow{LQ} \Vert. \]
     \begin{center}
         \begin{tikzpicture}[scale=.8]
             \tkzDefPoints{2/5/Q,-1/3/L,1/2/L'}
@@ -331,13 +331,13 @@ Jeśli szukamy odległości między dwoma płaszczyznami, to wystarczy sprawdzi�
             \tkzDrawSegments[AccColor1, vector style](L,Q L,L')
             \tkzDrawSegments[dotted, AccColor1](L',Q' Q,Q')
             \tkzDrawPoints(Q, L)
-            \tkzLabelSegment[swap](L,L'){$\mathbf{v}$}
+            \tkzLabelSegment[swap](L,L'){$\symbf{v}$}
             \tkzLabelPoints[above right](Q)
             \tkzLabelPoints[below left](L)
         \end{tikzpicture}
     \end{center}
     Ze standardowego wzoru na pole równoległoboku jest ono również równe
-    \[ \Vert \mathbf{v} \Vert \cdot d(Q, l), \]
+    \[ \Vert \symbf{v} \Vert \cdot d(Q, l), \]
     z czego wynika teza.
 \end{proof}
 
@@ -346,14 +346,14 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
 \begin{theorem}[odległość prostych skośnych]
     \label{t:distance between lines}
     Niech $l_1, l_2$ są prostymi skośnymi. Odległość między nimi jest równa
-    \[ d(l_1, l_2) = \frac{|(\mathbf{v} \times \mathbf{u}) \circ \overrightarrow{L_1L_2}|}{\Vert\mathbf{v}\times\mathbf{u}\Vert}, \]
-    gdzie $\mathbf{v}, \mathbf{u}$ są odpowiednio wektorami kierunkowym prostych $l_1, l_2$, a $L_1 \in l_1$ i $L_2 \in l_2$.
+    \[ d(l_1, l_2) = \frac{|(\symbf{v} \times \symbf{u}) \circ \overrightarrow{L_1L_2}|}{\Vert\symbf{v}\times\symbf{u}\Vert}, \]
+    gdzie $\symbf{v}, \symbf{u}$ są odpowiednio wektorami kierunkowym prostych $l_1, l_2$, a $L_1 \in l_1$ i $L_2 \in l_2$.
 \end{theorem}
 \begin{proof}
-    Mamy $l_1 : (x, y, z) = L_1 + t\mathbf{v}$ oraz $l_2 : (x, y, z) = L_2 + t\mathbf{u}$. Na podstawie twierdzenia \ref{t:volume of parallelepiped} objętość równoległościanu rozpiętego przez wektory $\mathbf{v}, \mathbf{u}, \overrightarrow{L_1L_2}$ jest równa
-    \[ |(\mathbf{v} \times \mathbf{u}) \circ \overrightarrow{L_1L_2}|. \]
+    Mamy $l_1 : (x, y, z) = L_1 + t\symbf{v}$ oraz $l_2 : (x, y, z) = L_2 + t\symbf{u}$. Na podstawie twierdzenia \ref{t:volume of parallelepiped} objętość równoległościanu rozpiętego przez wektory $\symbf{v}, \symbf{u}, \overrightarrow{L_1L_2}$ jest równa
+    \[ |(\symbf{v} \times \symbf{u}) \circ \overrightarrow{L_1L_2}|. \]
     Ze standardowego wzoru na objętość (tzn.\ pole podstawy $\cdot$ wysokość) jest ona również równa
-    \[ \Vert\mathbf{v}\times\mathbf{u}\Vert \cdot d(l_1, l_2), \]
+    \[ \Vert\symbf{v}\times\symbf{u}\Vert \cdot d(l_1, l_2), \]
     z czego wynika teza.
 \end{proof}
 
@@ -401,7 +401,7 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
 \begin{solution}
     Zaczniemy od sprawdzenia, czy proste są równoległe. Weźmy wektory kierunkowe tych prostych i obliczmy ich iloczyn wektorowy. Mamy
     \[ [-3, -6, -5] \times [1, 2, 2] = \begin{vmatrix}
-        \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+        \symbf{\hat{i}} & \symbf{\hat{j}} & \symbf{\hat{k}} \\
         -3 & -6 & -5 \\
         1 & 2 & 2
     \end{vmatrix} = [-12 + 10, -5 + 6, -6 + 6] = [-2, 1, 0] \neq \ol{0}, \]
@@ -427,7 +427,7 @@ Jeśli dwie proste są równoległe, to odległość między nimi można obliczy
 \begin{solution}
     Obliczmy najpierw iloczyn wektory wektorów kierunkowych danych prostych.
     \[ [1, -2, 3] \times [1, -1, 4] = \begin{vmatrix}
-        \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+        \symbf{\hat{i}} & \symbf{\hat{j}} & \symbf{\hat{k}} \\
         1 & -2 & 3 \\
         1 & -1 & 4
     \end{vmatrix} = [-8 + 3, 3 - 4, -1 + 2] = [-5, -1, 1] \]

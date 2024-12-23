@@ -104,12 +104,12 @@ Jeżeli istnieje element neutralny $e \in A$ działania $\circ$, to \vocab{eleme
     Pierścień przemienny to pierścień $(P, \circ, *)$, w którym $*$ jest działaniem przemiennym\footnote{Wtedy też rozdzielność prawo- i lewostronna stają się tożsame.}.
 \end{definition}
 
-Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy symbolem $+$. Element neutralny tego działania nazywamy zerem ($\mathbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
+Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i oznaczamy symbolem $+$. Element neutralny tego działania nazywamy zerem ($\symbf{0}$), a element symetryczny do elementu $x$ nazywamy elementem przeciwnym i oznaczamy $-x$.
 
-Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy przez $\cdot$. Jeśli w $P$ dodatkowo istnieje element neutralny tego działania, to ten element nazywamy jedynką ($\mathbf{1}$), a pierścień nazywamy \vocab{pierścieniem z jedynką}. Element symetryczny do elementu $x$ nazywamy elementem odwrotnym i oznaczamy $x^{-1}$.
+Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy przez $\cdot$. Jeśli w $P$ dodatkowo istnieje element neutralny tego działania, to ten element nazywamy jedynką ($\symbf{1}$), a pierścień nazywamy \vocab{pierścieniem z jedynką}. Element symetryczny do elementu $x$ nazywamy elementem odwrotnym i oznaczamy $x^{-1}$.
 
 \begin{definition}
-    Dzielnikiem zera jest taki element pierścienia $a \neq \mathbf{0}$, że istnieje niezerowy element $b$, dla którego zachodzi $a \cdot b = \mathbf{0}$.
+    Dzielnikiem zera jest taki element pierścienia $a \neq \symbf{0}$, że istnieje niezerowy element $b$, dla którego zachodzi $a \cdot b = \symbf{0}$.
 \end{definition}
 
 \begin{definition}
@@ -118,17 +118,17 @@ Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy prze
 
 \begin{lemma}
     \label{l:cancellation_property}
-    W pierścieniach całkowitych zachodzi \vocab{własność skracania}, to znaczy, że dla elementów pierścienia $a, b, c$ przy $c \neq \mathbf{0}$ zachodzi
+    W pierścieniach całkowitych zachodzi \vocab{własność skracania}, to znaczy, że dla elementów pierścienia $a, b, c$ przy $c \neq \symbf{0}$ zachodzi
     \[ ac = bc \implies a = b. \]
 \end{lemma}
 \begin{proof}
-    Jeśli $ac = bc$, to $ac - bc = \mathbf{0}$. Z rozdzielności dostajemy
-    \[ (a - b)c = \mathbf{0}. \]
-    W pierścieniu całkowitym nie ma jednak dzielników zera, więc $a - b = \mathbf{0}$, co dowodzi tezy.
+    Jeśli $ac = bc$, to $ac - bc = \symbf{0}$. Z rozdzielności dostajemy
+    \[ (a - b)c = \symbf{0}. \]
+    W pierścieniu całkowitym nie ma jednak dzielników zera, więc $a - b = \symbf{0}$, co dowodzi tezy.
 \end{proof}
 
 \begin{definition}
-    Ciało to pierścień z jedynką, w którym dla każdego elementu $x \neq \mathbf{0}$ istnieje element odwrotny $x^{-1}$.
+    Ciało to pierścień z jedynką, w którym dla każdego elementu $x \neq \symbf{0}$ istnieje element odwrotny $x^{-1}$.
 \end{definition}
 
 \vocab{Ciałem przemiennym} będzie takie ciało, w którym działanie multiplikatywne $\cdot$ jest przemienne\footnote{Większość autorów już w definicji ciała wymaga przemienności (wtedy ciało nazywamy pierścieniem z~dzieleniem). Przyjęło się tak zwłaszcza w literaturze angielskiej (ciało przemienne to \textit{field}, a ciało to \textit{division ring} lub \textit{skew field}) i niemieckiej (odpowiednio \textit{Körper} i \textit{Schiefkörper}).
@@ -137,20 +137,20 @@ Odwrotnie --- czyli zgodnie z naszą konwencją --- jest w literaturze francuski
 Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), jeżeli:
 \begin{enumerate}[noitemsep,nolistsep]
     \item $(K, +)$ jest grupą abelową,
-    \item $(K \setminus \{\mathbf{0}\}, \cdot)$ jest grupą (przemienną),
+    \item $(K \setminus \{\symbf{0}\}, \cdot)$ jest grupą (przemienną),
     \item zachodzi warunek rozdzielności $\cdot$ względem $+$.
 \end{enumerate}
 
 \begin{lemma}
     \label{l:a0=0}
-    Dla każdego elementu ciała $a$ zachodzi $a \cdot \mathbf{0} = \mathbf{0}$.
+    Dla każdego elementu ciała $a$ zachodzi $a \cdot \symbf{0} = \symbf{0}$.
 \end{lemma}
 \begin{proof}
-    \begin{align*}             a \cdot \mathbf{0} &= a \cdot (\mathbf{0} + \mathbf{0}) \\
-                               a \cdot \mathbf{0} &= a \cdot \mathbf{0} + a \cdot \mathbf{0} \\
-        a \cdot \mathbf{0} + - a \cdot \mathbf{0} &= a \cdot \mathbf{0} + a \cdot \mathbf{0} + - a \cdot \mathbf{0} \\
-                                       \mathbf{0} &= a \cdot \mathbf{0} + \mathbf{0} \\
-                                       \mathbf{0} &= a \cdot \mathbf{0}
+    \begin{align*}             a \cdot \symbf{0} &= a \cdot (\symbf{0} + \symbf{0}) \\
+                               a \cdot \symbf{0} &= a \cdot \symbf{0} + a \cdot \symbf{0} \\
+        a \cdot \symbf{0} + - a \cdot \symbf{0} &= a \cdot \symbf{0} + a \cdot \symbf{0} + - a \cdot \symbf{0} \\
+                                       \symbf{0} &= a \cdot \symbf{0} + \symbf{0} \\
+                                       \symbf{0} &= a \cdot \symbf{0}
     \end{align*}
 \end{proof}
 
@@ -158,11 +158,11 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), je�
     Każde ciało przemienne jest pierścieniem całkowitym.
 \end{theorem}
 \begin{proof}
-    Załóżmy przeciwnie, że istnieją dzielniki zera, czyli takie dwa elementy ciała $x, y$, że $x, y \neq \mathbf{0}$ oraz $x \cdot y = \mathbf{0}$. Mamy
+    Załóżmy przeciwnie, że istnieją dzielniki zera, czyli takie dwa elementy ciała $x, y$, że $x, y \neq \symbf{0}$ oraz $x \cdot y = \symbf{0}$. Mamy
     \begin{align*}
-        x \cdot y &= \mathbf{0} \\
-        x^{-1} \cdot x \cdot y &= x^{-1} \cdot \mathbf{0} \\
-        y &= x^{-1} \cdot \mathbf{0},
+        x \cdot y &= \symbf{0} \\
+        x^{-1} \cdot x \cdot y &= x^{-1} \cdot \symbf{0} \\
+        y &= x^{-1} \cdot \symbf{0},
     \end{align*}
     co, na mocy lematu \ref{l:a0=0}, jest sprzecznością z założeniem.
 \end{proof}
@@ -171,7 +171,7 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), je�
     Każdy skończony pierścień całkowity jest ciałem przemiennym.
 \end{theorem}
 \begin{proof}
-    Załóżmy przeciwnie, że istnieje element pierścienia $a \neq \mathbf{0}$, który nie ma elementu odwrotnego. Rozważmy iloczyny $aa_1, aa_2, aa_3, \ldots$ elementu $a$ ze wszystkimi innymi elementami pierścienia (w tym z $\mathbf{1}$). Z założenia nie ma wśród nich jedynki, więc, skoro $\cdot$ jest działaniem wewnętrznym, to z zasady szufladkowej istnieją takie $a_k \neq a_l$, że $aa_k = aa_l$. To stwierdzenie jest jednak sprzecznością na mocy lematu \ref{l:cancellation_property}, ponieważ rozważamy pierścienie całkowite, w których nie ma dzielników zera.
+    Załóżmy przeciwnie, że istnieje element pierścienia $a \neq \symbf{0}$, który nie ma elementu odwrotnego. Rozważmy iloczyny $aa_1, aa_2, aa_3, \ldots$ elementu $a$ ze wszystkimi innymi elementami pierścienia (w tym z $\symbf{1}$). Z założenia nie ma wśród nich jedynki, więc, skoro $\cdot$ jest działaniem wewnętrznym, to z zasady szufladkowej istnieją takie $a_k \neq a_l$, że $aa_k = aa_l$. To stwierdzenie jest jednak sprzecznością na mocy lematu \ref{l:cancellation_property}, ponieważ rozważamy pierścienie całkowite, w których nie ma dzielników zera.
 \end{proof}
 
 \begin{example}

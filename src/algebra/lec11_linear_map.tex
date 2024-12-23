@@ -61,29 +61,29 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
     \[ \dim \Ker f + \dim \Im f = \dim V. \]
 \end{theorem}
 \begin{proof}
-    Niech $n = \dim V$ oraz $k = \dim \Ker f$. Skoro $\Ker f$ jest podprzestrzenią przestrzeni $V$, to jeśli $n = k$, to dla każdego $\mathbf{v} \in V$ zachodzi $f(\mathbf{v}) = \ol{0}$, więc $\Im f = \{\ol{0}\}$, ergo teza jest spełniona. Dalej załóżmy więc, że $n > k$. Istnieje taka baza przestrzeni $V$, która ma postać
-    \[ \{\mathbf{v}_1, \ldots, \mathbf{v}_k, \mathbf{u}_{k+1}, \ldots, \mathbf{u}_n\}, \]
-    gdzie $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ jest bazą $\Ker f$. Weźmy dowolny wektor $\mathbf{v} \in V,$
-    \[ \mathbf{v} = t_1\mathbf{v}_1 + \ldots + t_k\mathbf{v}_k + t_{k+1}\mathbf{u}_{k+1} + \ldots + t_n\mathbf{u}_n. \]
+    Niech $n = \dim V$ oraz $k = \dim \Ker f$. Skoro $\Ker f$ jest podprzestrzenią przestrzeni $V$, to jeśli $n = k$, to dla każdego $\symbf{v} \in V$ zachodzi $f(\symbf{v}) = \ol{0}$, więc $\Im f = \{\ol{0}\}$, ergo teza jest spełniona. Dalej załóżmy więc, że $n > k$. Istnieje taka baza przestrzeni $V$, która ma postać
+    \[ \{\symbf{v}_1, \ldots, \symbf{v}_k, \symbf{u}_{k+1}, \ldots, \symbf{u}_n\}, \]
+    gdzie $\{\symbf{v}_1, \ldots, \symbf{v}_k\}$ jest bazą $\Ker f$. Weźmy dowolny wektor $\symbf{v} \in V,$
+    \[ \symbf{v} = t_1\symbf{v}_1 + \ldots + t_k\symbf{v}_k + t_{k+1}\symbf{u}_{k+1} + \ldots + t_n\symbf{u}_n. \]
     Wtedy
     \begin{align*}
-        \mathbf{w} = f(\mathbf{v}) &= f(t_1\mathbf{v}_1 + \ldots + t_k\mathbf{v}_k + t_{k+1}\mathbf{u}_{k+1} + \ldots + t_n\mathbf{u}_n) \\
-            &= f(t_1\mathbf{v}_1) + \ldots + f(t_k\mathbf{v}_k) + f(t_{k+1}\mathbf{u}_{k+1}) + \ldots + f(t_n\mathbf{u}_n) \\
-            &= t_1f(\mathbf{v}_1) + \ldots + t_kf(\mathbf{v}_k) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n) \\
-            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n) \\
-            &= t_{k+1}f(\mathbf{u}_{k+1}) + \ldots + t_nf(\mathbf{u}_n),
+        \symbf{w} = f(\symbf{v}) &= f(t_1\symbf{v}_1 + \ldots + t_k\symbf{v}_k + t_{k+1}\symbf{u}_{k+1} + \ldots + t_n\symbf{u}_n) \\
+            &= f(t_1\symbf{v}_1) + \ldots + f(t_k\symbf{v}_k) + f(t_{k+1}\symbf{u}_{k+1}) + \ldots + f(t_n\symbf{u}_n) \\
+            &= t_1f(\symbf{v}_1) + \ldots + t_kf(\symbf{v}_k) + t_{k+1}f(\symbf{u}_{k+1}) + \ldots + t_nf(\symbf{u}_n) \\
+            &= t_1(0) + \ldots + t_k(0) + t_{k+1}f(\symbf{u}_{k+1}) + \ldots + t_nf(\symbf{u}_n) \\
+            &= t_{k+1}f(\symbf{u}_{k+1}) + \ldots + t_nf(\symbf{u}_n),
     \end{align*}
     więc
-    \[ \Im f = \Lin\{f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)\}. \]
-    Wystarczy już tylko udowodnić, że wektory $f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)$ są liniowo niezależne. Weźmy ciąg skalarów $(s_i)$ taki, że
+    \[ \Im f = \Lin\{f(\symbf{u}_{k+1}), \ldots, f(\symbf{u}_n)\}. \]
+    Wystarczy już tylko udowodnić, że wektory $f(\symbf{u}_{k+1}), \ldots, f(\symbf{u}_n)$ są liniowo niezależne. Weźmy ciąg skalarów $(s_i)$ taki, że
     \begin{align*}
-        s_{k+1}f(\mathbf{u}_{k+1}) + \ldots + s_nf(\mathbf{u}_n) &= \ol{0} \\
-        f(s_{k+1}\mathbf{u}_{k+1}) + \ldots + f(s_n\mathbf{u}_n) &= \ol{0} \\
-        f(s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) &= \ol{0}.
+        s_{k+1}f(\symbf{u}_{k+1}) + \ldots + s_nf(\symbf{u}_n) &= \ol{0} \\
+        f(s_{k+1}\symbf{u}_{k+1}) + \ldots + f(s_n\symbf{u}_n) &= \ol{0} \\
+        f(s_{k+1}\symbf{u}_{k+1} + \ldots + s_n\symbf{u}_n) &= \ol{0}.
     \end{align*}
     Z tego wynika, że
-    \[ (s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in \Ker f, \]
-    więc $(s_{k+1}\mathbf{u}_{k+1} + \ldots + s_n\mathbf{u}_n) \in V$ możemy zapisać jako kombinację liniową wektorów $\mathbf{v}_1, \ldots, \mathbf{v}_k$. Zakładając, że ciąg $(s_i)$ jest niezerowy, mamy dwa sposoby zapisu jednego wektora z $V$, co stoi w sprzeczności z twierdzeniem \ref{t:explicit coefficients}. Z tego wynika, że $\forall i : s_i = 0$, więc wektory $f(\mathbf{u}_{k+1}), \ldots, f(\mathbf{u}_n)$ są liniowo niezależne, ergo
+    \[ (s_{k+1}\symbf{u}_{k+1} + \ldots + s_n\symbf{u}_n) \in \Ker f, \]
+    więc $(s_{k+1}\symbf{u}_{k+1} + \ldots + s_n\symbf{u}_n) \in V$ możemy zapisać jako kombinację liniową wektorów $\symbf{v}_1, \ldots, \symbf{v}_k$. Zakładając, że ciąg $(s_i)$ jest niezerowy, mamy dwa sposoby zapisu jednego wektora z $V$, co stoi w sprzeczności z twierdzeniem \ref{t:explicit coefficients}. Z tego wynika, że $\forall i : s_i = 0$, więc wektory $f(\symbf{u}_{k+1}), \ldots, f(\symbf{u}_n)$ są liniowo niezależne, ergo
     \[ \dim \Im f = n - k, \]
     \[ \rank f = \dim V - \nullity f. \]
 \end{proof}
@@ -111,12 +111,12 @@ Wymiar jądra pewnego odwzorowania $f$ nazywamy \vocab{zerowością} i oznaczamy
     Odwzorowanie liniowe $f : V \to W$ jest monomorfizmem wtedy i tylko wtedy, gdy $\Ker f = \{\ol{0}\}$.
 \end{theorem}
 \begin{proof}
-    Implikacja prawostronna jest trywialna, dlatego udowodnimy tylko lewostronną. Załóżmy przeciwnie, że istnieje takie $\mathbf{v}_1 \neq \mathbf{v}_2$, że
-    \[ f(\mathbf{v}_1) = f(\mathbf{v}_2). \]
+    Implikacja prawostronna jest trywialna, dlatego udowodnimy tylko lewostronną. Załóżmy przeciwnie, że istnieje takie $\symbf{v}_1 \neq \symbf{v}_2$, że
+    \[ f(\symbf{v}_1) = f(\symbf{v}_2). \]
     Wtedy
-    \[ f(\mathbf{v}_1) - f(\mathbf{v}_2) = f(\mathbf{v}_2) - f(\mathbf{v}_1) = \ol{0} \]
-    \[ f(\mathbf{v}_1 - \mathbf{v}_2) = f(\mathbf{v}_2 - \mathbf{v}_1) = \ol{0}, \]
-    co, skoro $\mathbf{v}_1 - \mathbf{v}_2 \neq \ol{0}$, przeczy założeniu $\Ker f = \{\ol{0}\}$.
+    \[ f(\symbf{v}_1) - f(\symbf{v}_2) = f(\symbf{v}_2) - f(\symbf{v}_1) = \ol{0} \]
+    \[ f(\symbf{v}_1 - \symbf{v}_2) = f(\symbf{v}_2 - \symbf{v}_1) = \ol{0}, \]
+    co, skoro $\symbf{v}_1 - \symbf{v}_2 \neq \ol{0}$, przeczy założeniu $\Ker f = \{\ol{0}\}$.
 \end{proof}
 
 \begin{theorem}

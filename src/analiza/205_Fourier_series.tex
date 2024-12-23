@@ -32,7 +32,7 @@ Zbieżność w sensie metryki $d$ to \vocab{zbieżność przeciętna z kwadratem
 \begin{proof}
     Niech
     \[ f(x) = \sum_{n=0}^\infty c_n\varphi_n. \]
-    Wybierzmy dowolne $m \in \mathbb{N}$. Mamy
+    Wybierzmy dowolne $m \in \NN$. Mamy
     \begin{align*}
         f(x) \cdot \varphi_m (x)
         &= \sum_{n=0}^\infty c_n \varphi_n(x) \cdot \varphi_m(x), \\
@@ -41,7 +41,7 @@ Zbieżność w sensie metryki $d$ to \vocab{zbieżność przeciętna z kwadratem
     \end{align*}
     Skoro szereg jest zbieżny jednostajnie, to (korzystając z twierdzenia \ref{t:integrable series}) możemy zamienić znaki sumy i całki, otrzymując
     \[ \int_a^b f(x) \varphi_m(x) \d x = \sum_{n=0}^\infty c_n \int_a^b \varphi_n(x) \varphi_m(x) \d x, \]
-    a ponieważ $(\varphi_n)_{n \in \mathbb{N}}$ jest ciągiem ortogonalnym (czyli dla $n \neq m$, $\int_a^b \varphi_n(x) \varphi_m(x) = 0$), suma sprowadza się do
+    a ponieważ $(\varphi_n)_{n \in \NN}$ jest ciągiem ortogonalnym (czyli dla $n \neq m$, $\int_a^b \varphi_n(x) \varphi_m(x) = 0$), suma sprowadza się do
     \begin{align*}
         \int_a^b f(x) \varphi_m(x) \d x
         &= c_m \int_a^b \varphi_m(x) \varphi_m(x) \d x \\
