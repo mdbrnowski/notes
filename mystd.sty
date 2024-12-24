@@ -63,7 +63,7 @@
 \ProcessOptions\relax
 
 \usepackage{fontsetup}  % loads fontspec and New Computer Modern
-\usepackage[scale=0.9]{raleway}  % loads Raleway sans serif font
+\usepackage{raleway}  % loads Raleway sans serif font
 \ifstdmonofont
     \setmonofont{JetBrainsMono}[Scale=0.85]
 \fi
@@ -175,7 +175,7 @@
     \mdfdefinestyle{mdbluebox}{%
         skipabove=12pt,
         skipbelow=2pt,
-        linewidth=0.5pt,
+        linewidth=0.75pt,
         innerbottommargin=9pt,
         linecolor=BoxColor1,
         backgroundcolor=BoxColor1!5,
@@ -199,7 +199,7 @@
         nobreak=true
     }
     \declaretheoremstyle[
-        headfont=\bfseries\color{BoxColor2},
+        headfont=\sffamily\bfseries\color{BoxColor2},
         bodyfont=\normalfont\small,
         mdframed={style=mdredbox},
         headpunct={\\[3pt]},
@@ -216,11 +216,11 @@
         backgroundcolor=black!3,
     }
     \declaretheoremstyle[
-        headfont=\bfseries,
+        headfont=\sffamily\bfseries,
         bodyfont=\normalfont\small,
         mdframed={style=mdblackbox},
-        spaceabove=0pt,
-        spacebelow=0pt
+        headpunct={\\[3pt]},
+        postheadspace={0pt}
     ]{thmblackbox}
 \else
     \declaretheoremstyle[headfont=\bfseries,bodyfont=\normalfont,spaceabove=\topsep,spacebelow=\topsep]{thmbluebox}
