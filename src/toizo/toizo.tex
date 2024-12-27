@@ -1,5 +1,4 @@
-% arara: lualatex: { synctex: yes }
-% arara: lualatex: { synctex: yes } if found('log', 'undefined references') || found('log', 'Rerun to get cross-references right')
+% arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
 \documentclass{scrartcl}
 \usepackage[pretty,polish]{mystd}
 \title{Teoria obliczeń i złożoności obliczeniowej}
@@ -18,14 +17,20 @@
 \newcommand{\EXPclass}{\textsf{EXP}}
 \newcommand{\EXPSPACEclass}{\textsf{EXPSPACE}}
 \newcommand{\NPclass}{\textsf{NP}}
+\newcommand{\NPSPACEclass}{\textsf{NPSPACE}}
 \newcommand{\encode}[1]{\left\langle #1 \right\rangle}
+\DeclareMathOperator{\poly}{poly}
 
 \usepackage{algpseudocodex}
+\usepackage{tikz-network}
 
 \begin{document}
     \maketitle
     \tableofcontents
     \newpage
+
+    \SetVertexStyle[FillColor=gray, FillOpacity=0.4]
+    \SetEdgeStyle[Color=black, LineWidth=0.8pt]
 
     \input{part_1.tex}
     \input{part_2.tex}

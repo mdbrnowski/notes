@@ -250,7 +250,7 @@ Rodzinę $\sL$ języków będziemy nazywać \vocab{własnością} i mówić, że
     Wówczas $x \in L \iff \encode{M_L, x} \in H$, a więc $L \leq_m H$.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{t:nontrivial R language is R-complete}
     Każdy nietrywialny\footnote{to znaczy różny od $\emptyset$ oraz $\Sigma^*$} język klasy $\Rclass$ jest $\Rclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -271,12 +271,6 @@ Rodzinę $\sL$ języków będziemy nazywać \vocab{własnością} i mówić, że
     \end{algorithmic}
     która zawsze kończy swoje działanie, a więc spełnia wszystkie założenia definicji \ref{d:many-one reduction}. Zatem $A \leq_m B$, a więc $B$ jest $\Rclass$-zupełny.
 \end{proof}
-
-% Problem kafelkowania kuchni to taki problem, w którym wejściem jest zbiór kwadratowych kafelków $1 \times 1$, z których każdy z boków ma pewien przypisany kolor, a zadaniem jest stwierdzenie, czy kafelkami tymi można wyłożyć nieskończoną planszę w taki sposób, żeby kolory na przylegających bokach były zgodne. Kafelków nie można obracać, ale można ich używać dowolnie wiele razy lub też nie używać wcale.
-
-% \begin{theorem}
-%     Problem kafelkowania kuchni jest $\coREclass$-trudny.
-% \end{theorem}
 
 \section{Hierarchia arytmetyczna}
 Znamy już pewne klasy języków (czy też problemów decyzynych), mianowicie $\REclass$, $\coREclass$ oraz ich część wspólną $\Rclass$. W tej sekcji, bazując na twierdzeniach \ref{t:char of RE}, \ref{t:char of coRE}, wprowadzimy kolejne klasy języków, które są bardziej ogólne niż wyżej wymienione.
