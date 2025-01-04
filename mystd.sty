@@ -75,6 +75,10 @@
         % you can still use \le and \ge for the standard versions
         \renewcommand{\leq}{\leqslant}
         \renewcommand{\geq}{\geqslant}
+        \renewcommand{\nleq}{\nleqslant}
+        \renewcommand{\ngeq}{\ngeqslant}
+        \renewcommand{\preceq}{\preccurlyeq}
+        \renewcommand{\succeq}{\succcurlyeq}
     }
 \else
     \usepackage[american]{babel}
@@ -130,6 +134,7 @@
 \newcommand{\sL}{{\symcal L}}
 \newcommand{\sM}{{\symcal M}}
 \newcommand{\sO}{{\symcal O}}
+\newcommand{\sP}{{\symcal P}}
 \newcommand{\sR}{{\symcal R}}
 \newcommand{\sS}{{\symcal S}}
 
@@ -324,7 +329,7 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{microtype}
-\usepackage[color=ColAccBad!70]{todonotes}
+\usepackage[color=ColAccBad!70,textsize=footnotesize]{todonotes}
 
 \addtokomafont{subtitle}{\Large}
 \setkomafont{author}{\Large}
