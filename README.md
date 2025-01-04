@@ -1,10 +1,6 @@
 # notes
 
-[![Star on GitHub](https://img.shields.io/github/stars/mdbrnowski/notes.svg?style=social)](https://github.com/mdbrnowski/notes/)
-
-> Too many authors to cite?
->
-> No problem et al.
+[![GitHub Repo stars](https://img.shields.io/github/stars/mdbrnowski/notes?style=flat-square&logo=github&color=yellow)](https://github.com/mdbrnowski/notes/)
 
 ## My notes, articles, papers, etc.
 
@@ -17,8 +13,6 @@
 
 * **filtr.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/filtr.pdf)] – *Funkcje tworzące i filtracja pierwiastkami jedności*
 * **fft.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/fft.pdf)] - *Szybka transformacja Fouriera (FFT)*
-
-<br>
 
 ## The mystd.sty package
 
