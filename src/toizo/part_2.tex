@@ -13,7 +13,13 @@ oraz klasy języków, które są rozstrzygalne w pamięci wielomianowej i wykła
 \[ \PSPACEclass = \bigcup_{k = 1}^\infty \SPACE\left(n^k\right), \]
 \[ \EXPSPACEclass = \bigcup_{k = 1}^\infty \SPACE\left(2^{n^k}\right). \]
 
-Oczywistym jest, że $\Pclass \subseteq \EXPclass$ oraz $\PSPACEclass \subseteq \EXPSPACEclass$. Zachodzi natomiast również $\PSPACEclass \subseteq \EXPclass$, ponieważ maszyna Turinga ma wykładniczo wiele stanów taśmy (w stosunku do długości taśmy).
+Oczywistym jest, że $\Pclass \subseteq \EXPclass$ i $\PSPACEclass \subseteq \EXPSPACEclass$. Łatwo zauważyć również, że $\Pclass \subseteq \PSPACEclass$ i $\EXPclass \subseteq \EXPSPACEclass$ (konsumowanie pamięci zajmuje czas). Możemy natomiast udowodnić nieco mniej oczywisty fakt.
+\begin{fact}
+    Zachodzi inkluzja $\PSPACEclass \subseteq \EXPclass$.
+\end{fact}
+\begin{proof}
+    Maszyna Turinga ma wykładniczo wiele konfiguracji taśmy w stosunku do długości tej taśmy. Nie istnieje więc problem, który można rozwiązać w pamięci wielomianowej, ale nie można go rozwiązać w czasie wykładniczym.
+\end{proof}
 
 \subsection{Niedeterministyczna maszyna Turinga}
 
@@ -38,7 +44,7 @@ Niedeterministyczna maszyna Turinga to uogólnienie maszyny Turinga, które pozw
     Niedeterministyczna maszyna Turinga akceptuje słowo $x$ o długości $n$, jeśli istnieje ścieżka obliczeń, która kończy się w stanie $q_Y$. Język jest rozstrzygany przez niedeterministyczną maszynę Turinga $M$ w czasie $f(n)$, jeśli dla każdego słowa $x$ o długości $n$ każda ścieżka obliczeń kończy się w czasie $f(n)$ oraz $M$ akceptuje $x$ wtedy i tylko wtedy, gdy $x \in L$.
 \end{definition}
 
-Analogicznie do klas $\Pclass$ czy $\PSPACEclass$, definiujemy klasy języków decyzyjnych, które są rozstrzygalne przez niedeterministyczną maszynę Turinga; oznaczamy je odpowiednio jako $\NPclass$ oraz $\NPSPACEclass$.
+Analogicznie do już zdefiniowanych klas złożoności obliczeniowej, definiujemy klasy języków decyzyjnych, które są rozstrzygalne przez niedeterministyczną maszynę Turinga; oznaczamy je jako $\NPclass$, $\NPSPACEclass$, $\NEXPclass$ i tym podobne.
 
 \subsection{Redukcje wielomianowe, jeszcze raz o trudności i zupełności}
 
@@ -47,7 +53,7 @@ Analogicznie do klas $\Pclass$ czy $\PSPACEclass$, definiujemy klasy języków d
     \[ x \in A \iff f(x) \in B. \]
 \end{definition}
 
-Nasze definicje trudności i zupełności języków w klasach $\REclass$, $\coREclass$ czy też szerszych $\Sigma_i$ i $\Pi_i$ nie mają zbyt dużego sensu w kontekście klas $\Pclass$, $\NPclass$ czy $\PSPACEclass$ (z powodu twierdzenia \ref{t:nontrivial R language is R-complete}). W tych klasach zamiast zwykłej redukcji funkcją obliczalną używamy redukcji wielomianowej, co odpowiednio zmienia definicje trudności i zupełności.
+Nasze definicje trudności i zupełności języków w klasach $\REclass$, $\coREclass$ czy też szerszych $\Sigma_i$ i $\Pi_i$ nie mają zbyt dużego sensu w kontekście klas $\Pclass$, $\NPclass$, $\PSPACEclass$ czy $\NEXPclass$ (z powodu twierdzenia \ref{t:nontrivial R language is R-complete}). W tych klasach zamiast zwykłej redukcji funkcją obliczalną używamy redukcji wielomianowej, co odpowiednio zmienia definicje trudności i zupełności.
 
 \subsection{Problem SAT}
 
@@ -61,14 +67,14 @@ jest w postaci CNF.
     Każdą formułę logiczną można sprowadzić do postaci CNF w czasie wielomianowym, a rozmiar formuły wyjściowej będzie liniowy w stosunku do rozmiaru formuły wejściowej.
 \end{fact}
 
-\begin{theorem}[Cooka-Levina]
+\begin{theorem}[Cooka-Levina]\label{t:Cook-Levin}
     Problem SAT jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
     Łatwo zaobserwować, że problem SAT jest w klasie $\NPclass$. Niedeterministyczna maszyna Turinga może niedeterministycznie wybrać wartościowanie zmiennych i sprawdzać, czy formuła jest spełniona. Pokażemy, że problem SAT jest $\NPclass$-trudny, a więc jest $\NPclass$-zupełny.
 
     Niech $H$ będzie problemem takim, że
-    \[ H = \left\{\encode{N, x, 0^t} \Bigm| \parbox{15em}{\footnotesize niedeterministyczna maszyna Turinga $M$ akceptuje słowo $x$ w $t$ krokach}\right\}. \]
+    \[ H = \left\{\encode{N, x, 0^t} \Bigm| \parbox{15em}{\footnotesize niedeterministyczna maszyna Turinga $N$ akceptuje słowo $x$ w $t$ krokach}\right\}. \]
     Łatwo zauważyć, że $H$ jest problemem $\NPclass$-trudnym (można do niego sprowadzić każdy inny problem z $\NPclass$) oraz sam należy do $\NPclass$ (maszyna $M_H$ może niedeterministycznie wybierać relację $\delta$ i symulować działanie maszyny $N$).
     Wystarczy więc pokazać, że $H$ redukuje się do SAT.
 
@@ -160,23 +166,23 @@ Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nie
     \SetCoordinates[xAngle=-30,yLength=1.2,xLength=1]
     \SetLayerDistance{-2.5}
     \begin{tikzpicture}[multilayer=3d,scale=0.8]
-        \Vertex[x=1,y=2,label=$x$,layer=1,color=AccColor2]{x_1}
-        \Vertex[x=3,y=2,label=$y$,layer=1]{y_1}
-        \Vertex[x=2,y=0,label=$z$,layer=1]{z_1}
+        \Vertex[x=1,y=2,label=$x$,layer=1,color=AccColor3]{x_1}
+        \Vertex[x=3,y=2,label=$y$,layer=1,color=AccColor2]{y_1}
+        \Vertex[x=2,y=0,label=$z$,layer=1,color=AccColor2]{z_1}
         \Edge(x_1)(y_1)
         \Edge(x_1)(z_1)
         \Edge(y_1)(z_1)
 
-        \Vertex[x=1,y=2,label=$\ol{x}$,layer=2]{x_2}
-        \Vertex[x=3,y=2,label=$\ol{y}$,layer=2]{y_2}
-        \Vertex[x=2,y=0,label=$z$,layer=2,color=AccColor2]{z_2}
+        \Vertex[x=1,y=2,label=$\ol{x}$,layer=2,color=AccColor2]{x_2}
+        \Vertex[x=3,y=2,label=$\ol{y}$,layer=2,color=AccColor2]{y_2}
+        \Vertex[x=2,y=0,label=$z$,layer=2,color=AccColor3]{z_2}
         \Edge(x_2)(y_2)
         \Edge(x_2)(z_2)
         \Edge(y_2)(z_2)
 
-        \Vertex[x=1,y=2,label=$\ol{x}$,layer=3]{x_3}
-        \Vertex[x=3,y=2,label=$y$,layer=3,,color=AccColor2]{y_3}
-        \Vertex[x=2,y=0,label=$\ol{z}$,layer=3]{z_3}
+        \Vertex[x=1,y=2,label=$\ol{x}$,layer=3,color=AccColor2]{x_3}
+        \Vertex[x=3,y=2,label=$y$,layer=3,color=AccColor3]{y_3}
+        \Vertex[x=2,y=0,label=$\ol{z}$,layer=3,color=AccColor2]{z_3}
         \Edge(x_3)(y_3)
         \Edge(x_3)(z_3)
         \Edge(y_3)(z_3)
@@ -191,7 +197,7 @@ Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nie
         \Edge[style=dashed,bend=-15](z_1)(z_3)
     \end{tikzpicture}
 
-    \caption{Graf odpowiadający formule $\phi = (x \lor y \lor z) \land (\neg x \lor \neg y \lor z) \land (\neg x \lor y \lor \neg z)$. Istnieje zbiór trzech wierzchołków niezależnych (zaznaczony), a więc formuła $\phi$ jest spełnialna.}
+    \caption{Graf odpowiadający formule $\phi = (x \lor y \lor z) \land (\neg x \lor \neg y \lor z) \land (\neg x \lor y \lor \neg z)$. Istnieje zbiór $k = 3$ wierzchołków niezależnych (zaznaczony), a więc formuła $\phi$ jest spełnialna.}
 \end{figure}
 
 \subsection{Problem \textsc{Clique}}
@@ -425,18 +431,120 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
         W ten sposób gwarantujemy, że każdy zbiór z $\sS$ ma dokładnie $3$ elementy, a jednocześnie zbiór $B$ można pokryć $n$ zbiorami wtedy i tylko wtedy, jeśli przed tym krokiem istniało pokrycie.
     \end{enumerate}
 
-    Teraz mamy już pewnę instancję problemu X3C, a więc pokazaliśmy, że $(3, 3)$-SAT się do tego problemu redukuje, z czego wynika, że problem X3C również jest $\NPclass$-zupełny.
+    Teraz mamy już pewną instancję problemu X3C, a więc pokazaliśmy, że $(3, 3)$-SAT się do tego problemu redukuje, z czego wynika, że problem X3C również jest $\NPclass$-zupełny.
 \end{proof}
 
 \subsection{Problem \textsc{Subset Sum}}
 
 Problem \textsc{Subset Sum} to problem stwierdzenia, czy dany zbiór liczb naturalnych $A = \{a_1, \ldots, a_n\}$ zawiera podzbiór sumujący się do danej liczby $t \in \NN$.
 
-Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czasie $\sO(nt)$. Może wydawać się on wielomianowy, ale nie jest wielomianowy względem rozmiaru danych wejściowych, a jedynie względem \textit{wartości} $t$, która to wartość jest wykładnicza względem rozmiaru kodowania liczby $t$.
+Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czasie $\sO(nt)$. Może wydawać się on wielomianowy, ale nie jest wielomianowy względem rozmiaru danych wejściowych, a jedynie względem \textit{wartości} $t$. Takie algorytmy będziemy nazywać \vocab{pseudo-wielomianowymi}. Problemy $\NPclass$-zupełne, które przestają być $\NPclass$-zupełne, jeśli zastosujemy unarne kodowanie liczb nazywamy \vocab{słabo $\NPclass$-zupełnymi}.
 
 \begin{theorem}
     Problem \textsc{Subset Sum} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
-    
+    Pokażemy redukcję problemu X3C do problemu \textsc{Subset Sum}. Niech $(B, \sS, k)$ będzie instancją problemu X3C, gdzie $\sS = \{S_1, \ldots, S_m\}$ i $|B| = 3k$. Zdefiniujmy zbiór liczb
+    \[ A = \left\{s_i \Bigm| \sum_{j=1}^{3k} \left(m + 1\right)^j \left[b_j \in S_i\right]\right\}, \]
+    gdzie $\left[b_j \in S_i\right]$ jest nawiasem Iversona. Niech
+    \[ t = \sum_{j=1}^{3k} (m + 1)^j. \]
+    Zbiór $A$ zawiera podzbiór sumujący się do $t$ wtedy i tylko wtedy, gdy istnieje dokładnie $k$ zbiorów z rodziny $\sS$, które pokrywają zbiór $B$.
+    Pokazaliśmy, że X3C $\leq_m^p$ \textsc{Subset Sum}, a więc problem \textsc{Subset Sum} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
+
+\section{Struktura klas złożoności obliczeniowej}
+
+W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo bardziej niejasna. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna). W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
+
+\begin{theorem}
+    Jeśli $\Pclass = \NPclass$, to $\EXPclass = \NEXPclass$.
+\end{theorem}
+\begin{proof}
+    Pokażemy typową metodę zwaną \textit{paddingiem}. Załóżmy, że $\Pclass = \NPclass$ oraz niech $L \in \NEXPclass$. Istnieje więc niedeterministyczna maszyna Turinga $M$, która rozstrzyga o $L$ w czasie $\sO(2^{n^k})$. Niech
+    \[ L' = \{x\diamondsuit^{2^{|x|^k}} \mid x \in L\}, \]
+    gdzie $\diamondsuit$ jest specjalnym symbolem, który nie należy do alfabetu języka $L$. Konstruujemy niedeterministyczną maszynę Turinga $M'$, która rozstrzyga o $L'$ w taki sposób, że dla każdego $y \in L'$ sprawdza, czy $y$ jest we właściwej formie, a następnie symuluje $M$. Robi to w czasie $\sO(2^{|x|^k})$, a więc wielomianowym w stosunku do $|y|$. Z tego wynika, że $L' \in \NPclass$.
+
+    Zgodnie z naszym założeniem, $L' \in \Pclass$, a więc istnieje deterministyczna maszyna Turinga $M_D'$, która rozstrzyga o $L'$ w czasie wielomianowym. Możemy więc skonstruować deterministyczną maszynę Turinga $M_D(x)$, która symuluje $M_D'(x\diamondsuit^{2^{|x|^k}})$ w czasie wykładniczym względem $|x|$. Z tego wynika, że $L \in \EXPclass$.
+\end{proof}
+
+\begin{remark}[o zamkniętości klas ze względu na morfizmy]
+    Funkcję $f : \Sigma_1^* \to \Sigma_2^*$ nazywamy \vocab{morfizmem}, jeśli dla dowolnego $a = a_1 \cdots a_n \in \Sigma_1^*$, zachodzi $f(a) = f(a_1) \cdots f(a_n)$ (to znaczy, że $f$ jest jednoznacznie określona przez funkcję pojedynczych symboli).
+
+    Łatwo pokazać, że klasa $\NPclass$ jest zamknięta ze względu na morfizmy, to znaczy, że jeśli $L \in \NPclass$ i $f$ jest morfizmem, to $f(L) \in \NPclass$. Dowód jest następujący: jeśli $M$ jest niedeterministyczną maszyną Turinga rozstrzygającą o $L$, to możemy zbudować maszynę $M'$, która na wejściu $f(a)$ zgaduje $a$ oraz symuluje działanie $M$ na $a$.
+
+    Taki sam tok rozumowanie nie zadziała jednak wewnątrz klasy $\Pclass$. Możemy udowodnić, że jeśli klasa $\Pclass$ jest zamknięta ze względu na morfizmy, to $\Pclass = \NPclass$.
+    W tym celu rozważmy problem SAT. Sprawdzenie wartościowania formuły logicznej jest oczywiście w $\Pclass$, w szczególności
+    \[ L = \{(\phi, w) \mid w \text{ jest świadkiem spełnialności formuły } \phi \} \]
+    należy do $\Pclass$. Weźmy pewien alfabet $\Sigma$ kodujący\footnote{dla formalności będziemy chcieli przeznaczyć rozłączne zbiory symboli na $\phi$ oraz $w$} pary $(\phi, w)$ oraz taki morfizm $f$, że $f(\phi) = \phi$ oraz $f(w) = 0$. Wtedy $f(L)$ redukuje się do SAT, więc należy do $\Pclass$, tylko jeśli $\Pclass = \NPclass$.
+
+    Na koniec warto zauważyć, że powyższy fakt nie implikuje, że zamkniętość ze względu na morfizmy każdego podzbioru $\Pclass$ oznacza równość $\Pclass = \NPclass$. Można chociażby udowodnić, że klasa języków regularnych ma tę własność.
+\end{remark}
+
+\begin{theorem}[Ladnera]
+    Jeśli $\Pclass \neq \NPclass$, to istnieje język $L \in \NPclass \setminus \Pclass$ taki, że $L$ nie jest $\NPclass$-zupełny.
+\end{theorem}
+
+\begin{theorem}[Uogólnione twierdzenie Ladnera]
+    Jeśli $\Pclass \neq \NPclass$ oraz $B \in \NPclass \setminus \Pclass$, to istnieje język $A \in \NPclass \setminus \Pclass$ taki, że $A \leq_m^p B$, ale $B \nleq_m^p A$.
+\end{theorem}
+
+Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istnieje nieskończenie wiele klas języków między $\Pclass$ a $\NPclass$.
+
+\begin{definition}
+    Język $L$ jest \vocab{rzadki} (ang. \textit{sparse}) jeśli istnieje wielomian $p$ taki, że
+    \[ \forall n \in \NN \left(\left|L \cap \Sigma^{\leq n}\right| \leq p(n)\right). \]
+\end{definition}
+
+\begin{theorem}[Mahaneya]
+    Jeśli istnieje rzadki język $\NPclass$-trudny, to $\Pclass = \NPclass$.
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+Zauważmy, że każdy język unarny jest rzadki. W szczególności więc z powyższego twierdzenia wynika, że jeśli istnieje unarny język $\NPclass$-trudny, to $\Pclass = \NPclass$.
+
+\subsection{Klasa $\NEXPclass$ i $\NEXPclass$-zupełność}
+
+Rozważmy teraz klasę $\NEXPclass$, to znaczy klasę języków rozstrzygalnych przez niedeterministyczną maszynę Turinga w czasie wykładnicznym $\sO(2^{\poly(n)})$. Na początku warto zauważyć, że istnieje język $\NEXPclass$-zupełny, zdefiniowany podobnie jak modelowy język $\NPclass$-zupełny z dowodu twierdzenia Cooka-Levina (\ref{t:Cook-Levin}):
+\[ H = \left\{\encode{N, x, 0^t} \Bigm| \parbox{15em}{\footnotesize niedeterministyczna maszyna Turinga $N$ akceptuje słowo $x$ w $2^t$ krokach}\right\}. \]
+Prawdziwy jest jednak również silniejszy fakt.
+
+\begin{lemma}
+    Istnieje język $\NEXPclass$-zupełny rozstrzygalny w (niedeterministycznym) czasie $\sO(2^n)$.
+\end{lemma}
+\begin{proof}
+    Niech $A$ będzie dowolnym językiem $\NEXPclass$-zupełnym (a więc rozstrzygalnym w czasie $\sO(2^{p(n)})$, gdzie $p(n)$ jest wielomianem). Skonstruujmy język $B$ taki, że
+    \[ B = \left\{x\,\clubsuit^{p(|x|)} \mid x \in A\right\}. \]
+    Stwierdzenie, czy $y \in B$ możemy wykonać w niedeterministycznym czasie $\sO(2^{|y|})$ (czas zajmie głównie sprawdzenie, czy $x \in A$, a słowo uzupełnione o symbole $\clubsuit$ będzie dłuższe). Zatem $B \leq_m^p A$, więc $B$ jest $\NEXPclass$-zupełny.
+\end{proof}
+
+
+\begin{definition}
+    \vocab{Unarne kodowanie} języka $L$ nad alfabetem $\Sigma = \{0, 1\}$ to język
+    \[ \sU(L) = \left\{0^{(1x)_2}\right\}, \]
+    gdzie $(1x)_2$ to wartość liczby o zapisie binarnym $1x$.
+\end{definition}
+\todo{dokończyć to, żeby miało to jakiś cel}
+
+\subsection{Maszyny z wyrocznią}
+
+Maszyna $M$ z wyrocznią $A$ to maszyna Turinga, która ma możliwość rozstrzygania o języku $A$ w ramach jednego kroku.
+
+\begin{definition}[autoredukcja]
+    Język $A$ jest autoredukowalny jeśli istnieje maszyna Turinga z wyrocznią $A$, która rozstrzyga o $A$, ale dla wejścia $x$ nigdy nie pyta wyroczni o $x$.
+\end{definition}
+
+\begin{definition}[samoredukcja]
+    Język $A$ jest samoredukowalny jeśli jest autoredukowalny oraz dla wejścia $x$ pyta wyrocznię jedynie o słowa krótsze od $x$.
+\end{definition}
+
+O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny.
+
+\begin{theorem}
+    Każdy język $\NPclass$-zupełny jest autoredukowalny.
+\end{theorem}
+
+\begin{theorem}
+    Jeśli $\Pclass \neq \NPclass$, to nie wszystkie języki $\NPclass$-zupełne są samoredukowalne.
+\end{theorem}
