@@ -454,7 +454,7 @@ Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czas
 
 \section{Struktura klas złożoności obliczeniowej}
 
-W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo bardziej niejasna. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna). W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
+W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna). W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
 
 \begin{theorem}
     Jeśli $\Pclass = \NPclass$, to $\EXPclass = \NEXPclass$.
@@ -490,16 +490,39 @@ W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas język�
 
 Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istnieje nieskończenie wiele klas języków między $\Pclass$ a $\NPclass$.
 
-\begin{definition}
-    Język $L$ jest \vocab{rzadki} (ang. \textit{sparse}) jeśli istnieje wielomian $p$ taki, że
-    \[ \forall n \in \NN \left(\left|L \cap \Sigma^{\leq n}\right| \leq p(n)\right). \]
+\begin{definition}\label{d:sparse}
+    Język $L$ jest \vocab{rzadki} (ang. \textit{sparse}) jeśli istnieje wielomian $s$ taki, że dla każdej naturalnej liczby $n$
+    \[ \left|L \cap \Sigma^{\leq n}\right| \leq s(n). \]
 \end{definition}
 
 \begin{theorem}[Mahaneya]
     Jeśli istnieje rzadki język $\NPclass$-trudny, to $\Pclass = \NPclass$.
 \end{theorem}
-\begin{proof}
-    TODO
+\begin{proof}[Dowód z \cite{Grochow16}]
+    Niech $L$ będzie $\NPclass$-trudnym językiem rzadkim. Pokażemy wielomianowy algorytm rozwiązujący SAT.
+
+    Niech $\phi$ będzie dowolną formułą logiczną o $n$ zmiennych $x_1, \ldots, x_n$. Jeśli zaczęlibyśmy wartościować kolejne zmienne, to stworzymy pełne drzewo binarne o $n$ poziomach, gdzie na poziomie $0$ jest sama formuła $\phi$, na poziomie $1$ są formuły $\phi[x_1 = 0]$ i $\phi[x_1 = 1]$, na poziomie $2$ formuły $\phi[x_1 = 0, x_2 = 0]$ i $\phi[x_1 = 0, x_2 = 1]$ oraz $\phi[x_1 = 1, x_2 = 0]$ i $\phi[x_1 = 1, x_2 = 1]$ i tak dalej. Takie drzewo ma kluczową własność: dla każdego poziomu~$\ell$
+    \begin{equation}\label{eq:SAT tree}
+        \phi \text{ jest spełnialna} \iff \text{istnieje spełnialna formuła na poziomie $\ell$.}
+    \end{equation}
+
+    Oczywiście nie chcemy budować takiego drzewa (byłoby to wykładnicze), ale spróbujemy znacznie zmiejszyć liczbę formuł na każdym poziomie, zachowując jednak własność \ref{eq:SAT tree}.
+
+    Niech $f : \Sigma^* \to \Sigma^*$ będzie wielomianową redukcją z SAT do $L$. Oznaczy przez $s$ funkcję ograniczającą liczbę słów z $L$ o odpowiednio małej długości (jak w definicji \ref{d:sparse}), a przez $r$ funkcję ograniczającą długość słowa powstałego z $f$ (to znaczy, że $|f(\tau)| \leq r(|\tau|)$ dla każdej formuły $\tau$).
+    Będziemy stopniowo budować kolejne poziomy drzewa w taki sposób, że każdym poziomie $\ell$ najpierw tworzymy wszystkie dzieci formuł z poziomu $\ell - 1$, a następnie usuwamy wszystkie takie formuły $\phi_{\ell, j}$, że
+    \[ i < j \text{ oraz } f(\phi_{\ell, 1} \lor \phi_{\ell, i}) = f(\phi_{\ell, 1} \lor \phi_{\ell, j}), \]
+    gdzie $\phi_{\ell, i}$ to częściowo wartościowane formuły występujące na poziomie $\ell$.
+
+    Mamy dwa istotnie różne przypadki ze względu na liczbę pozostałych formuł na danym poziomie:
+    \begin{enumerate}[(a)]
+        \item Liczba formuł jest większa niż $s(r(2n + 5))$. (Wielomian $2n + 5$ wziął się z faktu, że do funkcji $f$ przekazywaliśmy dwie formuły oraz dodatkowe pięć znaków: $() \lor ()$.)
+        Wtedy możemy usunąć formułę $\phi_{\ell, 1}$, ponieważ na pewno nie jest ona spełnialna (ponieważ przynajmniej jedno słowo $f(\phi_{\ell, 1} \lor \phi_{\ell, i})$ nie należy do $L$, więc $\phi_{\ell, 1} \lor \phi_{\ell, i}$ nie jest spełnialna, więc $\phi_{\ell, 1}$ też nie jest spełnialna).
+        Powtarzamy ten krok aż do momentu, gdy liczba formuł jest mniejsza lub równa $s(r(2n + 5))$, nie tracąc jednak własności \ref{eq:SAT tree}. 
+        \item Liczba formuł jest mniejsza lub równa $s(r(2n + 5))$. Wtedy kontytuujemy budowę drzewa na kolejnym poziomie.
+    \end{enumerate}
+
+    Na ostatnim poziomie sprawdzamy, czy istnieje tautologia. Jeśli tak, to formuła $\phi$ jest spełnialna, w przeciwnym wypadku nie jest.
+    Znaleźliśmy wielomianowy algorytm rozwiązujący SAT, więc $\Pclass = \NPclass$.
 \end{proof}
 
 Zauważmy, że każdy język unarny jest rzadki. W szczególności więc z powyższego twierdzenia wynika, że jeśli istnieje unarny język $\NPclass$-trudny, to $\Pclass = \NPclass$.
