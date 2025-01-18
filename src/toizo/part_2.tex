@@ -456,17 +456,6 @@ Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czas
 
 W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna). W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
 
-\begin{theorem}
-    Jeśli $\Pclass = \NPclass$, to $\EXPclass = \NEXPclass$.
-\end{theorem}
-\begin{proof}
-    Pokażemy typową metodę zwaną \textit{paddingiem}. Załóżmy, że $\Pclass = \NPclass$ oraz niech $L \in \NEXPclass$. Istnieje więc niedeterministyczna maszyna Turinga $M$, która rozstrzyga o $L$ w czasie $\sO(2^{n^k})$. Niech
-    \[ L' = \{x\diamondsuit^{2^{|x|^k}} \mid x \in L\}, \]
-    gdzie $\diamondsuit$ jest specjalnym symbolem, który nie należy do alfabetu języka $L$. Konstruujemy niedeterministyczną maszynę Turinga $M'$, która rozstrzyga o $L'$ w taki sposób, że dla każdego $y \in L'$ sprawdza, czy $y$ jest we właściwej formie, a następnie symuluje $M$. Robi to w czasie $\sO(2^{|x|^k})$, a więc wielomianowym w stosunku do $|y|$. Z tego wynika, że $L' \in \NPclass$.
-
-    Zgodnie z naszym założeniem, $L' \in \Pclass$, a więc istnieje deterministyczna maszyna Turinga $M_D'$, która rozstrzyga o $L'$ w czasie wielomianowym. Możemy więc skonstruować deterministyczną maszynę Turinga $M_D(x)$, która symuluje $M_D'(x\diamondsuit^{2^{|x|^k}})$ w czasie wykładniczym względem $|x|$. Z tego wynika, że $L \in \EXPclass$.
-\end{proof}
-
 \begin{remark}[o zamkniętości klas ze względu na morfizmy]
     Funkcję $f : \Sigma_1^* \to \Sigma_2^*$ nazywamy \vocab{morfizmem}, jeśli dla dowolnego $a = a_1 \cdots a_n \in \Sigma_1^*$, zachodzi $f(a) = f(a_1) \cdots f(a_n)$ (to znaczy, że $f$ jest jednoznacznie określona przez funkcję pojedynczych symboli).
 
@@ -480,22 +469,26 @@ W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas język�
     Na koniec warto zauważyć, że powyższy fakt nie implikuje, że zamkniętość ze względu na morfizmy każdego podzbioru $\Pclass$ oznacza równość $\Pclass = \NPclass$. Można chociażby udowodnić, że klasa języków regularnych ma tę własność.
 \end{remark}
 
+\subsection{Klasy $\Pclass$, $\NPclass$ i problemy $\NPclass$-pośrednie}
+
 \begin{theorem}[Ladnera]
     Jeśli $\Pclass \neq \NPclass$, to istnieje język $L \in \NPclass \setminus \Pclass$ taki, że $L$ nie jest $\NPclass$-zupełny.
 \end{theorem}
+
+Język, który spełnia warunki twierdzenia Ladnera, nazywamy \vocab{$\NPclass$-pośrednim} (ang. \textit{$\NPclass$-intermediate}).
 
 \begin{theorem}[Uogólnione twierdzenie Ladnera]
     Jeśli $\Pclass \neq \NPclass$ oraz $B \in \NPclass \setminus \Pclass$, to istnieje język $A \in \NPclass \setminus \Pclass$ taki, że $A \leq_m^p B$, ale $B \nleq_m^p A$.
 \end{theorem}
 
-Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istnieje nieskończenie wiele klas języków między $\Pclass$ a $\NPclass$.
+Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istnieje nieskończenie wiele klas języków między $\Pclass$ a $\NPclass$, a więc i nieskończenie wiele problemów $\NPclass$-pośrednich.
 
 \begin{definition}\label{d:sparse}
     Język $L$ jest \vocab{rzadki} (ang. \textit{sparse}) jeśli istnieje wielomian $s$ taki, że dla każdej naturalnej liczby $n$
     \[ \left|L \cap \Sigma^{\leq n}\right| \leq s(n). \]
 \end{definition}
 
-\begin{theorem}[Mahaneya]
+\begin{theorem}[Mahaneya]\label{t:Mahaney}
     Jeśli istnieje rzadki język $\NPclass$-trudny, to $\Pclass = \NPclass$.
 \end{theorem}
 \begin{proof}[Dowód z \cite{Grochow16}]
@@ -517,7 +510,7 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
     \begin{enumerate}[(a)]
         \item Liczba formuł jest większa niż $s(r(2n + 5))$. (Wielomian $2n + 5$ wziął się z faktu, że do funkcji $f$ przekazywaliśmy dwie formuły oraz dodatkowe pięć znaków: $() \lor ()$.)
         Wtedy możemy usunąć formułę $\phi_{\ell, 1}$, ponieważ na pewno nie jest ona spełnialna (ponieważ przynajmniej jedno słowo $f(\phi_{\ell, 1} \lor \phi_{\ell, i})$ nie należy do $L$, więc $\phi_{\ell, 1} \lor \phi_{\ell, i}$ nie jest spełnialna, więc $\phi_{\ell, 1}$ też nie jest spełnialna).
-        Powtarzamy ten krok aż do momentu, gdy liczba formuł jest mniejsza lub równa $s(r(2n + 5))$, nie tracąc jednak własności \ref{eq:SAT tree}. 
+        Powtarzamy ten krok aż do momentu, gdy liczba formuł jest mniejsza lub równa $s(r(2n + 5))$, nie tracąc jednak własności \ref{eq:SAT tree}.
         \item Liczba formuł jest mniejsza lub równa $s(r(2n + 5))$. Wtedy kontytuujemy budowę drzewa na kolejnym poziomie.
     \end{enumerate}
 
@@ -525,30 +518,35 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
     Znaleźliśmy wielomianowy algorytm rozwiązujący SAT, więc $\Pclass = \NPclass$.
 \end{proof}
 
-Zauważmy, że każdy język unarny jest rzadki. W szczególności więc z powyższego twierdzenia wynika, że jeśli istnieje unarny język $\NPclass$-trudny, to $\Pclass = \NPclass$.
+\subsection{Klasy $\EXPclass$ i $\NEXPclass$}
 
-\subsection{Klasa $\NEXPclass$ i $\NEXPclass$-zupełność}
-
-Rozważmy teraz klasę $\NEXPclass$, to znaczy klasę języków rozstrzygalnych przez niedeterministyczną maszynę Turinga w czasie wykładnicznym $\sO(2^{\poly(n)})$. Na początku warto zauważyć, że istnieje język $\NEXPclass$-zupełny, zdefiniowany podobnie jak modelowy język $\NPclass$-zupełny z dowodu twierdzenia Cooka-Levina (\ref{t:Cook-Levin}):
-\[ H = \left\{\encode{N, x, 0^t} \Bigm| \parbox{15em}{\footnotesize niedeterministyczna maszyna Turinga $N$ akceptuje słowo $x$ w $2^t$ krokach}\right\}. \]
-Prawdziwy jest jednak również silniejszy fakt.
-
-\begin{lemma}
-    Istnieje język $\NEXPclass$-zupełny rozstrzygalny w (niedeterministycznym) czasie $\sO(2^n)$.
-\end{lemma}
+\begin{theorem}\label{t:EXP = NEXP}
+    Jeśli $\Pclass = \NPclass$, to $\EXPclass = \NEXPclass$.
+\end{theorem}
 \begin{proof}
-    Niech $A$ będzie dowolnym językiem $\NEXPclass$-zupełnym (a więc rozstrzygalnym w czasie $\sO(2^{p(n)})$, gdzie $p(n)$ jest wielomianem). Skonstruujmy język $B$ taki, że
-    \[ B = \left\{x\,\clubsuit^{p(|x|)} \mid x \in A\right\}. \]
-    Stwierdzenie, czy $y \in B$ możemy wykonać w niedeterministycznym czasie $\sO(2^{|y|})$ (czas zajmie głównie sprawdzenie, czy $x \in A$, a słowo uzupełnione o symbole $\clubsuit$ będzie dłuższe). Zatem $B \leq_m^p A$, więc $B$ jest $\NEXPclass$-zupełny.
+    Pokażemy typową metodę zwaną \textit{paddingiem}. Załóżmy, że $\Pclass = \NPclass$ oraz niech $L \in \NEXPclass$. Istnieje więc niedeterministyczna maszyna Turinga $M$, która rozstrzyga o $L$ w $2^{n^k}$ krokach. Niech
+    \[ L' = \{x\diamondsuit^{2^{|x|^k}} \mid x \in L\}, \]
+    gdzie $\diamondsuit$ jest specjalnym symbolem, który nie należy do alfabetu języka $L$. Konstruujemy niedeterministyczną maszynę Turinga $M'$, która rozstrzyga o $L'$ w taki sposób, że dla każdego $y \in L'$ sprawdza, czy $y$ jest we właściwej formie, a następnie symuluje $M$ przez $2^{|x|^k}$ kroków. Robi to w czasie $\sO(2^{|x|^k})$, a więc wielomianowym w stosunku do $|y|$. Z tego wynika, że $L' \in \NPclass$.
+
+    Zgodnie z naszym założeniem $L' \in \Pclass = \NPclass$, a więc istnieje deterministyczna maszyna Turinga $M_D'$, która rozstrzyga o $L'$ w czasie wielomianowym. Możemy więc skonstruować deterministyczną maszynę Turinga $M_D(x)$, która symuluje $M_D'(x\diamondsuit^{2^{|x|^k}})$ w czasie wykładniczym względem $|x|$. Z tego wynika, że $L \in \EXPclass$.
 \end{proof}
 
-
 \begin{definition}
-    \vocab{Unarne kodowanie} języka $L$ nad alfabetem $\Sigma = \{0, 1\}$ to język
-    \[ \sU(L) = \left\{0^{(1x)_2}\right\}, \]
-    gdzie $(1x)_2$ to wartość liczby o zapisie binarnym $1x$.
+    Język $L$ jest \vocab{unarny} jeśli jego alfabet składa się z jednego symbolu, to znaczy $L \subseteq \{0\}^*$.
 \end{definition}
-\todo{dokończyć to, żeby miało to jakiś cel}
+
+Zauważmy, że każdy język unarny jest rzadki. W szczególności więc z twierdzenia Mahaneya (\ref{t:Mahaney}) wynika, że jeśli istnieje unarny język $\NPclass$-trudny, to $\Pclass = \NPclass$. Możemy też dowieść inny fakt dotyczący języków unarnych, będący silniejszą wersją twierdzenia \ref{t:EXP = NEXP}.
+
+\begin{theorem}
+    Jeśli każdy unarny język z $\NPclass$ jest w $\Pclass$, to $\EXPclass = \NEXPclass$.
+\end{theorem}
+\begin{proof}
+    Dowód jest analogiczny do dowodu twierdzenia \ref{t:EXP = NEXP}, dlatego nie będziemy go tutaj powtarzać. Założymy jedynie dodatkowo (i bez straty ogólności), że $L \in \NEXPclass$ jest językiem nad alfabetem $\{0, 1\}$ oraz zmienimy definicję języka $L'$. Zamiast
+    \[ L' = \{x\diamondsuit^{2^{|x|^k}} \mid x \in L\}, \]
+    możemy zdefiniować go jako unarny język
+    \[ L' = \{0^m \mid x \in L\}, \]
+    gdzie zapisem binarnym liczby $m$ będzie $x10^{2^{|x|^k}}$.
+\end{proof}
 
 \subsection{Maszyny z wyrocznią}
 
