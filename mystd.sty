@@ -19,8 +19,6 @@
 \definecolor{BoxColor1}{HTML}{081D56}     %#081D56
 \definecolor{BoxColor2}{HTML}{A8760F}     %#A8760F
 
-\usepackage[colorlinks=true]{hyperref}
-\hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
 \usepackage{thmtools}
 \usepackage{relsize}
 \usepackage{yhmath}  % for wideparen
@@ -84,6 +82,9 @@
     \usepackage[american]{babel}
 \fi
 
+\usepackage[colorlinks=true,hypertexnames=false]{hyperref}
+\hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
+
 %  ----------  SHORT AND USEFUL STUFF  ----------  %
 
 \DeclareMathOperator{\cis}{cis}
@@ -100,7 +101,7 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand{\dg}{^\circ}
 \renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
-\newcommand{\p}[1]{\ensuremath{\operatorname{\partial}\!{#1}}}
+\newcommand{\p}[1]{\ensuremath{\partial{#1}}}
 \newcommand{\ddx}{\frac{\d{}}{\d x}}
 \newcommand{\dforall}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\forall}}}_{#1}\ }
 \newcommand{\dexists}[1]{\displaystyle\mathop{\mathlarger{\mathlarger{\exists}}}_{#1}\ }
