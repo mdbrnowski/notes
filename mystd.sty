@@ -19,8 +19,6 @@
 \definecolor{BoxColor1}{HTML}{081D56}     %#081D56
 \definecolor{BoxColor2}{HTML}{A8760F}     %#A8760F
 
-\usepackage[colorlinks=true]{hyperref}
-\hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
 \usepackage{thmtools}
 \usepackage{relsize}
 \usepackage{yhmath}  % for wideparen
@@ -83,6 +81,9 @@
 \else
     \usepackage[american]{babel}
 \fi
+
+\usepackage[colorlinks=true,hypertexnames=false]{hyperref}
+\hypersetup{urlcolor=LinkColor1,linkcolor=LinkColor2,citecolor=LinkColor2}
 
 %  ----------  SHORT AND USEFUL STUFF  ----------  %
 
