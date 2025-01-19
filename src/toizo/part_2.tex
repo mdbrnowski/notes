@@ -53,7 +53,7 @@ Analogicznie do już zdefiniowanych klas złożoności obliczeniowej, definiujem
     \[ x \in A \iff f(x) \in B. \]
 \end{definition}
 
-Nasze definicje trudności i zupełności języków w klasach $\REclass$, $\coREclass$ czy też szerszych $\Sigma_i$ i $\Pi_i$ nie mają zbyt dużego sensu w kontekście klas $\Pclass$, $\NPclass$, $\PSPACEclass$ czy $\NEXPclass$ (z powodu twierdzenia \ref{t:nontrivial R language is R-complete}). W tych klasach zamiast zwykłej redukcji funkcją obliczalną używamy redukcji wielomianowej, co odpowiednio zmienia definicje trudności i zupełności.
+Nasze definicje trudności i zupełności języków w klasach $\REclass$, $\coREclass$ czy też szerszych $\Sigma_i$ i $\Pi_i$ nie mają zbyt dużego sensu w kontekście klas $\Pclass$, $\NPclass$, $\PSPACEclass$, $\EXPclass$, $\NEXPclass$ itp. (z powodu twierdzenia \ref{t:nontrivial R language is R-complete}). W tych klasach zamiast zwykłej redukcji funkcją obliczalną używamy redukcji wielomianowej, co odpowiednio zmienia definicje trudności i zupełności.
 
 \subsection{Problem SAT}
 
@@ -565,6 +565,15 @@ O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny
 \begin{theorem}
     Każdy język $\NPclass$-zupełny jest autoredukowalny.
 \end{theorem}
+\begin{proof}
+    Niech $L$ będzie językiem $\NPclass$-zupełnym, funkcja $f$ wielomianową redukcją z $L$ do SAT, a funkcja $g$ wielomianową redukcją SAT do $L$. Pokażemy konstrukcję maszyny Turinga $M$ z wyrocznią $L$, która dla wejścia $x$ nie pyta o $x$.
+
+    Dla wejścia $x$ maszyna $M$ oblicza $\phi = f(x)$. Jeśli formuła $\phi$ nie ma żadnych zmiennych, to maszyna zwraca, czy $\phi$ jest tautologią. W przeciwnym wypadku maszyna oblicza $x_0 = g(\phi[z_1 = 0])$ i $x_1 = g(\phi[z_1 = 1])$. Jeśli
+    \begin{enumerate}[(a)]
+        \item $x \neq x_0$ i $x \neq x_1$, to maszyna pyta wyrocznię o $g(\phi[z_1 = 0])$, $g(\phi[z_1 = 1])$ i zwraca, czy przynajmniej jedna z odpowiedzi jest twierdząca;\label{enum:NP-complete language is autoredicible - base case}
+        \item w przeciwnym wypadku ($x = x_b$) wiemy, że $x \in L \iff x_b \in L$, więc próbujemy wartościować kolejne zmienne ($\phi[z_1 = b, z_2 = 0]$, $\phi[z_1 = b, z_2 = 1]$) powtarzając ten krok aż do momentu, gdy $\phi$ nie ma już zmiennych lub zajdzie \ref{enum:NP-complete language is autoredicible - base case}.
+    \end{enumerate}
+\end{proof}
 
 \begin{theorem}
     Jeśli $\Pclass \neq \NPclass$, to nie wszystkie języki $\NPclass$-zupełne są samoredukowalne.
