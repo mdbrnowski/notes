@@ -454,7 +454,21 @@ Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czas
 
 \section{Struktura klas złożoności obliczeniowej}
 
-W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna). W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
+W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna) oraz czy $\NPclass = \coNPclass$.
+W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
+
+\begin{remark}[o zamkniętości klas ze względu na dopełnienie]\label{r:classes closed under complement}
+    Wszystkie deterministyczne klasy złożoności obliczeniowej (jak $\Pclass$ czy $\EXPclass$) są zamknięte ze względu na dopełnienie, to znaczy, że jeśli język $L$ należy do danej klasy, to należy do niej również $\overline{L}$ (ponieważ w deterministycznej maszynie Turinga możemy poprostu zamienić stany akceptujące z odrzucającymi).
+
+    Sytuacja wygląda zupełnie inaczej w przypadku klas niedeterministycznych. Zamkniętość ze względu na dopełnienie chociażby klasy $\NPclass$ jest problemem otwartym.
+\end{remark}
+
+\begin{theorem}
+    Jeśli $\Pclass = \NPclass$, to $\coNPclass = \NPclass$.
+\end{theorem}
+\begin{proof}
+    Skoro $\Pclass = \NPclass$ i klasa $\Pclass$ jest zamknięta ze względu na dopełnienia, to klasa $\NPclass$ również jest zamknięta ze względu na dopełnienie.
+\end{proof}
 
 \begin{remark}[o zamkniętości klas ze względu na morfizmy]
     Funkcję $f : \Sigma_1^* \to \Sigma_2^*$ nazywamy \vocab{morfizmem}, jeśli dla dowolnego $a = a_1 \cdots a_n \in \Sigma_1^*$, zachodzi $f(a) = f(a_1) \cdots f(a_n)$ (to znaczy, że $f$ jest jednoznacznie określona przez funkcję pojedynczych symboli).
@@ -578,3 +592,58 @@ O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny
 \begin{theorem}
     Jeśli $\Pclass \neq \NPclass$, to nie wszystkie języki $\NPclass$-zupełne są samoredukowalne.
 \end{theorem}
+
+Klasę języków rozstrzygalnych w czasie wielomianowym przez (nie)deterministyczną maszynę Turinga z wyrocznią $A$ oznaczamy jako $\Pclass^A$ (odpowiednio $\NPclass^A$). Łatwo zauważyć, że $\Pclass^A = \Pclass^{\ol{A}}$ oraz $\NPclass^A = \NPclass^{\ol{A}}$.
+
+Ponadto, dla dowolnego zbioru języków $\sC$ definiujemy
+\[ \Pclass^\sC = \bigcup_{A\in\sC} \Pclass^A \]
+oraz analogicznie dla $\NPclass^\sC$.
+
+\begin{fact}
+    Dla każdego $\sC$-zupełnego języka $A$ zachodzą równości
+    \[ \Pclass^A = \Pclass^\sC \quad\text{i}\quad \NPclass^A = \NPclass^\sC. \]
+\end{fact}
+\begin{proof}
+    W ramach (nie)deterministycznej maszyny Turinga z wyrocznią $B \in \sC$ możemy dokonać wielomianowej redukcji z dowolnego języka $B$ do $A$.
+\end{proof}
+
+\begin{fact}
+    Jeśli $\Pclass^\NPclass = \NPclass$, to $\coNPclass = \NPclass$.
+\end{fact}
+\begin{proof}
+    Klasa $\Pclass^\NPclass$ jest deterministyczna, a więc zamknięta ze względu na dopełnienie (zobacz uwagę \ref{r:classes closed under complement}). Z tego wynika, że klasa $\NPclass$ też musi być zamknięta ze względu na dopełnienie, więc $\NPclass = \coNPclass$.
+\end{proof}
+
+\begin{fact}
+    Zachodzi równość
+    \[ \Pclass^{\NPclass \cap \coNPclass} = \NPclass \cap \coNPclass. \]
+\end{fact}
+\begin{proof}
+    Oczywiście $\NPclass \cap \coNPclass \subseteq \Pclass^{\NPclass \cap \coNPclass}$. Pokażemy, że $\Pclass^{\NPclass \cap \coNPclass} \subseteq \NPclass$ oraz $\Pclass^{\NPclass \cap \coNPclass} \subseteq \coNPclass$.
+
+    Niech $B \in \Pclass^{\NPclass \cap \coNPclass}$ oraz $A \in \NPclass \cap \coNPclass$ będzie językiem wyroczni, a którą pyta deterministyczna maszyna Turinga $M_D$ rozstrzygająca o $B$. Konstruujemy niedeterministyczną maszynę Turinga $M_N$, która działa tak samo jak $M_D$, tylko gdy $M_D$ pyta wyrocznię o $x \in A$, to $M_N$ niedeterministycznie zgaduje odpowiedź. W ten sposób $B \in \NPclass$.
+
+    Skoro $B$ należy do deterministycznej klasy $\Pclass^{\NPclass \cap \coNPclass}$, to również $\ol{B}$ należy do tej klasy, a więc możemy powtórzyć nasze rozumowanie dla $\ol{B}$, dowodząc, że $B \in \coNPclass$.
+\end{proof}
+
+\subsection{Hierarchia wielomianowa}
+
+Analogicznie do hierarchii arytmetycznej, definiujemy hierarchię wielomianową.
+
+\begin{definition}
+    \[ \Sigma_0^\Pclass = \Pi_0^\Pclass = \Delta_0^\Pclass = \Pclass \]
+    \[ \Sigma_i^\Pclass = \NPclass^{\Sigma_{i-1}^\Pclass} \]
+    \[ \Delta_i^\Pclass = \Pclass^{\Sigma_{i-1}^\Pclass} \]
+\end{definition}
+
+
+\begin{theorem}
+    Jeśli $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass$ dla pewnego $k \geq 0$, to $\PHclass = \Sigma_k^\Pclass$.
+\end{theorem}
+\begin{proof}
+    Skoro $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass$, to również
+    \[ \NPclass^{\Sigma_k^\Pclass} = \NPclass^{\Sigma_{k+1}^\Pclass}, \]
+    więc z definicji
+    \[ \Sigma_{k+1}^\Pclass = \Sigma_{k+2}^\Pclass. \]
+    Kontynuując ten tok rozumowania dostajemy $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass = \Sigma_{k+2}^\Pclass = \ldots = \PHclass$.
+\end{proof}
