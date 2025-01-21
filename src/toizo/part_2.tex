@@ -13,7 +13,7 @@ oraz klasy języków, które są rozstrzygalne w pamięci wielomianowej i wykła
 \[ \PSPACEclass = \bigcup_{k = 1}^\infty \SPACE\left(n^k\right), \]
 \[ \EXPSPACEclass = \bigcup_{k = 1}^\infty \SPACE\left(2^{n^k}\right). \]
 
-Oczywistym jest, że $\Pclass \subseteq \EXPclass$ i $\PSPACEclass \subseteq \EXPSPACEclass$. Łatwo zauważyć również, że $\Pclass \subseteq \PSPACEclass$ i $\EXPclass \subseteq \EXPSPACEclass$ (konsumowanie pamięci zajmuje czas). Możemy natomiast udowodnić nieco mniej oczywisty fakt.
+Oczywiste jest, że $\Pclass \subseteq \EXPclass$ i $\PSPACEclass \subseteq \EXPSPACEclass$. Łatwo zauważyć również, że $\Pclass \subseteq \PSPACEclass$ i $\EXPclass \subseteq \EXPSPACEclass$ (konsumowanie pamięci zajmuje czas). Możemy natomiast udowodnić nieco mniej oczywisty fakt.
 \begin{fact}
     Zachodzi inkluzja $\PSPACEclass \subseteq \EXPclass$.
 \end{fact}
@@ -32,7 +32,7 @@ Niedeterministyczna maszyna Turinga to uogólnienie maszyny Turinga, które pozw
     \begin{itemize}[noitemsep]
         \item $Q$ to skończony zbiór stanów,
         \item $\Sigma$ to skończony alfabet wejściowy,
-        \item $\Gamma$ to skończony alfabet taśmy, taki że $\Sigma \subset \Gamma$ oraz $\blank \in \Gamma \setminus \Sigma$,
+        \item $\Gamma$ to skończony alfabet taśmy taki, że $\Sigma \subset \Gamma$ oraz $\blank \in \Gamma \setminus \Sigma$,
         \item $\delta \subseteq \left(Q \times \Gamma\right) \times \left(Q \times \Gamma \times \{\hookleftarrow , \hookrightarrow\}\right)$ to \textbf{relacja}  przejścia,
         \item $q_0 \in Q$ to stan początkowy,
         \item $q_Y \in Q$ to stan akceptujący,
@@ -93,7 +93,7 @@ jest w postaci CNF.
         \item wymuszają, że w każdym kroku na każdym polu taśmy znajduje się dokładnie jeden symbol;
         \item wymuszają zgodność słowa wejściowego, to jest
         \[ \bigwedge_{j \leq |x|} \left(S_{1, j, x_j}\right) \quad \bigwedge_{|x| < j} \left(S_{1, j, \blank}\right); \]
-        \item wymaszają poprawność przejść między stanami;
+        \item wymuszają poprawność przejść między stanami;
         \item wymuszają, że istnieje ścieżka obliczeń, która kończy się w stanie akceptującym, to jest
         \[ \left( Q_{1, Y} \lor Q_{2, Y} \lor \cdots \right). \]
     \end{enumerate}
@@ -112,12 +112,12 @@ Możemy również w inny sposób wprowadzić ograniczenia na formułę, które n
 Takim ograniczeniem będzie chociażby maksymalna liczby wystąpień każdej zmiennej w formule. Problem $k$-SAT, w którym każda zmienna występuje co najwyżej $\ell$ razy nazywamy $(k, \ell)$-SAT. W ramach twierdzenia \ref{t:3,3-SAT} pokażemy, że problem $(3, 3)$-SAT również jest $\NPclass$-zupełny.
 
 \begin{remark}
-    Czesto można spotkać również alternatywną definicję problemu $k$-SAT; mianowicie, że jest to problem spełnialności formuł w postaci CNF, gdzie każda klauzula ma \emph{dokładnie} $k$ literałów.
+    Często można spotkać również alternatywną definicję problemu $k$-SAT; mianowicie, że jest to problem spełnialności formuł w postaci CNF, gdzie każda klauzula ma \emph{dokładnie} $k$ literałów.
 
     Zazwyczaj nie ma to żadnego znaczenia w kontekście przeprowadzanych redukcji, ale jeśli zdefiniujemy $(3, 3)$-SAT jako problem spełnialności formuł w postaci CNF, gdzie każda klauzula ma \emph{dokładnie} trzy literały, a każda zmienna występuje co najwyżej trzy razy, to ten problem jest już w $\Pclass$, a nawet więcej --- formuła w takiej postaci zawsze jest tautologią, co dociekliwy Czytelnik może udowodnić za pomocą twierdzenia Halla o kojarzeniu małżeństw.
 \end{remark}
 
-Warto zauważyć, że problem SAT, w którym każda zmienna występuje co najwyżej dwa razy jest w $\Pclass$, podobnie jak problem SAT, w którym każda klauzula ma co najwyżej jeden niezanegowany literał. Oba te fakty dociekliwy Czytelnik powinien udowodnić.
+Warto zauważyć, że problem SAT, w którym każda zmienna występuje co najwyżej dwa razy, jest w $\Pclass$, podobnie jak problem SAT, w którym każda klauzula ma co najwyżej jeden niezanegowany literał. Oba te fakty dociekliwy Czytelnik powinien udowodnić.
 
 \begin{theorem}\label{t:3-SAT}
     Problem 3-SAT jest $\NPclass$-zupełny.
@@ -153,7 +153,7 @@ Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nie
 \begin{proof}
     Przeprowadzimy redukcję problemu 3-SAT do problemu \textsc{Independent Set}. Niech $\phi$ będzie formułą w postaci CNF, gdzie każda klauzula ma co najwyżej trzy literały. Zbudujemy graf $G$ w następujący sposób:
     \begin{itemize}
-        \item Dla każdego literału w każdej klauzuli tworzymy wierzchołek; łączymy krawędziamy wierzchołki odpowiadające literałom w tej samej klauzuli.
+        \item Dla każdego literału w każdej klauzuli tworzymy wierzchołek; łączymy krawędziami wierzchołki odpowiadające literałom w tej samej klauzuli.
         \item Łączymy krawędziami wierzchołki odpowiadające przeciwstawnym literałom w różnych klauzulach (to znaczy takie, że jeden jest zanegowany, a drugi nie).
     \end{itemize}
     Graf $G$ ma wtedy zbiór $k$ wierzchołków niezależnych wtedy i tylko wtedy, gdy formuła $\phi$ zawierająca $k$ klauzul jest spełnialna. Zbiór $k$ wierzchołków niezależnych w grafie $G$ odpowiada zbiorowi $k$ wartościowań zmiennych, które spełniają formułę $\phi$.
@@ -249,7 +249,7 @@ Problem 3-\textsc{Color} to problem stwierdzenia, czy dany graf nieskierowany $G
         \end{tikzpicture}
     \end{figure}
 
-    Oczywiście jeśli klauzula ma mniej niż $3$ literały, to odpowienio tę strukturę upraszczamy.
+    Oczywiście jeśli klauzula ma mniej niż $3$ literały, to odpowiednio tę strukturę upraszczamy.
     Nietrudno zauważyć, że tak stworzony graf $G$ jest 3-kolorowalny wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna, ponieważ nasza struktura symuluje alternatywę logiczną.
 
     W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ 3-\textsc{Color}, a więc problem 3-\textsc{Color} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
@@ -296,7 +296,7 @@ Problem \textsc{Directed Hamiltonian Path} to problem stwierdzenia, czy w danym 
             \end{tikzpicture}
         \end{figure}
 
-        W takim grafie na pewno nie ma ścieżki Hamiltona, ponieważ musimy odwiedzić wszystkie wierzchołki, a póki co możemy odwiedzić tylko jeden z każdej pary $x_j, \ol{x_j}$.
+        W takim grafie na pewno nie ma ścieżki Hamiltona, ponieważ musimy odwiedzić wszystkie wierzchołki, a na razie możemy odwiedzić tylko jeden z każdej pary $x_j, \ol{x_j}$.
 
         \item Dla każdej pary $x_j$, $\ol{x_j}$ tworzymy dodatkowe wierzchołki $a_{j, 1}, a_{j, 1}', \ldots, a_{j, k}, a_{j, k}'$ i łączymy je w następujący sposób:
         \begin{figure}[H]
@@ -348,7 +348,7 @@ Problem \textsc{Directed Hamiltonian Path} to problem stwierdzenia, czy w danym 
         \end{figure}
     \end{enumerate}
 
-    Nietrudno zauważyć, że w grafie $G$ istnieje scieżka Hamiltona $s \rightsquigarrow t$ (przechodząca również przez wierzchołki $C_i$) wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna. W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ \textsc{Directed Hamiltonian Path}, a więc problem \textsc{Directed Hamiltonian Path} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
+    Nietrudno zauważyć, że w grafie $G$ istnieje ścieżka Hamiltona $s \rightsquigarrow t$ (przechodząca również przez wierzchołki $C_i$) wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna. W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ \textsc{Directed Hamiltonian Path}, a więc problem \textsc{Directed Hamiltonian Path} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
 
 \begin{theorem}
@@ -383,7 +383,7 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
     \end{align*}
     należące do rodziny $\sS$.
 
-    Zbiór $B$ można pokryć $n$ zbiorami z $\sS$ wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna (jeśli formuła nie jest spełnialna, to nie uda się pokryć wszystkich klauzul $C_i$, a w przeciwnym wypadku będziemy mogli to zrobić wybierając jeden z każdej pary zbiorów $S_{x_j = b}$). W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ \textsc{Set Cover}, a więc problem \textsc{Set Cover} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
+    Zbiór $B$ można pokryć $n$ zbiorami z $\sS$ wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna (jeśli formuła nie jest spełnialna, to nie uda się pokryć wszystkich klauzul $C_i$, a w przeciwnym wypadku będziemy mogli to zrobić, wybierając jeden z każdej pary zbiorów $S_{x_j = b}$). W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ \textsc{Set Cover}, a więc problem \textsc{Set Cover} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
 
 \begin{theorem}
@@ -409,7 +409,7 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
         \]
         W ten sposób zagwarantujemy, że jeśli istnieje pokrycie, to istnieje również pokrycie o takiem samej liczności, które jest dokładne (\textit{exact}), a więc składa się ze zbiorów rozłącznych.
 
-        \item Musimy pokryć zbiór zawierający $n + k$ elementów dokładnie $n$ zbiorami dokładnie $3$-elementowymi. Aby to umożliwić, dodajemy dodatkowe $3n - (n + k)$ elementów $d_1, \ldots, d_{2n - k}$ do zbioru $B$. Ponadto, każdy zbiór $S \in \sS$, który ma mniej niż trzy elementy zastępujemy zbiorami uzupełnionymi do trzech elementów przez dowolne elementy $d_1, \ldots, d_{2n - k}$ (wszystkie ich kombinacje). Na przykład dla $d_1, d_2, d_3$ mamy
+        \item Musimy pokryć zbiór zawierający $n + k$ elementów dokładnie $n$ zbiorami dokładnie $3$-elementowymi. Aby to umożliwić, dodajemy dodatkowe $3n - (n + k)$ elementów $d_1, \ldots, d_{2n - k}$ do zbioru $B$. Ponadto, każdy zbiór $S \in \sS$, który ma mniej niż trzy elementy, zastępujemy zbiorami uzupełnionymi do trzech elementów przez dowolne elementy $d_1, \ldots, d_{2n - k}$ (wszystkie ich kombinacje). Na przykład dla $d_1, d_2, d_3$ mamy
         \begin{align*}
             \{\textcolor{AccColor2}{x_j}\}
             &\longrightarrow
@@ -438,7 +438,7 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
 
 Problem \textsc{Subset Sum} to problem stwierdzenia, czy dany zbiór liczb naturalnych $A = \{a_1, \ldots, a_n\}$ zawiera podzbiór sumujący się do danej liczby $t \in \NN$.
 
-Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czasie $\sO(nt)$. Może wydawać się on wielomianowy, ale nie jest wielomianowy względem rozmiaru danych wejściowych, a jedynie względem \textit{wartości} $t$. Takie algorytmy będziemy nazywać \vocab{pseudo-wielomianowymi}. Problemy $\NPclass$-zupełne, które przestają być $\NPclass$-zupełne, jeśli zastosujemy unarne kodowanie liczb nazywamy \vocab{słabo $\NPclass$-zupełnymi}.
+Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czasie $\sO(nt)$. Może wydawać się on wielomianowy, ale nie jest wielomianowy względem rozmiaru danych wejściowych, a jedynie względem \textit{wartości} $t$. Takie algorytmy będziemy nazywać \vocab{pseudowielomianowymi}. Problemy $\NPclass$-zupełne, które przestają być $\NPclass$-zupełne, jeśli zastosujemy unarne kodowanie liczb nazywamy \vocab{słabo $\NPclass$-zupełnymi}.
 
 \begin{theorem}
     Problem \textsc{Subset Sum} jest $\NPclass$-zupełny.
@@ -454,11 +454,11 @@ Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czas
 
 \section{Struktura klas złożoności obliczeniowej}
 
-W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna) oraz czy $\NPclass = \coNPclass$.
+W porównaniu do klas języków szerszych niż $\Rclass$ struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna) oraz czy $\NPclass = \coNPclass$.
 W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
 
 \begin{remark}[o zamkniętości klas ze względu na dopełnienie]\label{r:classes closed under complement}
-    Wszystkie deterministyczne klasy złożoności obliczeniowej (jak $\Pclass$ czy $\EXPclass$) są zamknięte ze względu na dopełnienie, to znaczy, że jeśli język $L$ należy do danej klasy, to należy do niej również $\overline{L}$ (ponieważ w deterministycznej maszynie Turinga możemy poprostu zamienić stany akceptujące z odrzucającymi).
+    Wszystkie deterministyczne klasy złożoności obliczeniowej (jak $\Pclass$ czy $\EXPclass$) są zamknięte ze względu na dopełnienie, to znaczy, że jeśli język $L$ należy do danej klasy, to należy do niej również $\overline{L}$ (ponieważ w deterministycznej maszynie Turinga możemy po prostu zamienić stany akceptujące z odrzucającymi).
 
     Sytuacja wygląda zupełnie inaczej w przypadku klas niedeterministycznych. Zamkniętość ze względu na dopełnienie chociażby klasy $\NPclass$ jest problemem otwartym.
 \end{remark}
@@ -525,7 +525,7 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
         \item Liczba formuł jest większa niż $s(r(2n + 5))$. (Wielomian $2n + 5$ wziął się z faktu, że do funkcji $f$ przekazywaliśmy dwie formuły oraz dodatkowe pięć znaków: $() \lor ()$.)
         Wtedy możemy usunąć formułę $\phi_{\ell, 1}$, ponieważ na pewno nie jest ona spełnialna (ponieważ przynajmniej jedno słowo $f(\phi_{\ell, 1} \lor \phi_{\ell, i})$ nie należy do $L$, więc $\phi_{\ell, 1} \lor \phi_{\ell, i}$ nie jest spełnialna, więc $\phi_{\ell, 1}$ też nie jest spełnialna).
         Powtarzamy ten krok aż do momentu, gdy liczba formuł jest mniejsza lub równa $s(r(2n + 5))$, nie tracąc jednak własności \ref{eq:SAT tree}.
-        \item Liczba formuł jest mniejsza lub równa $s(r(2n + 5))$. Wtedy kontytuujemy budowę drzewa na kolejnym poziomie.
+        \item Liczba formuł jest mniejsza lub równa $s(r(2n + 5))$. Wtedy kontynuujemy budowę drzewa na kolejnym poziomie.
     \end{enumerate}
 
     Na ostatnim poziomie sprawdzamy, czy istnieje tautologia. Jeśli tak, to formuła $\phi$ jest spełnialna, w przeciwnym wypadku nie jest.
@@ -546,7 +546,7 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
 \end{proof}
 
 \begin{definition}
-    Język $L$ jest \vocab{unarny} jeśli jego alfabet składa się z jednego symbolu, to znaczy $L \subseteq \{0\}^*$.
+    Język $L$ jest \vocab{unarny}, jeśli jego alfabet składa się z jednego symbolu, to znaczy $L \subseteq \{0\}^*$.
 \end{definition}
 
 Zauważmy, że każdy język unarny jest rzadki. W szczególności więc z twierdzenia Mahaneya (\ref{t:Mahaney}) wynika, że jeśli istnieje unarny język $\NPclass$-trudny, to $\Pclass = \NPclass$. Możemy też dowieść inny fakt dotyczący języków unarnych, będący silniejszą wersją twierdzenia \ref{t:EXP = NEXP}.
@@ -567,11 +567,11 @@ Zauważmy, że każdy język unarny jest rzadki. W szczególności więc z twier
 Maszyna $M$ z wyrocznią $A$ to maszyna Turinga, która ma możliwość rozstrzygania o języku $A$ w ramach jednego kroku.
 
 \begin{definition}[autoredukcja]
-    Język $A$ jest autoredukowalny jeśli istnieje maszyna Turinga z wyrocznią $A$, która rozstrzyga o $A$, ale dla wejścia $x$ nigdy nie pyta wyroczni o $x$.
+    Język $A$ jest autoredukowalny, jeśli istnieje maszyna Turinga z wyrocznią $A$, która rozstrzyga o $A$, ale dla wejścia $x$ nigdy nie pyta wyroczni o $x$.
 \end{definition}
 
 \begin{definition}[samoredukcja]
-    Język $A$ jest samoredukowalny jeśli jest autoredukowalny oraz dla wejścia $x$ pyta wyrocznię jedynie o słowa krótsze od $x$.
+    Język $A$ jest samoredukowalny, jeśli jest autoredukowalny oraz dla wejścia $x$ pyta wyrocznię jedynie o słowa krótsze od $x$.
 \end{definition}
 
 O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny.
@@ -585,7 +585,7 @@ O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny
     Dla wejścia $x$ maszyna $M$ oblicza $\phi = f(x)$. Jeśli formuła $\phi$ nie ma żadnych zmiennych, to maszyna zwraca, czy $\phi$ jest tautologią. W przeciwnym wypadku maszyna oblicza $x_0 = g(\phi[z_1 = 0])$ i $x_1 = g(\phi[z_1 = 1])$. Jeśli
     \begin{enumerate}[(a)]
         \item $x \neq x_0$ i $x \neq x_1$, to maszyna pyta wyrocznię o $g(\phi[z_1 = 0])$, $g(\phi[z_1 = 1])$ i zwraca, czy przynajmniej jedna z odpowiedzi jest twierdząca;\label{enum:NP-complete language is autoredicible - base case}
-        \item w przeciwnym wypadku ($x = x_b$) wiemy, że $x \in L \iff x_b \in L$, więc próbujemy wartościować kolejne zmienne ($\phi[z_1 = b, z_2 = 0]$, $\phi[z_1 = b, z_2 = 1]$) powtarzając ten krok aż do momentu, gdy $\phi$ nie ma już zmiennych lub zajdzie \ref{enum:NP-complete language is autoredicible - base case}.
+        \item w przeciwnym wypadku ($x = x_b$) wiemy, że $x \in L \iff x_b \in L$, więc próbujemy wartościować kolejne zmienne ($\phi[z_1 = b, z_2 = 0]$, $\phi[z_1 = b, z_2 = 1]$), powtarzając ten krok aż do momentu, gdy $\phi$ nie ma już zmiennych lub zajdzie \ref{enum:NP-complete language is autoredicible - base case}.
     \end{enumerate}
 \end{proof}
 
