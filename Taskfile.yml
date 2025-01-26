@@ -1,6 +1,14 @@
 version: '3'
 
 tasks:
+  default:
+    desc: Compile all tex files to pdf
+    cmds:
+      - task filtr
+      - task fft
+      - task algebra
+      - task analiza
+      - task toizo
   filtr:
     desc: Compile filtr.tex to pdf
     sources:
