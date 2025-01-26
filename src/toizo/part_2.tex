@@ -508,7 +508,7 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
 \begin{proof}[Dowód z \cite{Grochow16}]
     Niech $L$ będzie $\NPclass$-trudnym językiem rzadkim. Pokażemy wielomianowy algorytm rozwiązujący SAT.
 
-    Niech $\phi$ będzie dowolną formułą logiczną o $n$ zmiennych $x_1, \ldots, x_n$. Jeśli zaczęlibyśmy wartościować kolejne zmienne, to stworzymy pełne drzewo binarne o $n$ poziomach, gdzie na poziomie $0$ jest sama formuła $\phi$, na poziomie $1$ są formuły $\phi[x_1 = 0]$ i $\phi[x_1 = 1]$, na poziomie $2$ formuły $\phi[x_1 = 0, x_2 = 0]$ i $\phi[x_1 = 0, x_2 = 1]$ oraz $\phi[x_1 = 1, x_2 = 0]$ i $\phi[x_1 = 1, x_2 = 1]$ i tak dalej. Takie drzewo ma kluczową własność: dla każdego poziomu~$\ell$
+    Niech $\phi$ będzie dowolną formułą logiczną o $n$ zmiennych $x_1, \ldots, x_n$. Jeśli zaczęlibyśmy wartościować kolejne zmienne, to stworzymy pełne drzewo binarne o $n$ poziomach, gdzie na poziomie $0$ jest sama formuła $\phi$, na poziomie $1$ są formuły $\phi[x_1 \!=\! 0]$ i $\phi[x_1 \!=\! 1]$, na poziomie $2$ formuły $\phi[x_1 \!=\! 0, x_2 \!=\! 0]$ i $\phi[x_1 \!=\! 0, x_2 \!=\! 1]$ oraz $\phi[x_1 \!=\! 1, x_2 \!=\! 0]$ i $\phi[x_1 \!=\! 1, x_2 \!=\! 1]$ i tak dalej. Takie drzewo ma kluczową własność: dla każdego poziomu~$\ell$
     \begin{equation}\label{eq:SAT tree}
         \phi \text{ jest spełnialna} \iff \text{istnieje spełnialna formuła na poziomie $\ell$.}
     \end{equation}
@@ -582,10 +582,10 @@ O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny
 \begin{proof}
     Niech $L$ będzie językiem $\NPclass$-zupełnym, funkcja $f$ wielomianową redukcją z $L$ do SAT, a funkcja $g$ wielomianową redukcją SAT do $L$. Pokażemy konstrukcję maszyny Turinga $M$ z wyrocznią $L$, która dla wejścia $x$ nie pyta o $x$.
 
-    Dla wejścia $x$ maszyna $M$ oblicza $\phi = f(x)$. Jeśli formuła $\phi$ nie ma żadnych zmiennych, to maszyna zwraca, czy $\phi$ jest tautologią. W przeciwnym wypadku maszyna oblicza $x_0 = g(\phi[z_1 = 0])$ i $x_1 = g(\phi[z_1 = 1])$. Jeśli
+    Dla wejścia $x$ maszyna $M$ oblicza $\phi = f(x)$. Jeśli formuła $\phi$ nie ma żadnych zmiennych, to maszyna zwraca, czy $\phi$ jest tautologią. W przeciwnym wypadku maszyna oblicza $x_0 = g(\phi[z_1 \!=\! 0])$ i $x_1 = g(\phi[z_1 \!=\! 1])$. Jeśli
     \begin{enumerate}[(a)]
-        \item $x \neq x_0$ i $x \neq x_1$, to maszyna pyta wyrocznię o $g(\phi[z_1 = 0])$, $g(\phi[z_1 = 1])$ i zwraca, czy przynajmniej jedna z odpowiedzi jest twierdząca;\label{enum:NP-complete language is autoredicible - base case}
-        \item w przeciwnym wypadku ($x = x_b$) wiemy, że $x \in L \iff x_b \in L$, więc próbujemy wartościować kolejne zmienne ($\phi[z_1 = b, z_2 = 0]$, $\phi[z_1 = b, z_2 = 1]$), powtarzając ten krok aż do momentu, gdy $\phi$ nie ma już zmiennych lub zajdzie \ref{enum:NP-complete language is autoredicible - base case}.
+        \item $x \neq x_0$ i $x \neq x_1$, to maszyna pyta wyrocznię o $g(\phi[z_1 \!=\! 0])$, $g(\phi[z_1 \!=\! 1])$ i zwraca, czy przynajmniej jedna z odpowiedzi jest twierdząca;\label{enum:NP-complete language is autoredicible - base case}
+        \item w przeciwnym wypadku ($x = x_b$) wiemy, że $x \in L \iff x_b \in L$, więc próbujemy wartościować kolejne zmienne ($\phi[z_1 \!=\! b, z_2 \!=\! 0]$, $\phi[z_1 \!=\! b, z_2 \!=\! 1]$), powtarzając ten krok aż do momentu, gdy $\phi$ nie ma już zmiennych lub zajdzie \ref{enum:NP-complete language is autoredicible - base case}.
     \end{enumerate}
 \end{proof}
 
@@ -631,11 +631,14 @@ oraz analogicznie dla $\NPclass^\sC$.
 Analogicznie do hierarchii arytmetycznej, definiujemy hierarchię wielomianową.
 
 \begin{definition}
-    \[ \Sigma_0^\Pclass = \Pi_0^\Pclass = \Delta_0^\Pclass = \Pclass \]
-    \[ \Sigma_i^\Pclass = \NPclass^{\Sigma_{i-1}^\Pclass} \]
-    \[ \Delta_i^\Pclass = \Pclass^{\Sigma_{i-1}^\Pclass} \]
+    Rekurencyjnie definiujemy klasy $\Sigma_i^\Pclass$, $\Pi_i^\Pclass$ i $\Delta_i^\Pclass$:
+    \[ \Sigma_0^\Pclass = \Pi_0^\Pclass = \Delta_0^\Pclass = \Pclass, \]
+    \[ \Sigma_i^\Pclass = \NPclass^{\Sigma_{i-1}^\Pclass}, \]
+    \[ \Pi_i^\Pclass = \coNPclass^{\Sigma_{i-1}^\Pclass}, \]
+    \[ \Delta_i^\Pclass = \Pclass^{\Sigma_{i-1}^\Pclass}. \]
+    Ponadto,
+    \[ \PHclass = \bigcup_{i \in \NN} \Sigma_i^\Pclass. \]
 \end{definition}
-
 
 \begin{theorem}
     Jeśli $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass$ dla pewnego $k \geq 0$, to $\PHclass = \Sigma_k^\Pclass$.
