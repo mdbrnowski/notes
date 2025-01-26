@@ -1,0 +1,372 @@
+\section{Maszyna Turinga i enumerator}
+
+\begin{definition}
+    Maszyna Turinga to krotka
+    \[ M = (Q, \Sigma, \Gamma, \delta, q_0, q_Y, q_N, \blank),\]
+    gdzie
+    \begin{itemize}[noitemsep]
+        \item $Q$ to skończony zbiór stanów,
+        \item $\Sigma$ to skończony alfabet wejściowy,
+        \item $\Gamma$ to skończony alfabet taśmy taki, że $\Sigma \subset \Gamma$ oraz $\blank \in \Gamma \setminus \Sigma$,
+        \item $\delta : Q \times \Gamma \to Q \times \Gamma \times \{\hookleftarrow , \hookrightarrow\}$ to funkcja przejścia,
+        \item $q_0 \in Q$ to stan początkowy,
+        \item $q_Y \in Q$ to stan akceptujący,
+        \item $q_N \in Q$ to stan odrzucający.
+    \end{itemize}
+    Formalizację działania maszyny Turinga pozostawiamy jako ćwiczenie dla Czytelnika.
+\end{definition}
+
+Maszyna Turinga (będziemy ją zwali po prostu ,,maszyną'') rozwiązuje pewien problem decyzyjny, czyli dla danego słowa $x$ z języka $\Sigma^*$ stwierdza, czy $x$ należy do języka $L \subseteq \Sigma^*$. Dlatego też często będziemy używać pewnych określeń języka również dla odpowiadającego mu problemu decyzyjnego.
+
+Maszyna $M$ \vocab{akceptuje} język $L$, jeśli dla każdego $x \in \Sigma^*$, $M$ akceptuje $x$ wtedy i tylko wtedy, gdy $x \in L$. Przez $L(M)$ oznaczamy język akceptowany przez maszynę $M$.
+
+Maszyna $M$ \vocab{rozstrzyga} o języku $L$, jeżeli go akceptuje i kończy działania dla każdego $x \in \Sigma^*$. Jeśli taka maszyna istnieje, to mówimy, że język $L$ jest \vocab{rozstrzygalny}. Również problem decyzyjny odpowiadający językowi $L$ nazywamy rozstrzygalnym.
+
+\subsection{Klasy $\REclass$, $\coREclass$ i $\Rclass$}
+\begin{definition}[klasa $\REclass$]
+    Klasę języków rekurencyjnie przeliczalnych (\textit{recursively enumerable}) definiujemy jako
+    \[ \REclass = \{L \mid \exists M : M \text{ akceptuje język } L \}. \]
+\end{definition}
+
+Klasa ta to klasa języków typu 0 w hierarchii Chomsky'ego. Dowód tego faktu niech pozostanie ćwiczeniem dla Czytelnika.
+
+\begin{definition}[klasa $\Rclass$]
+    Klasę języków rozstrzygalnych (\textit{recursive, decidable}) definiujemy jako
+    \[ \Rclass = \{L \mid \exists M : M \text{ rozstrzyga o języku } L \}. \]
+\end{definition}
+
+Jeśli język jest rozstrzygalny, to mówimy, że istnieje \vocab{algorytm}, który stwierdza, czy dane słowo należy do tego języka.
+
+\begin{definition}[klasa $\coREclass$] Klasę dopełnień języków klasy $\REclass$ definiujemy jako
+    \[ \coREclass = \{L \mid \ol{L} \in \REclass \}. \]
+\end{definition}
+
+\begin{lemma}
+    Jeśli $L_1, L_2 \in \REclass$, to $L_1 \cap L_2 \in \REclass$.
+\end{lemma}
+\begin{proof}
+    Niech $M_1$ i $M_2$ będą maszynami Turinga akceptującymi odpowiednio języki $L_1$ i $L_2$. Skonstruujmy maszynę $M(x)$ akceptującą $L_1 \cap L_2$ w następujący sposób:
+    \begin{algorithmic}
+        \If{$M_1(x) \land M_2(x)$}
+            \State akceptuj
+        \EndIf
+    \end{algorithmic}
+    Wówczas $M$ akceptuje $L_1 \cap L_2$.
+\end{proof}
+
+\begin{lemma}\label{l:union of langugages in RE}
+    Jeśli $L_1, L_2 \in \REclass$, to $L_1 \cup L_2 \in \REclass$.
+\end{lemma}
+\begin{proof}
+    Niech $M_1$ i $M_2$ będą maszynami Turinga akceptującymi odpowiednio języki $L_1$ i $L_2$. Skonstruujmy maszynę $M(x)$ akceptującą $L_1 \cup L_2$ w następujący sposób:
+    \begin{algorithmic}
+        \For{$k = 1, 2, \ldots$}
+            \If{$M_1$ akceptuje $x$ w $k$ krokach}
+                \State akceptuj
+            \EndIf
+            \If{$M_2$ akceptuje $x$ w $k$ krokach}
+                \State akceptuj
+            \EndIf
+        \EndFor
+    \end{algorithmic}
+    Wówczas $M$ akceptuje $L_1 \cup L_2$.
+\end{proof}
+
+\begin{theorem}
+    Zachodzi równość
+    \[ \Rclass = \REclass \cap \coREclass. \]
+\end{theorem}
+\begin{proof}
+    Weźmy język $L \in \Rclass$. Istnieje maszyna Turinga $M$, która rozstrzyga o $L$, a więc $L = L(M)$, więc $L \in \REclass$. Ponadto, dopełnienie $\ol{L}$ jest rozstrzygalne, bo wystarczy zmienić stan akceptujący na odrzucający i na odwrót. Zatem $\ol{L} \in \Rclass$, więc $L \in \coREclass$. Tym samym udowodniliśmy, że $\Rclass \subseteq \REclass \cap \coREclass$.
+
+    Teraz weźmy język $L$ taki, że $L \in \REclass$ oraz $L \in \coREclass$. Wtedy istnieje maszyna Turinga $M$, która akceptuje $L$ oraz maszyna Turinga $N$, która akceptuje $\ol{L}$. Rozumowaniem podobnym do dowodu lematu \ref{l:union of langugages in RE} skonstruujmy maszynę $M'(x)$, która akceptuje $L$ i odrzuca $\ol{L}$, a więc rozstrzyga o $L$. Tym samym udowodniliśmy, że $\Rclass \supseteq \REclass \cap \coREclass$.
+\end{proof}
+
+\subsection{Wielotaśmowa maszyna Turinga}
+
+\subsection{Enumerator}
+\begin{definition}
+    Enumerator to 2-taśmowa maszyna Turinga, która nie przyjmuje żadnego wejścia, a zamiast stanu akceptującego i odrzucającego ma stan wyliczający. Jeśli ten stan jest osiągnięty, to słowo znajdujące się na drugiej taśmie jest uznawane jako ,,wydrukowane'', a taśma jest czyszczona.
+\end{definition}
+
+Będziemy mówić, że język \vocab{akceptowany} przez enumerator $E$ to język, który jest zbiorem słów wydrukowanych przez $E$.
+
+\begin{theorem}\label{t:enumerator iff RE}
+    Język $L$ jest akceptowany przez enumerator wtedy i tylko wtedy, gdy $L \in \REclass$.
+\end{theorem}
+\begin{proof}[Dowód wystarczalności]
+    Załóżmy, że istnieje enumerator $E$, który wylicza słowa języka $L$. Możemy skonstruować maszynę $M(x)$:
+    \begin{algorithmic}
+        \For{$y \in E$}
+            \If{$x = y$}
+                \State akceptuj
+            \EndIf
+        \EndFor
+    \end{algorithmic}
+    która akceptuje słowo $x$ wtedy i tylko wtedy, gdy $x$ jest wyliczane przez enumerator $E$. Zatem $L \in \REclass$.
+\end{proof}
+\begin{proof}[Dowód konieczności]
+    Niech $L \in \REclass$. Istnieje więc maszyna $M$, która akceptuje $L$. Możemy stworzyć enumerator $E$:
+    \begin{algorithmic}
+        \For{$k = 1, 2, \ldots$}
+            \For{$x \in \Sigma^{\leq k}$}
+                \If{$M$ akceptuje $x$ w $k$ krokach}
+                    \State wylicz $x$
+                \EndIf
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+    który wylicza słowa języka $L$ (i nie zawiesi się, gdy $M(x)$ nie kończy działania dla pewnego $x$).
+\end{proof}
+
+Twierdzenie to wyjaśnia nazwę klasy $\REclass$ --- języki z tej klasy są rekurencyjnie przeliczalne, to znaczy, że można je wyliczyć za pomocą enumeratora.
+
+\begin{theorem}\label{t:non-decreasing enumerator iff R}
+    Istnieje enumerator, który wylicza słowa języka $L$ w kolejności ich niemalejących długości wtedy i tylko wtedy, gdy $L \in \Rclass$.
+\end{theorem}
+\begin{proof}[Dowód wystarczalności]
+    Załóżmy, że istnieje enumerator $E$, który wylicza słowa języka $L$ w kolejności ich niemalejących długości. Możemy stworzyć maszynę $M(x)$:
+    \begin{algorithmic}
+        \For{$y \in E$}
+            \If{$x = y$}
+                \State akceptuj
+            \EndIf
+            \If{$|y| > |x|$}
+                \State odrzuć
+            \EndIf
+        \EndFor
+    \end{algorithmic}
+    która rozstrzyga o języku $L$ (na pewno zakończy swoje działanie, ponieważ słów o długości nie większej niż $|x|$ jest skończenie wiele). Z tego wynika, że $L \in \Rclass$.
+\end{proof}
+\begin{proof}[Dowód konieczności]
+    Załóżmy, że $L \in \Rclass$. Istnieje więc maszyna $M$, która rozstrzyga o $L$. Możemy skonstruować enumerator $E$:
+    \begin{algorithmic}
+        \For{$k = 0, 1, 2, \ldots$}
+            \For{$x \in \Sigma^k$}
+                \If{$M(x)$}
+                    \State wylicz $x$
+                \EndIf
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+    który spełnia tezę.
+\end{proof}
+
+\section{Uniwersalna maszyna Turinga, języki nierozstrzygalne}
+
+\begin{definition}
+    Uniwersalna maszyna Turinga to maszyna Turinga $U$, która dla każdej maszyny Turinga $M$ i słowa $x$ symuluje działanie $M$ na $x$.
+\end{definition}
+
+Maszynę $M$ z powyższej definicji możemy zakodować jako słowo $w_M$ nad alfabetem $\{0, 1\}$, kodując kolejne elementy krotki $M$. Takie kodowanie będziemy oznaczać jako $\encode{M}$. Ma to o tyle istotne znaczenie, że z takiego zapisu wynika, że zbiór kodów maszyn Turinga jest przeliczalny, w przeciwieństwie do zbioru języków, który jest nieprzeliczalny. Stąd wynika, że istnieją języki, których nie akceptuje żadna maszyna Turinga.
+
+Powyższy fakt wykazuje się podobnie, jak to, że moc zbioru liczb rzeczywistych z przedziału $[0, 1]$ jest większa niż moc zbioru liczb naturalnych, to znaczy \href{https://pl.wikipedia.org/wiki/Metoda_przekątniowa}{metodą przekątniową Cantora}.
+
+\begin{remark}[na temat przeliczalności domknięcia Kleene'ego zbiorów]
+    Alfabet $\Sigma$ dowolnego języka $L$ jest oczywiście skończony. Z tego wynika, że $\Sigma^*$ jest przeliczalny (możemy wprowadzić porządek znany z $\NN$, czyli języka nad cyframi), a więc każdy język $L \subseteq \Sigma^*$ jest przeliczalny.
+
+    Nawet jeśli weźmiemy zbiór $A$, który jest nieskończony, ale przeliczalny, to zbiór $A^*$ również jest przeliczalny, co dociekliwy Czytelnik może udowodnić.
+\end{remark}
+
+\subsection{Problem stopu}
+Problem stopu (\textit{halting problem}) to problem decyzyjny polegający na stwierdzeniu, czy dany program zatrzymuje się dla danego wejścia. Jest on fundamentalnie nierozstrzygalny, co udowodnili niezależnie od siebie Alonzo Church (za pomocą rachunku lambda) oraz jego student, Alan Turing (za pomocą omawianej tutaj teorii).
+
+\begin{theorem}\label{t:halting is not R}
+    Problem stopu jest nierozstrzygalny.
+\end{theorem}
+\begin{proof}
+    Niech $H$ będzie językiem zdefiniowanym jako
+    \[ H = \{\encode{M, x} \mid M \text{ kończy działanie dla } x\}. \]
+    Zakładamy nie wprost, że język ten jest rozstrzygalny, a więc istnieje maszyna Turinga $M_H$, która o nim rozstrzyga. Skonstruujmy maszynę $D$, przyjmującą na wejściu maszynę $M$:
+    \begin{algorithmic}
+        \If{$M_H$ akceptuje $\encode{M, M}$}
+            \State zapętl się
+        \Else
+            \State akceptuj
+        \EndIf
+    \end{algorithmic}
+    Wówczas $D$ akceptuje $D$ wtedy i tylko wtedy, gdy $M_H$ nie akceptuje $\encode{D, D}$, czyli gdy $D$ nie kończy działania dla $D$, co prowadzi do sprzeczności.
+\end{proof}
+
+Z twierdzenia \ref{t:halting is not R} można wyciągnąć bardzo wiele wniosków na temat nierozstrzygalności innych języków.
+
+\begin{theorem}
+    Każdy nieskończony język klasy $\REclass$ posiada nieskończony podzbiór klasy $\Rclass$.
+\end{theorem}
+\begin{proof}
+    Niech $L$ będzie nieskończonym językiem klasy $\REclass$. Wówczas, na mocy twierdzenia \ref{t:enumerator iff RE}, istnieje enumerator $E$, który wylicza słowa języka $L$ w pewnej kolejności, weźmy $w_1, w_2, \ldots$. Zdefiniujmy zbiór indeksów $I$ taki, że
+    \[ I = \left\{i \mid \forall_{j < i} \left(|w_j| < |w_i|\right)\right\}, \]
+    a więc takich, że słowo $w_i$ jest dłuższe, niż każde poprzednie.
+    Wówczas zbiór $I$ jest nieskończony, a słowa $w_i$ dla $i \in I$ są wyliczane w kolejności niemalejących długości, więc, z twierdzenia \ref{t:non-decreasing enumerator iff R}, $\{w_i \mid i \in I\} \in \Rclass$.
+\end{proof}
+
+\subsection{Redukcje, trudność i zupełność, twierdzenie Rice'a}
+\begin{definition}
+    Funkcja obliczalna to funkcja $f : \Sigma^* \to \Sigma^*$, dla której istnieje maszyna Turinga, która dla każdego $x \in \Sigma^*$ kończy działanie i zwraca $f(x)$.
+\end{definition}
+
+\begin{definition}[redukcja \textit{many-one}]\label{d:many-one reduction}
+    Język $A$ \vocab{redukuje się} do języka $B$, co zapisujemy jako $A \leq_m B$, jeśli istnieje funkcja obliczalna $f$ taka, że dla każdego $x \in \Sigma^*$ zachodzi
+\[ x \in A \iff f(x) \in B. \]
+\end{definition}
+
+Można łatwo dowieść, że relacja $\leq_m$ jest relacją przechodnią.
+
+\begin{fact}
+    Jeśli $A \leq_m B$, prawdą jest:
+    \[ B \in \Rclass \implies A \in \Rclass, \]
+    \[ B \in \REclass \implies A \in \REclass, \]
+    \[ \ol{A} \leq_m \ol{B}. \]
+\end{fact}
+
+Będziemy mówić, że język $L$ jest $\Rclass$\vocab{-trudny}, jeśli dla każdego $A \in \Rclass$ zachodzi $A \leq_m L$. Jeśli dodatkowo $L \in \Rclass$, to mówimy, że $L$ jest $\Rclass$\vocab{-zupełny}. Analogiczne określenia stosujemy dla klas $\REclass$ i $\coREclass$.
+
+Rodzinę $\sL$ języków będziemy nazywać \vocab{własnością} i mówić, że język $L$ ma własność $\sL$, jeśli $L \in \sL$.
+
+\begin{theorem}[Rice'a]
+    Niech $\sL$ będzie nietrywialną\footnote{to znaczy różną od $\emptyset$ oraz $\REclass$} właściwością języków klasy $\REclass$. Wówczas język
+    \[ B_{\sL} = \{\encode{M} \mid L(M) \in \sL\} \]
+    jest nierozstrzygalny.
+\end{theorem}
+\begin{proof}
+    Bez straty ogólności możemy założyć, że $\emptyset \notin \sL$ (jeśli tak nie jest, to możemy operować na $\ol{\sL}$). Weźmy pewien język $L \in \sL$, który jest akceptowany przez maszynę $M_L$. Pokażemy, że problem stopu $H$ redukuje się do $B_{\sL}$. Tworzymy redukcję $f(\encode{M, x}) = \encode{N}$, gdzie maszyna $N(y)$ ma następujący kod:
+    \begin{algorithmic}
+        \If{$M$ kończy działanie dla $x$}
+            \If{$M_L$ akceptuje $y$}
+                \State akceptuj
+            \EndIf
+        \EndIf
+    \end{algorithmic}
+    Jeśli $M(x)$ kończy działanie, to $L(N) = L \neq \emptyset$; w przeciwnym wypadku $L(N) = \emptyset$. Zatem
+    \[ \encode{M, x} \in H \iff \encode{N} \in B_{\sL} \iff L(N) \in \sL. \]
+\end{proof}
+
+\begin{theorem}\label{t:halting is RE-complete}
+    Problemu stopu jest $\REclass$-zupełny.
+\end{theorem}
+\begin{proof}
+    Oczywiście problem stopu $H \in \REclass$, co wynika z definicji uniwersalnej maszyny Turinga. Weźmy dowolny język $L \in \REclass$ i pokażmy, że $L \leq_m H$. Oznaczmy jako $M_L$ maszynę, która go akceptuje i przyjmijmy, że nigdy nie odrzuca słowa (zamiast tego zawsze się zapętla). Skonstruujmy funkcję obliczalną
+    \[ f(x) = \encode{M_L, x}. \]
+    Wówczas $x \in L \iff \encode{M_L, x} \in H$, a więc $L \leq_m H$.
+\end{proof}
+
+\begin{theorem}\label{t:nontrivial R language is R-complete}
+    Każdy nietrywialny\footnote{to znaczy różny od $\emptyset$ oraz $\Sigma^*$} język klasy $\Rclass$ jest $\Rclass$-zupełny.
+\end{theorem}
+\begin{proof}
+    Niech $A, B$ będą dowolnymi nietrywialnymi rozstrzygalnymi językami oraz niech $x_Y \in B$, $x_N \notin B$. Możemy stworzyć funkcję obliczalną
+    \[ f(z) =
+        \begin{cases}
+            x_Y, & \text{jeśli } z \in A, \\
+            x_N, & \text{jeśli } z \notin A,
+        \end{cases}
+    \]
+    która jest zwracana przez maszynę
+    \begin{algorithmic}
+        \If{$M_A$ akceptuje $z$}
+            \State zwróć $x_Y$
+        \Else
+            \State zwróć $x_N$
+        \EndIf
+    \end{algorithmic}
+    która zawsze kończy swoje działanie, a więc spełnia wszystkie założenia definicji \ref{d:many-one reduction}. Zatem $A \leq_m B$, a więc $B$ jest $\Rclass$-zupełny.
+\end{proof}
+
+\section{Hierarchia arytmetyczna}
+Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $\REclass$, $\coREclass$ oraz ich część wspólną $\Rclass$. W tej sekcji, bazując na twierdzeniach \ref{t:char of RE}, \ref{t:char of coRE}, wprowadzimy kolejne klasy języków, które są bardziej ogólne niż wyżej wymienione.
+
+\subsection{Charakterystyki klas $\REclass$ i $\coREclass$}
+
+\begin{theorem}[Charakterystyka klasy $\REclass$]\label{t:char of RE}
+    Język $A$ należy do klasy $\REclass$ wtedy i tylko wtedy, gdy istnieje język $B \in \Rclass$ taki, że
+    \[ A = \left\{x \in \Sigma^* \mid \left(\exists y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
+\end{theorem}
+\begin{proof}
+    Jeśli $A \in \REclass$, to istnieje maszyna Turinga $M_A$, która akceptuje $A$. Wtedy
+    \begin{align*}
+        A &= \{x \mid M_A \text{ akceptuje } x\} \\
+        &= \{x \mid \left(\exists k \in \NN\right) \left(M_A \text{ akceptuje } x \text{ w } k \text{ krokach}\right)\} \\
+        &= \{x \mid \left(\exists y \in \Sigma^*\right) \left(M_A \text{ akceptuje } x \text{ w } |y| \text{ krokach}\right)\} \\
+        &= \{x \mid \left(\exists y \in \Sigma^*\right) \left(\encode{x, y} \in B\right)\}.
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[Charakterystyka klasy $\coREclass$]\label{t:char of coRE}
+    Język $A$ należy do klasy $\coREclass$ wtedy i tylko wtedy, gdy istnieje język $C \in \Rclass$ taki, że
+    \[ A = \left\{x \in \Sigma^* \mid \left(\forall y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
+\end{theorem}
+\begin{proof}
+    Na podstawie twierdzenia \ref{t:char of RE} wiemy, że istnieje język $B$ taki, że
+    \[ \ol{A} = \left\{x \in \Sigma^* \mid \left(\exists y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
+    Wówczas
+    \begin{align*}
+        A &= \left\{x \in \Sigma^* \mid \left(\neg\exists y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\} \\
+        &= \left\{x \in \Sigma^* \mid \left(\forall y \in \Sigma^* \right) \left(\encode{x, y} \notin B\right) \right\} \\
+        &= \left\{x \in \Sigma^* \mid \left(\forall y \in \Sigma^* \right) \left(\encode{x, y} \in \ol{B}\right) \right\},
+    \end{align*}
+    co, po wzięciu $C = \ol{B}$, kończy dowód.
+\end{proof}
+
+\subsection{Definicje klas hierarchii arytmetycznej}
+
+\begin{definition}[klasa $\Sigma_i$]
+    Język $A$ należy do klasy $\Sigma_i$, gdy istnieje język $B \in \Rclass$ taki, że
+    \[ A = \left\{x \Bigm|
+    \underbrace{\left(\exists y_1 \in \Sigma^*\right) \left(\forall y_2 \in \Sigma^*\right) \left(\exists y_3 \in \Sigma^*\right) \cdots}_{i \text{ naprzemiennych kwantyfikatorów}}
+    \left(\encode{x, y_1, y_2, \ldots, y_i} \in B\right)\right\}. \]
+\end{definition}
+
+\begin{definition}[klasa $\Pi_i$]
+    Język $A$ należy do klasy $\Pi_i$, gdy istnieje język $C \in \Rclass$ taki, że
+    \[ A = \left\{x \Bigm|
+    \underbrace{\left(\forall y_1 \in \Sigma^*\right) \left(\exists y_2 \in \Sigma^*\right) \left(\forall y_3 \in \Sigma^*\right) \cdots}_{i \text{ naprzemiennych kwantyfikatorów}}
+    \left(\encode{x, y_1, y_2, \ldots, y_i} \in C\right)\right\}. \]
+\end{definition}
+
+Z definicji wynika, że $\Sigma_0 = \Pi_0 = \Rclass$, Ponadto, prostym wnioskiem z twierdzeń \ref{t:char of RE} i \ref{t:char of coRE} są równości $\Sigma_1 = \REclass$ oraz $\Pi_1 = \coREclass$. Uważny Czytelnik na pewno zauważy również, że nie tylko
+\[ \Sigma_0 \subset \Sigma_1 \subset \Sigma_2 \subset \cdots \]
+oraz
+\[ \Pi_0 \subset \Pi_1 \subset \Pi_2 \subset \cdots, \]
+ale też
+\[ \Sigma_i \subset \Pi_{i + 1} \quad\text{oraz}\quad \Pi_i \subset \Sigma_{i+1}. \]
+
+\begin{example}
+    Wykazać, że język
+    \[ L = \left\{\encode{M} \mid \ol{L(M)} \text{ jest skończony}\right\} \]
+    należy do klasy $\Sigma_3$.
+\end{example}
+\begin{solution}
+Mamy
+    \begin{align*}
+        L &= \left\{\encode{M} \mid \ol{L(M)} \text{ jest skończony}\right\} \\
+        &= \left\{\encode{M} \mid \left(\exists t \in \NN\right) \left(\forall x \in \Sigma^*\right) \left(|x| > t \implies M(x) \text{ akceptuje}\right)\right\} \\
+        &= \left\{\encode{M} \mid \left(\exists t \in \NN\right) \left(\forall x \in \Sigma^*\right) \left(|x| \leq t \lor M(x) \text{ akceptuje}\right)\right\} \\
+        &= \left\{\encode{M} \mid \left(\exists t \in \NN\right) \left(\forall x \in \Sigma^*\right) \left(|x| \leq t \lor \left(\exists k \in \NN\right) \left(M(x) \text{ akceptuje w } k \text{ krokach}\right)\right)\right\} \\
+        &= \left\{\encode{M} \mid \left(\exists t \in \NN\right) \left(\forall x \in \Sigma^*\right) \left(\exists k \in \NN\right) \left(|x| \leq t \lor M(x) \text{ akceptuje w } k \text{ krokach}\right)\right\},
+    \end{align*}
+    więc $L \in \Sigma_3$.
+\end{solution}
+
+\begin{remark*}
+    Powyższy przykład można uogólnić do pewnego sposobu szukania górnego ograniczenia na dokładną klasą w hierarchii arytmetycznej, zwanego algorytmem Tarskiego-Kuratowskiego. Wystarczy sprowadzić opis danego języka do przedrostkowej postaci normalnej, a następnie policzyć kwantyfikatory i stwierdzić, który z nich występuje jako pierwszy.
+
+    W trakcie tego procesu warto pamiętać o kilku rzeczach:
+    \begin{enumerate}
+        \item Możemy używać zmiennych naturalnych zamiast słów ze zbioru $\Sigma^*$ (tak zrobiliśmy na przykład w powyższym dowodzie), ponieważ zamiast $\exists t \in \NN$ możemy napisać $\exists t \in \Sigma^*$ i używać $|t|$ jako liczby naturalnej.
+        \item Możemy łączyć kwantyfikatory leżące obok siebie, na przykład $\forall x \in \Sigma^*\ \forall y \in \Sigma^*$ możemy zapisać jako $\forall \encode{x, y} \in \Sigma^*$. Oczywiście taki zapis jest mniej czytelny --- chodzi tylko o to, żeby nie liczyć kwantyfikatorów podwójnie przy określaniu klasy.
+        \item Czasami możemy zmieniać kolejność kwantyfikatorów w taki sposób, aby uzyskać węższą klasę. Należy jednak uważać, ponieważ nie zawsze jest to możliwe.
+    \end{enumerate}
+\end{remark*}
+
+\begin{example}
+    Określ klasę w hierarchii arytmetycznej języka
+    \[ L = \left\{\encode{M} \mid L(M) \text{ jest rozstrzygalny}\right\}. \]
+\end{example}
+\begin{solution}
+    \begin{align*}
+        L &= \left\{\encode{M} \mid L(M) \in \Rclass \right\} \\
+        &= \left\{\encode{M} \mid \exists \text{ maszyna } M' \text{ rozstrzygająca o } L(M) \right\} \\
+        &= \left\{\encode{M} \Bigm| \left(\exists\encode{M'}\right) \left(\forall x \in \Sigma^*\right) \left(\forall l \in \NN\right) \left(\exists k \in \NN\right)\; \parbox{15em}{\scriptsize maszyny $M', M$ akceptują $x$ w $k$ krokach lub nie akceptują $x$ w $l$ krokach} \right\} \\
+    \end{align*}
+    Język $L$ należy więc do klasy $\Sigma_3$.
+\end{solution}

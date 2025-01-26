@@ -1,0 +1,47 @@
+% arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
+\documentclass{scrartcl}
+\usepackage[pretty,polish]{mystd}
+\title{Teoria obliczeń i złożoności obliczeniowej}
+\author{Michał Dobranowski}
+\date{semestr zimowy 2024 \\ v0.2}
+\publishers{\github}
+
+\newcommand{\blank}{\square}
+\newcommand{\Rclass}{\textsf{R}}
+\newcommand{\REclass}{\textsf{RE}}
+\newcommand{\coREclass}{\textsf{co-RE}}
+\newcommand{\TIME}{\textsf{TIME}}
+\newcommand{\SPACE}{\textsf{SPACE}}
+\newcommand{\Pclass}{\textsf{P}}
+\newcommand{\NPclass}{\textsf{NP}}
+\newcommand{\coNPclass}{\textsf{co-NP}}
+\newcommand{\PSPACEclass}{\textsf{PSPACE}}
+\newcommand{\EXPclass}{\textsf{EXP}}
+\newcommand{\NEXPclass}{\textsf{NEXP}}
+\newcommand{\EXPSPACEclass}{\textsf{EXPSPACE}}
+\newcommand{\NPSPACEclass}{\textsf{NPSPACE}}
+\newcommand{\PHclass}{\textsf{PH}}
+\newcommand{\encode}[1]{\left\langle #1 \right\rangle}
+\DeclareMathOperator{\poly}{poly}
+
+\usepackage{algpseudocodex}
+\usepackage{tikz-network}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \newpage
+
+    \SetVertexStyle[FillColor=gray, FillOpacity=0.4]
+    \SetEdgeStyle[Color=black, LineWidth=0.8pt]
+
+    \input{part_1.tex}
+    \input{part_2.tex}
+
+    \begin{thebibliography}{9}
+        \bibitem{Faliszewski} Faliszewski, P. (2024). Teoria obliczeń i złożoności obliczeniowej. \textit{Wykłady prowadzone na Akademii Górniczo-Hutniczej w Krakowie}.
+        \bibitem{Grochow16} Grochow, J. A. (2016). NP-hard sets are not sparse unless P=NP: An exposition of a simple proof of Mahaney's Theorem, with applications. \textit{arXiv preprint \href{https://arxiv.org/abs/1610.05825}{arXiv:1610.05825}}.
+    \end{thebibliography}
+
+
+\end{document}

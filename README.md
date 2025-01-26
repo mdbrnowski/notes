@@ -6,13 +6,14 @@
 
 ### Computer Science at AGH University
 
-* **analiza.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/analiza.pdf)] – *Analiza II*
 * **algebra.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/algebra.pdf)] – *Algebra*
+* **analiza.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/analiza.pdf)] – *Analiza II*
+* **toizo.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/toizo.pdf)] – *Teoria Obliczeń i Złożoności Obliczeniowej*
 
 ### Miscellaneous
 
 * **filtr.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/filtr.pdf)] – *Funkcje tworzące i filtracja pierwiastkami jedności*
-* **fft.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/fft.pdf)] - *Szybka transformacja Fouriera (FFT)*
+* **fft.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/fft.pdf)] – *Szybka transformacja Fouriera (FFT)*
 
 ## The mystd.sty package
 

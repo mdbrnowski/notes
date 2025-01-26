@@ -33,3 +33,11 @@ tasks:
     cmds:
       - cd src/analiza && arara analiza.tex
       - cd pdf && rm -f *.aux *.out *.synctex.gz *.toc *.fls *.fdb_latexmk
+  toizo:
+    desc: Compile toizo.tex to pdf
+    sources:
+      - src/toizo/*
+      - mystd.sty
+    cmds:
+      - cd src/toizo && arara toizo.tex
+      - cd pdf && rm -f *.aux *.out *.synctex.gz *.toc *.fls *.fdb_latexmk
