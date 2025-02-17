@@ -42,8 +42,32 @@ Zdefiniowane są pewne działania na macierzach:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth]{matrix_multiplication.pdf}
-    \caption{Mnożenie macierzy, źródło: Wikipedia.}
+    \[ \begin{NiceArray}{*{6}{c}@{\hspace{6mm}}*{5}{c}}[nullify-dots]
+        \CodeBefore[create-cell-nodes]
+        \SubMatrix[{2-7}{6-last}]
+        \SubMatrix[{7-2}{last-6}]
+        \SubMatrix[{7-7}{last-last}]
+        \begin{tikzpicture}
+            \node [highlight = (9-2) (9-6)] { } ;
+            \node [highlight = (2-9) (6-9)] { } ;
+        \end{tikzpicture}
+        \Body
+        &        &        &        &        &        &        &        & \color{AccColor2}\scriptstyle C_j \\
+        &        &        &        &        &        & b_{11} & \Cdots & b_{1j} & \Cdots & b_{1n} \\
+        &        &        &        &        &        & \Vdots &        & \Vdots &        & \Vdots \\
+        &        &        &        &        &        &        &        & b_{kj} \\
+        &        &        &        &        &        &        &        & \Vdots \\
+        &        &        &        &        &        & b_{n1} & \Cdots & b_{nj} & \Cdots & b_{nn} \\[3mm]
+        & a_{11} & \Cdots &        &        & a_{1n} \\
+        & \Vdots &        &        &        & \Vdots &        &        & \Vdots \\
+        \color{AccColor2}\scriptstyle R_i
+        & a_{i1} & \Cdots & a_{ik} & \Cdots & a_{in} & \Cdots &        & c_{ij} \\
+        & \Vdots &        &        &        & \Vdots \\
+        & a_{n1} & \Cdots &        &        & a_{nn} \\
+        \CodeAfter
+        \tikz \draw[AccColor2, shorten > = 1mm, shorten < = 1mm](9-4.north) to [bend left] (4-9.west) ;
+    \end{NiceArray} \]
+    \caption{Mnożenie macierzy, $c_{ij} = R_i \circ C_j$.}
 \end{figure}
 
 \begin{remark}
