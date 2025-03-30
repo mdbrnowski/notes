@@ -143,7 +143,7 @@ Warto zauważyć, że problem SAT, w którym każda zmienna występuje co najwy�
     Jeśli $x_1$ jest fałszywe, to fałszywe musi być również $x_2$, a tym samym $x_3, \ldots, x_m$, co oznacza, że wszystkie zmienne $x_i$ muszą być albo fałszywe, albo prawdziwe. W ten sposób zredukowaliśmy $m$-krotne występowanie zmiennej $x$ do 3-krotnego występowania zmiennych $x_i$, a więc 3-SAT $\leq_m^p$ $(3, 3)$-SAT.
 \end{proof}
 
-\subsection{Problem \textsc{Independent Set}}
+\subsection{Problemy \textsc{Independent Set} i \textsc{Clique}}
 
 Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje zbiór $k$ wierzchołków niezależnych, czyli takich, że żadne dwa z nich nie są połączone krawędzią.
 
@@ -200,15 +200,13 @@ Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nie
     \caption{Graf odpowiadający formule $\phi = (x \lor y \lor z) \land (\neg x \lor \neg y \lor z) \land (\neg x \lor y \lor \neg z)$. Istnieje zbiór $k = 3$ wierzchołków niezależnych (zaznaczony), a więc formuła $\phi$ jest spełnialna.}
 \end{figure}
 
-\subsection{Problem \textsc{Clique}}
-
 Problem \textsc{Clique} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje klika (podgraf pełny) rzędu $k$.
 
 \begin{theorem}
     Problem \textsc{Clique} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
-    Zamiast rozwiązywać problem \textsc{Clique} na grafie $G$, można rozwiązać problem \textsc{Independent Set} na dopełnieniu grafu (czyli takim grafie $\ol{G}$, w którym dwa wierzchołki są połączone krawędzią wtedy i tylko wtedy, gdy nie są połączone w grafie $G$). Wtedy zbiór $k$ wierzchołków niezależnych w grafie $\overline{G}$ odpowiada zbiorowi $k$ wierzchołków tworzących klikę w grafie $G$. Te dwa problemy są więc równoważne.
+    Problem \textsc{Clique} na grafie $G$ jest równoważny problemowi \textsc{Independent Set} na $\ol{G}$ (dopełnieniu grafu $G$). Zbiór $k$ wierzchołków niezależnych w grafie $\ol{G}$ odpowiada zbiorowi $k$ wierzchołków tworzących klikę w grafie $G$.
 \end{proof}
 
 \subsection{Problem 3-\textsc{Color}}
@@ -475,7 +473,7 @@ W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
 
     Łatwo pokazać, że klasa $\NPclass$ jest zamknięta ze względu na morfizmy, to znaczy, że jeśli $L \in \NPclass$ i $f$ jest morfizmem, to $f(L) \in \NPclass$. Dowód jest następujący: jeśli $M$ jest niedeterministyczną maszyną Turinga rozstrzygającą o $L$, to możemy zbudować maszynę $M'$, która na wejściu $f(a)$ zgaduje $a$ oraz symuluje działanie $M$ na $a$.
 
-    Taki sam tok rozumowanie nie zadziała jednak wewnątrz klasy $\Pclass$. Możemy udowodnić, że jeśli klasa $\Pclass$ jest zamknięta ze względu na morfizmy, to $\Pclass = \NPclass$.
+    Taki sam tok rozumowania nie zadziała jednak wewnątrz klasy $\Pclass$. Możemy udowodnić, że jeśli klasa $\Pclass$ jest zamknięta ze względu na morfizmy, to $\Pclass = \NPclass$.
     W tym celu rozważmy problem SAT. Sprawdzenie wartościowania formuły logicznej jest oczywiście w $\Pclass$, w szczególności
     \[ L = \{(\phi, w) \mid w \text{ jest świadkiem spełnialności formuły } \phi \} \]
     należy do $\Pclass$. Weźmy pewien alfabet $\Sigma$ kodujący\footnote{dla formalności będziemy chcieli przeznaczyć rozłączne zbiory symboli na $\phi$ oraz $w$} pary $(\phi, w)$ oraz taki morfizm $f$, że $f(\phi) = \phi$ oraz $f(w) = 0$. Wtedy $f(L)$ redukuje się do SAT, więc należy do $\Pclass$, tylko jeśli $\Pclass = \NPclass$.
@@ -531,6 +529,13 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
     Na ostatnim poziomie sprawdzamy, czy istnieje tautologia. Jeśli tak, to formuła $\phi$ jest spełnialna, w przeciwnym wypadku nie jest.
     Znaleźliśmy wielomianowy algorytm rozwiązujący SAT, więc $\Pclass = \NPclass$.
 \end{proof}
+
+\begin{remark}[o istnieniu języków rzadkich poza klasą $\NPclass$]
+    Załóżmy, że $\Pclass \neq \NPclass$. Twierdzenie Mahaneya mówi jedynie o tym, że nie ma rzadkich języków $\NPclass$-trudnych. Nie znaczy to, że wszystkie rzadkie języki są ,,łatwiejsze'' (w sensie należenia do węższej klasy) od języków $\NPclass$-trudnych. W szczególności więc nie wyklucza ono istnienia rzadkich języków, które w ogóle nie należą do $\NPclass$.
+
+    Pokażemy, że istnieje rzadki (a nawet unarny) język, który nie należy do $\NPclass$, a jest rozstrzygalny (istnieją również nierozstrzygalne języki unarne).
+    Niech $L$ będzie dowolnym rozstrzygalnym językiem nienależącym do klasy $\EXPSPACEclass$ (z \href{https://en.wikipedia.org/wiki/Space_hierarchy_theorem}{twierdzenia o hierachii pamięciowej} taki język na pewno istnieje), a $L'$ jego unarnym kodowaniem. Język $L'$ nie należy do $\PSPACEclass$, a więc tym bardziej do $\NPclass$.
+\end{remark}
 
 \subsection{Klasy $\EXPclass$ i $\NEXPclass$}
 
@@ -614,6 +619,8 @@ oraz analogicznie dla $\NPclass^\sC$.
     Klasa $\Pclass^\NPclass$ jest deterministyczna, a więc zamknięta ze względu na dopełnienie (zobacz uwagę \ref{r:classes closed under complement}). Z tego wynika, że klasa $\NPclass$ też musi być zamknięta ze względu na dopełnienie, więc $\NPclass = \coNPclass$.
 \end{proof}
 
+Problemem, który należy do klasy $\Pclass^\NPclass$ jest na przykład \textsc{Exact Clique}. Jest to problem stwierdzenia, czy największa klika w danym grafie $G$ ma rozmiar dokładnie $k$. Możemy dla każdego $k' \in \{1, \ldots, |V(G)|\}$ zapytać wyrocznię o istnienie kliki rzędu $\geq k$ (jest to instancja zwykłego problemu \textsc{Clique}) i zwrócić wynik, jeśli ostatnie $k'$, na które odpowiedź jest twierdząca, jest równe danemu $k$.
+
 \begin{fact}
     Zachodzi równość
     \[ \Pclass^{\NPclass \cap \coNPclass} = \NPclass \cap \coNPclass. \]
@@ -628,25 +635,33 @@ oraz analogicznie dla $\NPclass^\sC$.
 
 \subsection{Hierarchia wielomianowa}
 
-Analogicznie do hierarchii arytmetycznej, definiujemy hierarchię wielomianową.
+Analogicznie do hierarchii arytmetycznej, definiujemy hierarchię wielomianową. Głównym pytaniem tej sekcji będzie uogólnienie pytania $\Pclass \stackrel{?}{=} \NPclass$ przez pytanie o skończoność hierarchii wielomianowej.
 
 \begin{definition}
-    Rekurencyjnie definiujemy klasy $\Sigma_i^\Pclass$, $\Pi_i^\Pclass$ i $\Delta_i^\Pclass$:
-    \[ \Sigma_0^\Pclass = \Pi_0^\Pclass = \Delta_0^\Pclass = \Pclass, \]
-    \[ \Sigma_i^\Pclass = \NPclass^{\Sigma_{i-1}^\Pclass}, \]
-    \[ \Pi_i^\Pclass = \coNPclass^{\Sigma_{i-1}^\Pclass}, \]
-    \[ \Delta_i^\Pclass = \Pclass^{\Sigma_{i-1}^\Pclass}. \]
+    Rekurencyjnie definiujemy klasy $\Sigma_i^p$, $\Pi_i^p$ i $\Delta_i^p$:
+    \[ \Sigma_0^p = \Pi_0^p = \Delta_0^p = \Pclass, \]
+    \begin{align*}
+        \Sigma_i^p &= \NPclass^{\Sigma_{i-1}^p}, \\
+        \Pi_i^p &= \coclass \Sigma_i^p =  \coNPclass^{\Sigma_{i-1}^p}, \\
+        \Delta_i^p &= \Pclass^{\Sigma_{i-1}^p}.
+    \end{align*}
     Ponadto,
-    \[ \PHclass = \bigcup_{i \in \NN} \Sigma_i^\Pclass. \]
+    \[ \PHclass = \bigcup_{i \in \NN} \Sigma_i^p. \]
 \end{definition}
 
+Łatwo pokazać, że $\Sigma_1^p = \NPclass$, $\Pi_1^p = \coNPclass$, a $\Delta_1^p = \Pclass$.
+
 \begin{theorem}
-    Jeśli $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass$ dla pewnego $k \geq 0$, to $\PHclass = \Sigma_k^\Pclass$.
+    Jeśli $\Sigma_k^p = \Sigma_{k+1}^p$ dla pewnego $k \geq 0$, to $\PHclass = \Sigma_k^p$.
 \end{theorem}
 \begin{proof}
-    Skoro $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass$, to również
-    \[ \NPclass^{\Sigma_k^\Pclass} = \NPclass^{\Sigma_{k+1}^\Pclass}, \]
+    Skoro $\Sigma_k^p = \Sigma_{k+1}^p$, to również
+    \[ \NPclass^{\Sigma_k^p} = \NPclass^{\Sigma_{k+1}^p}, \]
     więc z definicji
-    \[ \Sigma_{k+1}^\Pclass = \Sigma_{k+2}^\Pclass. \]
-    Kontynuując ten tok rozumowania dostajemy $\Sigma_k^\Pclass = \Sigma_{k+1}^\Pclass = \Sigma_{k+2}^\Pclass = \ldots = \PHclass$.
+    \[ \Sigma_{k+1}^p = \Sigma_{k+2}^p. \]
+    Kontynuując ten tok rozumowania dostajemy $\Sigma_k^p = \Sigma_{k+1}^p = \Sigma_{k+2}^p = \ldots = \PHclass$.
 \end{proof}
+
+\begin{theorem}
+    Jeśli $\Sigma_k^p = \Pi_k^p$ dla pewnego $k \geq 1$, to $\PHclass = \Sigma_k^p$.
+\end{theorem}

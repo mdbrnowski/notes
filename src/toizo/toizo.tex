@@ -3,32 +3,38 @@
 \usepackage[pretty,polish]{mystd}
 \title{Teoria obliczeń i złożoności obliczeniowej}
 \author{Michał Dobranowski}
-\date{semestr zimowy 2024 \\ v0.2}
+\date{semestr zimowy 2024 \\ v0.3}
 \publishers{\github}
 
 \newcommand{\blank}{\square}
 \newcommand{\Rclass}{\textsf{R}}
 \newcommand{\REclass}{\textsf{RE}}
-\newcommand{\coREclass}{\textsf{co-RE}}
+\newcommand{\coREclass}{\textsf{coRE}}
 \newcommand{\TIME}{\textsf{TIME}}
 \newcommand{\SPACE}{\textsf{SPACE}}
 \newcommand{\Pclass}{\textsf{P}}
 \newcommand{\NPclass}{\textsf{NP}}
-\newcommand{\coNPclass}{\textsf{co-NP}}
+\newcommand{\coNPclass}{\textsf{coNP}}
 \newcommand{\PSPACEclass}{\textsf{PSPACE}}
 \newcommand{\EXPclass}{\textsf{EXP}}
 \newcommand{\NEXPclass}{\textsf{NEXP}}
 \newcommand{\EXPSPACEclass}{\textsf{EXPSPACE}}
 \newcommand{\NPSPACEclass}{\textsf{NPSPACE}}
 \newcommand{\PHclass}{\textsf{PH}}
+\newcommand{\coclass}{\textsf{co}}
 \newcommand{\encode}[1]{\left\langle #1 \right\rangle}
 \DeclareMathOperator{\poly}{poly}
 
 \usepackage{algpseudocodex}
 \usepackage{tikz-network}
+\usepackage[nottoc,numbib]{tocbibind}
 
 \begin{document}
     \maketitle
+    \begin{abstract}
+        \noindent Poniższy skrypt zawiera materiał częściowo obejmujący wykłady z przedmiotu \textit{Teoria obliczeń i złożoności obliczeniowej} prowadzone przez prof. Piotra Faliszewskiego na trzecim roku Informatyki na AGH. W przeciwieństwie do wykładów, które teorię obliczeń i teorię złożoności obliczeniowej przedstawiały raczej w równym stopniu, niniejszy skrypt zdecydowanie skupia się na tej drugiej, rozszerzając materiał o przykłady, uwagi, dowody oraz dodatkowe twierdzenia.
+    \end{abstract}
+    \newpage
     \tableofcontents
     \newpage
 
@@ -39,8 +45,10 @@
     \input{part_2.tex}
 
     \begin{thebibliography}{9}
+        \bibitem{Adleman} Adleman, L.M., Loui, M.C. (1981). Space-bounded simulation of multitape Turing machines. \textit{Mathematical Systems Theory, 14}, 215-222.
         \bibitem{Faliszewski} Faliszewski, P. (2024). Teoria obliczeń i złożoności obliczeniowej. \textit{Wykłady prowadzone na Akademii Górniczo-Hutniczej w Krakowie}.
-        \bibitem{Grochow16} Grochow, J. A. (2016). NP-hard sets are not sparse unless P=NP: An exposition of a simple proof of Mahaney's Theorem, with applications. \textit{arXiv preprint \href{https://arxiv.org/abs/1610.05825}{arXiv:1610.05825}}.
+        \bibitem{Grochow16} Grochow, J.A. (2016). NP-hard sets are not sparse unless P=NP: An exposition of a simple proof of Mahaney's Theorem, with applications. \textit{Electronic Colloquium on Computational Complexity, TR16}.
+        \bibitem{Sipser} Sipser, M. (2013). Introduction to the Theory of Computation (3rd edition). \textit{Cengage Learning}.
     \end{thebibliography}
 
 

@@ -8,7 +8,7 @@
 
 * **algebra.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/algebra.pdf)] – *Algebra*
 * **analiza.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/analiza.pdf)] – *Analiza II*
-* **toizo.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/toizo.pdf)] – *Teoria Obliczeń i Złożoności Obliczeniowej*
+* **toizo.tex** [[pdf](https://mdbrnowski.github.io/notes/pdf/toizo.pdf)] – *Teoria obliczeń i złożoności obliczeniowej*
 
 ### Miscellaneous
 
