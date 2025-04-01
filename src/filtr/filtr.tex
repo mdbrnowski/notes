@@ -1,15 +1,29 @@
 % arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
-\documentclass{scrartcl}
+\documentclass[bibliography=totocnumbered]{scrartcl}
 \usepackage[pretty,polish,answers]{mystd}
 \title{Funkcje tworzące i filtracja pierwiastkami jedności}
 \author{Michał Dobranowski}
 \date{czerwiec 2022 \\ v1.4}
 \publishers{\github}
 
+\usepackage[
+    type={CC},
+    modifier={by-nc},
+    version={4.0},
+    imageposition={left},
+]{doclicense}
+
 \begin{document}
     \maketitle
-    \subsection*{Wymagania wstępne}
-    Czytelnik powinien znać matematykę na poziomie liceum oraz mieć podstawową wiedzę na temat liczb zespolonych, w tym znać wzór Eulera. Ponadto powinien wiedzieć, czym jest wzór dwumienny Newtona oraz znać podstawy teorii grup (chociaż bez tego ostatniego też można się obejść).
+    \begin{abstract}
+        \noindent Niniejszy skrypt wprowadza pewną technikę kombinatoryczną, która pozwala, między innymi, na obliczanie mocy zbioru, którego elementy spełniają pewne warunki. Technika ta opiera się na liczbach zespolonych oraz funkcjach tworzących, przy czym te drugie wprowadzone są od podstaw i same w sobie stanowią ciekawe narzędzie matematyczne.
+
+        Zakładamy, że Czytelnik ma podstawową wiedzę na temat liczb zespolonych (w tym zna wzór Eulera) oraz kombinatoryki (korzystamy w szczególności ze wzoru dwumiennego Newtona). Podstawy teorii grup również mogą być przydatne, ale ich brak nie powinien przeszkodzić w zrozumieniu tematu.
+    \end{abstract}
+    \vspace*{\fill}
+    {\footnotesize\doclicenseThis}
+    \newpage
+
     \tableofcontents
     \newpage
 
@@ -299,7 +313,7 @@
         \end{answer}
     \end{problem}
 
-\addcontentsline{toc}{section}{Literatura}
+% \addcontentsline{toc}{section}{Literatura}
 \begin{thebibliography}{9}
     \bibitem{ref:Kessler} \textbf{Complex Numbers}, Andre Kessler.
         \url{https://web.archive.org/http://web.mit.edu/~akessler/www/lectures/complex.pdf}
