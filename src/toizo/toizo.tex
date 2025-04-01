@@ -1,5 +1,5 @@
 % arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
-\documentclass{scrartcl}
+\documentclass[bibliography=totocnumbered]{scrartcl}
 \usepackage[pretty,polish]{mystd}
 \title{Teoria obliczeń i złożoności obliczeniowej}
 \author{Michał Dobranowski}
@@ -27,14 +27,22 @@
 
 \usepackage{algpseudocodex}
 \usepackage{tikz-network}
-\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[
+    type={CC},
+    modifier={by-nc},
+    version={4.0},
+    imageposition={left},
+]{doclicense}
 
 \begin{document}
     \maketitle
     \begin{abstract}
-        \noindent Poniższy skrypt zawiera materiał częściowo obejmujący wykłady z przedmiotu \textit{Teoria obliczeń i złożoności obliczeniowej} prowadzone przez prof. Piotra Faliszewskiego na trzecim roku Informatyki na AGH. W przeciwieństwie do wykładów, które teorię obliczeń i teorię złożoności obliczeniowej przedstawiały raczej w równym stopniu, niniejszy skrypt zdecydowanie skupia się na tej drugiej, rozszerzając materiał o przykłady, uwagi, dowody oraz dodatkowe twierdzenia.
+        \noindent Poniższy skrypt zawiera materiał częściowo obejmujący wykłady z przedmiotu \textit{Teoria obliczeń i złożoności obliczeniowej} prowadzone przez prof. dr. hab. inż. Piotra Faliszewskiego na trzecim roku Informatyki na AGH. W przeciwieństwie do wykładów, które teorię obliczeń i teorię złożoności obliczeniowej przedstawiały raczej w równym stopniu, niniejszy skrypt zdecydowanie skupia się na tej drugiej, rozszerzając materiał o przykłady, uwagi, dowody oraz dodatkowe twierdzenia.
     \end{abstract}
+    \vspace*{\fill}
+    {\footnotesize\doclicenseThis}
     \newpage
+
     \tableofcontents
     \newpage
 
@@ -50,6 +58,5 @@
         \bibitem{Grochow16} Grochow, J.A. (2016). NP-hard sets are not sparse unless P=NP: An exposition of a simple proof of Mahaney's Theorem, with applications. \textit{Electronic Colloquium on Computational Complexity, TR16}.
         \bibitem{Sipser} Sipser, M. (2013). Introduction to the Theory of Computation (3rd edition). \textit{Cengage Learning}.
     \end{thebibliography}
-
 
 \end{document}
