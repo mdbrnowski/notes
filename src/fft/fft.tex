@@ -1,15 +1,29 @@
 % arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
 \documentclass[11pt]{scrartcl}
 \usepackage[pretty,polish,monofont,answers]{mystd}
-\title{Szybka transformacja Fouriera (FFT)}
+\title{Szybka transformacja Fouriera}
 \author{Michał Dobranowski}
 \date{wrzesień 2022 \\ v1.0}
 \publishers{\github}
 
+\usepackage[
+    type={CC},
+    modifier={by-nc},
+    version={4.0},
+    imageposition={left},
+]{doclicense}
+
+
 \begin{document}
     \maketitle
-    \subsection*{Wymagania wstępne}
-    Czytelnik powinien znać podstawowe algorytmy i techniki algorytmiczne oraz swobodnie używać notacji określających asymptotyczne tempo wzrostu. Ponadto powinien mieć podstawową wiedzę na temat wielomianów, liczb zespolonych (w tym znać wzór Eulera) oraz macierzy.
+    \begin{abstract}
+        \noindent Niniejszy skrypt przedstawia algorytm szybkiej transformacji Fouriera (FFT), który pozwala na szybsze mnożenie wielomianów. Nie opisujemy tutaj innych zastosowań transformacji Fouriera, takich jak analiza sygnałów czy kompresja danych.
+        Aby w pełni zrozumieć ten skrypt, Czytelnik powinien znać podstawowe algorytmy i techniki algorytmiczne oraz swobodnie używać notacji określających asymptotyczne tempo wzrostu. Ponadto powinien mieć podstawową wiedzę na temat wielomianów, liczb zespolonych (w tym znać wzór Eulera) oraz macierzy.
+    \end{abstract}
+    \vspace*{\fill}
+    {\footnotesize\doclicenseThis}
+    \newpage
+
     \tableofcontents
     \newpage
 
