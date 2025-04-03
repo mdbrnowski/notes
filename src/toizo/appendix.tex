@@ -1,0 +1,59 @@
+\appendix
+\section{Graf redukcji między problemami}
+
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    problem/.style={
+        rectangle, draw, minimum width=1.5cm, minimum height=.5cm, align=center,
+        font=\scriptsize
+    },
+    label/.style={
+        midway, fill=white, inner sep=2pt,
+        font=\scriptsize
+    },
+    reduction/.style={->, thick},
+    obvious/.style={->, thick, AccColor1, densely dashed},
+]
+    \node[problem] (SAT) {SAT};
+
+    \node[problem, below=of SAT] (ThreeSAT) {3-SAT};
+    \draw[reduction] (SAT) -- node[label] {\ref{t:3-SAT}} (ThreeSAT);
+    \draw[obvious] (ThreeSAT) to[bend right] (SAT);
+
+    \node[problem, below left=0.8cm and 3.3cm of ThreeSAT] (IS) {\textsc{Independent Set}};
+    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:Independent Set}} (IS);
+
+    \node[problem, below left=1.8cm and -1cm of IS] (Clique) {\textsc{Clique}};
+    \draw[reduction] (IS) -- node[label] {\ref{t:Clique}} (Clique);
+
+    \node[problem, below right=1cm and -0.6cm of Clique] (VertexCover) {\textsc{Vertex Cover}};
+    \draw[reduction] (Clique) -- node[label] {todo} (VertexCover);
+
+    \node[problem, below left=of ThreeSAT] (ThreeColor) {\textsc{$3$-Color}};
+    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:3-Color}} (ThreeColor);
+
+    \node[problem, below=of ThreeColor] (Planar3Color) {\textsc{Planar $3$-Color}};
+    \draw[reduction] (ThreeColor) -- node[label] {todo} (Planar3Color);
+    \draw[obvious] (Planar3Color) to[bend right] (ThreeColor);
+
+    \node[problem, below=of ThreeSAT] (ThreeThreeSAT) {$(3,3)$-SAT};
+    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:3,3-SAT}} (ThreeThreeSAT);
+    \draw[obvious] (ThreeThreeSAT) to[bend right] (ThreeSAT);
+
+    \node[problem, below right=of ThreeSAT] (SetCover) {\textsc{Set Cover}};
+    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:Set Cover}} (SetCover);
+
+    \node[problem, below=of SetCover] (X3C) {X3C};
+    \draw[reduction] (ThreeThreeSAT) -- node[label] {\ref{t:X3C}} (X3C);
+    \draw[obvious] (X3C) to[bend right] (SetCover);
+
+    \node[problem, below=of X3C] (SubsetSum) {\textsc{Subset Sum}};
+    \draw[reduction] (X3C) -- node[label] {\ref{t:Subset Sum}} (SubsetSum);
+
+    \node[problem, below right=0.8cm and 3.6 cm of ThreeSAT] (DHamPath) {\textsc{Dir. Hamiltonian Path}};
+    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:Directed Hamiltonian Path}} (DHamPath);
+
+    \node[problem, below=of DHamPath] (HamPath) {\textsc{Hamiltonian Path}};
+    \draw[reduction] (DHamPath) -- node[label] {\ref{t:Hamiltonian Path}} (HamPath);
+    \draw[obvious] (HamPath) to[bend right] (DHamPath);
+\end{tikzpicture}
