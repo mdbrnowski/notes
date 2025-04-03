@@ -147,7 +147,7 @@ Warto zauważyć, że problem SAT, w którym każda zmienna występuje co najwy�
 
 Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje zbiór $k$ wierzchołków niezależnych, czyli takich, że żadne dwa z nich nie są połączone krawędzią.
 
-\begin{theorem}
+\begin{theorem}\label{t:Independent Set}
     Problem \textsc{Independent Set} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -202,7 +202,7 @@ Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nie
 
 Problem \textsc{Clique} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje klika (podgraf pełny) rzędu $k$.
 
-\begin{theorem}
+\begin{theorem}\label{t:Clique}
     Problem \textsc{Clique} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -213,7 +213,7 @@ Problem \textsc{Clique} to problem stwierdzenia, czy w danym grafie nieskierowan
 
 Problem 3-\textsc{Color} to problem stwierdzenia, czy dany graf nieskierowany $G$ można pokolorować trzema kolorami w taki sposób, żeby żadne dwa sąsiednie wierzchołki nie miały tego samego koloru.
 
-\begin{theorem}
+\begin{theorem}\label{t:3-Color}
     Problem 3-\textsc{Color} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -257,7 +257,7 @@ Problem 3-\textsc{Color} to problem stwierdzenia, czy dany graf nieskierowany $G
 
 Problem \textsc{Directed Hamiltonian Path} to problem stwierdzenia, czy w danym grafie skierowanym $G$ istnieje ścieżka Hamiltona $s \rightsquigarrow t$, czyli taka, która przechodzi przez każdy wierzchołek dokładnie raz. Problem \textsc{Hamiltonian Path} jest analogiczny, jedynie graf $G$ jest nieskierowany.
 
-\begin{theorem}
+\begin{theorem}\label{t:Directed Hamiltonian Path}
     Problem \textsc{Directed Hamiltonian Path} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -349,7 +349,7 @@ Problem \textsc{Directed Hamiltonian Path} to problem stwierdzenia, czy w danym 
     Nietrudno zauważyć, że w grafie $G$ istnieje ścieżka Hamiltona $s \rightsquigarrow t$ (przechodząca również przez wierzchołki $C_i$) wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna. W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ \textsc{Directed Hamiltonian Path}, a więc problem \textsc{Directed Hamiltonian Path} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{t:Hamiltonian Path}
     Problem \textsc{Hamiltonian Path} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -384,7 +384,7 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
     Zbiór $B$ można pokryć $n$ zbiorami z $\sS$ wtedy i tylko wtedy, gdy formuła $\phi$ jest spełnialna (jeśli formuła nie jest spełnialna, to nie uda się pokryć wszystkich klauzul $C_i$, a w przeciwnym wypadku będziemy mogli to zrobić, wybierając jeden z każdej pary zbiorów $S_{x_j = b}$). W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ \textsc{Set Cover}, a więc problem \textsc{Set Cover} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{t:X3C}
     Problem X3C jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -438,7 +438,7 @@ Problem \textsc{Subset Sum} to problem stwierdzenia, czy dany zbiór liczb natur
 
 Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czasie $\sO(nt)$. Może wydawać się on wielomianowy, ale nie jest wielomianowy względem rozmiaru danych wejściowych, a jedynie względem \textit{wartości} $t$. Takie algorytmy będziemy nazywać \vocab{pseudowielomianowymi}. Problemy $\NPclass$-zupełne, które przestają być $\NPclass$-zupełne, jeśli zastosujemy unarne kodowanie liczb nazywamy \vocab{słabo $\NPclass$-zupełnymi}.
 
-\begin{theorem}
+\begin{theorem}\label{t:Subset Sum}
     Problem \textsc{Subset Sum} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
