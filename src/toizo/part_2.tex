@@ -102,6 +102,8 @@ jest w postaci CNF.
 
 \section{Klasyczne problemy $\NPclass$-zupełne}
 
+W tej sekcji pokażemy najważniejsze problemy $\NPclass$-zupełne oraz dowody ich $\NPclass$-zupełności. W ramach dodatku \ref{app:graph} przedstawiamy graf, który może ułatwić Czytelnikowi nagiwację przez wszystkie twierdzenia tej sekcji.
+
 Dowodząc $\NPclass$-zupełności problemu, wystarczy pokazać, że problem jest w klasie $\NPclass$ oraz że jest $\NPclass$-trudny. Tę pierwszą cześć z reguły będziemy zostawiać jako ćwiczenie dla Czytelnika, gdyż jest to zwykle dosyć proste --- niedeterministyczna maszyna Turinga może po prostu wybierać odpowiedź (wartościowanie formuły logicznej, podzbiór wierzchołków w grafie, itp.) i sprawdzać, czy jest dobrym \vocab{świadkiem}, czyli czy spełnia warunki problemu.
 
 \subsection{Problem 3-SAT i jego bardziej szczegółowe wersje}
@@ -143,9 +145,9 @@ Warto zauważyć, że problem SAT, w którym każda zmienna występuje co najwy�
     Jeśli $x_1$ jest fałszywe, to fałszywe musi być również $x_2$, a tym samym $x_3, \ldots, x_m$, co oznacza, że wszystkie zmienne $x_i$ muszą być albo fałszywe, albo prawdziwe. W ten sposób zredukowaliśmy $m$-krotne występowanie zmiennej $x$ do 3-krotnego występowania zmiennych $x_i$, a więc 3-SAT $\leq_m^p$ $(3, 3)$-SAT.
 \end{proof}
 
-\subsection{Problemy \textsc{Independent Set} i \textsc{Clique}}
+\subsection{Problemy \textsc{Independent Set}, \textsc{Clique} i \textsc{Vertex Cover}}
 
-Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje zbiór $k$ wierzchołków niezależnych, czyli takich, że żadne dwa z nich nie są połączone krawędzią.
+Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje zbiór $k$ wierzchołków niezależnych, czyli takich, że żadne dwa z nich nie są połączone krawędzią. Taki zbiór nazywamy \vocab{zbiorem niezależnym}.
 
 \begin{theorem}\label{t:Independent Set}
     Problem \textsc{Independent Set} jest $\NPclass$-zupełny.
@@ -200,13 +202,38 @@ Problem \textsc{Independent Set} to problem stwierdzenia, czy w danym grafie nie
     \caption{Graf odpowiadający formule $\phi = (x \lor y \lor z) \land (\neg x \lor \neg y \lor z) \land (\neg x \lor y \lor \neg z)$. Istnieje zbiór $k = 3$ wierzchołków niezależnych (zaznaczony), a więc formuła $\phi$ jest spełnialna.}
 \end{figure}
 
-Problem \textsc{Clique} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje klika (podgraf pełny) rzędu $k$.
+Problem \textsc{Clique} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje klika (podgraf pełny) rzędu $k$, a \textsc{Vertex Cover} to problem stwierdzenia, czy w danym grafie nieskierowanym $G$ istnieje zbiór $k$ wierzchołków, które pokrywają wszystkie krawędzie grafu (to znaczy, że każda krawędź ma przynajmniej jeden koniec w tym zbiorze). Zbiór wierzchołków pokrywających wszystkie krawędzie grafu nazywamy \vocab{pokryciem wierzchołkowym}.
+
+\begin{lemma}\label{l:IS-VC-Clique}
+    Niech $G = (V, E)$ będzie grafem nieskierowanym, a $S \subseteq V$ pewnym podzbiorem jego wierzchołków. Poniższe warunki są równoważne:
+    \begin{enumerate}[(a)]
+        \item \label{l:p:independent set} $S$ jest zbiorem niezależnym w $G$,
+        \item \label{l:p:vertex cover} $V \setminus S$ jest pokryciem wierzchołkowym $G$,
+        \item \label{l:p:clique} $S$ jest zbiorem wierzchołków kliki w grafie $\ol{G}$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Udowodnimy trzy zależności, które razem dowodzą równoważności.
+
+    \ref{l:p:independent set} $\implies$ \ref{l:p:vertex cover}: Załóżmy, że $C$ nie jest pokryciem wierzchołkowym. Istnieje więc niepokryta krawędź $uv$, to znaczy taka, że $u, v \notin C$. Z tego wynika, że $u, v \in S$, a więc $S$ nie jest zbiorem wierzchołków niezależnych, co prowadzi do sprzeczności z założeniem.
+
+    \ref{l:p:vertex cover} $\implies$ \ref{l:p:independent set}: Załóżmy, że $S$ nie jest zbiorem niezależnym. Istnieje więc krawędź $uv$, która łączy wierzchołki $u, v \in S$. Z tego wynika, że $u, v \notin C$, a więc $C$ nie pokrywa krawędzi $uv$, co prowadzi do sprzeczności z założeniem.
+
+    \ref{l:p:independent set} $\iff$ \ref{l:p:clique}: Z definicji dopełnienia $uv \in E \iff uv \notin \ol{E}$.
+\end{proof}
 
 \begin{theorem}\label{t:Clique}
     Problem \textsc{Clique} jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
-    Problem \textsc{Clique} na grafie $G$ jest równoważny problemowi \textsc{Independent Set} na $\ol{G}$ (dopełnieniu grafu $G$). Zbiór $k$ wierzchołków niezależnych w grafie $\ol{G}$ odpowiada zbiorowi $k$ wierzchołków tworzących klikę w grafie $G$.
+    Wniosek z lematu \ref{l:IS-VC-Clique} oraz twierdzenia \ref{t:Independent Set}. Wystarczy zauważyć, że dopełnienie grafu możemy zbudować w czasie wielomianowym.
+\end{proof}
+
+\begin{theorem}\label{t:Vertex Cover}
+    Problem \textsc{Vertex Cover} jest $\NPclass$-zupełny.
+\end{theorem}
+\begin{proof}
+    Wniosek z lematu \ref{l:IS-VC-Clique} oraz twierdzenia \ref{t:Independent Set}. Zbiór niezależny o liczności $k$ w grafie $G$ istnieje wtedy i tylko wtedy, gdy w tym grafie istnieje pokrycie wierzchołkowe o liczności $|V| - k$.
 \end{proof}
 
 \subsection{Problem 3-\textsc{Color}}
@@ -253,7 +280,7 @@ Problem 3-\textsc{Color} to problem stwierdzenia, czy dany graf nieskierowany $G
     W ten sposób pokazaliśmy, że 3-SAT $\leq_m^p$ 3-\textsc{Color}, a więc problem 3-\textsc{Color} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
 
-\subsection{Problem \textsc{(Directed) Hamiltonian Path / Cycle}}
+\subsection{Problem \textsc{(Directed) Hamiltonian Path}}
 
 Problem \textsc{Directed Hamiltonian Path} to problem stwierdzenia, czy w danym grafie skierowanym $G$ istnieje ścieżka Hamiltona $s \rightsquigarrow t$, czyli taka, która przechodzi przez każdy wierzchołek dokładnie raz. Problem \textsc{Hamiltonian Path} jest analogiczny, jedynie graf $G$ jest nieskierowany.
 
@@ -432,7 +459,7 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
     Teraz mamy już pewną instancję problemu X3C, a więc pokazaliśmy, że $(3, 3)$-SAT się do tego problemu redukuje, z czego wynika, że problem X3C również jest $\NPclass$-zupełny.
 \end{proof}
 
-\subsection{Problem \textsc{Subset Sum}}
+\subsection{Problemy \textsc{Subset Sum} i \textsc{Partition}}
 
 Problem \textsc{Subset Sum} to problem stwierdzenia, czy dany zbiór liczb naturalnych $A = \{a_1, \ldots, a_n\}$ zawiera podzbiór sumujący się do danej liczby $t \in \NN$.
 
@@ -449,6 +476,8 @@ Czytelnik może znać algorytm rozwiązania tego problemu, który działa w czas
     Zbiór $A$ zawiera podzbiór sumujący się do $t$ wtedy i tylko wtedy, gdy istnieje dokładnie $k$ zbiorów z rodziny $\sS$, które pokrywają zbiór $B$.
     Pokazaliśmy, że X3C $\leq_m^p$ \textsc{Subset Sum}, a więc problem \textsc{Subset Sum} jest $\NPclass$-trudny. Jest on również w $\NPclass$, więc jest $\NPclass$-zupełny.
 \end{proof}
+
+Problem \textsc{Partition} to problem stwierdzenia, czy dany zbiór liczb naturalnych $A = \{a_1, \ldots, a_n\}$ można podzielić na dwa podzbiory o tej samej sumie. Problem ten jest oczywiście szczególnym przypadkiem problemu \textsc{Subset Sum}, w którym $t = \frac{1}{2}\sum_{i=1}^n a_i$. Redukcję z problemu \textsc{Subset Sum} do problemu \textsc{Partition} zostawiamy jako ćwiczenie dla Czytelnika.
 
 \section{Struktura klas złożoności obliczeniowej}
 
@@ -503,7 +532,7 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
 \begin{theorem}[Mahaneya]\label{t:Mahaney}
     Jeśli istnieje rzadki język $\NPclass$-trudny, to $\Pclass = \NPclass$.
 \end{theorem}
-\begin{proof}[Dowód z \cite{Grochow16}]
+\begin{proof}[Dowód z \cite{Grochow}]
     Niech $L$ będzie $\NPclass$-trudnym językiem rzadkim. Pokażemy wielomianowy algorytm rozwiązujący SAT.
 
     Niech $\phi$ będzie dowolną formułą logiczną o $n$ zmiennych $x_1, \ldots, x_n$. Jeśli zaczęlibyśmy wartościować kolejne zmienne, to stworzymy pełne drzewo binarne o $n$ poziomach, gdzie na poziomie $0$ jest sama formuła $\phi$, na poziomie $1$ są formuły $\phi[x_1 \!=\! 0]$ i $\phi[x_1 \!=\! 1]$, na poziomie $2$ formuły $\phi[x_1 \!=\! 0, x_2 \!=\! 0]$ i $\phi[x_1 \!=\! 0, x_2 \!=\! 1]$ oraz $\phi[x_1 \!=\! 1, x_2 \!=\! 0]$ i $\phi[x_1 \!=\! 1, x_2 \!=\! 1]$ i tak dalej. Takie drzewo ma kluczową własność: dla każdego poziomu~$\ell$
