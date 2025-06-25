@@ -1,6 +1,7 @@
 # notes
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/mdbrnowski/notes?style=flat-square&logo=github&color=yellow)](https://github.com/mdbrnowski/notes/)
+> [!NOTE]
+> If you found these notes helpful, consider leaving a star [here](https://github.com/mdbrnowski/notes).
 
 ## My notes, articles, papers, etc.
 
