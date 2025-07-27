@@ -1,16 +1,14 @@
 % arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
-\documentclass[11pt]{scrartcl}
-\usepackage[pretty,polish]{mystd}
+\documentclass[polish,pretty]{angav}
 \title{Algebra}
 \author{Michał Dobranowski}
 \date{semestr zimowy 2022 \\ v1.1}
-\publishers{\github}
 
 \DeclareMathOperator{\Arg}{Arg}
 \DeclareMathOperator{\Lin}{Lin}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\nullity}{null}
-\newcommand{\gr}{\ensuremath{\operatorname{gr}}}
+\newcommand{\gr}{\ensuremath{\opname{gr}}}
 
 \usepackage[
     type={CC},
@@ -40,7 +38,7 @@
     \tableofcontents
     \newpage
 
-    \section{Liczy zespolone}
+    \section{Liczby zespolone}
     \input{lec1_complex.tex}
 
     \section{Relacje}
