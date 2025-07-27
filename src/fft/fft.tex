@@ -1,6 +1,5 @@
 % arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
-\documentclass[11pt]{scrartcl}
-\usepackage[pretty,polish,monofont,answers]{mystd}
+\documentclass[pretty,polish,answers]{angav}
 \title{Szybka transformacja Fouriera}
 \author{Michał Dobranowski}
 \date{wrzesień 2022 \\ v1.0}
@@ -11,7 +10,6 @@
     version={4.0},
     imageposition={left},
 ]{doclicense}
-
 
 \begin{document}
     \maketitle
@@ -132,8 +130,9 @@
     Algorytm, którego główne założenia opisaliśmy wyżej, służy do obliczania $\opname{DFT}$ (czyli ewaluacji wielomianu w pierwiastkach jedności) w czasie $O(n\log n)$ i jest nazywany \vocab{szybką transformacją Fouriera}\footnote{ang. \textit{Fast Fourier Transform}, FFT}.
 
     \subsubsection{Implementacja}
-    Poniżej przedstawiony jest algorytm FFT, który dla danego wektora współczynników $a$ liczy $\opname{DFT}(a)$. Obliczenia wykonywane są w miejscu, a więc funkcja \lstinline{fft()} nie zwraca wektora $\opname{DFT}(a)$, tylko zmienia wektor $a$.
-    \lstinputlisting[language=C++]{fft.hpp}
+    Poniżej przedstawiony jest algorytm FFT, który dla danego wektora współczynników $a$ liczy $\opname{DFT}(a)$. Obliczenia wykonywane są w miejscu, a więc funkcja \mintinline{c++}{fft()} nie zwraca wektora $\opname{DFT}(a)$, tylko zmienia wektor $a$.
+
+    \inputminted{c++}{fft.hpp}
 
     \subsection{Transformacja odwrotna}
     Aby osiągnąć liniowo-logarytmiczną złożoność obliczeniową dla problemu mnożenia wielomianów, potrzebujemy już jedynie szybkiego sposobu na interpolację wielomianu w~pierwiastkach jedności.
@@ -221,7 +220,7 @@
 
     Z powodu podobieństwa algorytmów FFT oraz IFFT, zaimplementujemy je w jednej funkcji (z dodatkowym argumentem).
 
-    \lstinputlisting[language=C++]{fft_product.hpp}
+    \inputminted{c++}{fft_product.hpp}
 
 \section{Zadania}
     \begin{problem}[\textit{Thief in a Shop}, Codeforces \href{https://codeforces.com/contest/632/problem/E}{632E}]

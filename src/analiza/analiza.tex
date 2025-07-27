@@ -1,12 +1,11 @@
 % arara: latexmk: { engine: lualatex, options: [-synctex=1, -outdir=../../pdf] }
-\documentclass[11pt]{scrartcl}
-\usepackage[pretty,polish,monofont]{mystd}
+\documentclass[polish,pretty]{angav}
 \title{Analiza II}
 \author{Michał Dobranowski}
 \date{semestr letni 2023 \\ v1.2}
 
-\newcommand{\graphref}[1]{\begin{flushright}\vspace{-.5em} \tiny \texttt{#1} \kern-1em\vspace{-.5em}\end{flushright}}
-
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
 \usepackage[
     type={CC},
     modifier={by-nc},
@@ -14,8 +13,11 @@
     imageposition={left},
 ]{doclicense}
 
+\newcommand{\graphref}[1]{\begin{flushright}\vspace{-.5em} \tiny \texttt{#1} \kern-1em\vspace{-.5em}\end{flushright}}
+
 % 3d plots setup
 \pgfplotsset{
+    compat=newest,
     my axis style/.style={
         grid,
         tick label style={font=\scriptsize},
