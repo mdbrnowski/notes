@@ -459,6 +459,11 @@ Podobnie jak dla problemu SAT, będziemy chcieli wprowadzić pewne ograniczenie 
     Teraz mamy już pewną instancję problemu X3C, a więc pokazaliśmy, że $(3, 3)$-SAT się do tego problemu redukuje, z czego wynika, że problem X3C również jest $\NPclass$-zupełny.
 \end{proof}
 
+\begin{remark}
+    \label{r:RX3C}
+    Można dodatkowo ograniczyć problem X3C, wymagając, że każdy element zbioru $B$ należy do dokładnie (w prostszej wersji: co najwyżej) trzech zbiorów z rodziny $\sS$. Redukcję z problemu X3C do tak ograniczonego problemu X3C (znanego jako RX3C) pozostawiamy jako ćwiczenie dla Czytelnika. Rozwiązanie można znaleźć \href{https://dobranow.ski/posts/rx3c-is-np-complete/}{tutaj}.
+\end{remark}
+
 \subsection{Problemy \textsc{Subset Sum} i \textsc{Partition}}
 
 Problem \textsc{Subset Sum} to problem stwierdzenia, czy dany zbiór liczb naturalnych $A = \{a_1, \ldots, a_n\}$ zawiera podzbiór sumujący się do danej liczby $t \in \NN$.

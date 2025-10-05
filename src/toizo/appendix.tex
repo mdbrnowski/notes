@@ -53,8 +53,12 @@ Kolorem czerwonym zaznaczono redukcje, które są oczywiste --- jeden problem je
     \draw[reduction] (ThreeThreeSAT) -- node[label] {\ref{t:X3C}} (X3C);
     \draw[obvious] (X3C) to[bend right] (SetCover);
 
-    \node[problem, below=of X3C] (SubsetSum) {\textsc{Subset Sum}};
+    \node[problem, below left=2cm and 0cm of X3C] (SubsetSum) {\textsc{Subset Sum}};
     \draw[reduction] (X3C) -- node[label] {\ref{t:Subset Sum}} (SubsetSum);
+
+    \node[problem, below right=2cm and 0cm of X3C] (RX3C) {RX3C};
+    \draw[reduction] (X3C) -- node[label] {\ref{r:RX3C}} (RX3C);
+    \draw[obvious] (RX3C) to[bend right] (X3C);
 
     \node[problem, below=of SubsetSum] (Partition) {\textsc{Partition}};
     \draw[reduction] (SubsetSum) -- (Partition);
