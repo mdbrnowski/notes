@@ -108,6 +108,20 @@ Pierwsze działanie w pierścieniu nazywamy \vocab{działaniem addytywnym} i ozn
 
 Drugie działanie nazywamy \vocab{działaniem multiplikatywnym} i oznaczamy przez $\cdot$. Jeśli w $P$ dodatkowo istnieje element neutralny tego działania, to ten element nazywamy jedynką ($\symbf{1}$), a pierścień nazywamy \vocab{pierścieniem z jedynką}. Element symetryczny do elementu $x$ nazywamy elementem odwrotnym i oznaczamy $x^{-1}$.
 
+\begin{lemma}
+    \label{l:a0=0}
+    Dla każdego elementu $a$ pierścienia zachodzi $a \cdot \symbf{0} = \symbf{0}$.
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        a \cdot \symbf{0} &= a \cdot (\symbf{0} + \symbf{0}) \\
+        a \cdot \symbf{0} &= a \cdot \symbf{0} + a \cdot \symbf{0} \\
+        a \cdot \symbf{0} + (-(a \cdot \symbf{0})) &= a \cdot \symbf{0} + a \cdot \symbf{0} + (-(a \cdot \symbf{0})) \\
+        \symbf{0} &= a \cdot \symbf{0} + \symbf{0} \\
+        \symbf{0} &= a \cdot \symbf{0}
+    \end{align*}
+\end{proof}
+
 \begin{definition}
     Dzielnikiem zera jest taki element pierścienia $a \neq \symbf{0}$, że istnieje niezerowy element $b$, dla którego zachodzi $a \cdot b = \symbf{0}$.
 \end{definition}
@@ -140,19 +154,6 @@ Można zauważyć, że struktura $(K, +, \cdot)$ jest ciałem (przemiennym), je�
     \item $(K \setminus \{\symbf{0}\}, \cdot)$ jest grupą (przemienną),
     \item zachodzi warunek rozdzielności $\cdot$ względem $+$.
 \end{enumerate}
-
-\begin{lemma}
-    \label{l:a0=0}
-    Dla każdego elementu ciała $a$ zachodzi $a \cdot \symbf{0} = \symbf{0}$.
-\end{lemma}
-\begin{proof}
-    \begin{align*}             a \cdot \symbf{0} &= a \cdot (\symbf{0} + \symbf{0}) \\
-                               a \cdot \symbf{0} &= a \cdot \symbf{0} + a \cdot \symbf{0} \\
-        a \cdot \symbf{0} + - a \cdot \symbf{0} &= a \cdot \symbf{0} + a \cdot \symbf{0} + - a \cdot \symbf{0} \\
-                                       \symbf{0} &= a \cdot \symbf{0} + \symbf{0} \\
-                                       \symbf{0} &= a \cdot \symbf{0}
-    \end{align*}
-\end{proof}
 
 \begin{theorem}
     Każde ciało przemienne jest pierścieniem całkowitym.
