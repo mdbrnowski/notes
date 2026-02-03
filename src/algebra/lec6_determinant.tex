@@ -13,14 +13,24 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
 
 \begin{fact}
     \label{f:sign of transposition}
-    Każda transpozycja (zamiana miejscami) dwóch różnych elementów permutacji zmienia jej znak.
+    Każda zamiana miejscami dwóch różnych elementów permutacji zmienia jej znak.
 \end{fact}
 \begin{proof}
     Weźmy permutację wraz z poniższymi oznaczeniami:
     \[ \sigma = (\underbrace{\sigma_1, \sigma_2, \ldots, \sigma_{i-1}}_A, \sigma_i, \underbrace{\sigma_{i+1}, \ldots, \sigma_{j-1}}_B, \sigma_j, \underbrace{\sigma_{j+1}, \ldots, \sigma_{n-1}, \sigma_n}_A). \]
     Zamieniając $\sigma_i$ oraz $\sigma_j$, nie zmienia się liczba inwersji zawierających dowolny element $\sigma_k \in A$. Nie zmieni się również liczba inwersji zawierających dowolny element $\sigma_k \in B$, który jest większy lub mniejszy jednocześnie od $\sigma_i$ i $\sigma_j$.
 
-    Dla pozostałych elementów $\sigma_k \in B$, jeśli istnieje inwersja $(\sigma_i, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_j)$, a jeśli istnieje inwersja $(\sigma_j, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_i)$. Tak więc jedyną inwersją, która zmienia parzystość ogólnej liczby inwersji --- i tym samym $\eps(\sigma)$ --- jest inwersja $(\sigma_i, \sigma_j)$, która istnieje przed transpozycją, albo po niej.
+    Dla pozostałych elementów $\sigma_k \in B$, jeśli istnieje inwersja $(\sigma_i, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_j)$, a jeśli istnieje inwersja $(\sigma_j, \sigma_k)$, to istnieje również $(\sigma_k, \sigma_i)$. Tak więc jedyną inwersją, która zmienia parzystość ogólnej liczby inwersji --- i tym samym wartość $\eps(\sigma)$ --- jest inwersja $(\sigma_i, \sigma_j)$, która istnieje albo przed zmianą, albo po niej.
+\end{proof}
+
+Permutację, która zamienia miejscami dokładnie dwa elementy, nazywamy \vocab{transpozycją}.
+
+\begin{fact}
+    \label{f:sign of inverse}
+    Dla każdej permutacji $\sigma \in S_n$ zachodzi $\eps(\sigma) = \eps(\sigma^{-1})$.
+\end{fact}
+\begin{proof}
+    Każdą permutację $\sigma$ można przedstawić jako złożenie skończenie wielu transpozycji $\sigma = \tau_1 \circ \tau_2 \circ \ldots \circ \tau_k$. Wtedy $\sigma^{-1} = \tau_k \circ \ldots \circ \tau_2 \circ \tau_1$. Liczba transpozycji, z których złożone są obie permutacje, jest taka sama, więc, na mocy faktu \ref{f:sign of transposition}, mają one ten sam znak.
 \end{proof}
 
 \begin{definition}
@@ -54,7 +64,9 @@ Jeśli $\eps(\sigma) = 1$, to permutacja $\sigma$ jest \vocab{parzysta}, a jeśl
 \end{theorem}
 \begin{proof} ~
     \begin{enumerate}
-        \item Wszystkich par elementów w permutacji $\sigma \in S_n$ jest $n(n-1)$. Jeśli $(\sigma_i, \sigma_j)$ jest inwersją w $\sigma$, to w $\sigma^{-1}$ nią nie jest, a skoro $2\mid n(n-1)$, to $\eps(\sigma) = \eps(\sigma^{-1})$. Pozostałe czynniki sumowanych iloczynów zostaną takie same (jedynie w innej kolejności).
+        \item Mamy $\det A^T = \sum_{\sigma \in S_n} \eps(\sigma) a_{\sigma(1)1} a_{\sigma(2)2} \cdots a_{\sigma(n)n}$. Korzystając z przemienności mnożenia oraz faktu \ref{f:sign of inverse}, możemy to również zapisać jako
+        \[ \sum_{\sigma \in S_n} \eps(\sigma^{-1}) a_{1\sigma^{-1}(1)} a_{2\sigma^{-1}(2)} \cdots a_{n\sigma^{-1}(n)}, \]
+        co jest równe $\det A$, ponieważ każda permutacja $\sigma$ ma dokładnie jedną odwrotną $\sigma^{-1}$, więc możemy się iterować po nich.
         \item Dla permutacji identycznościowej dany w definicji iloczyn jest równy $1$, dla każdej innej permutacji jest równy $0$.
         \item W każdym z sumowanych iloczynów występuje $0$ jako czynnik.
         \item W każdym z sumowanych iloczynów występuje jeden dodatkowy skalar $\alpha$.

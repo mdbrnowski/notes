@@ -173,8 +173,7 @@ $\Lin A$ jest podprzestrzenią przestrzeni $A$ nazywaną podprzestrzenią genero
 $B$ jest bazą danej przestrzeni liniowej wtedy i tylko wtedy, gdy $B$ jest maksymalnym (w sensie inkluzji) zbiorem wektorów liniowo niezależnych oraz wtedy i tylko wtedy, gdy $B$ jest minimalnym (w sensie inkluzji) zbiorem wektorów rozpinających. Przestrzeń $\{\ol{0}\}$ nie ma bazy.
 
 \begin{theorem}
-    \label{t:equinumerous bases}
-    Każde dwie bazy danej przestrzeni wektorowej są równoliczne.
+    Każde dwie skończone bazy danej przestrzeni wektorowej są równoliczne.
 \end{theorem}
 \begin{proof}
     Weźmy dwie bazy $A, B$ przestrzeni liniowej $V$ oraz niech $|A| = k$. Załóżmy przeciwnie, że $|B| > k, B = \{b_1, b_2, \ldots, b_k, \ldots\}$. Skoro $A$ jest bazą przestrzeni $V$, to każdy wektor ze zbioru $B$ jest kombinacją liniową wektorów ze zbioru $A$, czyli
@@ -232,7 +231,6 @@ Implikacja w lewą stronę jest trywialna, pokażemy implikację w prawo.
 \end{example}
 
 \begin{definition}
-    \label{d:sum of spaces}
     Suma podprzestrzeni $V_1, V_2$ przestrzeni $V$ to zbiór
     \[ V_1 + V_2 = \{v = v_1 + v_2 : v_1 \in V_1, v_2 \in V_2\}. \]
 \end{definition}
@@ -253,8 +251,17 @@ Implikacja w lewą stronę jest trywialna, pokażemy implikację w prawo.
 \begin{theorem}
     Suma dwóch podprzestrzeni jest sumą prostą wtedy i tylko wtedy, gdy ich częścią wspólną jest zbiór $\{\ol{0}\}$.
 \end{theorem}
-\begin{proof}
-    Jeśli część wspólna dwóch podprzestrzeni jest równa $\{\ol{0}\}$, to ich bazy są rozłączne, a więc teza wynika z twierdzenia \ref{t:explicit coefficients}.
+\begin{proof}[Dowód wystarczalności]
+    Załóżmy, że $V_1 + V_2$ jest sumą prostą i weźmy dowolny wektor $v \in V_1 \cap V_2$. Wówczas możemy go zapisać na dwa sposoby:
+    \[ v = v + \ol{0} = \ol{0} + v. \]
+    Z założenia wynika, że te dwa sposoby są identyczne, więc $v = \ol{0}$, co dowodzi, że $V_1 \cap V_2 = \{\ol{0}\}$.
+\end{proof}
+\begin{proof}[Dowód konieczności]
+    Załóżmy, że $V_1 \cap V_2 = \{\ol{0}\}$ oraz że istnieje wektor $v \in V_1 + V_2$ taki, że
+    \[ v = v_1 + v_2 = u_1 + u_2, \]
+    gdzie $v_1, u_1 \in V_1$ oraz $v_2, u_2 \in V_2$. Wówczas
+    \[ v_1 - u_1 = u_2 - v_2. \]
+    Lewa strona tej równości należy do $V_1$, a prawa do $V_2$, więc z założenia wynika, że obie strony są równe $\ol{0}$, czyli $v_1 = u_1$ oraz $v_2 = u_2$, co dowodzi tezy.
 \end{proof}
 
 \begin{definition}
@@ -273,7 +280,18 @@ Implikacja w lewą stronę jest trywialna, pokażemy implikację w prawo.
     \[ V = V_1 \oplus V_2 \implies \dim V = \dim V_1 + \dim V_2. \]
 \end{theorem}
 \begin{proof}
-    Możemy wziąć bazę $B$ przestrzeni $V$ oraz bazy $B_1, B_2$ odpowiednio podprzestrzeni $V_1, V_2$ takie, że $B_1, B_2 \subset B$. Oczywiste jest, że
-    \[ |B_1 \cup B_2| = |B_1| + |B_2| - |B_1 \cap B_2|, \]
-    więc z definicji sumy podprzestrzeni (\ref{d:sum of spaces}) i twierdzenia \ref{t:equinumerous bases} wynika teza.
+    Niech $B_0$ będzie bazą podprzestrzeni $V_1 \cap V_2$. Możemy rozszerzyć ją do bazy $B_1$ podprzestrzeni $V_1$ oraz do bazy $B_2$ podprzestrzeni $V_2$. Oznaczmy
+    \begin{align*}
+        B_0 &= \{u_1, u_2, \ldots, u_k\}, \\
+        B_1 &= B_0 \cup \{v_1, v_2, \ldots, v_m\}, \\
+        B_2 &= B_0 \cup \{w_1, w_2, \ldots, w_n\}
+    \end{align*}
+    oraz
+    \[ B = B_0 \cup \{v_1, v_2, \ldots, v_m\} \cup \{w_1, w_2, \ldots, w_n\}. \]
+    Łatwo sprawdzić, że $B$ generuje przestrzeń $V_1 + V_2$ oraz że jest zbiorem liniowo niezależnym, więc jest bazą tej przestrzeni. Wymiar przestrzeni $V_1 + V_2$ jest więc równy
+    \begin{align*}
+        |B| &= |B_0| + |B_1 \setminus B_0| + |B_2 \setminus B_0| = \\
+        &= \dim(V_1 \cap V_2) + (\dim V_1 - \dim(V_1 \cap V_2)) + (\dim V_2 - \dim(V_1 \cap V_2)) = \\
+        &= \dim V_1 + \dim V_2 - \dim(V_1 \cap V_2).
+    \end{align*}
 \end{proof}
