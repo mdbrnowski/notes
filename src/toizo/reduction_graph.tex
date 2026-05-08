@@ -1,9 +1,6 @@
-\appendix
-\section{Graf redukcji między problemami}
-\label{app:graph}
-
-Kolorem czerwonym zaznaczono redukcje, które są oczywiste --- jeden problem jest szczególnym przypadkiem drugiego.
-
+\vspace*{\fill}
+\noindent
+\phantomsection\label{app:graph}
 \begin{tikzpicture}[
     node distance=1.5cm,
     problem/.style={
@@ -71,3 +68,6 @@ Kolorem czerwonym zaznaczono redukcje, które są oczywiste --- jeden problem je
     \draw[reduction] (DHamPath) -- node[label] {\ref{t:Hamiltonian Path}} (HamPath);
     \draw[obvious] (HamPath) to[bend right] (DHamPath);
 \end{tikzpicture}
+
+\vspace*{\fill}
+\newpage
