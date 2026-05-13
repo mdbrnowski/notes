@@ -121,10 +121,10 @@ W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że ist
     \centering
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[my axis style, view = {-15}{30}]
-            \addplot3[colormap={CM}{color=(AccColor3) color=(AccColor3)},
+            \addplot3[
                 domain = -1.5:1.5, domain y = -1.5:1.5,
                 samples = 10, samples y = 10,
-                surf, opacity=0.3
+                surf, shader=flat, draw=none, fill=AccColor3, opacity=.3
             ]{e*(2*x - y - 1)};
             \addplot3[
                 domain = -1.5:1.5, domain y = -1.5:1.5,
@@ -136,10 +136,10 @@ W przypadku funkcji $\RR \to \RR$ różniczkowalność w punkcie znaczy, że ist
     \end{tikzpicture}
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[my axis style, view = {10}{10}]
-            \addplot3[colormap={CM}{color=(AccColor3) color=(AccColor3)},
+            \addplot3[
                 domain = -1.5:1.5, domain y = -1.5:1.5,
                 samples = 10, samples y = 10,
-                surf, opacity=0.3, 
+                surf, shader=flat, draw=none, fill=AccColor3, opacity=.3
             ]{e*(2*x - y - 1)};
             \addplot3[
                 domain = -1.5:1.5, domain y = -1.5:1.5,
