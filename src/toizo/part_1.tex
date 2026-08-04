@@ -1,3 +1,4 @@
+% LTeX: language=pl-PL
 \section{Maszyna Turinga i enumerator}
 
 \begin{definition}
@@ -13,7 +14,7 @@
         \item $q_Y \in Q$ to stan akceptujący,
         \item $q_N \in Q$ to stan odrzucający.
     \end{itemize}
-    Formalizację działania maszyny Turinga pozostawiamy jako ćwiczenie dla Czytelnika oraz odsyłamy do podręczników \cite{GareyJohnson, Sipser}.
+    Formalizację działania maszyny Turinga pozostawiamy jako ćwiczenie dla Czytelnika oraz odsyłamy do podręczników~\cite{GareyJohnson, Sipser}.
 \end{definition}
 
 Maszyna Turinga (będziemy ją zwali po prostu \enquote{maszyną}) rozwiązuje pewien problem decyzyjny, czyli dla danego słowa $x$ z języka $\Sigma^*$ stwierdza, czy $x$ należy do języka $L \subseteq \Sigma^*$. Dlatego też często będziemy używać pewnych określeń języka również dla odpowiadającego mu problemu decyzyjnego.
@@ -79,12 +80,12 @@ Jeśli język jest rozstrzygalny, to mówimy, że istnieje \vocab{algorytm}, kt�
 \begin{proof}
     Weźmy język $L \in \Rclass$. Istnieje maszyna Turinga $M$, która rozstrzyga o $L$, a więc $L = L(M)$, więc $L \in \REclass$. Ponadto, dopełnienie $\ol{L}$ jest rozstrzygalne, bo wystarczy zmienić stan akceptujący na odrzucający i na odwrót. Zatem $\ol{L} \in \Rclass$, więc $L \in \coREclass$. Tym samym udowodniliśmy, że $\Rclass \subseteq \REclass \cap \coREclass$.
 
-    Teraz weźmy język $L$ taki, że $L \in \REclass$ oraz $L \in \coREclass$. Wtedy istnieje maszyna Turinga $M$, która akceptuje $L$ oraz maszyna Turinga $N$, która akceptuje $\ol{L}$. Rozumowaniem podobnym do dowodu lematu \ref{l:union of langugages in RE} skonstruujmy maszynę $M'(x)$, która akceptuje $L$ i odrzuca $\ol{L}$, a więc rozstrzyga o $L$. Tym samym udowodniliśmy, że $\Rclass \supseteq \REclass \cap \coREclass$.
+    Teraz weźmy język $L$ taki, że $L \in \REclass$ oraz $L \in \coREclass$. Wtedy istnieje maszyna Turinga $M$, która akceptuje $L$ oraz maszyna Turinga $N$, która akceptuje $\ol{L}$. Rozumowaniem podobnym do dowodu lematu~\ref{l:union of langugages in RE} skonstruujmy maszynę $M'(x)$, która akceptuje $L$ i odrzuca $\ol{L}$, a więc rozstrzyga o $L$. Tym samym udowodniliśmy, że $\Rclass \supseteq \REclass \cap \coREclass$.
 \end{proof}
 
 \subsection{Wielotaśmowa maszyna Turinga}
 
-Niestety autorowi zabrakło motywacji do opisania wielotaśmowych maszyn Turinga oraz innych, pochodnych modeli obliczeń. Zdecydowanie jednak warto coś o nich wiedzieć, dlatego odsyłamy Czytelnika do literatury \cite{Adleman, Sipser}.
+Niestety autorowi zabrakło motywacji do opisania wielotaśmowych maszyn Turinga oraz innych, pochodnych modeli obliczeń. Zdecydowanie jednak warto coś o nich wiedzieć, dlatego odsyłamy Czytelnika do literatury~\cite{Adleman, Sipser}.
 
 \subsection{Enumerator}
 \begin{definition}
@@ -190,16 +191,16 @@ Problem stopu (\textit{halting problem}) to problem decyzyjny polegający na stw
     Wówczas $D$ akceptuje $D$ wtedy i tylko wtedy, gdy $M_H$ nie akceptuje $\encode{D, D}$, czyli gdy $D$ nie kończy działania dla $D$, co prowadzi do sprzeczności.
 \end{proof}
 
-Z twierdzenia \ref{t:halting is not R} można wyciągnąć bardzo wiele wniosków na temat nierozstrzygalności innych języków.
+Z twierdzenia~\ref{t:halting is not R} można wyciągnąć bardzo wiele wniosków na temat nierozstrzygalności innych języków.
 
 \begin{theorem}
     Każdy nieskończony język klasy $\REclass$ posiada nieskończony podzbiór klasy $\Rclass$.
 \end{theorem}
 \begin{proof}
-    Niech $L$ będzie nieskończonym językiem klasy $\REclass$. Wówczas, na mocy twierdzenia \ref{t:enumerator iff RE}, istnieje enumerator $E$, który wylicza słowa języka $L$ w pewnej kolejności, weźmy $w_1, w_2, \ldots$. Zdefiniujmy zbiór indeksów $I$ taki, że
+    Niech $L$ będzie nieskończonym językiem klasy $\REclass$. Wówczas, na mocy twierdzenia~\ref{t:enumerator iff RE}, istnieje enumerator $E$, który wylicza słowa języka $L$ w pewnej kolejności, weźmy $w_1, w_2, \ldots$. Zdefiniujmy zbiór indeksów $I$ taki, że
     \[ I = \left\{i \mid \forall_{j < i} \left(|w_j| < |w_i|\right)\right\}, \]
     a więc takich, że słowo $w_i$ jest dłuższe, niż każde poprzednie.
-    Wówczas zbiór $I$ jest nieskończony, a słowa $w_i$ dla $i \in I$ są wyliczane w kolejności niemalejących długości, więc, z twierdzenia \ref{t:non-decreasing enumerator iff R}, $\{w_i \mid i \in I\} \in \Rclass$.
+    Wówczas zbiór $I$ jest nieskończony, a słowa $w_i$ dla $i \in I$ są wyliczane w kolejności niemalejących długości, więc, z twierdzenia~\ref{t:non-decreasing enumerator iff R}, $\{w_i \mid i \in I\} \in \Rclass$.
 \end{proof}
 
 \subsection{Redukcje, trudność i zupełność, twierdzenie Rice'a}
@@ -227,11 +228,11 @@ Rodzinę $\sL$ języków będziemy nazywać \vocab{własnością} i mówić, że
 
 \begin{theorem}[Rice'a]
     Niech $\sL$ będzie nietrywialną\footnote{to znaczy różną od $\emptyset$ oraz $\REclass$} właściwością języków klasy $\REclass$. Wówczas język
-    \[ B_{\sL} = \{\encode{M} \mid L(M) \in \sL\} \]
+    \[ B_\sL = \{\encode{M} \mid L(M) \in \sL\} \]
     jest nierozstrzygalny.
 \end{theorem}
 \begin{proof}
-    Bez straty ogólności możemy założyć, że $\emptyset \notin \sL$ (jeśli tak nie jest, to możemy operować na $\ol{\sL}$). Weźmy pewien język $L \in \sL$, który jest akceptowany przez maszynę $M_L$. Pokażemy, że problem stopu $H$ redukuje się do $B_{\sL}$. Tworzymy redukcję $f(\encode{M, x}) = \encode{N}$, gdzie maszyna $N(y)$ ma następujący kod:
+    Bez straty ogólności możemy założyć, że $\emptyset \notin \sL$ (jeśli tak nie jest, to możemy operować na $\ol{\sL}$). Weźmy pewien język $L \in \sL$, który jest akceptowany przez maszynę $M_L$. Pokażemy, że problem stopu $H$ redukuje się do $B_\sL$. Tworzymy redukcję $f(\encode{M, x}) = \encode{N}$, gdzie maszyna $N(y)$ ma następujący kod:
     \begin{algorithmic}
         \If{$M$ kończy działanie dla $x$}
             \If{$M_L$ akceptuje $y$}
@@ -240,10 +241,10 @@ Rodzinę $\sL$ języków będziemy nazywać \vocab{własnością} i mówić, że
         \EndIf
     \end{algorithmic}
     Jeśli $M(x)$ kończy działanie, to $L(N) = L \neq \emptyset$; w przeciwnym wypadku $L(N) = \emptyset$. Zatem
-    \[ \encode{M, x} \in H \iff \encode{N} \in B_{\sL} \iff L(N) \in \sL. \]
+    \[ \encode{M, x} \in H \iff \encode{N} \in B_\sL \iff L(N) \in \sL. \]
 \end{proof}
 
-\begin{theorem}\label{t:halting is RE-complete}
+\begin{theorem}
     Problemu stopu jest $\REclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -271,11 +272,11 @@ Rodzinę $\sL$ języków będziemy nazywać \vocab{własnością} i mówić, że
             \State zwróć $x_N$
         \EndIf
     \end{algorithmic}
-    która zawsze kończy swoje działanie, a więc spełnia wszystkie założenia definicji \ref{d:many-one reduction}. Zatem $A \leq_m B$, a więc $B$ jest $\Rclass$-zupełny.
+    która zawsze kończy swoje działanie, a więc spełnia wszystkie założenia definicji~\ref{d:many-one reduction}. Zatem $A \leq_m B$, a więc $B$ jest $\Rclass$-zupełny.
 \end{proof}
 
 \section{Hierarchia arytmetyczna}
-Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $\REclass$, $\coREclass$ oraz ich część wspólną $\Rclass$. W tej sekcji, bazując na twierdzeniach \ref{t:char of RE}, \ref{t:char of coRE}, wprowadzimy kolejne klasy języków, które są bardziej ogólne niż wyżej wymienione.
+Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $\REclass$, $\coREclass$ oraz ich część wspólną $\Rclass$. W tej sekcji, bazując na twierdzeniach~\ref{t:char of RE},~\ref{t:char of coRE}, wprowadzimy kolejne klasy języków, które są bardziej ogólne niż wyżej wymienione.
 
 \subsection{Charakterystyki klas $\REclass$ i $\coREclass$}
 
@@ -298,7 +299,7 @@ Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $
     \[ A = \left\{x \in \Sigma^* \mid \left(\forall y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
 \end{theorem}
 \begin{proof}
-    Na podstawie twierdzenia \ref{t:char of RE} wiemy, że istnieje język $B$ taki, że
+    Na podstawie twierdzenia~\ref{t:char of RE} wiemy, że istnieje język $B$ taki, że
     \[ \ol{A} = \left\{x \in \Sigma^* \mid \left(\exists y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
     Wówczas
     \begin{align*}
@@ -325,7 +326,7 @@ Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $
     \left(\encode{x, y_1, y_2, \ldots, y_i} \in C\right)\right\}. \]
 \end{definition}
 
-Z definicji wynika, że $\Sigma_0 = \Pi_0 = \Rclass$, Ponadto, prostym wnioskiem z twierdzeń \ref{t:char of RE} i \ref{t:char of coRE} są równości $\Sigma_1 = \REclass$ oraz $\Pi_1 = \coREclass$. Uważny Czytelnik na pewno zauważy również, że nie tylko
+Z definicji wynika, że $\Sigma_0 = \Pi_0 = \Rclass$, Ponadto, prostym wnioskiem z twierdzeń~\ref{t:char of RE} i~\ref{t:char of coRE} są równości $\Sigma_1 = \REclass$ oraz $\Pi_1 = \coREclass$. Uważny Czytelnik na pewno zauważy również, że nie tylko
 \[ \Sigma_0 \subset \Sigma_1 \subset \Sigma_2 \subset \cdots \]
 oraz
 \[ \Pi_0 \subset \Pi_1 \subset \Pi_2 \subset \cdots, \]

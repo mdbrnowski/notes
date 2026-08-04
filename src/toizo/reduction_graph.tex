@@ -38,8 +38,8 @@
     \draw[reduction] (ThreeColor) -- (Planar3Color);
     \draw[obvious] (Planar3Color) to[bend right] (ThreeColor);
 
-    \node[problem, below=of ThreeSAT] (ThreeThreeSAT) {$(3,3)$-SAT};
-    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:3,3-SAT}} (ThreeThreeSAT);
+    \node[problem, below=of ThreeSAT] (ThreeThreeSAT) {$(3, 3)$-SAT};
+    \draw[reduction] (ThreeSAT) -- node[label] {\ref{t:3-3-SAT}} (ThreeThreeSAT);
     \draw[obvious] (ThreeThreeSAT) to[bend right] (ThreeSAT);
 
     \node[problem, below right=of ThreeSAT] (SetCover) {\textsc{Set Cover}};
