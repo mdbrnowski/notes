@@ -85,7 +85,7 @@ Jeśli język jest rozstrzygalny, to mówimy, że istnieje \vocab{algorytm}, kt�
 
 \subsection{Wielotaśmowa maszyna Turinga}
 
-Niestety autorowi zabrakło motywacji do opisania wielotaśmowych maszyn Turinga oraz innych, pochodnych modeli obliczeń. Zdecydowanie jednak warto coś o nich wiedzieć, dlatego odsyłamy Czytelnika do literatury~\cite{Adleman, Sipser}.
+Niestety autorowi zabrakło motywacji do opisania wielotaśmowych maszyn Turinga oraz innych, pochodnych modeli obliczeń. Zdecydowanie jednak warto coś o nich wiedzieć, dlatego odsyłamy Czytelnika do literatury~\cite{Adleman, AroraBarak, Faliszewski, Sipser}.
 
 \subsection{Enumerator}
 \begin{definition}
@@ -280,7 +280,7 @@ Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $
 
 \subsection{Charakterystyki klas $\REclass$ i $\coREclass$}
 
-\begin{theorem}[Charakterystyka klasy $\REclass$]\label{t:char of RE}
+\begin{theorem}[charakterystyka klasy $\REclass$]\label{t:char of RE}
     Język $A$ należy do klasy $\REclass$ wtedy i tylko wtedy, gdy istnieje język $B \in \Rclass$ taki, że
     \[ A = \left\{x \in \Sigma^* \mid \left(\exists y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
 \end{theorem}
@@ -294,7 +294,7 @@ Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $
     \end{align*}
 \end{proof}
 
-\begin{theorem}[Charakterystyka klasy $\coREclass$]\label{t:char of coRE}
+\begin{theorem}[charakterystyka klasy $\coREclass$]\label{t:char of coRE}
     Język $A$ należy do klasy $\coREclass$ wtedy i tylko wtedy, gdy istnieje język $C \in \Rclass$ taki, że
     \[ A = \left\{x \in \Sigma^* \mid \left(\forall y \in \Sigma^* \right) \left(\encode{x, y} \in B\right) \right\}. \]
 \end{theorem}
@@ -320,13 +320,13 @@ Znamy już pewne klasy języków (czy też problemów decyzyjnych), mianowicie $
 \end{definition}
 
 \begin{definition}[klasa $\Pi_i$]
-    Język $A$ należy do klasy $\Pi_i$, gdy istnieje język $C \in \Rclass$ taki, że
+    Język $A$ należy do klasy $\Pi_i$, gdy istnieje język $B \in \Rclass$ taki, że
     \[ A = \left\{x \Bigm|
     \underbrace{\left(\forall y_1 \in \Sigma^*\right) \left(\exists y_2 \in \Sigma^*\right) \left(\forall y_3 \in \Sigma^*\right) \cdots}_{i \text{ naprzemiennych kwantyfikatorów}}
-    \left(\encode{x, y_1, y_2, \ldots, y_i} \in C\right)\right\}. \]
+    \left(\encode{x, y_1, y_2, \ldots, y_i} \in B\right)\right\}. \]
 \end{definition}
 
-Z definicji wynika, że $\Sigma_0 = \Pi_0 = \Rclass$, Ponadto, prostym wnioskiem z twierdzeń~\ref{t:char of RE} i~\ref{t:char of coRE} są równości $\Sigma_1 = \REclass$ oraz $\Pi_1 = \coREclass$. Uważny Czytelnik na pewno zauważy również, że nie tylko
+Z definicji wynika, że $\Sigma_0 = \Pi_0 = \Rclass$. Ponadto prostym wnioskiem z twierdzeń~\ref{t:char of RE} i~\ref{t:char of coRE} są równości $\Sigma_1 = \REclass$ oraz $\Pi_1 = \coREclass$. Uważny Czytelnik na pewno zauważy również, że nie tylko
 \[ \Sigma_0 \subset \Sigma_1 \subset \Sigma_2 \subset \cdots \]
 oraz
 \[ \Pi_0 \subset \Pi_1 \subset \Pi_2 \subset \cdots, \]

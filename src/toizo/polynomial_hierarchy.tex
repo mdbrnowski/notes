@@ -1,0 +1,76 @@
+\definecolor{tint}{HTML}{5A6B85}
+
+\newcommand{\pairshape}{
+  plot[smooth cycle, tension=0.75] coordinates {
+    ( 1.25,-0.18) ( 1.16, 0.52) ( 0.70, 1.05) (-0.12, 1.38) (-0.98, 1.62)
+    (-1.82, 1.40) (-2.05, 0.72) (-1.90, 0.02) (-1.55,-0.66) (-0.95,-1.12)
+    (-0.08,-1.26) ( 0.78,-1.05) ( 1.16,-0.68)
+  }
+}
+
+\newcommand{\deltashape}{
+  plot[smooth cycle, tension=0.75] coordinates {
+    ( 2.45, 0.25) ( 2.30, 1.30) ( 1.62, 2.20) ( 0.00, 2.58) (-1.62, 2.20)
+    (-2.30, 1.30) (-2.45, 0.25) (-2.18,-0.70) (-1.45,-1.38) ( 0.00,-1.62)
+    ( 1.45,-1.38) ( 2.18,-0.70)
+  }
+}
+
+\def\sA{1}       \def\cA{0}
+\def\sB{2.07}    \def\cB{0.72}
+\def\sC{4.2849}  \def\cC{2.2104}
+
+\begin{tikzpicture}[
+  scale=0.82, line join=round, line cap=round,
+  outline/.style = {line width=0.9pt, fill=tint, fill opacity=0.05},
+  sigma/.style   = {outline, draw=AccColor1},
+  pi/.style      = {outline, draw=AccColor2},
+  delta/.style   = {outline, draw=AccColor4},
+  plain/.style   = {outline, draw=black},
+  lab/.style     = {inner sep=1pt},
+  labIII/.style  = {lab, font=\small},
+  labII/.style   = {lab, font=\footnotesize},
+  labI/.style    = {lab, font=\scriptsize},
+]
+
+  % ---------------- level 3 : Sigma_3, Pi_3 ----------------
+  \begin{scope}[shift={(0,\cC)}, scale=\sC]
+    \draw[sigma]         \pairshape;
+    \draw[pi, xscale=-1] \pairshape;
+    \node[labIII, AccColor1] at (-1.40, 1.00) {$\Sigma_3^p=\NPclass^{\NPclass^\NPclass}$};
+    \node[labIII, AccColor2] at ( 1.40, 1.00) {$\Pi_3^p=\coNPclass^{\NPclass^\NPclass}$};
+  \end{scope}
+
+  % ---------------- Delta_3 ----------------
+  \begin{scope}[shift={(0,\cB)}, scale=\sB]
+    \draw[delta] \deltashape;
+    \node[labIII, AccColor4] at (0, 2.10) {$\Delta_3^p=\Pclass^{\NPclass^\NPclass}$};
+  \end{scope}
+
+  % ---------------- level 2 : Sigma_2, Pi_2 ----------------
+  \begin{scope}[shift={(0,\cB)}, scale=\sB]
+    \draw[sigma]         \pairshape;
+    \draw[pi, xscale=-1] \pairshape;
+    \node[labII, AccColor1] at (-1.29, 1.15) {$\Sigma_2^p=\NPclass^\NPclass$};
+    \node[labII, AccColor2] at ( 1.29, 1.15) {$\Pi_2^p=\coNPclass^\NPclass$};
+  \end{scope}
+
+  % ---------------- Delta_2 ----------------
+  \begin{scope}[shift={(0,\cA)}, scale=\sA]
+    \draw[delta] \deltashape;
+    \node[labII, AccColor4] at (0, 2.10) {$\Delta_2^p=\Pclass^\NPclass$};
+  \end{scope}
+
+  % ---------------- level 1 : NP, coNP ----------------
+  \begin{scope}[shift={(0,\cA)}, scale=\sA]
+    \draw[sigma]         \pairshape;
+    \draw[pi, xscale=-1] \pairshape;
+    \node[labI, AccColor1] at (-1.29, 1.15) {$\NPclass$};
+    \node[labI, AccColor2] at ( 1.29, 1.15) {$\coNPclass$};
+  \end{scope}
+
+  % ---------------- level 0 : P ----------------
+  \draw[plain] (0,0) circle (1);
+  \node[labI, black] at (0,0) {$\Pclass$};
+
+\end{tikzpicture}
