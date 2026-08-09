@@ -58,7 +58,7 @@ Nasze definicje trudności i zupełności języków w klasach $\REclass$, $\coRE
 
 \subsection{Problem SAT}
 
-Problem SAT (\textit{satisfiability}) to problem spełnialności danej formuły logicznej, a więc stwierdzenia, czy istnieje takie wartościowania jej zmiennych, które sprawia, że formuła jest prawdziwa.
+Problem SAT (\textit{satisfiability}) to problem rachunku zdań dotyczący spełnialności danej formuły logicznej, a więc stwierdzenia, czy istnieje takie wartościowania jej zmiennych, które sprawia, że formuła jest prawdziwa.
 
 Często używana jest wersja problemu SAT, w której formuła jest w koniunkcyjnej postaci normalnej (CNF, \textit{conjunctional normal form}), a więc jest koniunkcją klauzul, gdzie klauzula to alternatywa literałów, a literał to zmienna lub jej negacja. Przykładowo, formuła
 \[ (x_1 \lor \neg x_2) \land (\neg x_1 \lor x_2 \lor x_3 \lor x_4) \]
@@ -68,7 +68,7 @@ jest w postaci CNF.
     Każdą formułę logiczną można w czasie liniowym przekształcić do postaci CNF o rozmiarze liniowym względem oryginału (dodając nowe zmienne pomocnicze). Otrzymana formuła jest spełnialna wtedy i tylko wtedy, gdy spełnialna jest formuła wejściowa.
 \end{fact}
 
-\begin{theorem}[Cooka-Levina]
+\begin{theorem}[Cooka-Levina]\label{t:Cook-Levin}
     Problem SAT jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
@@ -145,11 +145,15 @@ Warto zauważyć, że problem SAT, w którym każda zmienna występuje co najwy�
     Problem 3-SAT jest $\NPclass$-zupełny.
 \end{theorem}
 \begin{proof}
-    Zauważmy, że klauzula
+    Przeprowadzimy redukcję problemu SAT do problemu 3-SAT, biorąc za wejście dowolną formułę logiczną $\phi$.
+
+    Na mocy faktu~\ref{f:Tseitin} możemy założyć, że $\phi$ jest już w postaci CNF, wystarczy więc pokazać, jak skrócić jej zbyt długie klauzule.
+
+    Zauważmy, że zastąpienie w $\phi$ klauzuli
     \[ a_1 \lor a_2 \lor \cdots \lor a_n \]
-    jest równoważna formule
+    przez
     \[ ((a_1 \lor a_2) \Leftrightarrow b) \land (b \lor a_3 \lor \cdots \lor a_n), \]
-    a z kolei
+    gdzie $b$ jest nową zmienną, zachowuje spełnialność formuły, a z kolei
     \[ ((a_1 \lor a_2) \Leftrightarrow b) \]
     jest równoważne
     \[ (\neg a_1 \lor b) \land (\neg a_2 \lor b) \land (a_1 \lor a_2 \lor \neg b). \]
@@ -506,8 +510,8 @@ Problem \textsc{Partition} to problem stwierdzenia, czy dany zbiór liczb natura
 
 \section{Struktura klas złożoności obliczeniowej}
 
-W porównaniu do klas języków szerszych niż $\Rclass$ struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna) oraz czy $\NPclass = \coNPclass$.
-W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
+W porównaniu do klas języków szerszych niż $\Rclass$, struktura klas języków złożoności obliczeniowej jest dużo mniej oczywista. Znanym nierozstrzygniętym pytaniem jest w szczególności to, czy $\Pclass = \NPclass$ (chociaż wydaje się, że odpowiedź na to pytanie jest negatywna).
+W tej sekcji udowodnimy kilka ważnych zależności oraz wprowadzimy definicję hierarchii wielomianowej.
 
 \begin{remark}[o zamkniętości klas ze względu na dopełnienie]\label{r:classes closed under complement}
     Wszystkie deterministyczne klasy złożoności obliczeniowej (jak $\Pclass$ czy $\EXPclass$) są zamknięte ze względu na dopełnienie, to znaczy, że jeśli język $L$ należy do danej klasy, to należy do niej również $\overline{L}$ (ponieważ w deterministycznej maszynie Turinga możemy po prostu zamienić stany akceptujące z odrzucającymi).
@@ -543,7 +547,7 @@ W tej sekcji udowodnimy kilka ważnych zależności, które jednak są znane.
 
 Język, który spełnia warunki twierdzenia Ladnera, nazywamy \vocab{$\NPclass$-pośrednim} (ang. \textit{$\NPclass$-intermediate}).
 
-\begin{theorem}[Uogólnione twierdzenie Ladnera]
+\begin{theorem}[uogólnione twierdzenie Ladnera]
     Jeśli $\Pclass \neq \NPclass$ oraz $B \in \NPclass \setminus \Pclass$, to istnieje język $A \in \NPclass \setminus \Pclass$ taki, że $A \leq_m^p B$, ale $B \nleq_m^p A$.
 \end{theorem}
 
@@ -601,7 +605,7 @@ Z powyższego twierdzenia wynika, że jeśli $\Pclass \neq \NPclass$, to istniej
     \[ L' = \{x\diamondsuit^{2^{|x|^k}} \mid x \in L\}, \]
     gdzie $\diamondsuit$ jest specjalnym symbolem, który nie należy do alfabetu języka $L$. Konstruujemy niedeterministyczną maszynę Turinga $M'$, która rozstrzyga o $L'$ w taki sposób, że dla każdego $y \in L'$ sprawdza, czy $y$ jest we właściwej formie, a następnie symuluje $M$ przez $2^{|x|^k}$ kroków. Robi to w czasie $\sO(2^{|x|^k})$, a więc wielomianowym w stosunku do $|y|$. Z tego wynika, że $L' \in \NPclass$.
 
-    Zgodnie z naszym założeniem $L' \in \Pclass = \NPclass$, a więc istnieje deterministyczna maszyna Turinga $M_D'$, która rozstrzyga o $L'$ w czasie wielomianowym. Możemy więc skonstruować deterministyczną maszynę Turinga $M_D(x)$, która symuluje $M_D'(x\diamondsuit^{2^{|x|^k}})$ w czasie wykładniczym względem $|x|$. Z tego wynika, że $L \in \EXPclass$.
+    Zgodnie z naszym założeniem $L' \in \Pclass = \NPclass$, a więc istnieje deterministyczna maszyna Turinga $M_D'$, która rozstrzyga o $L'$ w czasie wielomianowym. Możemy więc skonstruować deterministyczną maszynę Turinga $M_D$, która symuluje $M_D'(x\diamondsuit^{2^{|x|^k}})$ w czasie wykładniczym względem $|x|$. Z tego wynika, że $L \in \EXPclass$.
 \end{proof}
 
 \begin{definition}
@@ -652,18 +656,25 @@ O językach samoredukowalnych mówimy, że mają naturalny algorytm rekurencyjny
     Jeśli $\Pclass \neq \NPclass$, to nie wszystkie języki $\NPclass$-zupełne są samoredukowalne.
 \end{theorem}
 
-Klasę języków rozstrzygalnych w czasie wielomianowym przez (nie)deterministyczną maszynę Turinga z wyrocznią $A$ oznaczamy jako $\Pclass^A$ (odpowiednio $\NPclass^A$). Łatwo zauważyć, że $\Pclass^A = \Pclass^{\ol{A}}$ oraz $\NPclass^A = \NPclass^{\ol{A}}$.
+Klasę języków rozstrzygalnych w czasie wielomianowym przez (nie)deterministyczną maszynę Turinga z wyrocznią $A$ oznaczamy jako $\Pclass^A$ (odpowiednio $\NPclass^A$).
 
-Ponadto, dla dowolnego zbioru języków $\sC$ definiujemy
-\[ \Pclass^\sC = \bigcup_{A\in\sC} \Pclass^A \]
-oraz analogicznie dla $\NPclass^\sC$.
-
-\begin{fact}
-    Dla każdego $\sC$-zupełnego języka $A$ zachodzą równości
-    \[ \Pclass^A = \Pclass^\sC \quad\text{i}\quad \NPclass^A = \NPclass^\sC. \]
+\begin{fact}\label{f:oracle_complement}
+    $\Pclass^A = \Pclass^{\ol{A}}$ oraz $\NPclass^A = \NPclass^{\ol{A}}$ dla dowolnego języka $A$.
 \end{fact}
 \begin{proof}
-    W ramach (nie)deterministycznej maszyny Turinga z wyrocznią $B \in \sC$ możemy dokonać wielomianowej redukcji z dowolnego języka $B$ do $A$.
+    Wystarczy zmienić na przeciwną odpowiedź wyroczni w odpowiedniej maszynie Turinga.
+\end{proof}
+
+Dla dowolnego zbioru języków $\sF$ definiujemy
+\[ \Pclass^\sF = \bigcup_{A\in\sF} \Pclass^A \quad \text{oraz} \quad \NPclass^\sF = \bigcup_{A\in\sF} \NPclass^A. \]
+Z faktu~\ref{f:oracle_complement} mamy więc np. $\NPclass^\NPclass = \NPclass^\coNPclass$.
+
+\begin{fact}
+    Dla każdego $\sF$-zupełnego języka $A$ zachodzą równości
+    \[ \Pclass^A = \Pclass^\sF \quad\text{i}\quad \NPclass^A = \NPclass^\sF. \]
+\end{fact}
+\begin{proof}
+    W ramach (nie)deterministycznej maszyny Turinga z wyrocznią $B \in \sF$ możemy dokonać wielomianowej redukcji z dowolnego języka $B$ do $A$.
 \end{proof}
 
 \begin{fact}
@@ -673,49 +684,226 @@ oraz analogicznie dla $\NPclass^\sC$.
     Klasa $\Pclass^\NPclass$ jest deterministyczna, a więc zamknięta ze względu na dopełnienie (zobacz uwagę~\ref{r:classes closed under complement}). Z tego wynika, że klasa $\NPclass$ też musi być zamknięta ze względu na dopełnienie, więc $\NPclass = \coNPclass$.
 \end{proof}
 
-Problemem, który należy do klasy $\Pclass^\NPclass$ jest na przykład \textsc{Exact Clique}. Jest to problem stwierdzenia, czy największa klika w danym grafie $G$ ma rozmiar dokładnie $k$. Możemy dla każdego $k' \in \{1, \ldots, |V(G)|\}$ zapytać wyrocznię o istnienie kliki rzędu $\geq k$ (jest to instancja zwykłego problemu \textsc{Clique}) i zwrócić wynik, jeśli ostatnie $k'$, na które odpowiedź jest twierdząca, jest równe danemu $k$.
+Problemem, który należy do klasy $\Pclass^\NPclass$ jest na przykład \textsc{Exact Clique}. Jest to problem stwierdzenia, czy największa klika w danym grafie $G$ ma rozmiar dokładnie $k$. Możemy dla każdego $k' \in \{1, \ldots, |V(G)|\}$ zapytać wyrocznię o istnienie kliki rzędu co najmniej $k'$ (jest to instancja zwykłego problemu \textsc{Clique}) i zwrócić odpowiedź pozytywną, jeśli ostatnie $k'$, na które odpowiedź na podproblem jest twierdząca, jest równe danemu $k$.
 
 \begin{fact}
     Zachodzi równość
     \[ \Pclass^{\NPclass \cap \coNPclass} = \NPclass \cap \coNPclass. \]
 \end{fact}
 \begin{proof}
-    Oczywiście $\NPclass \cap \coNPclass \subseteq \Pclass^{\NPclass \cap \coNPclass}$. Pokażemy, że $\Pclass^{\NPclass \cap \coNPclass} \subseteq \NPclass$ oraz $\Pclass^{\NPclass \cap \coNPclass} \subseteq \coNPclass$.
+    Oczywiście zachodzi inkluzja $\NPclass \cap \coNPclass \subseteq \Pclass^{\NPclass \cap \coNPclass}$.
+    Pokażemy, że prawdą jest również $\Pclass^{\NPclass \cap \coNPclass} \subseteq \NPclass$ oraz $\Pclass^{\NPclass \cap \coNPclass} \subseteq \coNPclass$.
 
-    Niech $B \in \Pclass^{\NPclass \cap \coNPclass}$ oraz $A \in \NPclass \cap \coNPclass$ będzie językiem wyroczni, a którą pyta deterministyczna maszyna Turinga $M_D$ rozstrzygająca o $B$. Konstruujemy niedeterministyczną maszynę Turinga $M_N$, która działa tak samo jak $M_D$, tylko gdy $M_D$ pyta wyrocznię o $x \in A$, to $M_N$ niedeterministycznie zgaduje odpowiedź. W ten sposób $B \in \NPclass$.
+    Niech $B \in \Pclass^{\NPclass \cap \coNPclass}$ będzie językiem, o którym rozstrzyga (w czasie wielomianowym) pewna deterministyczna maszyna Turinga $M$ z wyrocznią $A \in \NPclass \cap \coNPclass$.
+    Skonstruujemy niedeterministyczną maszynę Turinga $N$, która rozstrzyga (w czasie wielomianowym) o $B$.
+    Warto zauważyć najpierw, że skoro $A \in \NPclass \cap \coNPclass$, to istnieje niedeterministyczna maszyna Turinga $V_A$ która rozstrzyga w czasie wielomianowym o $A$ oraz analogicznie $V_{\ol{A}}$ dla $\ol{A}$.
+    Teraz możemy skonstruować maszynę $N$ następująco: symuluje ona krok po kroku $M$, a gdy $M$ zadaje pytanie, czy $y \in A$, to jej schemat działania wygląda tak:
+    \begin{algorithmic}
+        \State niedeterministycznie wybierz $b \in \{0, 1\}$ \Comment{zgadnięcie odpowiedzi na pytanie $y \in A$}
+        \If{$b = 1$}
+            \If{$V_A(y)$ akceptuje}
+                \State kontynuuj symulację maszyny $M$ zakładając $y \in A$
+            \Else
+                \State odrzuć
+            \EndIf
+        \ElsIf{$b = 0$}
+            \If{$V_{\ol{A}}(y)$ akceptuje}
+                \State kontynuuj symulację maszyny $M$ zakładając $y \notin A$
+            \Else
+                \State odrzuć
+            \EndIf
+        \EndIf
+    \end{algorithmic}
+    Łatwo zauważyć, że maszyna $N$ ma ścieżkę akceptującą wtedy i tylko wtedy, gdy maszyna $M$ ma ścieżkę akcpetującą, a maszyny $V$ wykonują wielomianowo wiele kroków, więc $N$ rozstrzyga o $B$ w czasie wielomianowym, ergo $B \in \NPclass$.
 
-    Skoro $B$ należy do deterministycznej klasy $\Pclass^{\NPclass \cap \coNPclass}$, to również $\ol{B}$ należy do tej klasy, a więc możemy powtórzyć nasze rozumowanie dla $\ol{B}$, dowodząc, że $B \in \coNPclass$.
+    Skoro $B$ należy do zamkniętej ze względu na dopełnienie klasy $\Pclass^{\NPclass \cap \coNPclass}$, to również $\ol{B}$ należy do tej klasy, a więc możemy powtórzyć nasze rozumowanie dla $\ol{B}$, dowodząc, że $B \in \coNPclass$.
 \end{proof}
 
-\subsection{Hierarchia wielomianowa}
+\begin{theorem}[Bakera-Gilla-Solovay'a]
+    Istnieją takie języki $A$ i $B$, że $\Pclass^A = \NPclass^A$, ale $\Pclass^B \neq \NPclass^B$.
+\end{theorem}
 
-Analogicznie do hierarchii arytmetycznej, definiujemy hierarchię wielomianową. Głównym pytaniem tej sekcji będzie uogólnienie pytania $\Pclass \stackrel{?}{=} \NPclass$ przez pytanie o skończoność hierarchii wielomianowej.
+\subsection{Hierarchia wielomianowa}
 
 \begin{definition}
     Rekurencyjnie definiujemy klasy $\Sigma_i^p$, $\Pi_i^p$ i $\Delta_i^p$:
     \[ \Sigma_0^p = \Pi_0^p = \Delta_0^p = \Pclass, \]
     \begin{align*}
         \Sigma_i^p &= \NPclass^{\Sigma_{i-1}^p}, \\
-        \Pi_i^p &= \coclass \Sigma_i^p =  \coNPclass^{\Sigma_{i-1}^p}, \\
+        \Pi_i^p &= \coclass \Sigma_i^p, \\
         \Delta_i^p &= \Pclass^{\Sigma_{i-1}^p}.
     \end{align*}
-    Ponadto,
+    Ponadto
     \[ \PHclass = \bigcup_{i \in \NN} \Sigma_i^p. \]
 \end{definition}
 
-Łatwo pokazać, że $\Sigma_1^p = \NPclass$, $\Pi_1^p = \coNPclass$, a $\Delta_1^p = \Pclass$.
+Łatwo pokazać, że $\Sigma_1^p = \NPclass$, $\Pi_1^p = \coNPclass$, a $\Delta_1^p = \Pclass$. Podobnie jak w przypadku hierarchii arytmetycznej, zachodzą inkluzje $\Sigma_i^p \subset \Sigma_{i+1}^p$, $\Pi_i^p \subset \Pi_{i+1}^p$, $\Pi_i^p \subset \Sigma_{i+1}^p$, $\Sigma_i^p \subset \Pi_{i+1}^p$. Dodatkowo mamy też $\Sigma_i^p \cup \Pi_i^p \subset \Delta_{i+1}^p \subset \Sigma_{i+1}^p \cap \Pi_{i+1}^p$.
+
+\begin{figure}[h]
+    \centering
+    \input{polynomial_hierarchy.tex}
+    \caption{Fragment hierarchii wielomianowej.}
+\end{figure}
+
+Moglibyśmy alternatywnie zdefiniować hierarchię wielomianową na podobieństwo hierarchii arytmetycznej; tak jest to przedstawione np. w~\cite{AroraBarak}. Zamiast tego, pokażemy to sformułowanie jako wniosek z naszej definicji.
+
+\begin{lemma}\label{l:language_in_Sigma_p_iff}
+    Język $A$ jest klasy $\Sigma_i^p$ wtedy i tylko wtedy, gdy istnieje język $B \in \Pi_{i-1}^p$ oraz wielomian $p$, takie że
+    \[ A = \left\{x \mid \left(\exists y \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y} \in B\right) \right\}. \]
+\end{lemma}
+\begin{proof}[Dowód wystarczalności ($\Leftarrow$)]
+    Niech $B$ będzie językiem klasy $\Pi_{i-1}^p$ oraz niech
+    \[ A = \left\{x \mid \left(\exists y \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y} \in B\right) \right\} \]
+    dla pewnego wielomianu $p$. Rozważmy niedeterministyczną maszynę Turinga $M$ z wyrocznią $B$, która na wejściu $x$ zgaduje $y$, pyta wyrocznię, czy $\encode{x, y} \in B$ oraz akceptuje, jeśli odpowiedź jest twierdząca. Słowo $x$ jest akceptowane przez maszynę $M$ w czasie wielomianowym wtedy i tylko wtedy, gdy
+    \[ \exists y \in \Sigma^{\leq p(|x|)} : \encode{x, y} \in B, \]
+    czyli dokładnie gdy $x \in A$. Z tego wynika, że $A \in \NPclass^B$.
+    Z tego z kolei mamy $A \in \NPclass^{\Pi_{i-1}^p} \overset{(\ref{f:oracle_complement})}{=} \NPclass^{\Sigma_{i-1}^p} = \Sigma_i^p $.
+\end{proof}
+\begin{proof}[Dowód konieczności ($\Rightarrow$)]
+    Przeprowadzimy dowód przez indukcję względem $i$.
+
+    W przypadku $i = 1$, ustalmy dowolny język $A \in \Sigma_1^p = \NPclass$.
+    Niech $M$ będzie niedeterministyczną maszyną Turinga (bez wyroczni) rozstrzygającą o języku $A$ w czasie wielomianowym. 
+    Weźmy teraz język $B$ dany następująco:
+    \[ B = \left\{\encode{x, y} \mid \text{$y$ koduje akceptujące obliczenie $M(x)$} \right\}. \]
+    Oczywiście $x \in A$ wtedy i tylko wtedy, gdy istnieje wielomianowe akceptujące obliczenie $M(x)$, czyli gdy $\exists y \in \Sigma^{\leq p(|x|)} : \encode{x, y} \in B$.
+    Ponadto $B \in \Pclass = \Pi_0^p$, ponieważ symulację jednej wielomianowej ścieżki obliczeniowej można przeprowadzić w czasie wielomianowym.
+    To kończy dowód przypadku bazowego indukcji.
+
+    Teraz pokażemy, że twierdzenie zachodzi też dla dowolnego $i \geq 2$, zakładając, że zachodzi dla $i-1$.
+    Ponownie ustalmy język $A \in \Sigma_i^p = \NPclass^{\Sigma_{i-1}^p}$.
+    Niech $M$ będzie niedeterministyczną maszyną Turinga z wyrocznią $L \in \Sigma_{i-1}^p$ rozstrzygającą o języku $A$ w czasie wielomianowym.
+    Z założenia indukcyjnego dostajemy, że
+    \[ L = \left\{z \mid \left(\exists t \in \Sigma^{\leq q(|z|)}\right) \left(\encode{z, t} \in C\right) \right\} \]
+    dla pewnego języka $C \in \Pi_{i-2}^p$ oraz wielomianu $q$.
+    Postąpimy podobnie jak w poprzednim przypadku, to znaczy weźmiemy taki język $B$, że
+    \[ B = \left\{\encode{x, y} \mid \text{$y$ koduje akceptujące obliczenie $M(x)$} \right\}. \]
+    Tym razem jednak kodowanie ścieżki obliczeniowej nie będzie tak proste.
+    W takim kodowaniu, oprócz kolejnych stanów taśmy i maszyny oraz niedeterministycznych wyborów, musimy zawrzeć odpowiedzi wyroczni $L$ oraz (w przypadku odpowiedzi twierdzącej) świadka $t$ dla każdego zapytania $z$.
+    Warto zwrócić uwagę, że takie kodowanie wielomianowej ścieżki obliczeniowej również będzie wielomianowe.
+    Maszyna rozstrzygająca o $B$, czyli weryfikująca poprawność obliczenia, musi symulować dane akceptujące obliczenie (to problem klasy $\Pclass$), ale też sprawdzać poprawność odpowiedzi wyroczni:
+    \begin{itemize}[nosep]
+        \item jeśli odpowiedź jest twierdząca, to odczytuje zakodowanego świadka $t$ i sprawdza, czy naprawdę $\encode{z, t} \in C$ (problem klasy $\Pi_{i-2}^p$),
+        \item jeśli odpowiedź jest przecząca, to sprawdza czy naprawdę $z \notin L$ (problem klasy $\coclass \Sigma_{i-1}^p = \Pi_{i-1}^p$).
+    \end{itemize}
+    Stąd $B$ na pewno należy do najszerszej z powyższych klas, to znaczy do $\Pi_{i-1}^p$, co kończy krok indukcyjny i dowodzi tezę.
+\end{proof}
+
+\begin{remark*}
+    Czytając powyższy dowód, Czytelnik może się zastanawiać, dlaczego musimy kodować świadków $t$ dla każdego $z \in L$. Otóż nie musimy, tylko że wtedy maszyna rozstrzygająca o języku $B$ musiałaby sprawdzać, czy $z \in L$, co byłoby problemem trudniejszym, bo klasy $\Sigma_{i-1}^p$. W takim razie sam problem przynależności do $B$ niekoniecznie zawierałby się w $\Pi_{i-1}^p$, więc nie udowodnilibyśmy powyższego lematu.
+\end{remark*}
+
+\begin{lemma}\label{l:language_in_Pi_p_iff}
+    Język $A$ jest klasy $\Pi_i^p$ wtedy i tylko wtedy, gdy istnieje język $B \in \Sigma_{i-1}^p$ oraz wielomian $p$, takie że
+    \[ A = \left\{x \mid \left(\forall y \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y} \in B\right) \right\}. \]
+\end{lemma}
+\begin{proof}
+    Język $A$ jest klasy $\Pi_i^p$ wtedy i tylko wtedy, gdy $\ol{A} \in \Sigma_i^p$. Z lematu~\ref{l:language_in_Sigma_p_iff} otrzymujemy równoważnie, że
+    \[\ol{A} = \left\{x \mid \left(\exists y \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y} \in B\right) \right\} \]
+    dla pewnego wielomianu $p$ oraz języka $B \in \Pi_{i-1}^p$. Biorąc dopełnienie zbioru, mamy
+    \[A = \left\{x \mid \left(\forall y \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y} \in \ol{B}\right) \right\} \]
+    gdzie $\ol{B} \in \Sigma_{i-1}^p$.
+\end{proof}
+
+\begin{theorem}\label{t:alternating_quantifiers}
+    Język $A$ jest klasy $\Sigma_i^p$ wtedy i tylko wtedy, gdy istnieje język $B \in \Pclass$ oraz wielomian $p$, takie że
+    \[ A = \left\{x \Bigm|
+    \underbrace{\left(\exists y_1 \in \Sigma^{\leq p(|x|)}\right) \left(\forall y_2 \in \Sigma^{\leq p(|x|)}\right) \left(\exists y_3 \in \Sigma^{\leq p(|x|)}\right) \cdots}_{i \text{ naprzemiennych kwantyfikatorów}}
+    \left(\encode{x, y_1, \ldots, y_i} \in B\right)\right\}. \]
+    Język $A$ jest klasy $\Pi_i^p$ wtedy i tylko wtedy, gdy istnieje język $B \in \Pclass$ oraz wielomian $p$, takie że
+    \[ A = \left\{x \Bigm|
+    \underbrace{\left(\forall y_1 \in \Sigma^{\leq p(|x|)}\right) \left(\exists y_2 \in \Sigma^{\leq p(|x|)}\right) \left(\forall y_3 \in \Sigma^{\leq p(|x|)}\right) \cdots}_{i \text{ naprzemiennych kwantyfikatorów}}
+    \left(\encode{x, y_1, \ldots, y_i} \in B\right)\right\}. \]
+\end{theorem}
+\begin{proof}
+    Przez indukcję względem $i$, korzystając z lematów~\ref{l:language_in_Sigma_p_iff} oraz~\ref{l:language_in_Pi_p_iff}.
+\end{proof}
+
+Uogólnimy teraz problem SAT przez dodanie do niego kwantyfikatorów. Problemem $\Sigma_k$-SAT nazwiemy problem stwierdzenia, czy prawdziwa jest dana formuła postaci
+\[ \exists X_1\; \forall X_2\; \exists X_3\; \cdots\; Q X_k : \Phi\left(X_1, X_2, X_3, \ldots, X_k\right), \]
+gdzie $Q \in \{\exists, \forall\}$, zbiór $X = X_1 \sqcup X_2 \sqcup X_3 \sqcup \cdots \sqcup X_k$ jest (oczywiście skończonym) zbiorem zmiennych logicznych, a $\Phi$ formułą zdaniową nad tym zbiorem zmiennych.
+Podobnie, problem $\Pi_k$-SAT to pytanie o prawdziwość formuły postaci
+\[ \forall X_1\; \exists X_2\; \forall X_3\; \cdots\; Q X_k : \Phi\left(X_1, X_2, X_3, \ldots, X_k\right). \]
+Problem $\Sigma_1$-SAT jest więc równoważny problemowi SAT, ponieważ pytanie o prawdziwość $\exists X : \Phi(X)$ jest pytaniem o spełnialność $\Phi$.
+
+Intuicja podpowiada, że, skoro $\Sigma_1$-SAT jest $\Sigma_1^p$-zupełny (twierdzenie Cooka-Levina,~\ref{t:Cook-Levin}), to ogólnie problem $\Sigma_k$-SAT powinien być $\Sigma_k^p$-zupełny. Istotnie tak jest.
 
 \begin{theorem}
+    Problem $\Sigma_k$-SAT jest $\Sigma_k^p$-zupełny, a problem $\Pi_k$-SAT jest $\Pi_k^p$-zupełny.
+\end{theorem}
+\begin{proof}
+    Ustalmy $k \geq 1$. Przynależność obu problemów do odpowiednich klas jest natychmiastowa z twierdzenia~\ref{t:alternating_quantifiers}: kwantyfikowane słowa czytamy jako wartościowania zbiorów zmiennych $X_i$, a sprawdzenie prawdziwości formuły zdaniowej przy zadanym wartościowaniu jest problemem klasy $\Pclass$.
+    Zajmiemy się więc trudnością, przy czym pokażemy ją jedynie dla $\Sigma_k$-SAT --- dla $\Pi_k$-SAT dowód jest analogiczny.
+
+    Ustalmy dowolnie $k \in \NN_+$ oraz $A \in \Sigma_k^p$.
+    Z twierdzenia~\ref{t:alternating_quantifiers} istnieje taki język $B \in \Pclass$, że
+    \[ A = \left\{x \mid \left(\exists y_1 \in \Sigma^{\leq p(|x|)}\right) \left(\forall y_2 \in \Sigma^{\leq p(|x|)}\right) \cdots \left(Q y_k \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y_1, \ldots, y_k} \in B\right) \right\} \]
+    dla pewnego wielomianu $p$.
+    Niech $M$ będzie deterministyczną maszyną Turinga rozstrzygającą o $B$.
+    Powtarzamy konstrukcję znaną z dowodu twierdzenia Cooka-Levina~(\ref{t:Cook-Levin}) otrzymując formułę $\psi$.
+    Musimy wykonać jedną modyfikację: nie znamy z góry słów $y_1, \ldots, y_k$, więc komórek taśmy, w których leżą one w konfiguracji początkowej, nie możemy ustalić klauzulami jednostkowymi (jak robiliśmy to w punkcie 4 tamtej konstrukcji dla słowa wejściowego).
+    Przyjmijmy najpierw, bez straty ogólności, że $\Sigma = \{0, 1\}$ oraz że każde ze słów $y_i$ ma długość dokładnie $p(|x|)$.
+    Wprowadźmy teraz rozłączne zbiory zmiennych logicznych
+    \[ X_i = \left\{X_{i, 1}, \ldots, X_{i, p(|x|)}\right\}, \qquad i = 1, \ldots, k, \]
+    gdzie zmienna $X_{i, r}$ odpowiada $r$-temu bitowi słowa $y_i$, i dla pozycji $j_i(r)$, na której ten bit leży na taśmie, dodajemy do formuły klauzule
+    \[ \left(S_{1, j_i(r), 1} \Leftrightarrow X_{i, r}\right), \quad \left(S_{1, j_i(r), 0} \Leftrightarrow \neg X_{i, r}\right). \]
+    Pozycje $j_i(r)$ są dobrze określone i obliczalne w czasie wielomianowym, ponieważ długości wszystkich $y_i$ są ustalone. Pozostałe komórki taśmy ustalamy klauzulami jednostkowymi jak poprzednio.
+
+    Rozbijmy otrzymaną formułę na $\psi = \theta \land \alpha$, gdzie $\alpha$ to klauzula wymuszająca akceptację (punkt 6), a $\theta$ to koniunkcja wszystkich pozostałych klauzul, opisujących poprawną tablicę obliczenia.
+    Przez $Z$ oznaczmy zbiór wszystkich zmiennych $Q_{i, k}$, $P_{i, j}$, $S_{i, j, l}$.
+
+    Skoro $M$ jest maszyną deterministyczną, to przy ustalonym $x$ istnieje dokładnie jedno wartościowanie zmiennych $Z$ spełniające $\theta$ przy danym wartościowaniu zmiennych $X_1, \ldots, X_k$: to opisujące jedyne obliczenie $M$ na słowie $\encode{x, y_1, \ldots, y_k}$. Wobec tego
+    \[ \encode{x, y_1, \ldots, y_k} \in B \iff \exists Z : \left(\theta \land \alpha\right) \iff \forall Z : \left(\theta \Rightarrow \alpha\right). \]
+
+    Zmienne $Z$ chcemy związać kwantyfikatorem najbardziej wewnętrznym, by nie dokładać kolejnego bloku, więc wybieramy jedną z tych postaci zależnie od parzystości $k$.
+    Kładąc $X_k' = X_k \sqcup Z$ oraz $\Phi = \theta \land \alpha$ dla nieparzystego $k$ (gdy $Q = \exists$), a $\Phi = \theta \Rightarrow \alpha$ dla parzystego (gdy $Q = \forall$), otrzymujemy formułę
+    \[ \exists X_1 \; \forall X_2 \; \exists X_3 \; \cdots \; Q X_k' : \Phi\left(X_1, \ldots, X_{k-1}, X_k'\right), \]
+    czyli instancję $\Sigma_k$-SAT prawdziwą dokładnie wtedy, gdy $x \in A$ (wartościowanie bloku $X_i$ czytamy jako wybór słowa $y_i$).
+    Stąd $A \leq_m^p \Sigma_k\text{-SAT}$, więc, wobec dowolności $A$, problem $\Sigma_k$-SAT jest $\Sigma_k^p$-trudny, ergo jest $\Sigma_k^p$-zupełny.
+\end{proof}
+
+Wydaje się, że hierarchia wielomianowa składa się z nieskończenie wielu poziomów.
+Jednak, w przeciwieństwie do hierarchii arytmetycznej, taka hipoteza jest problemem otwartym.
+Pokażemy teraz dwa twierdzenia, które dają warunki na skończoność (inaczej: zapadanie się, kolaps) hierarchii wielomianowej.
+
+\begin{theorem}\label{t:PH_collapses_when_Sigma_eq_Sigma}
     Jeśli $\Sigma_k^p = \Sigma_{k+1}^p$ dla pewnego $k \geq 0$, to $\PHclass = \Sigma_k^p$.
 \end{theorem}
 \begin{proof}
     Skoro $\Sigma_k^p = \Sigma_{k+1}^p$, to również
     \[ \NPclass^{\Sigma_k^p} = \NPclass^{\Sigma_{k+1}^p}, \]
-    więc z definicji
+    więc z definicji mamy
     \[ \Sigma_{k+1}^p = \Sigma_{k+2}^p. \]
-    Kontynuując ten tok rozumowania dostajemy $\Sigma_k^p = \Sigma_{k+1}^p = \Sigma_{k+2}^p = \ldots = \PHclass$.
+    Kontynuując ten tok rozumowania, dostajemy $\Sigma_k^p = \Sigma_{k+1}^p = \Sigma_{k+2}^p = \ldots = \PHclass$.
 \end{proof}
+
+Z powyższego twierdzenia wynika, że jeżeli $\Pclass = \NPclass$, to cała hierarchia wielomianowa zapada się do zerowego poziomu, tzn. $\PHclass = \Pclass$.
 
 \begin{theorem}
     Jeśli $\Sigma_k^p = \Pi_k^p$ dla pewnego $k \geq 1$, to $\PHclass = \Sigma_k^p$.
 \end{theorem}
+\begin{proof}
+    Weźmy $A \in \Sigma_{k+1}^p$.
+    Na mocy lematu~\ref{l:language_in_Sigma_p_iff} istnieje taki język $B \in \Pi_k^p$, że
+    \[ A = \left\{x \mid \left(\exists y_0 \in \Sigma^{\leq p(|x|)}\right) \left(\encode{x, y_0} \in B\right) \right\} \]
+    dla pewnego wielomianu $p$.
+    Z założenia język $B$ jest również klasy $\Sigma_k^p$, więc, korzystając z tego samego lematu, istnieje taki język $C \in \Pi_{k-1}^p$, że
+    \[ B = \left\{\encode{x, y_0} \mid \left(\exists y_1 \in \Sigma^{\leq q(|\encode{x, y_0}|)}\right) \left(\encode{x, y_0, y_1} \in C\right) \right\} \]
+    dla pewnego wielomianu $q$.
+    Stąd
+    \begin{align*}
+      A &= \left\{x \mid \left(\exists y_0 \in \Sigma^{\leq p(|x|)}\right) \left(\exists y_1 \in \Sigma^{\leq q(|\encode{x, y_0}|)}\right) \left(\encode{x, y_0, y_1} \in C\right) \right\} \\
+          &= \left\{x \mid \left(\exists y \in \Sigma^{\leq w(|x|)}\right) \left(\encode{x, y} \in C\right) \right\}
+    \end{align*}
+    dla pewnego wielomianu $w$. .
+    Korzystając z faktu, że $C \in \Pi_{k-1}^p$ oraz ponownie z lematu~\ref{l:language_in_Sigma_p_iff} otrzymujemy $A \in \Sigma_k^p$, więc, na mocy twierdzenia~\ref{t:PH_collapses_when_Sigma_eq_Sigma}, zachodzi równość $\PHclass = \Sigma_k^p$.
+
+\end{proof}
+
+Z powyższego twierdzenia wynika, że jeżeli $\NPclass = \coNPclass$, to cała hierarchia wielomianowa zapada się do pierwszego poziomu, tzn. $\PHclass = \NPclass$.
+
+TODO TODO TODO: WYKŁAD 1:20
+
+\subsection{Work in progress}
+
+Problem QBF-SAT (od ang. \textit{quantified Boolean formula satisfiability}) to problem stwierdzenia, czy formuła
