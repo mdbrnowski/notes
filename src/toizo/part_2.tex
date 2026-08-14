@@ -64,8 +64,8 @@ Często używana jest wersja problemu SAT, w której formuła jest w koniunkcyjn
 \[ (x_1 \lor \neg x_2) \land (\neg x_1 \lor x_2 \lor x_3 \lor x_4) \]
 jest w postaci CNF.
 
-\begin{fact}[algorytm Tseitina]
-    Każdą formułę logiczną można sprowadzić do postaci CNF w czasie wielomianowym, a rozmiar formuły wyjściowej będzie liniowy w stosunku do rozmiaru formuły wejściowej.
+\begin{fact}[algorytm Tseitina]\label{f:Tseitin}
+    Każdą formułę logiczną można w czasie liniowym przekształcić do postaci CNF o rozmiarze liniowym względem oryginału (dodając nowe zmienne pomocnicze). Otrzymana formuła jest spełnialna wtedy i tylko wtedy, gdy spełnialna jest formuła wejściowa.
 \end{fact}
 
 \begin{theorem}[Cooka-Levina]
@@ -76,29 +76,48 @@ jest w postaci CNF.
 
     Niech $H$ będzie problemem takim, że
     \[ H = \left\{\encode{N, x, 0^t} \Bigm| \parbox{15em}{\footnotesize niedeterministyczna maszyna Turinga $N$ akceptuje słowo $x$ w $t$ krokach}\right\}. \]
-    Łatwo zauważyć, że $H$ jest problemem $\NPclass$-trudnym (można do niego sprowadzić każdy inny problem z $\NPclass$) oraz sam należy do $\NPclass$ (maszyna $M_H$ może niedeterministycznie wybierać relację $\delta$ i symulować działanie maszyny $N$).
+    Problem $H$ należy do $\NPclass$ (rozstrzygająca o nim maszyna $M_H$ może niedeterministycznie wybierać przejścia relacji $\delta$ i symulować działanie maszyny $N$) oraz jest $\NPclass$-trudny: jeśli $L \in \NPclass$ jest rozstrzygany przez niedeterministyczną maszynę Turinga $N_L$ w czasie $q(n)$ dla pewnego wielomianu $q$, to funkcja
+    \[ f(x) = \encode{N_L, x, 0^{q(|x|)}} \]
+    jest obliczalna w czasie wielomianowym oraz $x \in L$ wtedy i tylko wtedy, gdy $f(x) \in H$.
     Wystarczy więc pokazać, że $H$ redukuje się do SAT.
 
-    Zdefiniujemy następujące zmienne logiczne:
+    Ustalmy zatem wejście $w = \encode{N, x, 0^t}$, gdzie $N = (Q, \Sigma, \Gamma, \delta, q_0, q_Y, q_N, \blank)$, i skonstruujmy formułę $\phi$ opisującą obliczenia maszyny $N$ na słowie $x$. Zauważmy, że relacja $\delta$ jest częścią wejścia, więc redukcja może ją odczytać i zależnie od niej wypisywać klauzule.
+
+    Przyjmiemy dwie konwencje, które nie zmieniają języka maszyny, a znacznie upraszczają zapis: stany $q_Y$ oraz $q_N$ są \emph{pochłaniające} (dla każdego $l \in \Gamma$ relacja $\delta$ zawiera przejście $\left((q, l), (q, l, \hookrightarrow)\right)$ dla $q \in \{q_Y, q_N\}$), a próba ruchu w lewo na pierwszym polu taśmy pozostawia głowicę na miejscu.
+    Dzięki temu każda ścieżka obliczeń maszyny $N$ na słowie $x$ ma długość dokładnie $t$, a $N$ akceptuje $x$ w $t$ krokach wtedy i tylko wtedy, gdy któraś z tych ścieżek osiąga stan $q_Y$.
+
+    Zdefiniujemy następujące zmienne logiczne, gdzie $i \in \{1, \ldots, t+1\}$ numeruje kolejne konfiguracje, a $j \in \{1, \ldots, t+1\}$ pola taśmy (w $t$ krokach głowica nie oddali się od pola startowego o więcej niż $t$ pól):
     \begin{itemize}
-        \item $Q_{i, k}$: w $i$-tym kroku maszyna $M_H$ jest w stanie $q_k$,
-        \item $P_{i, j}$: w $i$-tym kroku głowica maszyny $M_H$ jest na $j$-tym polu,
-        \item $S_{i, j, l}$: w $i$-tym kroku na $j$-tym polu taśmy znajduje się symbol $l$.
+        \item $Q_{i, k}$: w $i$-tym kroku maszyna $N$ jest w stanie $q_k$,
+        \item $P_{i, j}$: w $i$-tym kroku głowica maszyny $N$ jest na $j$-tym polu,
+        \item $S_{i, j, l}$: w $i$-tym kroku na $j$-tym polu taśmy znajduje się symbol $l \in \Gamma$.
     \end{itemize}
-    Będziemy chcieli tak skonstruować formułę logiczną $\phi$, że $\phi$ jest spełnialna wtedy i tylko wtedy, gdy istnieje ścieżka obliczeń maszyny $M_H$ akceptująca słowo $x$ czasie wielomianowym. W tym celu do formuły $\phi$ dodajemy klauzule, które:
+    Drugi indeks zmiennej $Q$ przebiega przy tym ustaloną numerację stanów $Q = \{q_1, \ldots, q_{|Q|}\}$, ale dla wyróżnionych stanów $q_0$, $q_Y$ oraz $q_N$ będziemy pisać krótko $Q_{i, 0}$, $Q_{i, Y}$ oraz $Q_{i, N}$.
+
+    Będziemy chcieli tak skonstruować formułę logiczną $\phi$, że $\phi$ jest spełnialna wtedy i tylko wtedy, gdy istnieje ścieżka obliczeń maszyny $N$ akceptująca słowo $x$ w $t$ krokach. W tym celu do formuły $\phi$ dodajemy klauzule, które:
     \begin{enumerate}
-        \item wymuszają, że w każdym kroku maszyna $M_L$ znajduje się w dokładnie jednym stanie, to jest
+        \item wymuszają, że w każdym kroku maszyna $N$ znajduje się w dokładnie jednym stanie, to jest
         \[ \bigwedge_i \left(Q_{i, 1} \lor \cdots \lor Q_{i, |Q|}\right), \]
         \[ \bigwedge_i \bigwedge_{k \neq k'} \left(\neg Q_{i, k} \lor \neg Q_{i, k'}\right); \]
-        \item wymuszają, że w każdym kroku głowica maszyny $M_L$ znajduje się na dokładnie jednym polu;
-        \item wymuszają, że w każdym kroku na każdym polu taśmy znajduje się dokładnie jeden symbol;
-        \item wymuszają zgodność słowa wejściowego, to jest
-        \[ \bigwedge_{j \leq |x|} \left(S_{1, j, x_j}\right) \quad \bigwedge_{|x| < j} \left(S_{1, j, \blank}\right); \]
-        \item wymuszają poprawność przejść między stanami;
-        \item wymuszają, że istnieje ścieżka obliczeń, która kończy się w stanie akceptującym, to jest
-        \[ \left( Q_{1, Y} \lor Q_{2, Y} \lor \cdots \right). \]
+        \item wymuszają, że w każdym kroku głowica maszyny $N$ znajduje się na dokładnie jednym polu, to jest
+        \[ \bigwedge_i \left(P_{i, 1} \lor \cdots \lor P_{i, t+1}\right), \]
+        \[ \bigwedge_i \bigwedge_{j \neq j'} \left(\neg P_{i, j} \lor \neg P_{i, j'}\right); \]
+        \item wymuszają, że w każdym kroku na każdym polu taśmy znajduje się dokładnie jeden symbol, to jest
+        \[ \bigwedge_{i, j} \left(\bigvee_{l \in \Gamma} S_{i, j, l}\right), \]
+        \[ \bigwedge_{i, j} \bigwedge_{l \neq l'} \left(\neg S_{i, j, l} \lor \neg S_{i, j, l'}\right); \]
+        \item wymuszają zgodność konfiguracji początkowej ze słowem wejściowym, to jest
+        \[ \left(Q_{1, 0}\right), \quad \left(P_{1, 1}\right), \quad \bigwedge_{j \leq |x|} \left(S_{1, j, x_j}\right), \quad \bigwedge_{|x| < j} \left(S_{1, j, \blank}\right); \]
+        \item wymuszają poprawność przejść między konfiguracjami. Pola, nad którymi nie stoi głowica, nie zmieniają swojej zawartości:
+        \[ \bigwedge_{i \leq t} \bigwedge_{j, l} \left(\left(S_{i, j, l} \land \neg P_{i, j}\right) \Rightarrow S_{i+1, j, l}\right), \]
+        natomiast pole, nad którym stoi głowica, wraz ze stanem maszyny i pozycją głowicy zmienia się zgodnie z relacją przejścia:
+        \[ \bigwedge_{i \leq t} \; \bigwedge_{j \leq t, \, k, \, l} \left(\left(Q_{i, k} \land P_{i, j} \land S_{i, j, l}\right) \quad \Rightarrow \quad \bigvee_{\mathclap{\left((q_k, l), (q_{k'}, l', d)\right) \in \delta}} \left(Q_{i+1, k'} \land S_{i+1, j, l'} \land P_{i+1, j+d}\right)\right), \]
+        gdzie $d = -1$ dla $\hookleftarrow$ oraz $d = +1$ dla $\hookrightarrow$ (a dla $j = 1$ oraz $d = -1$ przyjmujemy $j + d = 1$, zgodnie z przyjętą konwencją). W drugiej z tych formuł wystarczy rozważać $j \leq t$: głowica startuje na pierwszym polu i w każdym kroku przesuwa się o co najwyżej jedno pole, więc w $i$-tym kroku stoi na polu o numerze co najwyżej $i$; w szczególności dla $i \leq t$ nie stoi ona na polu $t+1$, a indeks $j + d$ nigdy nie wykracza poza $t+1$. Formuły te nie są w postaci CNF, ale na mocy faktu~\ref{f:Tseitin} możemy je do niej przekształcić;
+        \item wymuszają, że ścieżka obliczeń kończy się w stanie akceptującym, to jest
+        \[ \left( Q_{1, Y} \lor Q_{2, Y} \lor \cdots \lor Q_{t+1, Y} \right). \]
     \end{enumerate}
-    Klauzul tych jest wielomianowo wiele, więc pokazaliśmy, że $H \leq_m^p \textsc{SAT}$, a więc problem SAT jest $\NPclass$-zupełny.
+
+    Łatwo zauważyć, że formuła $\phi$ jest spełnialna wtedy i tylko wtedy, gdy $w \in H$, a liczba zmiennych i klauzul w formule $\phi$ jest wielomianowa względem rozmiaru wejścia~$w$.
+    Pokazaliśmy zatem, że $H \leq_m^p \textsc{SAT}$, a więc problem SAT jest $\NPclass$-zupełny.
 \end{proof}
 
 \section{Klasyczne problemy $\NPclass$-zupełne}
