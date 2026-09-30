@@ -904,4 +904,25 @@ Z powyższego twierdzenia wynika, że jeżeli $\NPclass = \coNPclass$, to cała 
 
 \subsection{Klasa $\PSPACEclass$}
 
-Problem QBF-SAT (lub po prostu QBF, od ang. \textit{quantified Boolean formula satisfiability}) to problem stwierdzenia, czy formuła
+Problem QBF (od ang. \textit{quantified Boolean formula satisfiability}) to problem stwierdzenia, czy formuła
+\[ \exists x_1 \; \forall x_2 \; \exists x_3 \; \cdots \; Q x_n : \Phi(x_1, x_2, x_3, \ldots, x_n) \]
+jest prawdziwa.
+
+\begin{remark*}
+    Czytelnik powinien tutaj zauważyć związek z problemami $\Sigma_k$-SAT dla dowolnego $k$.
+    Pewną niespójnością może wydawać się fakt, że używamy tutaj jednak pojedynczych zmiennych logicznych $x_1, \ldots, x_n$ w miejsce skończonych zbiorów zmiennych logicznych $X_1, \ldots, X_k$.
+    Łatwo jednak przekonać się, że w sytuacji, gdy nie mamy żadnego ograniczenia na liczbę zmiennych $x_i$, to są to sformuowania równoważne (wystarczy po prostu niektórych zmiennych w formule $\Phi$ nie używać, tym samym łącząc kwantyfikatory w blok).
+\end{remark*}
+
+\begin{theorem}
+    Problem QBF jest $\PSPACEclass$-zupełny.
+\end{theorem}
+\begin{proof}
+    Najpierw zauważmy, że problem QBF jest w klasie $\PSPACEclass$.
+    W tym celu możemy wskazać prosty algorytm rekurencyjny: rozważamy kolejne zmienne $x_i$ i próbujemy wartościowania $0$ i $1$, w zależności od kwantyfikatora odpowiednio propagując w górę drzewa wywołań informację o prawdziwości częściowo wartościowanej formuły.
+    Taki algorytm wykona oczywiście $2^n$ ewaluacji formuły, ale zmieści się w liniowej pamięci, ponieważ potrzebuje jedynie trzymać aktualne wartościowanie zmiennych.
+
+    Teraz pokażemy $\PSPACEclass$-trudność.
+    Weźmy dowolny język $A \in \PSPACEclass$.
+    Niech $M_A$ będzie maszyną Turinga rozstrzygającą o języku $A$ w pamięci wielomianowej.
+\end{proof}
